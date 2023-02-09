@@ -1,18 +1,17 @@
-name: Release CI
 on:
   push:
     tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]'
+
+name: Create Release
+
 jobs:
-  deploy:
+  build:
+    name: Create Release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
- 
-      ###################
-      ## Create release #
-      ###################
-
+      - name: Checkout code
+        uses: actions/checkout@v2.3.4
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
