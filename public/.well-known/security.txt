@@ -1,0 +1,3 @@
+# If you would like to report any security issues, prefix subject line with "SECURITY.TXT"
+Contact: email@staticpi.com
+Preferred-Languages: en

@@ -1,0 +1,11 @@
+html, body {
+	background-color: #f5f4f2;
+	margin: 0;
+	height: 100%;
+	font-family: 'Titillium Web', sans-serif;
+	font-display: 'swap';
+}
+
+.mastodon {
+	display: none;
+}
