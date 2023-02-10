@@ -1,6 +1,6 @@
 <template>
 	<section
-		@click='buildInfo'
+		
 		class='text-caption unselectable'
 		:class='computedClasses'
 	>
@@ -10,16 +10,24 @@
 				cols='auto'
 			>
 				<v-row align='center' justify='center' class='no-gutters ma-0 pa-0'>
-					<v-col class='ma-0 pa-0' cols='auto'  >
-						
+					<v-col class='ma-0 pa-0 mr-1  mb-1 cl' cols='auto'>
+						<a href='https://www.github.com/mrjackwills/staticpi_vue' target='_blank' rel='noopener noreferrer' class='font-weight-bold'>
+							<v-icon style='vertical-align: middle;' size='small' :icon='mdiGithub' />
+							<v-tooltip activator='parent' location='top center' class='tooltip-z'>
+								<span class=''>see code source</span>
+							</v-tooltip>
+						</a>
+					</v-col>
+					<v-col class='ma-0 pa-0' cols='auto' @click='buildInfo' >
 						<StaticPi color=''/>
 					</v-col>
-					<v-col class='ma-0 pa-0 mx-1' cols='auto' >
+					<v-col class='ma-0 pa-0 mx-1' cols='auto' @click='buildInfo' >
 						<v-icon style='vertical-align: middle;' size='x-small' :icon='mdiCopyright' />
 					</v-col>
-					<v-col class='ma-0 pa-0' cols='auto' >
+					<v-col class='ma-0 pa-0' cols='auto' @click='buildInfo'>
 						2020 -
 					</v-col>
+				
 				</v-row>
 			</v-col>
 		</v-row>
@@ -59,7 +67,7 @@
 <script setup lang='ts'>
 import { browserModule, userModule } from '@/store';
 import { env } from '@/vanillaTS/env';
-import { mdiCopyright } from '@mdi/js';
+import { mdiCopyright, mdiGithub } from '@mdi/js';
 import StaticPi from '@/components/StaticPi.vue';
 import type { TFooterRow } from '@/types';
 
@@ -122,5 +130,9 @@ const buildInfo = (): void => {
 .v-tooltip__content {
 	font-size: 11px !important;
 	padding: 2px 6px 2px 6px!important;
+}
+
+a, a:visited, a:hover, a:active {
+  color: inherit;
 }
 </style>
