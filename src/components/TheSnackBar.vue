@@ -21,7 +21,7 @@
 							indeterminate
 							:size='18'
 							:width='3'
-							color='secondary'
+							color='primary'
 						/>
 					</v-col>
 					<v-col v-if='icon && isDesktop && !loading' cols='auto' class='pa-0 ma-0'>
