@@ -8,8 +8,8 @@
 				<br>
 				When setting a device password, you can choose to set identical or separate password for Pi and Client.
 			</p>
-			<CodeBlock :key='componentKey' :code='code_password_connect_client' filename='connect_client_with_password.js' class='my-3' />
-			<CodeBlock :key='componentKey' :code='code_password_connect_pi' filename='connect_pi_with_password.js' class='my-3' />
+			<CodeBlock :key='`c_${componentKey}`' :code='code_password_connect_client' filename='connect_client_with_password.js' class='my-3' />
+			<CodeBlock :key='`d_${componentKey}`' :code='code_password_connect_pi' filename='connect_pi_with_password.js' class='my-3' />
 		</template>
 	</DocumentationCard>
 
@@ -49,7 +49,7 @@ const token_request = await fetch('${props.address_token}/client', {
 const code_password_connect_pi = computed((): string => {
 	return `const token_body = {
 	 key: "${props.apiKey}",
-	 password: "your_secret_device_password"
+	 password: "your_secret_pi_password"
 };
 
 const connect_client_password = async () => {

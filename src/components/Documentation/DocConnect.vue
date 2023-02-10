@@ -36,16 +36,20 @@
 				<li>You are now connected.</li>
 			</ol>
 			<br>
-			Access tokens are valid for 20 seconds, limited to the ip address of the token requestor, and are destroyed as soon as they has been used to open a websocket connection.
+			Every device is restricted to a single Pi connection, and Pro members can have as many as 100 client connections, while free members are limited to just 1 client connection.
 			<br>
-			In order to keep connections alive, <StaticPi /> websocket server sends a <span class='font-weight-bold'>PING</span> message every 30 seconds, these are not counted against your monthly bandwidth allowance.
+			<br>
+			Access tokens are valid for 20 seconds, limited to the IP address of the requestor, and are destroyed as soon as they has been used to open a websocket connection.
+			<br>
+			<br>
+			In order to keep connections alive, the <StaticPi /> servers send a <span class='font-weight-bold'>PING</span> message every 30 seconds, these are not counted against your monthly bandwidth allowance.
 			<br>
 			If a <span class='font-weight-bold'>PONG</span> message is not sent back within 10 seconds of receiving a <span class='font-weight-bold'>PING</span> message,
 			the connection will be closed. This should be automatically handled by whichever WebSocket library that you use.
 			<br><br>
-			<CodeBlock :key='`client_${componentKey}`' :code='code_basic_connect_client' filename='connect_client.js' class='my-3' />
+			<CodeBlock :key='`client_a${componentKey}`' :code='code_basic_connect_client' filename='connect_client.js' class='my-3' />
 			If using node, the <a href='https://www.npmjs.com/package/ws' target='_blank' rel='noopener noreferrer'>ws package</a> is recommended.
-			<CodeBlock :key='`pi_${componentKey}`' :code='code_basic_connect_pi' filename='connect_pi.js' class='my-3' />
+			<CodeBlock :key='`pi_a${componentKey}`' :code='code_basic_connect_pi' filename='connect_pi.js' class='my-3' />
 		</template>
 
 	</DocumentationCard>
@@ -132,7 +136,7 @@ const wssAddressRow = computed((): Array<TAddressRow> => {
 			address: i === 'client' ? props.address_wss_client : props.address_wss_pi,
 			toCopy: i === 'client' ? props.address_wss_client : props.address_wss_pi,
 			tooltipMessage: `${i} websocket address copied`,
-			hoverMessage: `copy ${i} address`
+			hoverMessage: `copy ${i} websocket address`
 		});
 	return output;
 });

@@ -1,5 +1,5 @@
 <template>
-	<v-col cols='auto' class='unselectable ma-0 pa-1 ml-1' :order='order'>
+	<v-col cols='auto' class='unselectable ma-0 pa-0' :order='order'>
 		<v-chip :size='size' :ripple='false' label color='secondary' variant='flat' >
 			<v-row align='center' justify='center' class='ma-0 pa-0 no-gutters'>
 				<v-col cols='auto' class='ma-0 pa-0 mr-1'>

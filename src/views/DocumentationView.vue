@@ -5,8 +5,6 @@
 		:justify='"center"'
 	>
 		<template v-slot:body>
-
-			<!-- if not authed, show about page addition? -->
 		
 			<AppCard
 				v-if='authenticated'
