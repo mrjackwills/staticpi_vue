@@ -6,7 +6,7 @@
 			For examples and inspiration for projects utilizing the <StaticPi /> service, please refer to the following GitHub repositories.
 			<v-row v-for='(item, index) in examples' :key='index' class='ma-0 pa-0 mt-2'>
 				<v-col cols='12' class='ma-0 pa-0 mt-2'>
-					<a :href='item.href' target='_blank' rel='noopener noreferrer' class='text-primaru font-weight-bold'>{{ item.title }}</a>: {{ item.description }}
+					<a :href='item.href' target='_blank' rel='noopener noreferrer' class='text-primary font-weight-bold'>{{ item.title }}</a>: {{ item.description }}
 				</v-col>
 			</v-row>
 
