@@ -19,12 +19,12 @@
 ## Screenshots
 
 <p align="center">
-	<a href="https://raw.githubusercontent.com/mrjackwills/staticpi_vue/main/.github/site_screenshot_01.jpg" target='_blank' rel='noopener noreferrer'>
-		<img src='./.github/site_screenshot_01.jpg' width='45%'/>
+	<a href="https://raw.githubusercontent.com/mrjackwills/staticpi_vue/main/.github/screenshot_01.jpg" target='_blank' rel='noopener noreferrer'>
+		<img src='./.github/screenshot_01.jpg' width='45%'/>
 	</a>
 	&nbsp;&nbsp;
-	<a href="https://raw.githubusercontent.com/mrjackwills/staticpi_vue/main/.github/site_screenshot_02.jpg" target='_blank' rel='noopener noreferrer'>
-		<img src='./.github/site_screenshot_02.jpg' width='45%'/>
+	<a href="https://raw.githubusercontent.com/mrjackwills/staticpi_vue/main/.github/screenshot_02.jpg" target='_blank' rel='noopener noreferrer'>
+		<img src='./.github/screenshot_02.jpg' width='45%'/>
 	</a>
 </p>
 
@@ -42,6 +42,9 @@
 	<li>QR code creation</li>
 	<li>Github release workflow</li>
 	<li><a href='https://securitytxt.org/' target='_blank' rel='noopener noreferrer'>security.txt</a></li>
+	<li>`A+` security headers, as measured by <a href='https://securityheaders.com/'  target='_blank' rel='noopener noreferrer'>securityheaders.com</a></li>
+	<li>`A+` SSL report, measured by <a href='https://www.ssllabs.com/ssltest/'  target='_blank' rel='noopener noreferrer'>ssllabs.com</a></li>
+	
 </ul>
 
 Invite available on request 
