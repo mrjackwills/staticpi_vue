@@ -19,8 +19,8 @@ const pwaOptions: Partial<VitePWAOptions> = {
 		name: 'staticPi',
 		description: 'simple messaging service',
 		short_name: 'staticPi',
-		theme_color: '#aa8945',
-		background_color: '#402e32',
+		theme_color: '#c31c4a',
+		background_color: '#fafafa',
 		id: process.env.npm_package_version,
 		icons: [
 			{
