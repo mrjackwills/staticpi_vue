@@ -14,7 +14,7 @@
 						<a href='https://www.github.com/mrjackwills/staticpi_vue' target='_blank' rel='noopener noreferrer' class='font-weight-bold'>
 							<v-icon style='vertical-align: middle;' size='small' :icon='mdiGithub' />
 							<v-tooltip activator='parent' location='top center' class='tooltip-z'>
-								<span class=''>see code source</span>
+								<span class=''>see source code</span>
 							</v-tooltip>
 						</a>
 					</v-col>
