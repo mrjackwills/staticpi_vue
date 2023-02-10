@@ -42,8 +42,8 @@
 	<li>QR code creation</li>
 	<li>Github release workflow</li>
 	<li><a href='https://securitytxt.org/' target='_blank' rel='noopener noreferrer'>security.txt</a></li>
-	<li>`A+` security headers, as measured by <a href='https://securityheaders.com/'  target='_blank' rel='noopener noreferrer'>securityheaders.com</a></li>
-	<li>`A+` SSL report, measured by <a href='https://www.ssllabs.com/ssltest/'  target='_blank' rel='noopener noreferrer'>ssllabs.com</a></li>
+	<li><strong>A+</strong> security headers, as measured by <a href='https://securityheaders.com/'  target='_blank' rel='noopener noreferrer'>securityheaders.com</a></li>
+	<li><strong>A+</strong> SSL report, measured by <a href='https://www.ssllabs.com/ssltest/'  target='_blank' rel='noopener noreferrer'>ssllabs.com</a></li>
 	
 </ul>
 
