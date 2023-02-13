@@ -68,26 +68,24 @@ const code_basic_connect_client = computed((): string => {
 	 key: "${props.apiKey}"
 };
 
-const connect_client = async () => {
-	const token_request = await fetch('${props.address_token}/client', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify(token_body)
-	});
-	const { response } = await token_request.json();
-	const websocket_connection = new WebSocket(\`${props.address_wss_client}/\${response}\` );
-	
-	websocket_connection.addEventListener('open', (event) => {
-		console.log('client connected');
-	});
+const token_request = await fetch('${props.address_token}/client', {
+	method: 'POST',
+	headers: {
+		'Content-Type': 'application/json',
+	},
+	body: JSON.stringify(token_body)
+});
+const { response } = await token_request.json();
 
-	websocket_connection.addEventListener('message', (event) => {
-		console.log(\`message received on client: \${event.data}\`);
-	});
+const websocket_connection = new WebSocket(\`${props.address_wss_client}/\${response}\` );
 	
-}`;
+websocket_connection.addEventListener('open', (event) => {
+	console.log('client connected');
+});
+
+websocket_connection.addEventListener('message', (event) => {
+	console.log(\`message received on client: \${event.data}\`);
+});`;
 });
 
 const code_basic_connect_pi = computed((): string => {
@@ -98,20 +96,17 @@ const token_body = {
 	 key: "${props.apiKey}"
 };
 
-const connect_pi = async () => {
-	const { data } = await axios.post('${props.address_token}/pi', token_body)
-	const websocket_connection = new WebSocket(\`${props.address_wss_pi}/\${data.response}\`);
+const { data } = await axios.post('${props.address_token}/pi', token_body)
+const websocket_connection = new WebSocket(\`${props.address_wss_pi}/\${data.response}\`);
 
-	websocket_connection.on('open', function open() {
-		console.log('pi connected');
-		websocket_connection.send('Hello world');
-	});
+websocket_connection.on('open', function open() {
+	console.log('pi connected');
+	websocket_connection.send('Hello world');
+});
 
-	websocket_connection.on('message', function message(data) {
-		console.log(\`message received on pi: \${data}\`);
-	});
-
-}`;
+websocket_connection.on('message', function message(data) {
+	console.log(\`message received on pi: \${data}\`);
+});`;
 
 });
 

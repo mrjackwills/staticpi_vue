@@ -31,19 +31,17 @@ const token_request = await fetch('${props.address_token}/client', {
 		},
 		body: JSON.stringify(token_body)
 	});
-	const { response } = await token_request.json();
-	const websocket_connection = new WebSocket(\`${props.address_wss_client}/\${response}\` );
+const { response } = await token_request.json();
+
+const websocket_connection = new WebSocket(\`${props.address_wss_client}/\${response}\` );
 	
-	websocket_connection.addEventListener('open', (event) => {
-		console.log('client connected');
-	});
+websocket_connection.addEventListener('open', (event) => {
+	console.log('client connected');
+});
 
-	websocket_connection.addEventListener('message', (event) => {
-		console.log(\`message received on client: \${event.data}\`);
-	});
-}
-
-`;
+websocket_connection.addEventListener('message', (event) => {
+	console.log(\`message received on client: \${event.data}\`);
+});`;
 });
 
 const code_password_connect_pi = computed((): string => {
@@ -52,18 +50,16 @@ const code_password_connect_pi = computed((): string => {
 	 password: "your_secret_pi_password"
 };
 
-const connect_client_password = async () => {
-	const { data } = await axios.get('${props.address_token}/pi', token_body)
-	const websocket_connection = new WebSocket(\`${props.address_wss_pi}/\${response.data}\` );
+const { data } = await axios.get('${props.address_token}/pi', token_body)
+const websocket_connection = new WebSocket(\`${props.address_wss_pi}/\${data.response}\` );
 	
-	websocket_connection.addEventListener('open', (event) => {
-		console.log('pi connected');
-	});
+websocket_connection.addEventListener('open', (event) => {
+	console.log('pi connected');
+});
 
-	websocket_connection.addEventListener('message', (event) => {
-		console.log(\`message received on pi: \${event.data}\`);
-	});
-}`;
+websocket_connection.addEventListener('message', (event) => {
+	console.log(\`message received on pi: \${event.data}\`);
+});`;
 });
 
 const props = defineProps({

@@ -59,16 +59,17 @@ const websocket_connection = new WebSocket(\`${props.address_wss_pi}/\${response
 const photo_as_b64 = await readFile('./keyboard_cat.jpg', { encoding: 'base64'} );
 const binary_structured_message = JSON.stringify( { data : { name: "cat_photo", photo: photo_as_b64 } } );
 websocket_connection.send(binary_structured_message);
-});`;
+`;
 });
 
 const b64_received = computed((): string => {
 	return `websocket_connection.addEventListener('message', (event) => {
-		let message = JSON.parse(event.data);
-		if (message.data?.name === "cat_photo") {
-			document.getElementById("cat_photo").src = \`data:image/jpeg;base64,\${message.data.photo}\`
-		}
-});`;
+	const message = JSON.parse(event.data);
+	if (message.data?.name === "cat_photo") {
+		document.getElementById("cat_photo").src = \`data:image/jpeg;base64,\${message.data.photo}\`
+	}
+});
+`;
 });
 
 const props = defineProps({

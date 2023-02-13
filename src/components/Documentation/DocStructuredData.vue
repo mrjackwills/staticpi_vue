@@ -9,14 +9,14 @@
 				the three accepted key names are:
 				<br>
 				<br>
-				• <router-link :to='structured_id("data")' class='text-primary'>"data"</router-link>
+				• <router-link :to='structured_id("data")' class='font-weight-bold text-primary'>"data"</router-link>
 				<br>
-				• <router-link :to='structured_id("cache")' class='text-primary'>"cache"</router-link>
+				• <router-link :to='structured_id("cache")' class='font-weight-bold text-primary'>"cache"</router-link>
 				<br>
-				• <router-link :to='structured_id("unique")' class='text-primary'>"unique"</router-link>
+				• <router-link :to='structured_id("unique")' class='font-weight-bold text-primary'>"unique"</router-link>
 				<br>
 				<br>
-				• <router-link :to='structured_id("error")' class='text-primary'>"error"</router-link> is reserved exclusively for use by the servers of staticPi.
+				• <router-link :to='structured_id("error")' class='font-weight-bold text-primary'>"error"</router-link> is reserved exclusively for use by the servers of staticPi.
 
 				<v-divider color='secondary' class='my-2' thickness='2' />
 				<span class='text-h6 font-weight-bold text-pi' :id='structured_key_id("data")'>
@@ -169,10 +169,10 @@ websocket_connection.addEventListener('open', (event) => {
 
 const code_structured_data_parse = computed((): string => {
 	return `websocket_connection.addEventListener('message', (event) => {
-		const message = JSON.parse(event.data);
-		console.log(message?.data?.anything)
-		// "I_want_here"
-		}
+	const message = JSON.parse(event.data);
+	console.log(message?.data?.anything)
+	// "I_want_here"
+	}
 });`;
 });
 
