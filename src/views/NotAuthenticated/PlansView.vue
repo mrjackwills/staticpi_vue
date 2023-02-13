@@ -276,7 +276,7 @@ const planData = [
 				freePlan: true,
 			},
 			{
-				detail: 'available',
+				detail: 'Pi and Clients can either share or have separate passwords',
 				freePlan: false,
 			},
 		],

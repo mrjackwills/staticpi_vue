@@ -5,7 +5,7 @@
 		<template v-slot:doc-body>
 			If a device does not have <router-link :to='structured_link()' class='font-weight-bold text-primary'>structured data</router-link> enabled, binary messages will be sent and received as normal.
 			<br>
-			If it is enabled, binary data received will result in a invalid message
+			If it is enabled, binary data sent will result in a invalid message retunred to the sender
 			<v-row justify='center' class='ma-0 pa-0 my-2'>
 				<v-col cols='12' class='ma-0 pa-0'>
 					<CodeBlock :titleBar='false' :code='json_structured_invalid' />

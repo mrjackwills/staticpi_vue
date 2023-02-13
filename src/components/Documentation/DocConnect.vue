@@ -44,7 +44,7 @@
 			<br>
 			In order to keep connections alive, the <StaticPi /> servers send a <span class='font-weight-bold'>PING</span> message every 30 seconds, these are not counted against your monthly bandwidth allowance.
 			<br>
-			If a <span class='font-weight-bold'>PONG</span> message is not sent back within 10 seconds of receiving a <span class='font-weight-bold'>PING</span> message,
+			If a <span class='font-weight-bold'>PONG</span> message is not sent back within 40 seconds of receiving a <span class='font-weight-bold'>PING</span> message,
 			the connection will be closed. This should be automatically handled by whichever WebSocket library that you use.
 			<br><br>
 			<CodeBlock :key='`client_a${componentKey}`' :code='code_basic_connect_client' filename='connect_client.js' class='my-3' />

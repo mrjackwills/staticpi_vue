@@ -42,9 +42,9 @@
 				If the rate limit is exceeded, a one-minute ban on sending and receiving messages is imposed.
 				If the limit is exceeded by a factor of 4, a five-minute block on sending, receiving, and connecting is imposed, and the offending connection will be terminated.
 				<v-divider color='secondary' class='my-2' thickness='2' />
-				<v-row justify='center' class='ma-0 pa-0'>
+				<v-row justify='start' class='ma-0 pa-0'>
 					<v-col cols='auto' class='ma-0 pa-0'>
-						<ProUserChip class=''/>
+						<ProUserChip class='mb-2'/>
 					</v-col>
 				</v-row>
 				If <router-link :to='structured_link()' class='font-weight-bold text-primary'>structured data</router-link> is enabled, when rate limited,
