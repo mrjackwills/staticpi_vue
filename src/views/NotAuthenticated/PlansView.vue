@@ -339,35 +339,21 @@ const planData = [
 	},
 	{
 		feature: 'support',
-		tooltip: 'Detailed knowledge base documentation available to all',
+		tooltip: 'How to get assistance',
 		level: [
 			{
-				detail: 'knowledge base documentation',
+				detail: 'web-based documentation',
 				freePlan: true,
 			},
 			{
-				detail: 'email support',
+				detail: 'priority email based assistance',
 				freePlan: false,
 			},
 		],
 	},
-	// {
-	// 	feature: 'device alerts',
-	// 	tooltip: 'Receive alerts when device status or settings are modified',
-	// 	level: [
-	// 		{
-	// 			detail: 'none',
-	// 			freePlan: true,
-	// 		},
-	// 		{
-	// 			detail: 'via email',
-	// 			freePlan: false,
-	// 		},
-	// 	],
-	// },
 	{
 		feature: 'cache',
-		tooltip: 'Cache messages, to be accessed by a client even if device is offline',
+		tooltip: 'Cache messages, accessible by clients even if a device is offline',
 		level: [
 			{
 				detail: 'none',
