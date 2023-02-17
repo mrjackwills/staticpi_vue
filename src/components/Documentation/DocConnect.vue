@@ -27,6 +27,29 @@
 
 			<v-divider class='my-1'/>
 			<br>
+			<v-row justify='center' align='center'>
+				<v-col cols='12' md='6' lg='4'>
+					<AppCard
+						sm='12'
+						md='12'
+						lg='12'
+						xl='12'
+						my=''
+						class=''
+						heading='device connection'
+						heading_size='text-h6'
+					>
+						<template v-slot:body>
+							<v-img
+								:eager='true'
+								src='@/assets/svg/diagram_o.svg'
+								contain
+							/>
+						</template>
+					</AppCard>
+				</v-col>
+			</v-row>
+			
 			To establish a websocket connection to <StaticPi />
 			<br>
 			<br>
@@ -57,6 +80,8 @@
 </template>
 
 <script setup lang='ts'>
+import AppCard from '@/components/Card/AppCard.vue';
+
 import AddressRow from '@/components/Documentation/DocAddressRow.vue';
 import CodeBlock from '@/components/CodeBlock.vue';
 import DocumentationCard from '@/components/Card/DocumentationCard.vue';
