@@ -81,7 +81,7 @@ const { mdAndUp, mobile, smAndDown } = useDisplay();
 
 const heading = computed((): string => {
 	let suffix = props.tableRows.length>1 ? `s: ${props.tableRows.length}` : '';
-	return props.is_device ? 'device connection' : `client connection${suffix}`;
+	return props.is_device ? 'pi connection' : `client connection${suffix}`;
 });
 const icon = computed((): string => {
 	return props.is_device? props.online? mdiAccessPointNetwork : mdiAccessPointNetworkOff : props.online? mdiPlaylistCheck : mdiPlaylistRemove;

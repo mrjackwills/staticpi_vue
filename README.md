@@ -6,7 +6,7 @@
 
 <p align="center">
 	The frontend for <a href='https://www.staticpi.com' target='_blank' rel='noopener noreferrer'>https://www.staticpi.com</a>,
-	<br>backend code <a href='https://www.github.com/mrjackwills/staticpi_backend' target='_blank' rel='noopener noreferrer'>(soon to be seen) here</a>
+	<br>backend code <a href='https://www.github.com/mrjackwills/staticpi_backend' target='_blank' rel='noopener noreferrer'>here</a>
 </p>
 <p align="center">
 	Built using <a href='https://vuejs.org/' target='_blank' rel='noopener noreferrer'>vue.js</a>,

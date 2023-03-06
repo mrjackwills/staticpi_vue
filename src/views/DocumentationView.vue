@@ -38,14 +38,14 @@
 					</v-row>
 				</template>
 			</AppCard>
-			
+
 			<AppCard
 				sm='12'
 				md='12'
 				lg='11'
 				xl='11'
 				my=''
-				class=' mb-n5'
+				class='mb-n5'
 			>
 				<template v-slot:body>
 					<v-row align='center' justify='center' class='no-gutters py-2' :class='smallText'>
