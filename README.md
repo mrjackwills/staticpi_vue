@@ -42,9 +42,9 @@
 	<li>Client side WebSocket message handler</li>
 	<li>QR code creation</li>
 	<li>Github release workflow</li>
-	<li><a href='https://securitytxt.org/' target='_blank' rel='noopener noreferrer'>security.txt</a></li>
-	<li><strong>A+</strong> security headers, as measured by <a href='https://securityheaders.com/'  target='_blank' rel='noopener noreferrer'>securityheaders.com</a></li>
-	<li><strong>A+</strong> SSL report, as measured by <a href='https://www.ssllabs.com/ssltest/'  target='_blank' rel='noopener noreferrer'>ssllabs.com</a></li>
+	<li><strong>A+</strong> <a href='https://www.ssllabs.com/ssltest/analyze.html?d=www.staticpi.com' target='_blank' rel='noopener noreferrer'>ssllabs</a> rating</li>
+	<li><strong>A+</strong> <a href='https://securityheaders.com/?q=https%3A%2F%2Fwww.staticpi.com%2F&followRedirects=on' target='_blank' rel='noopener noreferrer'>security headers</a> rating</li>
+	<li><strong>A+</strong> <a href='https://observatory.mozilla.org/analyze/www.staticpi.com' target='_blank' rel='noopener noreferrer'>Mozilla observatory</a> rating</li>
 	
 </ul>
 
