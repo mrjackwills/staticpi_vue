@@ -10,7 +10,7 @@
 				<v-col cols='12' class='ma-0 pa-0'>
 					<v-row align='center' justify='start' class='ma-0 pa-0'>
 						<v-col cols='auto' class='ma-0 pa-0' order='2'>
-							<ProUserChip :class='proMargin' v-if='pro' />
+							<ProUserChip :class='proMargin' class='ma-1 ml-3' v-if='pro' />
 						</v-col>
 						<v-col cols='auto' class='ma-0 pa-0' order='1'>
 							<AppSubheading :heading='heading' justify='start' :id='createId' />

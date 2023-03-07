@@ -27,6 +27,29 @@
 
 			<v-divider class='my-1'/>
 			<br>
+			<v-row justify='center' align='center'>
+				<v-col cols='12' md='6' lg='4'>
+					<AppCard
+						sm='12'
+						md='12'
+						lg='12'
+						xl='12'
+						my=''
+						class=''
+						heading='device connection'
+						heading_size='text-h6'
+					>
+						<template v-slot:body>
+							<v-img
+								:eager='true'
+								src='@/assets/svg/diagram_o.svg'
+								contain
+							/>
+						</template>
+					</AppCard>
+				</v-col>
+			</v-row>
+			
 			To establish a websocket connection to <StaticPi />
 			<br>
 			<br>
@@ -36,16 +59,20 @@
 				<li>You are now connected.</li>
 			</ol>
 			<br>
-			Access tokens are valid for 20 seconds, limited to the ip address of the token requestor, and are destroyed as soon as they has been used to open a websocket connection.
+			Every device is restricted to a single Pi connection, and Pro members can have as many as 100 client connections, while free members are limited to just 1 client connection.
 			<br>
-			In order to keep connections alive, <StaticPi /> websocket server sends a <span class='font-weight-bold'>PING</span> message every 30 seconds, these are not counted against your monthly bandwidth allowance.
 			<br>
-			If a <span class='font-weight-bold'>PONG</span> message is not sent back within 10 seconds of receiving a <span class='font-weight-bold'>PING</span> message,
+			Access tokens are valid for 20 seconds, limited to the IP address of the requestor, and are destroyed as soon as they has been used to open a websocket connection.
+			<br>
+			<br>
+			In order to keep connections alive, the <StaticPi /> servers send a <span class='font-weight-bold'>PING</span> message every 30 seconds, these are not counted against your monthly bandwidth allowance.
+			<br>
+			If a <span class='font-weight-bold'>PONG</span> message is not sent back within 40 seconds of receiving a <span class='font-weight-bold'>PING</span> message,
 			the connection will be closed. This should be automatically handled by whichever WebSocket library that you use.
 			<br><br>
-			<CodeBlock :key='`client_${componentKey}`' :code='code_basic_connect_client' filename='connect_client.js' class='my-3' />
+			<CodeBlock :key='`client_a${componentKey}`' :code='code_basic_connect_client' filename='connect_client.js' class='my-3' />
 			If using node, the <a href='https://www.npmjs.com/package/ws' target='_blank' rel='noopener noreferrer'>ws package</a> is recommended.
-			<CodeBlock :key='`pi_${componentKey}`' :code='code_basic_connect_pi' filename='connect_pi.js' class='my-3' />
+			<CodeBlock :key='`pi_a${componentKey}`' :code='code_basic_connect_pi' filename='connect_pi.js' class='my-3' />
 		</template>
 
 	</DocumentationCard>
@@ -53,6 +80,8 @@
 </template>
 
 <script setup lang='ts'>
+import AppCard from '@/components/Card/AppCard.vue';
+
 import AddressRow from '@/components/Documentation/DocAddressRow.vue';
 import CodeBlock from '@/components/CodeBlock.vue';
 import DocumentationCard from '@/components/Card/DocumentationCard.vue';
@@ -64,26 +93,24 @@ const code_basic_connect_client = computed((): string => {
 	 key: "${props.apiKey}"
 };
 
-const connect_client = async () => {
-	const token_request = await fetch('${props.address_token}/client', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify(token_body)
-	});
-	const { response } = await token_request.json();
-	const websocket_connection = new WebSocket(\`${props.address_wss_client}/\${response}\` );
-	
-	websocket_connection.addEventListener('open', (event) => {
-		console.log('client connected');
-	});
+const token_request = await fetch('${props.address_token}/client', {
+	method: 'POST',
+	headers: {
+		'Content-Type': 'application/json',
+	},
+	body: JSON.stringify(token_body)
+});
+const { response } = await token_request.json();
 
-	websocket_connection.addEventListener('message', (event) => {
-		console.log(\`message received on client: \${event.data}\`);
-	});
+const websocket_connection = new WebSocket(\`${props.address_wss_client}/\${response}\` );
 	
-}`;
+websocket_connection.addEventListener('open', (event) => {
+	console.log('client connected');
+});
+
+websocket_connection.addEventListener('message', (event) => {
+	console.log(\`message received on client: \${event.data}\`);
+});`;
 });
 
 const code_basic_connect_pi = computed((): string => {
@@ -94,20 +121,17 @@ const token_body = {
 	 key: "${props.apiKey}"
 };
 
-const connect_pi = async () => {
-	const { data } = await axios.post('${props.address_token}/pi', token_body)
-	const websocket_connection = new WebSocket(\`${props.address_wss_pi}/\${data.response}\`);
+const { data } = await axios.post('${props.address_token}/pi', token_body)
+const websocket_connection = new WebSocket(\`${props.address_wss_pi}/\${data.response}\`);
 
-	websocket_connection.on('open', function open() {
-		console.log('pi connected');
-		websocket_connection.send('Hello world');
-	});
+websocket_connection.on('open', function open() {
+	console.log('pi connected');
+	websocket_connection.send('Hello world');
+});
 
-	websocket_connection.on('message', function message(data) {
-		console.log(\`message received on pi: \${data}\`);
-	});
-
-}`;
+websocket_connection.on('message', function message(data) {
+	console.log(\`message received on pi: \${data}\`);
+});`;
 
 });
 
@@ -132,7 +156,7 @@ const wssAddressRow = computed((): Array<TAddressRow> => {
 			address: i === 'client' ? props.address_wss_client : props.address_wss_pi,
 			toCopy: i === 'client' ? props.address_wss_client : props.address_wss_pi,
 			tooltipMessage: `${i} websocket address copied`,
-			hoverMessage: `copy ${i} address`
+			hoverMessage: `copy ${i} websocket address`
 		});
 	return output;
 });

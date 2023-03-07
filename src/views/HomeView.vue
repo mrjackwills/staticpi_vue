@@ -112,6 +112,19 @@
 								</ul>
 							</v-col>
 						</v-row>
+
+						<v-row class=' mt-3 mx-1 ma-0 pa-0' align='center' justify='center'>
+					
+							<v-col cols='12' class='text-center'>
+								fully open source
+							</v-col>
+							<v-col cols='auto'>
+								<a  href='https://www.github.com/mrjackwills/staticpi_vue' target='_blank' rel='noopener noreferrer' class='text-primary font-weight-bold'>website source code</a>
+							</v-col>
+							<v-col cols='auto'>
+								<a href='https://www.github.com/mrjackwills/staticpi_backend' target='_blank' rel='noopener noreferrer' class='text-primary font-weight-bold'>backend source code</a>
+							</v-col>
+						</v-row>
 						
 						<v-row class=' mt-3 mx-1 ma-0 pa-0 font-weight-bold' align='center' justify='center'>
 					

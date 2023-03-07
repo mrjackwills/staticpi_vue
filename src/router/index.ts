@@ -245,7 +245,7 @@ const router = createRouter({
 				el: to.hash,
 				behavior: 'smooth',
 				// this is to counter the height of the app bar, if on mobile!
-				top: 100,
+				top: 76,
 			};
 		/// Settings page amends url, so need to skip scrolling if both to & from are in the same page!
 		} else if (to.name?.toString() !== from.name?.toString()) {

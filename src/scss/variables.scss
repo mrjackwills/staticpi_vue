@@ -54,10 +54,9 @@ html{
 	cursor: pointer;
 }
 
-/* increase zindex on tooltip, so always on top*/
-// .tooltip-z{
-// 	z-index: 1505;
-// }
+div.v-snackbar:not(.v-snackbar--absolute) {
+    height: 100% !important;
+}
 
 .tooltip-z .v-overlay__content {
 	opacity: .90!important;

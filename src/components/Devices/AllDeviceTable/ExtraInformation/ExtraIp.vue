@@ -2,7 +2,7 @@
 	<v-row class='ma-0 pa-0 no gutters' align='center'>
 
 		<v-col cols='auto' class='ma-0 pa-0'>
-			<span v-if='mobile' class='font-weight-bold'>ip address: </span>
+			<span class='hidden-md-and-up font-weight-bold'>ip address: </span>
 		</v-col>
 
 		<v-spacer />
@@ -20,9 +20,6 @@
 
 <script setup lang='ts'>
 import CopyButton from '@/components/Buttons/CopyButton.vue';
-import { useDisplay } from 'vuetify';
-
-const { mobile } = useDisplay();
 defineProps({
 	ip: {
 		type: String,

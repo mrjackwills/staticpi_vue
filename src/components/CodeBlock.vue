@@ -18,10 +18,10 @@
 					<v-col cols='auto' class='font-italic unselectable cl'>
 						<CopyButton
 							:hoverMessage='`click to copy "${filename}"`'
+							:small='true'
 							:toCopy='code'
 							:tooltipMessage='"code copied!"'
 							color='cardColor'
-							:small='true'
 						/>
 					</v-col>
 
@@ -47,10 +47,10 @@
 import '@/scss/vscode.css';
 import { mdiCheckboxBlankCircle } from '@mdi/js';
 import { nonce } from '@/vanillaTS/globalConst';
+import { useDisplay } from 'vuetify';
 import CopyButton from '@/components/Buttons/CopyButton.vue';
 import prism from 'prismjs';
 
-import { useDisplay } from 'vuetify';
 const { mobile } = useDisplay();
 
 const smallText = computed((): string => {
