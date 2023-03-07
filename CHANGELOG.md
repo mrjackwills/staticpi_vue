@@ -13,7 +13,7 @@
 + divider opacity, [b5186468a3894cae20baa2e6fa3eb380a551b3ce]
 
 ### Fixes
-+ tempory(?) snackbar fix, [ca941f3961cb9e8ce2fc4ac7207bdf2d77ee4af9]
++ temporary(?) snackbar fix, [ca941f3961cb9e8ce2fc4ac7207bdf2d77ee4af9]
 + extraip hide using css, [96d453612bfa15360d4a831bc8baa83c3ba4834e]
 + connected clients ip address hidden unless smAndDown, [11d328513adba9222952285e36997a191b3a4890]
 + admin invite component v-if, [b95c21aef81acd7376a41810b6297d384a3c8b65]
