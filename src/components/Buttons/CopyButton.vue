@@ -2,7 +2,7 @@
 	<section>
 		<v-row class='ma-0 pa-0 no-gutters'>
 			<v-col cols='12' class='ma-0 pa-0'>
-				<v-tooltip activator='parent' location='top center' class='tooltip-z'>
+				<v-tooltip activator='parent' location='top center' content-class='tooltip'>
 					<span v-intersect='onIntersect'>{{ message }}</span>
 				</v-tooltip>
 				<v-btn

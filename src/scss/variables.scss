@@ -55,13 +55,12 @@ html{
 }
 
 div.v-snackbar:not(.v-snackbar--absolute) {
-    height: 100% !important;
+	height: 100% !important;
 }
 
-.tooltip-z .v-overlay__content {
+.tooltip {
 	opacity: .90!important;
 	background: black!important;
-	// text-transform: lowercase !important;
 }
 
 /* Set text as unselectable*/
@@ -90,6 +89,12 @@ div.v-snackbar:not(.v-snackbar--absolute) {
 /** Roate 90 deg*/
 .rotate90{
 	transform: rotate(90deg);
+}
+
+
+// This is a, hopefully, temporary fix for a snackbar issue - https://github.com/vuetifyjs/vuetify/issues/16432
+div.v-snackbar:not(.v-snackbar--absolute) {
+	height: 100% !important;
 }
 
 /**************/

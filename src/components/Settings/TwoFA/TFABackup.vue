@@ -97,7 +97,7 @@
 										id='tooltip'
 										text='copy all'
 									/>
-									<v-tooltip v-if='showTooltip' :open-on-click='true' :open-on-hover='false' activator='parent' location='top center' class='tooltip-z'>
+									<v-tooltip v-if='showTooltip' :open-on-click='true' :open-on-hover='false' activator='parent' location='top center' content-class='tooltip'>
 										<span>copied to clipboard</span>
 									</v-tooltip>
 								</v-col>

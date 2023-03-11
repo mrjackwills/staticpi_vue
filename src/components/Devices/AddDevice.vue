@@ -38,7 +38,7 @@
 									variant='outlined'
 									validate-on-blur
 								/>
-								<v-tooltip v-if='isFreeUser' activator='parent' location='top center' class='tooltip-z'>
+								<v-tooltip v-if='isFreeUser' activator='parent' location='top center' content-class='tooltip'>
 									<span> Customisable name are not available to free users</span>
 								</v-tooltip>
 							</v-col>

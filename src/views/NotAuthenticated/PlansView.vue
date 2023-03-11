@@ -45,7 +45,7 @@
 									<v-col cols='3' md='2' class=' ma-0 pa-0'>
 										<v-icon small class='mr-3' color='secondary' v-if='smAndUp' :icon='mdiInformation' />
 										<span class='font-weight-bold unselectable'>{{ item.feature }}</span>
-										<v-tooltip activator='parent' location='top center' class='tooltip-z'>
+										<v-tooltip activator='parent' location='top center' content-class='tooltip'>
 											<span>{{ item.tooltip }}</span>
 										</v-tooltip>
 									</v-col>
@@ -130,7 +130,7 @@
 								>
 									<v-col cols='5' md='2' class=' ma-0 pa-0'>
 
-										<v-tooltip activator='parent' location='top center' class='tooltip-z'>
+										<v-tooltip activator='parent' location='top center' content-class='tooltip'>
 											<span>{{ item.tooltip }}</span>
 										</v-tooltip>
 

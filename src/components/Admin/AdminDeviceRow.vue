@@ -23,7 +23,7 @@
 
 		</v-col>
 		<v-col cols='1' class='cl ma-0 pa-0 text-right' @click='pauseDevice'>
-			<v-tooltip activator='parent' location='top center' class='tooltip-z'>
+			<v-tooltip activator='parent' location='top center' content-class='tooltip'>
 				<span>click to {{ tooltip }}pause</span>
 			</v-tooltip>
 			<v-icon :icon='pause_icon' :color='bool_color(!device.device.paused)'/>
@@ -54,7 +54,7 @@
 					</v-col>
 					<v-col cols='3' class='ma-0 pa-0 cl' @click='close_connection(con_item.ulid, con_item.device_id, con_item.device_type)'>
 						ulid: {{ con_item.ulid }}
-						<v-tooltip activator='parent' location='top center' class='tooltip-z'>
+						<v-tooltip activator='parent' location='top center' content-class='tooltip'>
 							<span>click to kill connection</span>
 						</v-tooltip>
 					</v-col>

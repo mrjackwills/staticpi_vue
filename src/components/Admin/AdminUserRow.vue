@@ -16,7 +16,7 @@
 						density='compact'
 						label=''
 					/>
-					<v-tooltip activator='parent' location='top center' v-if='disabled' class='tooltip-z'>
+					<v-tooltip activator='parent' location='top center' v-if='disabled' content-class='tooltip'>
 						<span>can't disable self</span>
 					</v-tooltip>
 					

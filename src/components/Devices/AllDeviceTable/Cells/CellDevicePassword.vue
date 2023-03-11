@@ -68,7 +68,7 @@
 
 				<section v-if='!showTextField'>
 					<v-row :justify='justify' >
-						<v-tooltip activator='parent' location='top center' class='tooltip-z' v-if='freeUser'>
+						<v-tooltip activator='parent' location='top center' content-class='tooltip' v-if='freeUser'>
 							<span >Password authentication is not available for free user</span>
 						</v-tooltip>
 						<v-col cols='auto'>

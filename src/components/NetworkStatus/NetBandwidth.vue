@@ -17,7 +17,7 @@
 									<span class='font-weight-bold'> {{ item.in.human_readable.total }}</span>
 									<span class='mr-1 font-weight-bold'>{{ item.in.human_readable.unit }}</span>
 								</div>
-								<v-tooltip activator='parent' location='top center' class='tooltip-z'>
+								<v-tooltip activator='parent' location='top center' content-class='tooltip'>
 									<span>{{ item.in.bytes }} bytes received</span>
 								</v-tooltip>
 							</v-col>
@@ -37,7 +37,7 @@
 									<span class='font-weight-bold'> {{ item.out.human_readable.total }}</span>
 									<span class='mr-1 font-weight-bold'>{{ item.out.human_readable.unit }}</span>
 								</div>
-								<v-tooltip activator='parent' location='top center' class='tooltip-z'>
+								<v-tooltip activator='parent' location='top center' content-class='tooltip'>
 									<span>{{ item.out.bytes }} bytes sent</span>
 								</v-tooltip>
 							</v-col>

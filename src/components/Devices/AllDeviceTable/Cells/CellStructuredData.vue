@@ -9,7 +9,7 @@
 					density='compact'
 					:error-messages='notSaved'
 				/>
-				<v-tooltip activator='parent' :disabled='device.paused' location='top center' class='tooltip-z'>
+				<v-tooltip activator='parent' :disabled='device.paused' location='top center' content-class='tooltip'>
 					<span>{{ tooltipText }}</span>
 				</v-tooltip>
 			

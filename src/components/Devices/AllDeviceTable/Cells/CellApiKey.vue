@@ -25,7 +25,7 @@
 					density='comfortable'
 				>
 					<v-icon color='pi' :icon='mdiAutorenew' />
-					<v-tooltip activator='parent' location='top center' class='tooltip-z'>
+					<v-tooltip activator='parent' location='top center' content-class='tooltip'>
 						<span>regenerate api key</span>
 					</v-tooltip>
 				</v-btn>

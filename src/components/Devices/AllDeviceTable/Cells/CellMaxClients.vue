@@ -2,7 +2,7 @@
 	<section>
 		<v-row align='center' :justify='justify' no-gutters class='pt-1'  >
 			<v-col cols='6' class='pa-0 ma-0' >
-				<v-tooltip :disabled='!freeUser' activator='parent' location='top center' class='tooltip-z'>
+				<v-tooltip :disabled='!freeUser' activator='parent' location='top center' content-class='tooltip'>
 					<span >Free users are limited to 1 client</span>
 				</v-tooltip>
 
