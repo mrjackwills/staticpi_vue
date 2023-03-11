@@ -36,7 +36,7 @@
 							<v-tooltip
 								v-if='disabled'
 								v-model='tooltip_add'
-								class='tooltip-z'
+								content-class='tooltip'
 								activator='parent'
 								location='top center'
 							>

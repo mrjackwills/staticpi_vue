@@ -16,7 +16,7 @@
 			<v-icon
 				:icon='mdiArrowCollapseUp'
 			/>
-			<v-tooltip activator='parent' location='top center' class='tooltip-z'>
+			<v-tooltip activator='parent' location='top center' content-class='tooltip'>
 				<span>scroll to top</span>
 			</v-tooltip>
 		</v-btn>

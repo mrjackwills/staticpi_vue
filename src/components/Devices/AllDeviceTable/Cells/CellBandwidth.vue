@@ -4,7 +4,7 @@
 			<span  class='text-caption' :class='[bandwidthLimit_class, {"disabled": paused}]'>
 				{{ converted_bandwidth.total }} {{ converted_bandwidth.unit }}
 			</span>
-			<v-tooltip :disabled='device.paused'  activator='parent' location='top center' class='tooltip-z'>
+			<v-tooltip :disabled='device.paused'  activator='parent' location='top center' content-class='tooltip'>
 				<span >{{ current_month_bytes }} bytes in {{ months[new Date().getMonth()] }}</span>
 			</v-tooltip>
 		</v-col>

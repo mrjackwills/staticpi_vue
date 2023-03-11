@@ -20,7 +20,7 @@
 						<v-row class='ma-0 pa-0 no-gutters' align='center' justify='end'>
 							<v-col class='ma-0 pa-0' cols='12' md='auto'>
 								<ExtraBandwidthCell :unit='item.unit' :total='item.total' variety='out' :borderRight='false'/>
-								<v-tooltip activator='parent' location='top center' class='tooltip-z'>
+								<v-tooltip activator='parent' location='top center' content-class='tooltip'>
 									<span>{{ item.bytes }} bytes used {{ item.period }}</span>
 								</v-tooltip>
 							</v-col>

@@ -22,7 +22,7 @@
 									<v-row class='ma-0 pa-0' dense no-gutters>
 										<v-col class='pa-0 ma-0'>
 											<span>{{ item.description }}</span>
-											<v-tooltip activator='parent' location='top center' class='tooltip-z'>
+											<v-tooltip activator='parent' location='top center' content-class='tooltip'>
 												<span>{{ tooltipText(item.description) }}</span>
 											</v-tooltip>
 										</v-col>

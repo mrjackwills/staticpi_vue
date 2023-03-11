@@ -9,7 +9,7 @@
 				<v-col cols='auto' class='ma-0 pa-0'>
 					{{ text }}
 				</v-col>
-				<v-tooltip activator='parent' location='top center' class='tooltip-z'>
+				<v-tooltip activator='parent' location='top center' content-class='tooltip'>
 					<span v-intersect='onIntersect'>connected for: {{ tooltipText }}</span>
 				</v-tooltip>
 			</v-row>
