@@ -1,8 +1,11 @@
+# <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.2'>v0.1.2</a>
+### 2023-03-10
+
 ### Chores
-+ dependencies updated, [421586cd05062c38543d7a1ef1285167a7f6a16e]
++ dependencies updated, [421586cd](https://github.com/mrjackwills/staticpi_vue/commit/421586cd05062c38543d7a1ef1285167a7f6a16e)
 
 ### Features
-+ tooltip use `content-class`, [0be9aa9f27392766f2d0571664a42665554f6dc6]
++ tooltip use `content-class`, [0be9aa9f](https://github.com/mrjackwills/staticpi_vue/commit/0be9aa9f27392766f2d0571664a42665554f6dc6)
 
 # <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.1'>v0.1.1</a>
 ### 2023-03-06
