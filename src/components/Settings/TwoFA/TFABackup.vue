@@ -97,7 +97,7 @@
 										id='tooltip'
 										text='copy all'
 									/>
-									<v-tooltip v-if='showTooltip' :open-on-click='true' :open-on-hover='false' activator='parent' location='top center' content-class='tooltip'>
+									<v-tooltip v-if='show_tooltip' :open-on-click='true' :open-on-hover='false' activator='parent' location='top center' content-class='tooltip'>
 										<span>copied to clipboard</span>
 									</v-tooltip>
 								</v-col>
@@ -117,6 +117,7 @@ import { dialoger } from '@/services/dialog';
 import { mdiClose, mdiContentCopy, mdiDownload, mdiShieldKey, mdiShieldRefresh, } from '@mdi/js';
 import { snackSuccess } from '@/services/snack';
 import { useClipboard } from '@vueuse/core';
+import { useDisplay } from 'vuetify';
 import ActionButton from '@/components/Buttons/ActionButton.vue';
 import StaticPi from '@/components/StaticPi.vue';
 import type { TAuthObject } from '@/types';
@@ -128,6 +129,13 @@ onBeforeUnmount(() => {
 	backupProcess.value = false;
 
 });
+const { mobile } = useDisplay();
+
+/// Don't show tooltips when on android or ios if also on mobile view!
+const show_tooltip = computed((): boolean => {
+	return !(browserModule().android_ios && mobile.value);
+});
+
 const twoFAStore = twoFAModule();
 
 const backup = computed((): boolean => {

@@ -9,7 +9,7 @@
 					density='compact'
 					:error-messages='notSaved'
 				/>
-				<v-tooltip activator='parent' :disabled='device.paused' location='top center' content-class='tooltip'>
+				<v-tooltip v-if='show_tooltip' activator='parent' :disabled='device.paused' location='top center' content-class='tooltip'>
 					<span>{{ tooltipText }}</span>
 				</v-tooltip>
 			
@@ -43,10 +43,15 @@ import { mdiContentSave, } from '@mdi/js';
 import { useDisplay } from 'vuetify';
 import type { TAuthObject, TSwitchButton, TDeviceInfo, TJustify } from '@/types';
 
-const { mdAndUp } = useDisplay();
+const { mdAndUp, mobile } = useDisplay();
 
 onBeforeMount(() => {
 	new_value.value = current_value.value;
+});
+
+/// Don't show tooltips when on android or ios if also on mobile view!
+const show_tooltip = computed((): boolean => {
+	return !(browserModule().android_ios && mobile.value);
 });
 
 const button = computed((): TSwitchButton => {

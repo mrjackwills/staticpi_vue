@@ -2,7 +2,7 @@
 	<section>
 		<v-row class='ma-0 pa-0 no-gutters'>
 			<v-col cols='12' class='ma-0 pa-0'>
-				<v-tooltip activator='parent' location='top center' content-class='tooltip'>
+				<v-tooltip v-if='show_tooltip' activator='parent' location='top center' content-class='tooltip'>
 					<span v-intersect='onIntersect'>{{ message }}</span>
 				</v-tooltip>
 				<v-btn
@@ -38,7 +38,12 @@ const { smAndDown } = useDisplay();
 onBeforeUnmount(() => {
 	clearTimeout(tooltipTimeout.value);
 });
-	
+
+/// Don't show tooltips when on android or ios if also on mobile view!
+const show_tooltip = computed((): boolean => {
+	return !(browserModule().android_ios && useDisplay().mobile.value);
+});
+
 const iconSize = computed((): string => {
 	if (onMobile.value || props.xsmall) {
 		return 'x-small';

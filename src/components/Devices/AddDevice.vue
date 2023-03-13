@@ -38,7 +38,7 @@
 									variant='outlined'
 									validate-on-blur
 								/>
-								<v-tooltip v-if='isFreeUser' activator='parent' location='top center' content-class='tooltip'>
+								<v-tooltip v-if='show_tooltip && isFreeUser' activator='parent' location='top center' content-class='tooltip'>
 									<span> Customisable name are not available to free users</span>
 								</v-tooltip>
 							</v-col>
@@ -135,8 +135,13 @@ import AppCard from '@/components/Card/AppCard.vue';
 import SwitchRow from '@/components/Devices/AddDevice/SwitchRow.vue';
 import type { TAddDevice } from '@/types';
 
-const { smAndDown } = useDisplay();
+const { smAndDown, mobile } = useDisplay();
 const [ deviceStore, userStore ] = [ deviceModule(), userModule() ];
+
+/// Don't show tooltips when on android or ios if also on mobile view!
+const show_tooltip = computed((): boolean => {
+	return !(browserModule().android_ios && mobile.value);
+});
 
 const disabled = computed((): boolean => {
 	return localLoading.value

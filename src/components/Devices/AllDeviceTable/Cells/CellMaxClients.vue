@@ -2,7 +2,7 @@
 	<section>
 		<v-row align='center' :justify='justify' no-gutters class='pt-1'  >
 			<v-col cols='6' class='pa-0 ma-0' >
-				<v-tooltip :disabled='!freeUser' activator='parent' location='top center' content-class='tooltip'>
+				<v-tooltip v-if='show_tooltip' :disabled='!freeUser' activator='parent' location='top center' content-class='tooltip'>
 					<span >Free users are limited to 1 client</span>
 				</v-tooltip>
 
@@ -60,6 +60,12 @@ onBeforeMount(() => {
 	new_value.value = current_value.value;
 
 });
+
+/// Don't show tooltips when on android or ios if also on mobile view!
+const show_tooltip = computed((): boolean => {
+	return !(browserModule().android_ios && useDisplay().mobile.value);
+});
+
 const buttons = computed((): Array<TDeviceTableFields> => {
 	return [
 		{

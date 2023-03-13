@@ -16,7 +16,7 @@
 						density='compact'
 						label=''
 					/>
-					<v-tooltip activator='parent' location='top center' v-if='disabled' content-class='tooltip'>
+					<v-tooltip v-if='show_tooltip && disabled' activator='parent' location='top center' content-class='tooltip'>
 						<span>can't disable self</span>
 					</v-tooltip>
 					
@@ -163,17 +163,24 @@
 import { axios_admin } from '@/services/axios';
 import { convert_bytes } from '@/vanillaTS/convert_bytes';
 import { dialoger } from '@/services/dialog';
-import { secondsToDays } from '@/vanillaTS/convert_seconds';
-import { UserLevel } from '@/types/enum_userLevel';
 import { mdiAccountRemove, mdiCloseCircle, mdiChevronDown, mdiChevronUp, mdiCheck, mdiClose, mdiDelete } from '@mdi/js';
+import { secondsToDays } from '@/vanillaTS/convert_seconds';
+import { useDisplay } from 'vuetify';
+import { UserLevel } from '@/types/enum_userLevel';
 import AdminDeviceRow from '@/components/Admin/AdminDeviceRow.vue';
 import ExtraBandwidth from '@/components/Devices/AllDeviceTable/ExtraInformation/ExtraBandwidth.vue';
 import type { AdminDeviceAndConnections, TAdminSession, TAdminUser, TAuthObject, TDeviceInfo } from '@/types';
+
+const { mobile } = useDisplay();
 
 const disabled = computed((): boolean => {
 	return props.user.email === userModule().email;
 });
 
+/// Don't show tooltips when on android or ios if also on mobile view!
+const show_tooltip = computed((): boolean => {
+	return !(browserModule().android_ios && mobile.value);
+});
 const all_devices: Ref<Array<AdminDeviceAndConnections>> = ref([]);
 
 const active = ref(false);

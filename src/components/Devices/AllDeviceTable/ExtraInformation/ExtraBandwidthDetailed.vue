@@ -40,7 +40,7 @@
 							<v-col class='ma-0 pa-0' cols='12' md='4'>
 								
 								<ExtraBandwidthCell :unit='item[inner].out.unit' :total='item[inner].out.total' variety='out'/>
-								<v-tooltip activator='parent' location='top' content-class='tooltip'>
+								<v-tooltip v-if='show_tooltip' activator='parent' location='top' content-class='tooltip'>
 									<span>{{ item[inner].out.bytes }} bytes received {{ item.period }}</span>
 								</v-tooltip>
 							</v-col>
@@ -48,14 +48,14 @@
 							<v-col class='ma-0 pa-0' cols='12' md='4'>
 
 								<ExtraBandwidthCell :unit='item[inner].in.unit' :total='item[inner].in.total' variety='in'/>
-								<v-tooltip activator='parent' location='top' content-class='tooltip'>
+								<v-tooltip v-if='show_tooltip' activator='parent' location='top' content-class='tooltip'>
 									<span>{{ item[inner].in.bytes }} bytes sent {{ item.period }}</span>
 								</v-tooltip>
 							</v-col>
 									
 							<v-col class='ma-0 pa-0' cols='12' md='4'>
 								<ExtraBandwidthCell :unit='item[inner].total.unit' :total='item[inner].total.total' variety='total' :borderRight='innerIndex === 2 ? false: true' />
-								<v-tooltip activator='parent'  location='top center' content-class='tooltip'>
+								<v-tooltip v-if='show_tooltip' activator='parent'  location='top center' content-class='tooltip'>
 									<span>{{ item[inner].total.bytes }} bytes sent + received {{ item.period }}</span>
 								</v-tooltip>
 							</v-col>
@@ -78,6 +78,11 @@ import ExtraBandwidthCell from '@/components/Devices/AllDeviceTable/ExtraInforma
 import type { TDeviceInfo, TExtraBandwidthDetailed } from '@/types';
 
 const { mobile } = useDisplay();
+
+/// Don't show tooltips when on android or ios if also on mobile view!
+const show_tooltip = computed((): boolean => {
+	return !(browserModule().android_ios && mobile.value);
+});
 
 const tableData = computed((): Array<TExtraBandwidthDetailed> => {
 	return [

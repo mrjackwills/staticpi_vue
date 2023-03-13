@@ -46,6 +46,18 @@ const appUpdate = (): void => {
 	window.setTimeout(() => updateServiceWorker(), 4000);
 	
 };
+
+const platform = useDisplay().platform;
+
+watch(() => platform.value, (i) => {
+	browserStore.set_android_ios(i.ios || i.android);
+});
+
+onMounted(() => {
+	const platform = useDisplay().platform.value;
+	browserStore.set_android_ios(platform.ios || platform.android);
+});
+
 const browserStore = browserModule();
 
 const authenticated = computed((): boolean => {

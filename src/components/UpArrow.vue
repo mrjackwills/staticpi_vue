@@ -16,7 +16,7 @@
 			<v-icon
 				:icon='mdiArrowCollapseUp'
 			/>
-			<v-tooltip activator='parent' location='top center' content-class='tooltip'>
+			<v-tooltip v-if='show_tooltip' activator='parent' location='top center' content-class='tooltip'>
 				<span>scroll to top</span>
 			</v-tooltip>
 		</v-btn>
@@ -25,6 +25,12 @@
 
 <script setup lang='ts'>
 import { mdiArrowCollapseUp } from '@mdi/js';
+import { useDisplay } from 'vuetify';
+
+/// Don't show tooltips when on android or ios if also on mobile view!
+const show_tooltip = computed((): boolean => {
+	return !(browserModule().android_ios && useDisplay().mobile.value);
+});
 
 onMounted(() => {
 	window.addEventListener('scroll', scrollEvent);
