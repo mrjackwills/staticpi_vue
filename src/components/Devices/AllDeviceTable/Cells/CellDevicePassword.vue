@@ -68,7 +68,7 @@
 
 				<section v-if='!showTextField'>
 					<v-row :justify='justify' >
-						<v-tooltip v-if='show_tooltip' activator='parent' location='top center' content-class='tooltip' v-if='freeUser'>
+						<v-tooltip v-if='show_tooltip && freeUser' activator='parent' location='top center' content-class='tooltip'>
 							<span >Password authentication is not available for free user</span>
 						</v-tooltip>
 						<v-col cols='auto'>
@@ -108,7 +108,12 @@ import { useDisplay } from 'vuetify';
 import FabTooltip from '@/components/Buttons/FabTooltip.vue';
 import type { TAuthObject, TChangeDevicePassword, TDeviceTableFields, TDeviceInfo, TJustify } from '@/types';
 
-const { mdAndUp } = useDisplay();
+const { mdAndUp, mobile } = useDisplay();
+
+/// Don't show tooltips when on android or ios if also on mobile view!
+const show_tooltip = computed((): boolean => {
+	return !(browserModule().android_ios && mobile.value);
+});
 
 const buttons = computed((): Array<TDeviceTableFields> => {
 	return [

@@ -12,7 +12,7 @@
 				:icon='icon'
 				:size='iconSize'
 			/>
-			<v-tooltip v-if='show_tooltip' v-if='tooltip_text' activator='parent' location='top center' content-class='tooltip'>
+			<v-tooltip v-if='show_tooltip && tooltip_text' activator='parent' location='top center' content-class='tooltip'>
 				<span>{{ tooltip_text }}</span>
 			</v-tooltip>
 		</v-btn>
@@ -22,7 +22,12 @@
 <script setup lang="ts">
 import { useDisplay } from 'vuetify';
 
-const { mdAndUp, smAndDown } = useDisplay();
+const { mdAndUp, smAndDown, mobile } = useDisplay();
+
+/// Don't show tooltips when on android or ios if also on mobile view!
+const show_tooltip = computed((): boolean => {
+	return !(browserModule().android_ios && mobile.value);
+});
 
 const iconSize = computed(() => {
 	if (mdAndUp.value && !props.medium) {

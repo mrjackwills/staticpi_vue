@@ -25,7 +25,7 @@
 					single-line
 					validate-on-blur
 				/>
-				<v-tooltip v-if='show_tooltip' v-if='isFreeUser' activator='parent' location='top center' content-class='tooltip'>
+				<v-tooltip v-if='show_tooltip && isFreeUser' activator='parent' location='top center' content-class='tooltip'>
 					<span >Free users cannot customise device name</span>
 				</v-tooltip>
 			</v-col>
@@ -63,7 +63,12 @@ import { snackSuccess } from '@/services/snack';
 import { useDisplay } from 'vuetify';
 import type { TAuthObject, TDeviceTableFields, TDeviceInfo, TJustify } from '@/types';
 
-const { mdAndUp } = useDisplay();
+const { mdAndUp, mobile } = useDisplay();
+
+/// Don't show tooltips when on android or ios if also on mobile view!
+const show_tooltip = computed((): boolean => {
+	return !(browserModule().android_ios && mobile.value);
+});
 
 const buttons = computed((): Array<TDeviceTableFields> => {
 	return [
