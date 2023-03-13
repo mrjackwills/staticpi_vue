@@ -4,7 +4,7 @@
 			<span  class='text-caption' :class='[bandwidthLimit_class, {"disabled": paused}]'>
 				{{ converted_bandwidth.total }} {{ converted_bandwidth.unit }}
 			</span>
-			<v-tooltip :disabled='device.paused'  activator='parent' location='top center' content-class='tooltip'>
+			<v-tooltip v-if='show_tooltip' :disabled='device.paused'  activator='parent' location='top center' content-class='tooltip'>
 				<span >{{ current_month_bytes }} bytes in {{ months[new Date().getMonth()] }}</span>
 			</v-tooltip>
 		</v-col>
@@ -17,7 +17,12 @@ import { months } from '@/vanillaTS/globalConst';
 import { useDisplay } from 'vuetify';
 import type { TConvertBytes, TDeviceInfo, TJustify } from '@/types';
 
-const { mdAndUp } = useDisplay();
+const { mdAndUp, mobile } = useDisplay();
+
+/// Don't show tooltips when on android or ios if also on mobile view!
+const show_tooltip = computed((): boolean => {
+	return !(browserModule().android_ios && mobile.value);
+});
 
 const converted_bandwidth = computed((): TConvertBytes => {
 	return convert_bytes(current_month_bytes.value);

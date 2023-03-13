@@ -17,7 +17,7 @@
 									<span class='font-weight-bold'> {{ item.in.human_readable.total }}</span>
 									<span class='mr-1 font-weight-bold'>{{ item.in.human_readable.unit }}</span>
 								</div>
-								<v-tooltip activator='parent' location='top center' content-class='tooltip'>
+								<v-tooltip v-if='show_tooltip' activator='parent' location='top center' content-class='tooltip'>
 									<span>{{ item.in.bytes }} bytes received</span>
 								</v-tooltip>
 							</v-col>
@@ -37,7 +37,7 @@
 									<span class='font-weight-bold'> {{ item.out.human_readable.total }}</span>
 									<span class='mr-1 font-weight-bold'>{{ item.out.human_readable.unit }}</span>
 								</div>
-								<v-tooltip activator='parent' location='top center' content-class='tooltip'>
+								<v-tooltip v-if='show_tooltip' activator='parent' location='top center' content-class='tooltip'>
 									<span>{{ item.out.bytes }} bytes sent</span>
 								</v-tooltip>
 							</v-col>
@@ -62,7 +62,12 @@ import { useDisplay } from 'vuetify';
 import { mdiCalendarBlank, mdiClockOutline, mdiEarth, } from '@mdi/js';
 import type { TComputedBandwidth } from '@/types';
 
-const { smAndDown } = useDisplay();
+const { smAndDown, mobile } = useDisplay();
+
+/// Don't show tooltips when on android or ios if also on mobile view!
+const show_tooltip = computed((): boolean => {
+	return !(browserModule().android_ios && mobile.value);
+});
 
 onBeforeUnmount(() => {
 	clearInterval(bandwidthInterval.value);

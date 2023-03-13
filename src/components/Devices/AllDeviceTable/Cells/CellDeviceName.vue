@@ -25,7 +25,7 @@
 					single-line
 					validate-on-blur
 				/>
-				<v-tooltip v-if='isFreeUser' activator='parent' location='top center' content-class='tooltip'>
+				<v-tooltip v-if='show_tooltip' v-if='isFreeUser' activator='parent' location='top center' content-class='tooltip'>
 					<span >Free users cannot customise device name</span>
 				</v-tooltip>
 			</v-col>

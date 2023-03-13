@@ -20,7 +20,7 @@
 						<v-row class='ma-0 pa-0 no-gutters' align='center' justify='end'>
 							<v-col class='ma-0 pa-0' cols='12' md='auto'>
 								<ExtraBandwidthCell :unit='item.unit' :total='item.total' variety='out' :borderRight='false'/>
-								<v-tooltip activator='parent' location='top center' content-class='tooltip'>
+								<v-tooltip v-if='show_tooltip' activator='parent' location='top center' content-class='tooltip'>
 									<span>{{ item.bytes }} bytes used {{ item.period }}</span>
 								</v-tooltip>
 							</v-col>
@@ -43,11 +43,16 @@ import type { TDeviceInfo, TExtraBandwidthSimple } from '@/types';
 
 const { mobile } = useDisplay();
 
+/// Don't show tooltips when on android or ios if also on mobile view!
+const show_tooltip = computed((): boolean => {
+	return !(browserModule().android_ios && mobile.value);
+});
+
 const tableData = computed((): Array<TExtraBandwidthSimple> =>{
 	return [
 		{
 			period: 'last 24 hours',
-			... convert_bytes(Number(props.device.pi_bytes_day_out) + Number(props.device.client_bytes_day_out)),
+			...convert_bytes(Number(props.device.pi_bytes_day_out) + Number(props.device.client_bytes_day_out)),
 			bytes: `${Number(props.device.pi_bytes_day_out) + Number(props.device.client_bytes_day_out)}`,
 		},
 		{
@@ -57,7 +62,7 @@ const tableData = computed((): Array<TExtraBandwidthSimple> =>{
 		},
 		{
 			period: 'all time',
-			... convert_bytes(Number(props.device.pi_bytes_total_out) + Number(props.device.client_bytes_total_out)),
+			...convert_bytes(Number(props.device.pi_bytes_total_out) + Number(props.device.client_bytes_total_out)),
 			bytes: `${Number(props.device.pi_bytes_total_out) + Number(props.device.client_bytes_total_out)}`,
 		},
 	];

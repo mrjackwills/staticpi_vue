@@ -22,7 +22,7 @@
 									<v-row class='ma-0 pa-0' dense no-gutters>
 										<v-col class='pa-0 ma-0'>
 											<span>{{ item.description }}</span>
-											<v-tooltip activator='parent' location='top center' content-class='tooltip'>
+											<v-tooltip v-if='show_tooltip' activator='parent' location='top center' content-class='tooltip'>
 												<span>{{ tooltipText(item.description) }}</span>
 											</v-tooltip>
 										</v-col>
@@ -57,7 +57,12 @@ import { FrontEndRoutes } from '@/types/enum_routes';
 import { mdiDragHorizontalVariant, mdiInfinity, mdiCheck, mdiMinus } from '@mdi/js';
 import { useDisplay } from 'vuetify';
 
-const { lgAndUp, mdAndUp, smAndDown } = useDisplay();
+const { lgAndUp, mdAndUp, smAndDown, mobile } = useDisplay();
+
+/// Don't show tooltips when on android or ios if also on mobile view!
+const show_tooltip = computed((): boolean => {
+	return !(browserModule().android_ios && mobile.value);
+});
 
 const headingSize = computed((): string => {
 	return mdAndUp.value ? 'text-h4' : 'text-h6';

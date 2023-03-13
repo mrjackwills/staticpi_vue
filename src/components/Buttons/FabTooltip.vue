@@ -12,7 +12,7 @@
 				:icon='icon'
 				:size='iconSize'
 			/>
-			<v-tooltip v-if='tooltip_text' activator='parent' location='top center' content-class='tooltip'>
+			<v-tooltip v-if='show_tooltip' v-if='tooltip_text' activator='parent' location='top center' content-class='tooltip'>
 				<span>{{ tooltip_text }}</span>
 			</v-tooltip>
 		</v-btn>

@@ -5,6 +5,7 @@ export const browserModule = defineStore(ModuleName.BROWSER, {
 
 	state: () => ({
 		api_version: '',
+		android_ios: false,
 		description: '',
 		force_refresh: false,
 		history: 0,
@@ -19,6 +20,10 @@ export const browserModule = defineStore(ModuleName.BROWSER, {
 	actions: {
 		set_api_version (x: string): void {
 			this.api_version = x;
+		},
+
+		set_android_ios (x: boolean): void {
+			this.android_ios = x;
 		},
 
 		set_description (x: string): void {

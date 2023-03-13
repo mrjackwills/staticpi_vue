@@ -7,7 +7,7 @@
 			<span class='font-weight-bold' :class='text_size'>monthly bandwidth: </span>
 			<span :class='[bandwidthLimit_class, text_size]' >{{ converted_total.total }} {{ converted_total.unit }} / {{ converted_limit.total }} {{ converted_limit.unit }}</span>
 			<span class='ml-2 font-weight-medium' :class='[percentageClass, text_size]'>({{ used_percentage }}%)</span>
-			<v-tooltip activator='parent' location='top center' content-class='tooltip'>
+			<v-tooltip v-if='show_tooltip' activator='parent' location='top center' content-class='tooltip'>
 				<span>{{ totalBandwidth }} bytes in {{ thisMonth }}</span>
 			</v-tooltip>
 		</v-col>
@@ -20,8 +20,13 @@ import { months } from '@/vanillaTS/globalConst';
 import { useDisplay } from 'vuetify';
 import type { TConvertBytes } from '@/types';
 
-const { smAndDown } = useDisplay();
+const { smAndDown, mobile } = useDisplay();
 const [ deviceStore, userStore ] = [ deviceModule(), userModule() ];
+
+/// Don't show tooltips when on android or ios if also on mobile view!
+const show_tooltip = computed((): boolean => {
+	return !(browserModule().android_ios && mobile.value);
+});
 
 const bandwidthLimit_class = computed((): string => {
 	return Number(maxBandwidth.value) - Number(totalBandwidth.value) <= 0 ? 'text-pi font-weight-black' : '';

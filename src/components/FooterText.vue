@@ -13,7 +13,7 @@
 					<v-col class='ma-0 pa-0 mr-1  mb-1 cl' cols='auto'>
 						<a href='https://www.github.com/mrjackwills/staticpi_vue' target='_blank' rel='noopener noreferrer' class='font-weight-bold'>
 							<v-icon style='vertical-align: middle;' size='small' :icon='mdiGithub' />
-							<v-tooltip activator='parent' location='top center' content-class='tooltip'>
+							<v-tooltip v-if='show_tooltip' activator='parent' location='top center' content-class='tooltip'>
 								<span class=''>see source code</span>
 							</v-tooltip>
 						</a>
@@ -50,7 +50,7 @@
 									class='ma-0 pa-0'
 								>
 									{{ item.text }}
-									<v-tooltip activator='parent' location='top center' content-class='tooltip'>
+									<v-tooltip v-if='show_tooltip' activator='parent' location='top center' content-class='tooltip'>
 										<span>{{ item.tooltip }}</span>
 									</v-tooltip>
 								</v-col>
@@ -70,11 +70,17 @@ import { env } from '@/vanillaTS/env';
 import { mdiCopyright, mdiGithub } from '@mdi/js';
 import StaticPi from '@/components/StaticPi.vue';
 import type { TFooterRow } from '@/types';
+import { useDisplay } from 'vuetify';
 
 const userStore = userModule();
 
 onBeforeUnmount(() => {
 	clearTimeout(buildTimeout.value);
+});
+
+/// Don't show tooltips when on android or ios if also on mobile view!
+const show_tooltip = computed((): boolean => {
+	return !(browserModule().android_ios && useDisplay().mobile.value);
 });
 
 const api_version = computed((): string|undefined => {

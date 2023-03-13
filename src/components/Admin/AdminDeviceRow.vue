@@ -23,7 +23,7 @@
 
 		</v-col>
 		<v-col cols='1' class='cl ma-0 pa-0 text-right' @click='pauseDevice'>
-			<v-tooltip activator='parent' location='top center' content-class='tooltip'>
+			<v-tooltip v-if='show_tooltip' activator='parent' location='top center' content-class='tooltip'>
 				<span>click to {{ tooltip }}pause</span>
 			</v-tooltip>
 			<v-icon :icon='pause_icon' :color='bool_color(!device.device.paused)'/>
@@ -54,7 +54,7 @@
 					</v-col>
 					<v-col cols='3' class='ma-0 pa-0 cl' @click='close_connection(con_item.ulid, con_item.device_id, con_item.device_type)'>
 						ulid: {{ con_item.ulid }}
-						<v-tooltip activator='parent' location='top center' content-class='tooltip'>
+						<v-tooltip v-if='show_tooltip' activator='parent' location='top center' content-class='tooltip'>
 							<span>click to kill connection</span>
 						</v-tooltip>
 					</v-col>
@@ -77,6 +77,7 @@ import { mdiCheck, mdiChevronDown, mdiChevronUp, mdiClose, mdiDeleteCircle, mdiP
 import { snackSuccess } from '@/services/snack';
 import CopyButton from '@/components/Buttons/CopyButton.vue';
 import type { AdminDeviceAndConnections, TAuthObject } from '@/types';
+import { useDisplay } from 'vuetify';
 
 const show_connections = ref(false);
 const connections_icon = computed((): string => {
@@ -89,6 +90,11 @@ const connections_color = computed((): string => {
 const click_connections = () : void => {
 	show_connections.value = !show_connections.value;
 };
+
+/// Don't show tooltips when on android or ios if also on mobile view!
+const show_tooltip = computed((): boolean => {
+	return !(browserModule().android_ios && useDisplay().mobile.value);
+});
 
 const loading = computed({
 	get (): boolean {

@@ -45,7 +45,7 @@
 									<v-col cols='3' md='2' class=' ma-0 pa-0'>
 										<v-icon small class='mr-3' color='secondary' v-if='smAndUp' :icon='mdiInformation' />
 										<span class='font-weight-bold unselectable'>{{ item.feature }}</span>
-										<v-tooltip activator='parent' location='top center' content-class='tooltip'>
+										<v-tooltip v-if='show_tooltip' activator='parent' location='top center' content-class='tooltip'>
 											<span>{{ item.tooltip }}</span>
 										</v-tooltip>
 									</v-col>
@@ -130,7 +130,7 @@
 								>
 									<v-col cols='5' md='2' class=' ma-0 pa-0'>
 
-										<v-tooltip activator='parent' location='top center' content-class='tooltip'>
+										<v-tooltip v-if='show_tooltip' activator='parent' location='top center' content-class='tooltip'>
 											<span>{{ item.tooltip }}</span>
 										</v-tooltip>
 
@@ -195,6 +195,11 @@ const { mdAndUp, smAndUp, smAndDown, mobile } = useDisplay();
 onMounted(() => {
 	browserModule().set_description(`staticPi plans page - view our current plan offerings`);
 	browserModule().set_title(pageTitle);
+});
+
+/// Don't show tooltips when on android or ios if also on mobile view!
+const show_tooltip = computed((): boolean => {
+	return !(browserModule().android_ios && useDisplay().mobile.value);
 });
 
 const headingSize = computed((): string => {

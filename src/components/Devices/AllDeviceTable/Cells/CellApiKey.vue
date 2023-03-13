@@ -25,7 +25,7 @@
 					density='comfortable'
 				>
 					<v-icon color='pi' :icon='mdiAutorenew' />
-					<v-tooltip activator='parent' location='top center' content-class='tooltip'>
+					<v-tooltip v-if='show_tooltip' activator='parent' location='top center' content-class='tooltip'>
 						<span>regenerate api key</span>
 					</v-tooltip>
 				</v-btn>
@@ -55,7 +55,12 @@ import { useDisplay } from 'vuetify';
 import CopyButton from '@/components/Buttons/CopyButton.vue';
 import type { TAuthObject, TDeviceInfo, TJustify } from '@/types';
 
-const { mdAndUp } = useDisplay();
+const { mdAndUp, mobile } = useDisplay();
+
+/// Don't show tooltips when on android or ios if also on mobile view!
+const show_tooltip = computed((): boolean => {
+	return !(browserModule().android_ios && mobile.value);
+});
 
 const loading = computed({
 	get (): boolean {

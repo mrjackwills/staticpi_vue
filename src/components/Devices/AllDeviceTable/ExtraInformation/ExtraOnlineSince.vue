@@ -9,7 +9,7 @@
 				<v-col cols='auto' class='ma-0 pa-0'>
 					{{ text }}
 				</v-col>
-				<v-tooltip activator='parent' location='top center' content-class='tooltip'>
+				<v-tooltip v-if='show_tooltip' activator='parent' location='top center' content-class='tooltip'>
 					<span v-intersect='onIntersect'>connected for: {{ tooltipText }}</span>
 				</v-tooltip>
 			</v-row>
@@ -23,6 +23,11 @@ import { secondsToDays } from '@/vanillaTS/convert_seconds';
 import { useDisplay } from 'vuetify';
 
 const { smAndDown } = useDisplay();
+
+/// Don't show tooltips when on android or ios if also on mobile view!
+const show_tooltip = computed((): boolean => {
+	return !(browserModule().android_ios && useDisplay().mobile.value);
+});
 
 onBeforeUnmount(() => {
 	clear();

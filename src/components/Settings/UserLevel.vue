@@ -33,7 +33,7 @@
 								class='mb-1'
 								:icon='mdiCakeVariant'
 							/>
-							<v-tooltip activator='parent' location='top center' content-class='tooltip'>
+							<v-tooltip v-if='show_tooltip' activator='parent' location='top center' content-class='tooltip'>
 								<span >{{ birthday_tooltip }}</span>
 							</v-tooltip>
 					
@@ -60,7 +60,7 @@
 						text='upgrade account'
 						class=''
 					/>
-					<v-tooltip activator='parent' v-model='show_tooltip' location='top center' content-class='tooltip'>
+					<v-tooltip v-if='show_tooltip' activator='parent' v-model='show_tooltip' location='top center' content-class='tooltip'>
 						<span>work-in-progress</span>
 					</v-tooltip>
 

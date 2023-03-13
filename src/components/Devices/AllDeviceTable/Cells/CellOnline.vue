@@ -2,7 +2,7 @@
 	<v-row align='center' :justify='justify' no-gutters class=''>
 		<v-col cols='auto' class='ma-0 pa-0'>
 
-			<v-tooltip activator='parent' location='top center' content-class='tooltip'>
+			<v-tooltip v-if='show_tooltip' activator='parent' location='top center' content-class='tooltip'>
 				<span> {{ tooltipText }}</span>
 			</v-tooltip>
 			
@@ -22,6 +22,11 @@ import { useDisplay } from 'vuetify';
 import type { TDeviceInfo, TJustify } from '@/types';
 
 const { mdAndUp, smAndDown } = useDisplay();
+
+/// Don't show tooltips when on android or ios if also on mobile view!
+const show_tooltip = computed((): boolean => {
+	return !(browserModule().android_ios && useDisplay().mobile.value);
+});
 
 const tooltipText = computed((): string =>{
 	return timestamp_online.value && !timestamp_offline.value ? `online since ${timestamp_online.value.toLocaleString()}`: timestamp_online.value && timestamp_offline.value ? `offline since ${timestamp_offline.value.toLocaleString()}` : 'never connected';
