@@ -1,3 +1,12 @@
+### Chores
++ dependencies updated, [18de9d1d6a0a6e453e3b7b692e94d48554cac313]
+
+### Features
++ `show_tooltip()` based on platform & size, [9c07826eb6f2bb7ef5cb86ae0cee90d50dc33f9a]
+
+### Reverts
++ temporary devcontainer buildkit fix removed, [da69297743a6604aed9f816d246b2a6f68b00d28]
+
 # <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.2'>v0.1.2</a>
 ### 2023-03-10
 
