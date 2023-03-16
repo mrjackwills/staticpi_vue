@@ -7,6 +7,7 @@
 		:timeout='timeoutValue'
 		:top='position.y === "top"'
 		class='ma-0 pa-0'
+		content-class='tooltip_bottom'
 	>
 		<v-row
 			align='center'
@@ -123,5 +124,9 @@ const reloadTimeout = ref(0);
 }
 .mini_margin{
 	margin-left:28px!important
+}
+
+.tooltip_bottom{
+	bottom: 10px!important
 }
 </style>
