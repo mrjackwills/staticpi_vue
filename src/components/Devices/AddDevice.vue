@@ -126,7 +126,6 @@
 
 <script setup lang='ts'>
 import { axios_device } from '@/services/axios';
-import { deviceModule, loadingModule, userModule } from '@/store';
 import { mdiClose, mdiDevices, mdiCheck } from '@mdi/js';
 import { snackSuccess } from '@/services/snack';
 import { useDisplay } from 'vuetify';

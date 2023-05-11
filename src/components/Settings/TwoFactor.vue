@@ -68,7 +68,6 @@
 
 <script setup lang='ts'>
 import { axios_authenticatedUser } from '@/services/axios';
-import { browserModule, loadingModule, settingSectionModule, twoFAModule } from '@/store';
 import { dialoger } from '@/services/dialog';
 import { snackSuccess } from '@/services/snack';
 import { mdiClose, mdiDeleteCircle, mdiShieldHalfFull } from '@mdi/js';

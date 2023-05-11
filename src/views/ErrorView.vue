@@ -80,7 +80,6 @@
 import { FrontEndNames, FrontEndRoutes } from '@/types/enum_routes';
 import { mdiHome } from '@mdi/js';
 import { useDisplay } from 'vuetify';
-import { userModule } from '@/store';
 import ThePage from '@/components/ThePage.vue';
 
 const { mdAndUp, smAndDown } = useDisplay();

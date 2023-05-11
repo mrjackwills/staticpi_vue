@@ -42,7 +42,6 @@
 
 <script setup lang='ts'>
 import { mdiClose } from '@mdi/js';
-import { navDrawerModule, snackbarModule, userModule } from '@/store';
 import { useDisplay } from 'vuetify';
 import type { su, nu, TSnackPosition } from '@/types';
 import type { VDialog } from 'vuetify/components';

@@ -12,7 +12,6 @@
 </template>
 
 <script setup lang='ts'>
-import { browserModule } from '@/store';
 import { FrontEndRoutes } from '@/types/enum_routes';
 import { mdiArrowLeft } from '@mdi/js';
 import ActionButton from '@/components/Buttons/ActionButton.vue';
