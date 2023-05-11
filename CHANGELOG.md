@@ -1,14 +1,17 @@
+# <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.4'>v0.1.4</a>
+### 2023-05-11
+
 ### Chores
-+ devcontainer updated, [004326c0d4e6af7fb9d62e528f24f7327ae761ba]
-+ dependencies updated, [4709949df9c6d1bd26c4c4feb78f3770db1cd4b8]
++ devcontainer updated, [004326c0](https://github.com/mrjackwills/staticpi_vue/commit/004326c0d4e6af7fb9d62e528f24f7327ae761ba)
++ dependencies updated, [4709949d](https://github.com/mrjackwills/staticpi_vue/commit/4709949df9c6d1bd26c4c4feb78f3770db1cd4b8)
 
 ### Fixes
-+ console.log() removed, [49c7ef03e1f8cdfed422147feab47c2a6eab714b]
-+ typos, [edb4676b491fde2fa5a62cbcb81592ede150ad22]
-+ defineProps with types, [9bee8add8e0d3b413bc4f9153968a236040743fe]
-+ switchRow isComponent ternary, [b5c37ae63e02e469548e88c50e2fadf80174b0d0]
-+ add spacing underneath tooltip, [0dd9a868eb3d708d85e05a5d71fd7c04b744547a]
-+ pinia store re-export removed, [be05a6c3e9be4b790bcb736bb2da3a6e72e66bee]
++ console.log() removed, [49c7ef03](https://github.com/mrjackwills/staticpi_vue/commit/49c7ef03e1f8cdfed422147feab47c2a6eab714b)
++ typos, [edb4676b](https://github.com/mrjackwills/staticpi_vue/commit/edb4676b491fde2fa5a62cbcb81592ede150ad22)
++ defineProps with types, [9bee8add](https://github.com/mrjackwills/staticpi_vue/commit/9bee8add8e0d3b413bc4f9153968a236040743fe)
++ switchRow isComponent ternary, [b5c37ae6](https://github.com/mrjackwills/staticpi_vue/commit/b5c37ae63e02e469548e88c50e2fadf80174b0d0)
++ add spacing underneath tooltip, [0dd9a868](https://github.com/mrjackwills/staticpi_vue/commit/0dd9a868eb3d708d85e05a5d71fd7c04b744547a)
++ pinia store re-export removed, [be05a6c3](https://github.com/mrjackwills/staticpi_vue/commit/be05a6c3e9be4b790bcb736bb2da3a6e72e66bee)
 
 # <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.3'>v0.1.3</a>
 ### 2023-03-13
