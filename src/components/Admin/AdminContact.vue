@@ -80,10 +80,6 @@ const delete_message = async (contact_id: number): Promise<void> => {
 	emit('update');
 };
 
-const props = defineProps({
-	contact_messages: {
-		type: Object as () => Array<TAdminContactMessage>,
-		required: true
-	}
-});
+const props = defineProps<{contact_messages: Array<TAdminContactMessage>}>();
+
 </script>

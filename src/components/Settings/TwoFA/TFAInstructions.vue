@@ -37,7 +37,7 @@
 		</v-row>
 		<v-row class='py-1' justify='center'>
 			<v-col cols='auto' class=' text-center py-1'>
-				<QrCode :value='qrCode' :size='size' level='H' />
+				<QrCode :value='qrCode' :size='size' level='H' render-as='svg'/>
 				<v-row class='' justify='center'>
 					<v-col cols='auto' class='text-caption'>
 						secret: {{ secret }}
@@ -138,7 +138,11 @@ const email = computed((): string => {
 	return userModule().email;
 });
 const qrCode = computed((): string => {
-	return `otpauth://totp/staticPi:${email.value}?secret=${secret.value}&issuer=staticPi&digits=6&period=30`;
+	console.log(secret.value);
+	const t = `otpauth://totp/staticPi:${email.value}?secret=${secret.value}&issuer=staticPi&digits=6&period=30`;
+	console.log(t);
+	return t;
+	// return `otpauth://totp/staticPi:${email.value}?secret=${secret.value}&issuer=staticPi&digits=6&period=30`;
 });
 const size = computed((): number => {
 	return mdAndUp.value ? 200 : 125;

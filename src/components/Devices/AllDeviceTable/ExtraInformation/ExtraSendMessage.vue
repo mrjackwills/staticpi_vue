@@ -452,16 +452,7 @@ const updateExtra = (): void => {
 	emit('refresh');
 };
 
-const props = defineProps({
-	device: {
-		type: Object as () => TDeviceInfo,
-		required: true,
-	},
-	maxConnected: {
-		type: Boolean,
-		required: true,
-	}
-});
+const props = defineProps<{device: TDeviceInfo, maxConnected: boolean}>();
 
 watch(isIntersecting, (i: boolean): void => {
 	if (i && !props.device.device_password_required) openWs();

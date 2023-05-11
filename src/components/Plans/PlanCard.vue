@@ -100,25 +100,18 @@ const tooltipText = (description: string): string => {
 	}
 };
 onMounted(() => {
-	sorted_details.value = [ ...props.details as Array<{icon: number, description: string, detail: string}> ];
+	sorted_details.value = [ ...props.details ];
 
 });
-const props = defineProps({
-	heading: {
-		type: String,
-		required: true
-	},
-	price: {
-		type: String,
-		required: true
-	},
-	perMonth: {
-		type: Boolean,
-		default: false,
-	},
-	details: {
-		type: Array,
-		required: true
-	}
+type TDetails = {icon: number, description: string, detail: string}
+
+const props = withDefaults(defineProps<{
+	heading: string,
+	price: string,
+	perMonth: boolean,
+	details: Array<TDetails>
+}>(), {
+	perMonth: false,
 });
+
 </script>

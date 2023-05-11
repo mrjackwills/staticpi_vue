@@ -37,8 +37,8 @@
 				:disabled='paused'
 				class='fab-fix'
 				size='x-small'
+				text='true'
 				fab
-				text
 			>
 				<v-icon color='pi' :icon='mdiAutorenew' />
 			</v-btn>
@@ -53,7 +53,8 @@ import { mdiAutorenew, } from '@mdi/js';
 import { snackSuccess } from '@/services/snack';
 import { useDisplay } from 'vuetify';
 import CopyButton from '@/components/Buttons/CopyButton.vue';
-import type { TAuthObject, TDeviceInfo, TJustify } from '@/types';
+import type { TAuthObject, TDeviceInfo } from '@/types';
+import type { VRow } from 'vuetify/components/VGrid';
 
 const { mdAndUp, mobile } = useDisplay();
 
@@ -71,7 +72,7 @@ const loading = computed({
 	}
 });
 		
-const justify = computed((): TJustify =>{
+const justify = computed((): VRow['$props']['justify'] =>{
 	return mdAndUp.value ? 'center' : 'end';
 },);
 
@@ -111,11 +112,5 @@ const regenerateApiKey_confirm = async (authentication: TAuthObject): Promise<vo
 	}
 };
 	
-const props = defineProps({
-		
-	device: {
-		type: Object as () => TDeviceInfo,
-		required: true
-	}
-});
+const props = defineProps<{device: TDeviceInfo}>();
 </script>

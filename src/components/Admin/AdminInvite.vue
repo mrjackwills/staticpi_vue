@@ -196,10 +196,6 @@ const addInvite_confirm = async (auth: TAuthObject): Promise<void> => {
 
 };
 
-defineProps({
-	inviteCodes: {
-		type: Object as () => Array<TAdminInvite>,
-		required: true
-	}
-});
+defineProps<{inviteCodes: Array<TAdminInvite>}>();
+
 </script>

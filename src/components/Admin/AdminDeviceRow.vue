@@ -181,15 +181,6 @@ watch(() => props.device.connections.length, (i) => {
 	}
 });
 
-const props = defineProps({
-	device: {
-		type: Object as () => AdminDeviceAndConnections,
-		required: true,
-	},
-	email: {
-		type: String,
-		required: true
-	}
-});
+const props = defineProps<{device: AdminDeviceAndConnections, email: string}>();
 
 </script>

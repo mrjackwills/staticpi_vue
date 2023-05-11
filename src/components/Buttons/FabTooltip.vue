@@ -39,27 +39,15 @@ const iconSize = computed(() => {
 	return 'default';
 });
 
-const props = defineProps({
-	color: {
-		type: String,
-		required: true
-	},
-	disabled: {
-		type: Boolean,
-		default: false,
-	},
-	icon: {
-		type: String,
-		required: true
-	},
-	medium: {
-		type: Boolean,
-		default: false
-	},
-	tooltip_text: {
-		type: String,
-		required: true
-	},
+const props = withDefaults(defineProps<{
+	color: string,
+	disabled: boolean,
+	icon: string,
+	medium: boolean,
+	tooltip_text: string
+}>(), {
+	disabled: false,
+	medium: false,
 });
 
 const emit = defineEmits([ 'click' ]);

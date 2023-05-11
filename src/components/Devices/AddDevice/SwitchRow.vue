@@ -63,28 +63,14 @@ const isComponent = computed(() => {
 	return props.component === 'DevicePassword' ? DevicePassword : MaxClients;
 });
 
-const props = defineProps({
-	description: {
-		type: String,
-		required: true
-	},
-	disabled: {
-		type: Boolean,
-		required: true
-	},
-	heading: {
-		type: String,
-		required: true,
-	},
-	component: {
-		type: String,
-		required: true,
-	},
-	to: {
-		type: String,
-		default: ''
-	}
-});
+const props = defineProps<{
+	description: string,
+	disabled: boolean,
+	heading: string,
+	component: string,
+	to?: string,
+}>();
+
 </script>
 
 <style>

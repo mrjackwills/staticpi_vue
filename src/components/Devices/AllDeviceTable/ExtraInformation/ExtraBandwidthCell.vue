@@ -35,24 +35,13 @@ const showBorder = computed(() : string => {
 	return !mobile.value && combined.value && props.borderRight ? 'thick-border-right': !mobile.value && props.borderRight? 'border-right' : '';
 });
 
-const props = defineProps({
-	borderRight: {
-		type: Boolean,
-		default: true
-	},
-	total: {
-		type: String,
-		required: true
-	},
-	unit: {
-		type: String,
-		required: true
-	},
-	variety: {
-		type: String,
-		required: true,
-	},
-		
+const props = withDefaults(defineProps<{
+	borderRight: boolean,
+	total: string,
+	unit: string,
+	variety: string
+}>(), {
+	borderRight: true,
 });
 	
 </script>

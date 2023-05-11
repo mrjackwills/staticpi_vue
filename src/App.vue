@@ -5,8 +5,8 @@
 		<v-main>
 			<router-view v-if='pageReady' />
 		</v-main>
-		<TheSnackbar />
 		<TheDialog />
+		<TheSnackbar />
 		<TheUpArrow />
 		<TheFooter v-if='(!authenticated && !mdAndDown)' />
 	</v-app>

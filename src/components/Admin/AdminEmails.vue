@@ -61,10 +61,6 @@ const data = computed(() => {
 	];
 });
 
-const props = defineProps({
-	emails: {
-		type: Object as () => TAdminEmailCount,
-		required: true
-	}
-});
+const props = defineProps<{emails: TAdminEmailCount}>();
+
 </script>

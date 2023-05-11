@@ -177,12 +177,7 @@ const updateExtraInfo = async (): Promise<void> => {
 	init.value = true;
 };
 
-const props = defineProps({
-	device: {
-		type: Object as () => TDeviceInfo,
-		required: true
-	},
-});
+const props = defineProps<{device: TDeviceInfo}>();
 
 watch(isIntersecting, async (i) => {
 	if (i) {

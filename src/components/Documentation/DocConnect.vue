@@ -161,31 +161,13 @@ const wssAddressRow = computed((): Array<TAddressRow> => {
 	return output;
 });
 
-const props = defineProps({
-	address_token: {
-		type: String,
-		required: true,
-	},
-	address_wss_client: {
-		type: String,
-		required: true,
-	},
-	address_wss_pi: {
-		type: String,
-		required: true,
-	},
-	apiKey: {
-		type: String,
-		required: true
-	},
-	componentKey: {
-		type: Number,
-		required: true
-	},
-	password: {
-		type: String,
-		required: true,
-	},
-});
+const props = defineProps<{
+	address_token: string,
+	address_wss_client: string,
+	address_wss_pi: string,
+	apiKey: string,
+	componentKey: number,
+	password: string
+}>();
 
 </script>

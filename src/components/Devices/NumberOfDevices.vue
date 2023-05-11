@@ -72,10 +72,8 @@ const converted_total = computed((): TConvertBytes => {
 	return convert_bytes(totalBandwidth.value);
 });
 
-const props = defineProps({
-	rowCols: {
-		type: String,
-		default: '12'
-	}
+const props = withDefaults(defineProps<{rowCols: string}>(), {
+	rowCols: '12',
 });
+
 </script>

@@ -112,24 +112,10 @@ const limit_ws = [
 	},
 ];
 
-defineProps({
-	address_token: {
-		type: String,
-		required: true,
-	},
-	address_wss_client: {
-		type: String,
-		required: true,
-	},
-	address_wss_pi: {
-		type: String,
-		required: true,
-	},
-});
+defineProps<{
+	address_token: string,
+	address_wss_client: string,
+	address_wss_pi: string,
+}>();
 
 </script>
-
-<!-- <style scoped>
-.v-divider{
-	opacity: .5 !important;
-}</style> -->

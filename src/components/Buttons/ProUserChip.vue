@@ -26,10 +26,5 @@ const size = computed(() => {
 	}
 });
 
-defineProps({
-	order: {
-		type: String,
-		default: '1'
-	}
-});
+withDefaults(defineProps<{order: string}>(), { order: '1' });
 </script>

@@ -10,7 +10,7 @@
 					@mouseenter='mouseenter'
 					@mouseleave='mouseleave'
 					:dark='disabled && dark'
-					:density='to_density'
+					:density='density'
 					:disabled='disabled'
 					:size='iconSize'
 					class='fab-fix pa-0 ma-0'
@@ -31,8 +31,7 @@
 import { mdiContentCopy } from '@mdi/js';
 import { useClipboard } from '@vueuse/core';
 import { useDisplay } from 'vuetify';
-import type { TDensity } from '@/types';
-
+import type { VBtn } from 'vuetify/components/VBtn';
 const { smAndDown } = useDisplay();
 
 onBeforeUnmount(() => {
@@ -55,16 +54,6 @@ const iconSize = computed((): string => {
 });
 const onMobile = computed((): boolean => {
 	return smAndDown.value || props.xsmall;
-});
-
-const to_density = computed((): TDensity => {
-	switch (props.density) {
-	case 'compact':
-		return 'compact';
-	case 'comfortable':
-		return 'comfortable';
-	}
-	return 'default';
 });
 
 const message = computed((): string => {
@@ -104,43 +93,22 @@ const onIntersect = (is_i: boolean, _entries: Array<IntersectionObserverEntry>, 
 	isIntersecting.value = is_i;
 };
 
-const props = defineProps({
-	dark: {
-		type: Boolean,
-		default: false
-	},
-	density: {
-		type: String,
-		default: 'default'
-	},
-	disabled: {
-		type: Boolean,
-		default: false
-	},
-	color: {
-		type: String,
-		default: 'black'
-	},
-	hoverMessage: {
-		type: String,
-		default: ''
-	},
-	toCopy: {
-		type: String,
-		required: true
-	},
-	tooltipMessage: {
-		type: String,
-		required: true
-	},
-	xsmall: {
-		type: Boolean,
-		required: false
-	},
-	small: {
-		type: Boolean,
-		required: false
-	},
+const props = withDefaults(defineProps<{
+	color: string,
+	dark: boolean,
+	density: VBtn['$props']['density'],
+	disabled: boolean,
+	hoverMessage: string,
+	small?:boolean
+	toCopy: string,
+	tooltipMessage: string,
+	xsmall?: boolean,
+}>(), {
+	color: 'black',
+	dark: false,
+	density: 'default',
+	disabled: false,
+	hoverMessage: '',
 });
 
 watch(isIntersecting, (i) => {

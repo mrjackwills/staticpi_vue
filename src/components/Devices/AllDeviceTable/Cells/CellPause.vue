@@ -17,7 +17,8 @@ import { mdiPauseCircle, mdiPlayCircle } from '@mdi/js';
 import { snackSuccess } from '@/services/snack';
 import { useDisplay } from 'vuetify';
 import FabTooltip from '@/components/Buttons/FabTooltip.vue';
-import type { TAuthObject, TDeviceInfo, TJustify } from '@/types';
+import type { TAuthObject, TDeviceInfo } from '@/types';
+import type { VRow } from 'vuetify/components/VGrid';
 
 const { mdAndUp } = useDisplay();
 
@@ -27,7 +28,7 @@ const color= computed((): string => {
 const icon= computed((): string => {
 	return paused.value ? mdiPlayCircle : mdiPauseCircle;
 });
-const justify= computed((): TJustify => {
+const justify= computed((): VRow['$props']['justify']=> {
 	return mdAndUp.value ? 'center' : 'end';
 });
 const loading = computed({
@@ -78,10 +79,6 @@ const pauseDevice_confirm = async (authentication?: TAuthObject): Promise<void> 
 	}
 };
 
-const props = defineProps({
-	device: {
-		type: Object as () => TDeviceInfo,
-		required: true
-	}
-});
+const props = defineProps<{device: TDeviceInfo}>();
+
 </script>

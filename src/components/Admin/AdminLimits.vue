@@ -99,10 +99,5 @@ const remove_key = async (key: string) :Promise<void> => {
 	emit('update');
 };
 
-defineProps({
-	limits: {
-		type: Object as () => Array<TAdminLimit>,
-		required: true
-	}
-});
+defineProps<{limits: Array<TAdminLimit>}>();
 </script>

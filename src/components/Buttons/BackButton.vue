@@ -24,10 +24,5 @@ const goBack = (): void => {
 	else router.push(FrontEndRoutes.BASE);
 };
 
-defineProps({
-	disabled: {
-		type: Boolean,
-		default: false
-	}
-});
+withDefaults(defineProps<{disabled: boolean}>(), { disabled: false });
 </script>

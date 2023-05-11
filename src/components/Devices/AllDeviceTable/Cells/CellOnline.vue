@@ -19,7 +19,8 @@
 <script setup lang='ts'>
 import { mdiWifi, mdiWifiOff } from '@mdi/js';
 import { useDisplay } from 'vuetify';
-import type { TDeviceInfo, TJustify } from '@/types';
+import type { TDeviceInfo } from '@/types';
+import type { VRow } from 'vuetify/components/VGrid';
 
 const { mdAndUp, smAndDown } = useDisplay();
 
@@ -40,7 +41,7 @@ const color = computed((): string =>{
 const icon = computed((): string =>{
 	return online.value ? mdiWifi : mdiWifiOff;
 });
-const justify = computed((): TJustify =>{
+const justify = computed((): VRow['$props']['justify'] =>{
 	return mdAndUp.value ? 'center' : 'end';
 });
 const timestamp_online = computed((): Date | null =>{
@@ -53,12 +54,8 @@ const paused = computed((): boolean =>{
 	return props.device.paused;
 });
 	
-const props = defineProps({
-	device: {
-		type: Object as () => TDeviceInfo,
-		required: true
-	}
-});
+const props = defineProps<{device: TDeviceInfo}>();
+
 </script>
 
 <style>

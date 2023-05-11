@@ -334,16 +334,7 @@ const fake_device = computed((): TDeviceInfo => {
 
 const emit = defineEmits([ 'update' ]);
 
-const props = defineProps({
-	user: {
-		type: Object as () => TAdminUser,
-		required: true
-	},
-	sessions: {
-		type: Object as () => Array<TAdminSession>,
-		required: true
-	}
-});
+const props = defineProps<{user: TAdminUser, sessions: Array<TAdminSession>}>();
 
 const loading = computed({
 	get (): boolean {
