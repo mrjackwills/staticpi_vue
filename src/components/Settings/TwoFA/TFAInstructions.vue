@@ -138,11 +138,7 @@ const email = computed((): string => {
 	return userModule().email;
 });
 const qrCode = computed((): string => {
-	console.log(secret.value);
-	const t = `otpauth://totp/staticPi:${email.value}?secret=${secret.value}&issuer=staticPi&digits=6&period=30`;
-	console.log(t);
-	return t;
-	// return `otpauth://totp/staticPi:${email.value}?secret=${secret.value}&issuer=staticPi&digits=6&period=30`;
+	return `otpauth://totp/staticPi:${email.value}?secret=${secret.value}&issuer=staticPi&digits=6&period=30`;
 });
 const size = computed((): number => {
 	return mdAndUp.value ? 200 : 125;
