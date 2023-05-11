@@ -72,10 +72,5 @@ const data = computed(() => {
 	];
 });
 
-const props = defineProps({
-	memory: {
-		type: Object as () => TAdminMemory,
-		required: true
-	}
-});
+const props = defineProps<{memory: TAdminMemory}>();
 </script>

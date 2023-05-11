@@ -1,5 +1,4 @@
 import { axios_admin, axios_authenticatedUser, axios_incognito } from '@/services/axios';
-import { browserModule, loadingModule, resetPasswordModule, userModule } from '@/store';
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
 import { FrontEndNames, FrontEndRoutes } from '@/types/enum_routes';
 import { snackError, snackSuccess } from '@/services/snack';

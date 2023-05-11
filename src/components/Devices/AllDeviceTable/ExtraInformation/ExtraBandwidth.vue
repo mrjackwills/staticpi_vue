@@ -87,7 +87,8 @@ import BandwidthDetailed from '@/components/Devices/AllDeviceTable/ExtraInformat
 import BandwidthSimple from '@/components/Devices/AllDeviceTable/ExtraInformation/ExtraBandwidthSimple.vue';
 import SubHeading from '@/components/Card/SubHeading.vue';
 import { useDisplay } from 'vuetify';
-import type { TDeviceInfo, TJustify } from '@/types';
+import type { TDeviceInfo } from '@/types';
+import type { VRow } from 'vuetify/components/VGrid';
 
 const { mobile } = useDisplay();
 
@@ -97,7 +98,7 @@ const color = computed((): 'primary' | 'pi' => {
 const cols = computed((): string => {
 	return mobile.value || switchDetailed.value ? '12' : '4';
 });
-const justify = computed((): TJustify => {
+const justify = computed((): VRow['$props']['justify'] => {
 	return mobile.value ? 'space-between' : 'center';
 });
 const showDetailSwitch = computed((): boolean => {
@@ -123,15 +124,8 @@ const toggleHidden = (): void => {
 	emit('hidden', hidden.value);
 };
 
-defineProps ({
-	device: {
-		type: Object as () => TDeviceInfo,
-		required: true,
-	},
-	show_calc: {
-		type: Boolean,
-		default: true
-	}
+withDefaults(defineProps<{device: TDeviceInfo, show_calc: boolean}>(), {
+	show_calc: true,
 });
 
 watch(isIntersecting, (i: boolean): void => {

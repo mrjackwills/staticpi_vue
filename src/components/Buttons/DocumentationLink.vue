@@ -31,18 +31,13 @@ const iconSize = computed((): string => {
 	return 'default';
 });
 
-const props = defineProps({
-	section: {
-		type: String,
-		required: true,
-	},
-	small: {
-		type: Boolean,
-		default: true
-	},
-	xsmall: {
-		type: Boolean,
-		default: false
-	}
+const props = withDefaults(defineProps<{
+	section: string,
+	small: boolean,
+	xsmall: boolean,
+}>(), {
+	small: true,
+	xsmall: false,
 });
+
 </script>

@@ -28,7 +28,7 @@ html{
 // monospace fontface
 .monospace-text{
 	font-family: 'Courier New', monospace !important;
-	font-display: 'swap';
+	font-display: swap;
 }
 
 // Fix for Fab buttons stay highlighted after being clicked
@@ -92,10 +92,10 @@ div.v-snackbar:not(.v-snackbar--absolute) {
 }
 
 
-// This is a, hopefully, temporary fix for a snackbar issue - https://github.com/vuetifyjs/vuetify/issues/16432
-div.v-snackbar:not(.v-snackbar--absolute) {
-	height: 100% !important;
-}
+// // This is a, hopefully, temporary fix for a snackbar issue - https://github.com/vuetifyjs/vuetify/issues/16432
+// div.v-snackbar:not(.v-snackbar--absolute) {
+// 	height: 100% !important;
+// }
 
 /**************/
 /* Animations */

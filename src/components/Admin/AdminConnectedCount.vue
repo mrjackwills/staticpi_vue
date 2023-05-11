@@ -65,10 +65,6 @@ const data = computed(() => {
 	];
 });
 
-const props = defineProps({
-	connectedCount: {
-		type: Object as () => TAdminConnectedCount,
-		required: true
-	}
-});
+const props = defineProps<{connectedCount: TAdminConnectedCount}>();
+
 </script>

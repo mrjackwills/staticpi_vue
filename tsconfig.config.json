@@ -1,10 +1,10 @@
 {
-	"extends": "@vue/tsconfig/tsconfig.node.json",
-	"include": ["vite.config.*", "vitest.config.*", "cypress.config.*", "playwright.config.*"],
 	"compilerOptions": {
-	"experimentalDecorators": true,
 	  "composite": true,
-	  "types": ["node", "vite-plugin-pwa/client",]
-	}
+	  "module": "ESNext",
+	  "moduleResolution": "Node",
+	  "allowSyntheticDefaultImports": true
+	},
+	"include": ["./vite.config.ts"]
   }
   

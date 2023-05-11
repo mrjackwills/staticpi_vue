@@ -55,11 +55,7 @@ const updateTooltip = (): void => {
 	tooltipText.value = secondsToDays(new Date().getTime() - new Date(props.timestamp).getTime(), false);
 };
 	
-const props = defineProps({
-	timestamp: {
-		type: String,
-	}
-});
+const props = defineProps<{timestamp?: string}>();
 
 watch(isIntersecting, (i: boolean): void => {
 	if (i) updateTooltip();

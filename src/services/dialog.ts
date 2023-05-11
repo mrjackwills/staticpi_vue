@@ -1,4 +1,3 @@
-import { dialogModule } from '@/store';
 import type { TDialogData } from '@/types';
 
 export const dialoger = (data: TDialogData): void => {

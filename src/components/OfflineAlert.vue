@@ -24,7 +24,6 @@
 
 <script setup lang='ts'>
 import { axios_authenticatedUser, axios_incognito } from '@/services/axios';
-import { browserModule, navDrawerModule, userModule } from '@/store';
 import { mdiWifiOff } from '@mdi/js';
 import { useDisplay } from 'vuetify';
 

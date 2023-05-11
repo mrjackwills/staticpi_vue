@@ -101,12 +101,12 @@
 <script setup lang='ts'>
 import { axios_device } from '@/services/axios';
 import { dialoger } from '@/services/dialog';
-import { loadingModule, userModule } from '@/store';
 import { mdiClose, mdiContentSave, mdiLock, mdiLockPlus, mdiLockRemove, mdiDelete, mdiEye, mdiEyeOff } from '@mdi/js';
 import { snackSuccess } from '@/services/snack';
 import { useDisplay } from 'vuetify';
 import FabTooltip from '@/components/Buttons/FabTooltip.vue';
-import type { TAuthObject, TChangeDevicePassword, TDeviceTableFields, TDeviceInfo, TJustify } from '@/types';
+import type { TAuthObject, TChangeDevicePassword, TDeviceTableFields, TDeviceInfo } from '@/types';
+import type { VRow } from 'vuetify/components/VGrid';
 
 const { mdAndUp, mobile } = useDisplay();
 
@@ -136,7 +136,7 @@ const disabled = computed((): boolean => {
 	return freeUser.value || paused.value || localLoading.value;
 });
 
-const justify = computed((): TJustify =>{
+const justify = computed((): VRow['$props']['justify'] =>{
 	return mdAndUp.value ? 'center' : 'end';
 });
 
@@ -278,12 +278,7 @@ const removePassword = (): void =>{
 	});
 };
 
-const props = defineProps({
-	device: {
-		type: Object as () => TDeviceInfo,
-		required: true
-	}
-});
+const props = defineProps<{device: TDeviceInfo}>();
 
 watch(paused, (i: boolean): void => {
 	if (i) {

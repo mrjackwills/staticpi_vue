@@ -235,12 +235,8 @@ const borderRight = (index: number, innerIndex: number): string => {
 
 };
 
-const props = defineProps({
-	device: {
-		type: Object as () => TDeviceInfo,
-		required: true,
-	}
-});
+const props = defineProps<{device: TDeviceInfo}>();
+
 </script>
 
 <style scoped>

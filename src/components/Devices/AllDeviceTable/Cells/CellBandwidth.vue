@@ -15,7 +15,8 @@
 import { convert_bytes } from '@/vanillaTS/convert_bytes';
 import { months } from '@/vanillaTS/globalConst';
 import { useDisplay } from 'vuetify';
-import type { TConvertBytes, TDeviceInfo, TJustify } from '@/types';
+import type { TConvertBytes, TDeviceInfo } from '@/types';
+import type { VRow } from 'vuetify/components/VGrid';
 
 const { mdAndUp, mobile } = useDisplay();
 
@@ -33,7 +34,7 @@ const current_month_bytes = computed((): string => {
 const bandwidthLimit_class = computed((): string => {
 	return Number(maxBandwidth.value) - Number(current_month_bytes.value) <= 0 ? 'text-pi font-weight-black' : '';
 });
-const justify = computed((): TJustify => {
+const justify = computed((): VRow['$props']['justify'] => {
 	return mdAndUp.value? 'center' : 'end';
 });
 const maxBandwidth = computed((): string => {
@@ -43,12 +44,8 @@ const paused = computed((): boolean => {
 	return props.device.paused;
 });
 
-const props = defineProps({
-	device: {
-		type: Object as () => TDeviceInfo,
-		required: true
-	}
-});
+const props = defineProps<{device: TDeviceInfo}>();
+
 </script>
 
 <style scoped>

@@ -1,4 +1,3 @@
-import { browserModule, deviceModule, twoFAModule, userModule } from '@/store';
 import { HttpCode } from '@/types/enum_http';
 import { snackError } from './snack';
 import { UserLevel } from '@/types/enum_userLevel';
@@ -72,7 +71,7 @@ const AllowedUsers = <T> (allowedUsers: Array<UserLevel>) => {
 	};
 };
 
-const wrap = <T> () => function (_target: AxiosClasses, propertyKey: string, descriptor: PropertyDescriptor): void {
+const wrap= <T>() => function (_target: AxiosClasses, propertyKey: string, descriptor: PropertyDescriptor): void {
 		
 	const original = descriptor.value;
 	descriptor.value = async function (args: T): Promise<unknown> {

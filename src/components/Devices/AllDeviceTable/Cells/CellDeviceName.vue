@@ -61,7 +61,8 @@ import { mdiClose, mdiContentSave, mdiDevices, mdiPencilOutline } from '@mdi/js'
 import { secondsToDays } from '@/vanillaTS/convert_seconds';
 import { snackSuccess } from '@/services/snack';
 import { useDisplay } from 'vuetify';
-import type { TAuthObject, TDeviceTableFields, TDeviceInfo, TJustify } from '@/types';
+import type { TAuthObject, TDeviceTableFields, TDeviceInfo } from '@/types';
+import type { VRow } from 'vuetify/components/VGrid';
 
 const { mdAndUp, mobile } = useDisplay();
 
@@ -93,7 +94,7 @@ const disabled = computed((): boolean => {
 const isFreeUser = computed((): boolean => {
 	return userModule().isFreeUser;
 });
-const justify = computed((): TJustify => {
+const justify = computed((): VRow['$props']['justify'] => {
 	return mdAndUp.value ? 'center' : 'end';
 });
 const loading = computed({
@@ -186,12 +187,7 @@ const ttl_interval = async (): Promise<void> => {
 	}
 };
 
-const props = defineProps({
-	device: {
-		type: Object as () => TDeviceInfo,
-		required: true
-	}
-});
+const props = defineProps<{device: TDeviceInfo}>();
 
 watch(newName, async (i: string): Promise<void> => {
 	if (i === name_of_device.value) {

@@ -65,7 +65,6 @@
 </template>
 
 <script setup lang='ts'>
-import { browserModule, userModule } from '@/store';
 import { env } from '@/vanillaTS/env';
 import { mdiCopyright, mdiGithub } from '@mdi/js';
 import StaticPi from '@/components/StaticPi.vue';

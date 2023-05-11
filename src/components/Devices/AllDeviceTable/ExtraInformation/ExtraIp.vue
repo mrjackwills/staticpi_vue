@@ -20,10 +20,5 @@
 
 <script setup lang='ts'>
 import CopyButton from '@/components/Buttons/CopyButton.vue';
-defineProps({
-	ip: {
-		type: String,
-		required: true
-	}
-});
+defineProps<{ip: string}>();
 </script>

@@ -20,27 +20,12 @@
 <script setup lang="ts">
 import CopyButton from '@/components/Buttons/CopyButton.vue';
 
-defineProps({
-	name: {
-		type: String,
-		required: true
-	},
-	address: {
-		type: String,
-		required: true
-	},
-	toCopy: {
-		type: String,
-		required: true
-	},
-	tooltipMessage: {
-		type: String,
-		required: true
-	},
-	hoverMessage: {
-		type: String,
-		required: true
-	},
-		
-});
+defineProps<{
+	address: string,
+	name: string,
+	toCopy: string,
+	tooltipMessage: string,
+	hoverMessage: string
+}>();
+
 </script>

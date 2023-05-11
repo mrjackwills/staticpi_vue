@@ -44,14 +44,11 @@ const smallText = computed((): string => {
 	return mobile.value ? 'small-text' : '';
 });
 
-const props = defineProps({
-	heading: {
-		type: String,
-		required: true
-	},
-	pro: {
-		type: Boolean,
-		default: false
-	}
+const props = withDefaults(defineProps<{
+	heading: string,
+	pro: boolean
+}>(), {
+	pro: false,
 });
+
 </script>

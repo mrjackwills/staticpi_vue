@@ -165,12 +165,7 @@ const startRefreshInterval = (): void => {
 	refreshInterval.value = setInterval(() => emit('refresh'), 15000);
 };
 
-const props = defineProps({
-	device: {
-		type: Object as () => TDeviceInfo,
-		required: true
-	}
-});
+const props = defineProps<{device: TDeviceInfo}>();
 
 </script>
 

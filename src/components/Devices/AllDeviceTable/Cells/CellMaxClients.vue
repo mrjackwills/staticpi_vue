@@ -53,7 +53,9 @@ import { dialoger } from '@/services/dialog';
 import { mdiClose, mdiContentSave, mdiLanConnect, mdiPencilOutline } from '@mdi/js';
 import { snackSuccess } from '@/services/snack';
 import { useDisplay } from 'vuetify';
-import type { TAuthObject, TDeviceTableFields, TDeviceInfo, TJustify } from '@/types';
+import type { TAuthObject, TDeviceTableFields, TDeviceInfo } from '@/types';
+import type { VRow } from 'vuetify/components/VGrid';
+
 const { mdAndUp } = useDisplay();
 
 onBeforeMount(() => {
@@ -95,7 +97,7 @@ const freeUser = computed((): boolean => {
 const isDisabled = computed((): boolean => {
 	return freeUser.value || paused.value;
 });
-const justify = computed((): TJustify => {
+const justify = computed((): VRow['$props']['justify'] => {
 	return mdAndUp.value ? 'center' : 'end';
 });
 const loading = computed({
@@ -160,13 +162,7 @@ const updateMaxClients = (): void => {
 	});
 };
 
-const props = defineProps({
-
-	device: {
-		type: Object as () => TDeviceInfo,
-		required: true
-	}
-});
+const props = defineProps<{device: TDeviceInfo}>();
 
 watch(new_value, (i) => {
 	if (!upperLimit.value) return;

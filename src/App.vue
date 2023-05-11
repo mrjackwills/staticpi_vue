@@ -5,8 +5,8 @@
 		<v-main>
 			<router-view v-if='pageReady' />
 		</v-main>
-		<TheSnackbar />
 		<TheDialog />
+		<TheSnackbar />
 		<TheUpArrow />
 		<TheFooter v-if='(!authenticated && !mdAndDown)' />
 	</v-app>
@@ -125,10 +125,6 @@ useHead({
 </script>
 
 <style>
-.v-application__wrap {
-  min-height: 100dvh !important;
-}
-
 .v-divider{
 	opacity: .35 !important;
 }

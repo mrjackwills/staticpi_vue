@@ -30,7 +30,6 @@
 </template>
 
 <script setup lang='ts'>
-import { browserModule, twoFAModule } from '@/store';
 import { mdiAlertCircle, mdiCheckCircle, mdiCloseCircle } from '@mdi/js';
 import { useDisplay } from 'vuetify';
 
@@ -59,14 +58,6 @@ const emit = defineEmits([ 'click' ]);
 const click = (): void => {
 	emit('click');
 };
-const props = defineProps({
-	active: {
-		type: Boolean,
-		required: true
-	},
-	text: {
-		type: String,
-		required: true
-	},
-});
+
+const props = defineProps<{active: boolean, text: string}>();
 </script>

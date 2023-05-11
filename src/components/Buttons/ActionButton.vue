@@ -107,52 +107,29 @@ onMounted(() => {
 	localDisabled.value = props.disabled;
 
 });
-	
-const props = defineProps({
-	block: {
-		type: Boolean,
-		default: false
-	},
-	color: {
-		type: String,
-		default: 'primary',
-	},
-	disabled: {
-		type: Boolean,
-		default: false,
-	},
-	icon: {
-		type: String,
-		default: undefined,
-	},
-	iconFirst: {
-		type: Boolean,
-		default: false,
-	},
-	overrideDisabled: {
-		type: Boolean,
-		default: false
-	},
-	mouseOverEvents: {
-		type: Boolean,
-		default: false,
-	},
-	monospace: {
-		type: Boolean,
-		default: false
-	},
-	routerLink: {
-		type: String,
-		default: ''
-	},
-	small: {
-		type: Boolean,
-		default: false
-	},
-	text: {
-		type: String,
-		default: 'submit',
-	},
+
+const props = withDefaults(defineProps<{
+	block: boolean,
+	color: string,
+	disabled: boolean,
+	icon?: string,
+	iconFirst: boolean,
+	monospace: boolean,
+	mouseOverEvents: boolean,
+	overrideDisabled: boolean,
+	routerLink?: string
+	small: boolean,
+	text: string
+}>(), {
+	block: false,
+	color: 'primary',
+	disabled: false,
+	iconFirst: false,
+	monospace: false,
+	mouseOverEvents: false,
+	overrideDisabled: false,
+	small: false,
+	text: 'submit'
 });
 
 watch(() => props.disabled, (i) => {

@@ -66,20 +66,9 @@ const highlighted_code = computed((): string => {
 
 const codeIcons= [ '#ff5f56', '#ffbd2e', '#27c93f' ];
 
-const props = defineProps({
-	code: {
-		type: String,
-		required: true,
-	},
-
-	filename: {
-		type: String,
-		default: ''
-	},
-
-	titleBar: {
-		type: Boolean,
-		default: true
-	}
+const props = withDefaults(defineProps<{code: string, filename: string, titleBar: boolean}>(), {
+	filename: '',
+	titleBar: true,
 });
+
 </script>

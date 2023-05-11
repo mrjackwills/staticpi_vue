@@ -41,6 +41,8 @@
 </template>
 
 <script setup lang='ts'>
+import type { VRow } from 'vuetify/components/VGrid';
+
 import { useDisplay } from 'vuetify';
 import CardHeading from '@/components/Card/CardHeading.vue';
 
@@ -53,69 +55,38 @@ const padding = computed((): string => {
 const border = computed((): string => {
 	return props.outlined ? 'card_border' : '';
 });
-	
-const props = defineProps({
-	disabled: {
-		type: Boolean,
-		default: false
-	},
-	flat: {
-		type: Boolean,
-		default: false
-	},
-	hasButton: {
-		type: Boolean,
-		default: false,
-	},
-	heading: {
-		type: String,
-		default: '',
-	},
-	heading_justify: {
-		type: String,
-		default: ''
-	},
-	heading_class: {
-		type: String,
-		default: ''
-	},
-	heading_size: {
-		type: String,
-		required: false
-	},
-	lg: {
-		type: String,
-		default: '7',
-	},
-	loading: {
-		type: Boolean,
-		default: false
-	},
-	my: {
-		type: String,
-		default: 'my-1'
-	},
-	outlined: {
-		type: Boolean,
-		default: true
-	},
-	pad: {
-		type: Boolean,
-		default: true
-	},
-	sm: {
-		type: String,
-		default: '9',
-	},
-	tile: {
-		type: Boolean,
-		default: false,
-	},
-	xl: {
-		type: String,
-		default: '6',
-	}
+
+const props = withDefaults(defineProps<{
+	disabled: boolean,
+	flat: boolean,
+	hasButton: boolean,
+	heading: string,
+	heading_justify?: VRow['$props']['justify'],
+	heading_class?: string,
+	heading_size?: string,
+	lg: string,
+	loading: boolean,
+	my: string,
+	outlined: boolean,
+	pad: boolean,
+	sm: string,
+	tile: boolean,
+	xl: string
+}>(), {
+	disabled: false,
+	flat: false,
+	hasButton: false,
+	heading: '',
+	lg: '7',
+	loading: false,
+	my: 'my-1',
+	outlined: true,
+	pad: true,
+	sm: '9',
+	tile: false,
+	xl: '6'
 });
+
 </script>
 
 <style>

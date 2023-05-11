@@ -75,7 +75,8 @@ import { useDisplay } from 'vuetify';
 import ExtraIp from '@/components/Devices/AllDeviceTable/ExtraInformation/ExtraIp.vue';
 import ExtraOnlineSince from '@/components/Devices/AllDeviceTable/ExtraInformation/ExtraOnlineSince.vue';
 import SubHeading from '@/components/Card/SubHeading.vue';
-import type { TExtraTableRow, TJustify } from '@/types';
+import type { TExtraTableRow } from '@/types';
+import type { VRow } from 'vuetify/components/VGrid';
 
 const { mdAndUp, mobile, smAndDown } = useDisplay();
 
@@ -89,7 +90,7 @@ const icon = computed((): string => {
 const iconColor = computed((): string => {
 	return props.online ? 'primary' : 'pi';
 });
-const justify = computed((): TJustify => {
+const justify = computed((): VRow['$props']['justify'] => {
 	return smAndDown.value ? 'space-between' : 'center';
 });
 const offlineMessage = computed((): string => {
@@ -109,19 +110,13 @@ const toggleHidden = (): void => {
 	emit('hidden', hidden.value);
 };
 
-const props = defineProps({
-	is_device: {
-		type: Boolean,
-		required: true
-	},
-	online: {
-		type: Boolean,
-		required: true
-	},
-	tableRows: {
-		type: Array as () => Array<TExtraTableRow>,
-		required: true,
-	}
+const props = withDefaults(defineProps<{
+	is_device: boolean,
+	online: boolean,
+	tableRows:Array<TExtraTableRow>
+}>(), {
+	is_device: true,
+	online: true,
 });
 
 watch(isIntersecting, (i: boolean): void => {

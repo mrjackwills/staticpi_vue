@@ -26,10 +26,10 @@
 		<v-expand-transition>
 			<section v-if='switched && component' class=''>
 				<component
+					:is='isComponent'
 					@update:model-value='input_method'
 					@client_passwordInput='client_passwordInput'
 					@device_passwordInput='device_passwordInput'
-					:is='isComponent'
 				/>
 			</section>
 		</v-expand-transition>
@@ -60,35 +60,17 @@ watch(() => switched.value, (i) => {
 });
 
 const isComponent = computed(() => {
-	if (props.component === 'DevicePassword') {
-		return DevicePassword;
-	} if (props.component === 'MaxClients') {
-		return MaxClients;
-	}
+	return props.component === 'DevicePassword' ? DevicePassword : MaxClients;
 });
 
-const props = defineProps({
-	description: {
-		type: String,
-		required: true
-	},
-	disabled: {
-		type: Boolean,
-		required: true
-	},
-	heading: {
-		type: String,
-		required: true,
-	},
-	component: {
-		type: String,
-		required: true,
-	},
-	to: {
-		type: String,
-		default: ''
-	}
-});
+const props = defineProps<{
+	description: string,
+	disabled: boolean,
+	heading: string,
+	component: string,
+	to?: string,
+}>();
+
 </script>
 
 <style>

@@ -12,7 +12,6 @@
 </template>
 
 <script setup lang='ts'>
-import { browserModule } from '@/store';
 import { FrontEndRoutes } from '@/types/enum_routes';
 import { mdiArrowLeft } from '@mdi/js';
 import ActionButton from '@/components/Buttons/ActionButton.vue';
@@ -24,10 +23,5 @@ const goBack = (): void => {
 	else router.push(FrontEndRoutes.BASE);
 };
 
-defineProps({
-	disabled: {
-		type: Boolean,
-		default: false
-	}
-});
+withDefaults(defineProps<{disabled: boolean}>(), { disabled: false });
 </script>

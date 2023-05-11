@@ -64,14 +64,5 @@ const title = computed((): string => {
 	return smAndDown.value ? 'text-h7' : 'text-h6';
 });
 
-defineProps({
-	disabled: {
-		type: Boolean,
-		default: false
-	},
-	proOnly: {
-		type: Boolean,
-		default: false
-	}
-});
+withDefaults(defineProps<{disabled: boolean, proOnly: boolean}>(), { disabled: false, proOnly: false });
 </script>

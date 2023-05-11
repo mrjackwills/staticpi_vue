@@ -7,6 +7,7 @@
 		:timeout='timeoutValue'
 		:top='position.y === "top"'
 		class='ma-0 pa-0'
+		content-class='tooltip_bottom'
 	>
 		<v-row
 			align='center'
@@ -41,7 +42,6 @@
 
 <script setup lang='ts'>
 import { mdiClose } from '@mdi/js';
-import { navDrawerModule, snackbarModule, userModule } from '@/store';
 import { useDisplay } from 'vuetify';
 import type { su, nu, TSnackPosition } from '@/types';
 import type { VDialog } from 'vuetify/components';
@@ -123,5 +123,9 @@ const reloadTimeout = ref(0);
 }
 .mini_margin{
 	margin-left:28px!important
+}
+
+.tooltip_bottom{
+	bottom: 10px!important
 }
 </style>

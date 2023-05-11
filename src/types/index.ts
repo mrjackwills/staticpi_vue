@@ -8,8 +8,8 @@ export type TAuthObject = {
 	token?: string
 }
 
-export type TJustify = 'center' |'end' |'start'| 'space-around' | 'space-between' | 'space-evenly' | 'stretch' | undefined
-export type TDensity = 'default'|'compact'|'comfortable'
+// export type TJustify = 'center' |'end' |'start'| 'space-around' | 'space-between' | 'space-evenly' | 'stretch' | undefined
+// export type TDensity = 'default'|'compact'|'comfortable'
 
 export type u<T> = undefined | T
 export type su = u<string>

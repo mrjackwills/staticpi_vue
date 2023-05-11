@@ -41,7 +41,8 @@ import { axios_device } from '@/services/axios';
 import { dialoger } from '@/services/dialog';
 import { mdiContentSave, } from '@mdi/js';
 import { useDisplay } from 'vuetify';
-import type { TAuthObject, TSwitchButton, TDeviceInfo, TJustify } from '@/types';
+import type { TAuthObject, TSwitchButton, TDeviceInfo } from '@/types';
+import type { VRow } from 'vuetify/components/VGrid';
 
 const { mdAndUp, mobile } = useDisplay();
 
@@ -62,7 +63,7 @@ const button = computed((): TSwitchButton => {
 		class: 'heartbeat'
 	};
 });
-const justify = computed((): TJustify => {
+const justify = computed((): VRow['$props']['justify'] => {
 	return mdAndUp.value ? 'center' : 'end';
 });
 const loading= computed({
@@ -121,12 +122,7 @@ const save = async (): Promise<void> => {
 	}
 };
 
-const props = defineProps({
-	device: {
-		type: Object as () => TDeviceInfo,
-		required: true
-	}
-});
+const props = defineProps<{device: TDeviceInfo}>();
 	
 watch(paused, (i: boolean): void => {
 	if (i) new_value.value = current_value.value;

@@ -3,11 +3,9 @@
 </template>
 
 <script setup lang="ts">
-defineProps({
-	color: {
-		type: String,
-		default: 'pi'
-	}
 
+withDefaults(defineProps<{color: string}>(), {
+	color: 'pi'
 });
+
 </script>

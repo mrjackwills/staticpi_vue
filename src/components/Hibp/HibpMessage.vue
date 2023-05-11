@@ -24,10 +24,5 @@ const pSize = computed((): string => {
 	return mdAndDown.value ? 'text-caption': 'text-body-2';
 });
 
-defineProps({
-	mt: {
-		type: String,
-		default: ''
-	}
-});
+defineProps<{mt?: string}>();
 </script>
