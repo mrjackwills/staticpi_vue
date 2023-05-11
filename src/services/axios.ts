@@ -72,7 +72,7 @@ const AllowedUsers = <T> (allowedUsers: Array<UserLevel>) => {
 	};
 };
 
-const wrap = <T> () => function (_target: AxiosClasses, propertyKey: string, descriptor: PropertyDescriptor): void {
+const wrap= <T>() => function (_target: AxiosClasses, propertyKey: string, descriptor: PropertyDescriptor): void {
 		
 	const original = descriptor.value;
 	descriptor.value = async function (args: T): Promise<unknown> {

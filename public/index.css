@@ -3,7 +3,7 @@ html, body {
 	margin: 0;
 	height: 100%;
 	font-family: 'Titillium Web', sans-serif;
-	font-display: 'swap';
+	font-display: swap;
 }
 
 .mastodon {

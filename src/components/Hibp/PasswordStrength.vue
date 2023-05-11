@@ -48,21 +48,11 @@ const calc_strength = (): number => {
 	return scores.lowerScore * scores.upperScore * scores.symbolsScore * scores.numbersScore * (length * .75) ;
 };
 
-const props = defineProps({
-	passwordCompromised: {
-		type: Boolean,
-		required: true,
-	},
-	password: {
-		type: String,
-		default: '',
-		required: true,
-	},
-	errorMessage: {
-		type: String,
-		required: true,
-	}
-});
+const props = defineProps<{
+	passwordCompromised: boolean,
+	password: string,
+	errorMessage: string,
+}>();
 
 watch(() => props.password, (): void => {
 	passStrength.value = calc_strength();
