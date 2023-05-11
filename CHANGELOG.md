@@ -10,7 +10,6 @@
 + add spacing underneath tooltip, [0dd9a868eb3d708d85e05a5d71fd7c04b744547a]
 
 
-
 # <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.3'>v0.1.3</a>
 ### 2023-03-13
 
