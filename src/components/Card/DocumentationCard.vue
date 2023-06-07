@@ -28,7 +28,6 @@
 
 <script setup lang="ts">
 import { useDisplay } from 'vuetify';
-import AppCard from '@/components/Card/AppCard.vue';
 
 const { mobile } = useDisplay();
 

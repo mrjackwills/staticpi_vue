@@ -15,6 +15,4 @@
 </template>
 
 <script setup lang='ts'>
-import FooterText from '@/components/FooterText.vue';
-
 </script>

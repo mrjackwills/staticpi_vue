@@ -100,8 +100,6 @@ import { FrontEndNames, FrontEndRoutes } from '@/types/enum_routes';
 import { mdiAccountCircle, mdiMenu } from '@mdi/js';
 import { notAuthenticatedLinks } from '@/vanillaTS/NavigationLinks';
 import { useDisplay } from 'vuetify';
-import OfflineAlert from '@/components/OfflineAlert.vue';
-import StaticPi from '@/components/StaticPi.vue';
 
 const { lgAndUp } = useDisplay();
 

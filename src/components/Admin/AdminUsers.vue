@@ -32,7 +32,7 @@
 					cols='12'
 					class='ma-0 pa-0'
 				>
-					<AdminUserRowVue :user='item.user' :sessions='item.sessions' @update='emit("update")' />
+					<AdminUserRow :user='item.user' :sessions='item.sessions' @update='emit("update")' />
 					<v-divider class='' v-if='(index!== users.length -1)'/>
 				</v-col>
 			</v-row>
@@ -42,7 +42,6 @@
 
 <script setup lang="ts">
 import { convert_bytes } from '@/vanillaTS/convert_bytes';
-import AdminUserRowVue from './AdminUserRow.vue';
 import type { TAdminUserAndSessions } from '@/types';
 
 const total_monthly_bandwidth = computed((): string => {
