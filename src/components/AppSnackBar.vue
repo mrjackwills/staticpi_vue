@@ -1,7 +1,7 @@
 <template>
 	<v-snackbar
 		v-model='visible'
-		:class='margin'
+		:class='[margin, {"mr-2":isDesktop}]'
 		:location='snack_location'
 		:multi-line='isDesktop'
 		:timeout='timeoutValue'
