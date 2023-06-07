@@ -135,11 +135,6 @@ import { passwordCheck } from '@/vanillaTS/hibp';
 import { required, minLength } from '@vuelidate/validators';
 import { snackSuccess } from '@/services/snack';
 import { useDisplay } from 'vuetify';
-import ActionButton from '@/components/Buttons/ActionButton.vue';
-import HibpMessage from '@/components/Hibp/HibpMessage.vue';
-import PasswordDescription from '@/components/Hibp/PasswordDescription.vue';
-import PasswordStrength from '@/components/Hibp/PasswordStrength.vue';
-import SettingSection from '@/components/Settings/SettingSection.vue';
 import type { TChangeUserPassword } from '@/types';
 import useVuelidate from '@vuelidate/core';
 import {

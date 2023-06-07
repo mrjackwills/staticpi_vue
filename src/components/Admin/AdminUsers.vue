@@ -43,7 +43,6 @@
 <script setup lang="ts">
 import { convert_bytes } from '@/vanillaTS/convert_bytes';
 import AdminUserRowVue from './AdminUserRow.vue';
-import AppCard from '@/components/Card/AppCard.vue';
 import type { TAdminUserAndSessions } from '@/types';
 
 const total_monthly_bandwidth = computed((): string => {

@@ -19,6 +19,5 @@
 </template>
 
 <script setup lang='ts'>
-import CopyButton from '@/components/Buttons/CopyButton.vue';
 defineProps<{ip: string}>();
 </script>

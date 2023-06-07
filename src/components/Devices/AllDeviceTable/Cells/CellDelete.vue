@@ -17,7 +17,6 @@ import { dialoger } from '@/services/dialog';
 import { mdiDeleteCircle } from '@mdi/js';
 import { snackSuccess } from '@/services/snack';
 import { useDisplay } from 'vuetify';
-import FabTooltip from '@/components/Buttons/FabTooltip.vue';
 import type { TAuthObject, TDeviceInfo } from '@/types';
 import type { VRow } from 'vuetify/components/VGrid';
 

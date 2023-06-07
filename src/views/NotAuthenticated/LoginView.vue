@@ -131,9 +131,6 @@ import { required, email } from '@vuelidate/validators';
 import { RouterLink } from 'vue-router';
 import { token_regex } from '@/vanillaTS/globalConst';
 import { useDisplay } from 'vuetify';
-import ActionButton from '@/components/Buttons/ActionButton.vue';
-import AppCard from '@/components/Card/AppCard.vue';
-import ThePage from '@/components/ThePage.vue';
 import type { TLoginModel, TLoginFields } from '@/types';
 import useVuelidate from '@vuelidate/core';
 

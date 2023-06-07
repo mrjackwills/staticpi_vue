@@ -110,7 +110,7 @@
 				:password='password'
 			/>
 			
-			<DocGithub />
+			<DocExamples />
 		</template>
 	</ThePage>
 </template>
@@ -120,14 +120,6 @@ import { axios_device } from '@/services/axios';
 import { FrontEndRoutes } from '@/types/enum_routes';
 import { mdiRouterWirelessSettings } from '@mdi/js';
 import { useDisplay } from 'vuetify';
-import AppCard from '@/components/Card/AppCard.vue';
-import DocBinary from '@/components/Documentation/DocBinary.vue';
-import DocConnect from '@/components/Documentation/DocConnect.vue';
-import DocConnectWithPassword from '@/components/Documentation/DocConnectWithPassword.vue';
-import DocGithub from '@/components/Documentation/DocExamples.vue';
-import DocRateLimits from '@/components/Documentation/DocRateLimits.vue';
-import DocStructuredData from '@/components/Documentation/DocStructuredData.vue';
-import ThePage from '@/components/ThePage.vue';
 
 const { mobile } = useDisplay();
 const deviceStore = deviceModule();

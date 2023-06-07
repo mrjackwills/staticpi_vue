@@ -56,15 +56,6 @@
 <script setup lang='ts'>
 import { axios_admin } from '@/services/axios';
 import { mdiRefresh } from '@mdi/js';
-import ActionButton from '@/components/Buttons/ActionButton.vue';
-import AdminConnectedCount from '@/components/Admin/AdminConnectedCount.vue';
-import AdminContact from '@/components/Admin/AdminContact.vue';
-import AdminEmails from '@/components/Admin/AdminEmails.vue';
-import AdminInvites from '@/components/Admin/AdminInvite.vue';
-import AdminLimits from '@/components/Admin/AdminLimits.vue';
-import AdminMemory from '@/components/Admin/AdminMemory.vue';
-import AdminUsers from '@/components/Admin/AdminUsers.vue';
-import ThePage from '@/components/ThePage.vue';
 import type { TAdminMemory, TAdminLimit, TAdminConnectedCount, TAdminUserAndSessions, TAdminInvite, TAdminEmailCount, TAdminContactMessage, u } from '@/types';
 
 const pageTitle = 'admin';

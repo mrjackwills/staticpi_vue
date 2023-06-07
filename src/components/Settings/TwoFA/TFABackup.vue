@@ -118,8 +118,6 @@ import { mdiClose, mdiContentCopy, mdiDownload, mdiShieldKey, mdiShieldRefresh, 
 import { snackSuccess } from '@/services/snack';
 import { useClipboard } from '@vueuse/core';
 import { useDisplay } from 'vuetify';
-import ActionButton from '@/components/Buttons/ActionButton.vue';
-import StaticPi from '@/components/StaticPi.vue';
 import type { TAuthObject } from '@/types';
 
 const settingsSectionStore = settingSectionModule();

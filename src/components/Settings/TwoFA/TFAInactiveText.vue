@@ -10,5 +10,4 @@
 </template>
 
 <script setup lang="ts">
-import StaticPi from '@/components/StaticPi.vue';
 </script>

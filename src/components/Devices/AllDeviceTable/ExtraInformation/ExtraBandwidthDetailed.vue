@@ -74,7 +74,6 @@
 <script setup lang="ts">
 import { convert_bytes } from '@/vanillaTS/convert_bytes';
 import { useDisplay } from 'vuetify';
-import ExtraBandwidthCell from '@/components/Devices/AllDeviceTable/ExtraInformation/ExtraBandwidthCell.vue';
 import type { TDeviceInfo, TExtraBandwidthDetailed } from '@/types';
 
 const { mobile } = useDisplay();

@@ -26,11 +26,11 @@
 				<v-col cols='11' class='ma-0 pa-0'>
 					<v-row align='start' justify='center' class='ma-0 pa-0 no-gutters'>
 						<v-col cols='11' md='4' class='ma-0 pa-0' :order='orderDevice'>
-							<ExtraTable :class='{"pr-6": !smAndDown}' :online='deviceOnline' v-model:tableRows='connectedDevice' :is_device='true' @hidden='handleHidden($event,0)' />
+							<ExtraConnectedTable :class='{"pr-6": !smAndDown}' :online='deviceOnline' v-model:tableRows='connectedDevice' :is_device='true' @hidden='handleHidden($event,0)' />
 						</v-col>
 				
 						<v-col cols='11' md='4' class='ma-0 pa-0' :order='orderClient'>
-							<ExtraTable :class='{"pl-6": !smAndDown}' :online='connectedClients.length > 0' v-model:tableRows='connectedClients' :is_device='false' @hidden='handleHidden($event, 1)'  />
+							<ExtraConnectedTable :class='{"pl-6": !smAndDown}' :online='connectedClients.length > 0' v-model:tableRows='connectedClients' :is_device='false' @hidden='handleHidden($event, 1)'  />
 						</v-col>
 
 						<v-col cols='11' :md='singleRow?"4":"8"' class='ma-0 pa-0' :order='orderBandwidth'>
@@ -88,11 +88,6 @@
 import { axios_device } from '@/services/axios';
 import { mdiForum } from '@mdi/js';
 import type { TDeviceInfo, TExtraTableRow, TSelectConnectedClient } from '@/types';
-import ActionButton from '@/components/Buttons/ActionButton.vue';
-import ExtraBandwidth from '@/components/Devices/AllDeviceTable/ExtraInformation/ExtraBandwidth.vue';
-import AppCard from '@/components/Card/AppCard.vue';
-import ExtraTable from '@/components/Devices/AllDeviceTable/ExtraInformation/ExtraConnectedTable.vue';
-import ExtraSendMessage from '@/components/Devices/AllDeviceTable/ExtraInformation/ExtraSendMessage.vue';
 import { useDisplay } from 'vuetify';
 const { smAndDown } = useDisplay();
 

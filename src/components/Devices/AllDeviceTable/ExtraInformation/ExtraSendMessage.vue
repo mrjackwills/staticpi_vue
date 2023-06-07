@@ -236,9 +236,6 @@ import { env } from '@/vanillaTS/env';
 import { parse } from 'secure-json-parse';
 import { snackError } from '@/services/snack';
 import { useDisplay } from 'vuetify';
-import ActionButton from '@/components/Buttons/ActionButton.vue';
-import AppCard from '@/components/Card/AppCard.vue';
-import CopyButton from '@/components/Buttons/CopyButton.vue';
 import type { TDeviceInfo, TDialogFields } from '@/types';
 import { mdiArrowDownBold, mdiArrowUpBold, mdiCheckboxBlankCircleOutline, mdiCheckCircle, mdiCircleHalfFull,
 	mdiClose, mdiEye, mdiEyeOff, mdiKey, mdiLock, mdiMessageReplyText, mdiSend, mdiTimerOutline, } from '@mdi/js';

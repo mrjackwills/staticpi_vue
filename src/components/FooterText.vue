@@ -67,7 +67,6 @@
 <script setup lang='ts'>
 import { env } from '@/vanillaTS/env';
 import { mdiCopyright, mdiGithub } from '@mdi/js';
-import StaticPi from '@/components/StaticPi.vue';
 import type { TFooterRow } from '@/types';
 import { useDisplay } from 'vuetify';
 

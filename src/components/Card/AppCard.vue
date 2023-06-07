@@ -42,9 +42,7 @@
 
 <script setup lang='ts'>
 import type { VRow } from 'vuetify/components/VGrid';
-
 import { useDisplay } from 'vuetify';
-import CardHeading from '@/components/Card/CardHeading.vue';
 
 const { smAndDown } = useDisplay();
 

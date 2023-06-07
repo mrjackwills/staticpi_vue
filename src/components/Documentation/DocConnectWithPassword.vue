@@ -16,8 +16,6 @@
 </template>
 
 <script setup lang='ts'>
-import CodeBlock from '@/components/CodeBlock.vue';
-import DocumentationCard from '@/components/Card/DocumentationCard.vue';
 
 const code_password_connect_client = computed((): string => {
 	return `const token_body = {

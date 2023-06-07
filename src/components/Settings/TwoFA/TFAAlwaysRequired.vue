@@ -39,7 +39,6 @@
 <script setup lang='ts'>
 import { axios_authenticatedUser } from '@/services/axios';
 import { dialoger } from '@/services/dialog';
-import AppCard from '@/components/Card/AppCard.vue';
 import type { TAuthObject } from '@/types';
 const twoFAStore = twoFAModule();
 

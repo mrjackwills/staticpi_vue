@@ -44,7 +44,6 @@
 </template>
 
 <script setup lang="ts">
-import AppCard from '@/components/Card/AppCard.vue';
 import type { TAdminConnectedCount } from '@/types';
 
 const data = computed(() => {

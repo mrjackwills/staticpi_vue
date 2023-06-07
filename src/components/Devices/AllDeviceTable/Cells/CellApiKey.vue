@@ -52,7 +52,6 @@ import { dialoger } from '@/services/dialog';
 import { mdiAutorenew, } from '@mdi/js';
 import { snackSuccess } from '@/services/snack';
 import { useDisplay } from 'vuetify';
-import CopyButton from '@/components/Buttons/CopyButton.vue';
 import type { TAuthObject, TDeviceInfo } from '@/types';
 import type { VRow } from 'vuetify/components/VGrid';
 

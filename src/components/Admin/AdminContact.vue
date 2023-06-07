@@ -64,7 +64,6 @@
 <script setup lang="ts">
 import { axios_admin } from '@/services/axios';
 import { mdiAccountCircle, mdiCloseCircle } from '@mdi/js';
-import AppCard from '@/components/Card/AppCard.vue';
 import type { TAdminContactMessage } from '@/types';
 
 const emit = defineEmits([ 'update' ]);

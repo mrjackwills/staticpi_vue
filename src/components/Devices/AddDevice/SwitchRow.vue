@@ -38,7 +38,6 @@
 
 <script setup lang='ts'>
 import DevicePassword from '@/components/Devices/AddDevice/DevicePassword.vue';
-import DocumentationLink from '@/components/Buttons/DocumentationLink.vue';
 import MaxClients from '@/components/Devices/AddDevice/MaxClients.vue';
 
 const switched = ref(false);

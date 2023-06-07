@@ -11,7 +11,6 @@
 <script setup lang='ts'>
 import { axios_authenticatedUser } from '@/services/axios';
 import { mdiShieldPlus } from '@mdi/js';
-import ActionButton from '@/components/Buttons/ActionButton.vue';
 
 const start2FASetup = async (): Promise<void> => {
 	const [ loadingStore, settingsectionStore, twofaStore ] = [ loadingModule(), settingSectionModule(), twoFAModule() ];

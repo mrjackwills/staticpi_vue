@@ -121,12 +121,6 @@ import { required, email, minLength } from '@vuelidate/validators';
 import { snackSuccess } from '@/services/snack';
 import { useDisplay } from 'vuetify';
 import { mdiAccountCheck, mdiAccountOutline, mdiAlertCircleOutline, mdiEmail, mdiEye, mdiEyeOff, mdiHelpCircleOutline, mdiLock, } from '@mdi/js';
-import ActionButton from '@/components/Buttons/ActionButton.vue';
-import AppCard from '@/components/Card/AppCard.vue';
-import BackButton from '@/components/Buttons/BackButton.vue';
-import HibpMessage from '@/components/Hibp/HibpMessage.vue';
-import PasswordStrength from '@/components/Hibp/PasswordStrength.vue';
-import ThePage from '@/components/ThePage.vue';
 import type { TRegisterTextField, TRegisterModels } from '@/types';
 import useVuelidate from '@vuelidate/core';
 

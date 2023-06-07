@@ -55,8 +55,6 @@
 
 <script setup lang='ts'>
 import { useDisplay } from 'vuetify';
-import AppCard from '@/components/Card/AppCard.vue';
-import ProUserChip from '@/components/Buttons/ProUserChip.vue';
 
 const { smAndDown } = useDisplay();
 

@@ -34,7 +34,6 @@
 </template>
 
 <script setup lang='ts'>
-import CardHeading from '@/components/Card/CardHeading.vue';
 import type { VRow } from 'vuetify/components/VGrid';
 
 const loading = computed((): boolean => {

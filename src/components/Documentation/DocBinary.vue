@@ -33,8 +33,6 @@
 
 <script setup lang='ts'>
 import { FrontEndRoutes } from '@/types/enum_routes';
-import CodeBlock from '@/components/CodeBlock.vue';
-import DocumentationCard from '@/components/Card/DocumentationCard.vue';
 
 const json_structured_invalid = `{ "error": { "message" : "received data is invalid structure", "code": 400 } }`;
 

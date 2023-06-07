@@ -100,10 +100,6 @@ import { required, email, maxLength, minLength } from '@vuelidate/validators';
 import { snackSuccess } from '@/services/snack';
 import { useDisplay } from 'vuetify';
 import { mdiEmail, mdiEmailFastOutline, mdiMessageTextOutline, } from '@mdi/js';
-import ActionButton from '@/components/Buttons/ActionButton.vue';
-import AppCard from '@/components/Card/AppCard.vue';
-import BackButton from '@/components/Buttons/BackButton.vue';
-import ThePage from '@/components/ThePage.vue';
 import useVuelidate from '@vuelidate/core';
 
 const { smAndDown } = useDisplay();

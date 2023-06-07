@@ -42,8 +42,6 @@
 import { axios_authenticatedUser } from '@/services/axios';
 import { dialoger } from '@/services/dialog';
 import { mdiAccountRemove, mdiDelete } from '@mdi/js';
-import ActionButton from '@/components/Buttons/ActionButton.vue';
-import SettingSection from '@/components/Settings/SettingSection.vue';
 import type { TAuthObject } from '@/types';
 
 import { useDisplay } from 'vuetify';

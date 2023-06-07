@@ -74,9 +74,6 @@
 import { mdiCakeVariant, mdiCardAccountDetails, mdiProgressUpload } from '@mdi/js';
 import { useDisplay } from 'vuetify';
 import { zero_pad } from '@/vanillaTS/convert_seconds';
-import ActionButton from '@/components/Buttons/ActionButton.vue';
-import NumberOfDevices from '@/components/Devices/NumberOfDevices.vue';
-import SettingSection from '@/components/Settings/SettingSection.vue';
 import type { TSettingSection, u } from '@/types';
 import type { UserLevel } from '@/types/enum_userLevel';
 

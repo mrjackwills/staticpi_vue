@@ -46,7 +46,6 @@
 <script setup lang="ts">
 import { convert_bytes } from '@/vanillaTS/convert_bytes';
 import { secondsToDays } from '@/vanillaTS/convert_seconds';
-import AppCard from '@/components/Card/AppCard.vue';
 import type { TAdminMemory } from '@/types';
 
 const data = computed(() => {

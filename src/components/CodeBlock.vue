@@ -48,7 +48,6 @@ import '@/scss/vscode.css';
 import { mdiCheckboxBlankCircle } from '@mdi/js';
 import { nonce } from '@/vanillaTS/globalConst';
 import { useDisplay } from 'vuetify';
-import CopyButton from '@/components/Buttons/CopyButton.vue';
 import prism from 'prismjs';
 
 const { mobile } = useDisplay();

@@ -154,10 +154,6 @@
 import { FrontEndRoutes } from '@/types/enum_routes';
 import { mdiAccountPlus, mdiChevronDoubleDown } from '@mdi/js';
 import { useDisplay } from 'vuetify';
-import ActionButton from '@/components/Buttons/ActionButton.vue';
-import AppCard from '@/components/Card/AppCard.vue';
-import StaticPi from '@/components/StaticPi.vue';
-import ThePage from '@/components/ThePage.vue';
 
 const { mdAndUp, smAndDown } = useDisplay();
 

@@ -13,7 +13,7 @@
 							<ProUserChip :class='proMargin' class='ma-1 ml-3' v-if='pro' />
 						</v-col>
 						<v-col cols='auto' class='ma-0 pa-0' order='1'>
-							<AppSubheading :heading='heading' justify='start' :id='createId' />
+							<Subheading :heading='heading' justify='start' :id='createId' />
 						</v-col>
 					</v-row>
 					<v-divider class='mb-1' />
@@ -29,8 +29,6 @@
 <script setup lang="ts">
 import { useDisplay } from 'vuetify';
 import AppCard from '@/components/Card/AppCard.vue';
-import AppSubheading from '@/components/Card/SubHeading.vue';
-import ProUserChip from '@/components/Buttons/ProUserChip.vue';
 
 const { mobile } = useDisplay();
 

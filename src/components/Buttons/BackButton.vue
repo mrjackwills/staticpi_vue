@@ -14,7 +14,6 @@
 <script setup lang='ts'>
 import { FrontEndRoutes } from '@/types/enum_routes';
 import { mdiArrowLeft } from '@mdi/js';
-import ActionButton from '@/components/Buttons/ActionButton.vue';
 
 const router = useRouter();
 

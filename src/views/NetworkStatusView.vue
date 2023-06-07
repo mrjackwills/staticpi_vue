@@ -57,12 +57,9 @@
 </template>
 
 <script setup lang='ts'>
-import AppCard from '@/components/Card/AppCard.vue';
-import AppSubheading from '@/components/Card/SubHeading.vue';
 import NetBandwidth from '@/components/NetworkStatus/NetBandwidth.vue';
 import NetLog from '@/components/NetworkStatus/NetLog.vue';
 import NetServerStats from '@/components/NetworkStatus/NetServerStats.vue';
-import ThePage from '@/components/ThePage.vue';
 import {
 	mdiCalendarText,
 	mdiServerNetwork,

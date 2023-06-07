@@ -6,7 +6,7 @@
 
 			<v-row class='ma-0 pa-0' justify='space-around' align='center'>
 				<v-col cols='12' md='5' class='ma-0 pa-0' align='center'>
-					<AddressRow v-for='(item, index) in authAddressRow' :key='index'
+					<DocAddressRow v-for='(item, index) in authAddressRow' :key='index'
 						:name='item.name'
 						:address='item.address'
 						:toCopy='item.toCopy'
@@ -15,7 +15,7 @@
 					/>
 				</v-col>
 				<v-col cols='12' md='5' class='ma-0 pa-0' align='center'>
-					<AddressRow v-for='(item, index) in wssAddressRow' :key='index'
+					<DocAddressRow v-for='(item, index) in wssAddressRow' :key='index'
 						:name='item.name'
 						:address='item.address'
 						:toCopy='item.toCopy'
@@ -80,12 +80,6 @@
 </template>
 
 <script setup lang='ts'>
-import AppCard from '@/components/Card/AppCard.vue';
-
-import AddressRow from '@/components/Documentation/DocAddressRow.vue';
-import CodeBlock from '@/components/CodeBlock.vue';
-import DocumentationCard from '@/components/Card/DocumentationCard.vue';
-import StaticPi from '@/components/StaticPi.vue';
 import type { TAddressRow } from '@/types';
 		
 const code_basic_connect_client = computed((): string => {
