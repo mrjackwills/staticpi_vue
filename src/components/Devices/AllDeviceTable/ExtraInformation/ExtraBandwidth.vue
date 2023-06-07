@@ -123,7 +123,7 @@ const toggleHidden = (): void => {
 	emit('hidden', hidden.value);
 };
 
-withDefaults(defineProps<{device: TDeviceInfo, show_calc: boolean}>(), {
+withDefaults(defineProps<{device: TDeviceInfo, show_calc?: boolean}>(), {
 	show_calc: true,
 });
 

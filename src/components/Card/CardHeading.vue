@@ -18,10 +18,10 @@ const headingSize = computed((): string => {
 });
 
 const props = withDefaults(defineProps<{
-	divider: boolean,
+	divider?: boolean,
 	heading: string,
-	justify: VRow['$props']['justify'],
-	margin: string
+	justify?: VRow['$props']['justify'],
+	margin?: string
 	size?: string,
 }>(), {
 	divider: false,

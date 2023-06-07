@@ -94,11 +94,11 @@ const onIntersect = (is_i: boolean, _entries: Array<IntersectionObserverEntry>, 
 };
 
 const props = withDefaults(defineProps<{
-	color: string,
-	dark: boolean,
-	density: VBtn['$props']['density'],
-	disabled: boolean,
-	hoverMessage: string,
+	color?: string,
+	dark?: boolean,
+	density?: VBtn['$props']['density'],
+	disabled?: boolean,
+	hoverMessage?: string,
 	small?:boolean
 	toCopy: string,
 	tooltipMessage: string,

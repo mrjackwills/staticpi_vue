@@ -14,6 +14,7 @@ declare module 'vue' {
     AdminDeviceRow: typeof import('./src/components/Admin/AdminDeviceRow.vue')['default']
     AdminEmails: typeof import('./src/components/Admin/AdminEmails.vue')['default']
     AdminInvite: typeof import('./src/components/Admin/AdminInvite.vue')['default']
+    AdminInvites: typeof import('./src/components/Admin/AdminInvites.vue')['default']
     AdminLimits: typeof import('./src/components/Admin/AdminLimits.vue')['default']
     AdminMemory: typeof import('./src/components/Admin/AdminMemory.vue')['default']
     AdminUserRow: typeof import('./src/components/Admin/AdminUserRow.vue')['default']

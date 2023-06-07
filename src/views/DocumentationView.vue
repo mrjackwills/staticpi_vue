@@ -76,7 +76,7 @@
 				:componentKey='componentKey'
 				:password='password'
 			/>
-
+			
 			<DocConnectWithPassword
 				:address_token='address_token'
 				:address_wss_client='address_wss_client'

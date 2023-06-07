@@ -57,6 +57,7 @@ declare global {
   const toRaw: typeof import('vue')['toRaw']
   const toRef: typeof import('vue')['toRef']
   const toRefs: typeof import('vue')['toRefs']
+  const toValue: typeof import('vue')['toValue']
   const triggerRef: typeof import('vue')['triggerRef']
   const twoFAModule: typeof import('./store/twoFA')['twoFAModule']
   const unref: typeof import('vue')['unref']

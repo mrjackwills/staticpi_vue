@@ -13,7 +13,7 @@
 					</v-row>
 
 					<v-row align='center' justify='center' >
-						<AdminInvites  :inviteCodes='inviteCodes' @update='update'/>
+						<AdminInvites :inviteCodes='inviteCodes' @update='update'/>
 					</v-row>
 
 					<v-row align='center' justify='center' >

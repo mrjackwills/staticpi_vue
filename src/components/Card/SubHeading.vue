@@ -20,10 +20,10 @@ const headingColor = computed((): string => {
 });
 
 const props = withDefaults(defineProps<{
-	color: string,
+	color?: string,
 	heading: string,
 	heading_size?: string,
-	justify: VRow['$props']['justify']
+	justify?: VRow['$props']['justify']
 }>(), {
 	color: 'pi',
 	justify: 'center',

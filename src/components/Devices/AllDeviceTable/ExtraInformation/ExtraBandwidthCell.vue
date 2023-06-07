@@ -36,7 +36,7 @@ const showBorder = computed(() : string => {
 });
 
 const props = withDefaults(defineProps<{
-	borderRight: boolean,
+	borderRight?: boolean,
 	total: string,
 	unit: string,
 	variety: string

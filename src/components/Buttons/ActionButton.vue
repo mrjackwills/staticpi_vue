@@ -109,17 +109,17 @@ onMounted(() => {
 });
 
 const props = withDefaults(defineProps<{
-	block: boolean,
-	color: string,
-	disabled: boolean,
+	block?: boolean,
+	color?: string,
+	disabled?: boolean,
 	icon?: string,
-	iconFirst: boolean,
-	monospace: boolean,
-	mouseOverEvents: boolean,
-	overrideDisabled: boolean,
+	iconFirst?: boolean,
+	monospace?: boolean,
+	mouseOverEvents?: boolean,
+	overrideDisabled?: boolean,
 	routerLink?: string
-	small: boolean,
-	text: string
+	small?: boolean,
+	text?: string
 }>(), {
 	block: false,
 	color: 'primary',

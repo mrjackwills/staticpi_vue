@@ -31,7 +31,7 @@
 											<v-icon color='pi' :icon='item.icon' />
 										</v-col>
 										<v-col class='ma-0 pa-0'>
-											<AppSubheading
+											<SubHeading
 												:heading='item.heading'
 												justify='start'
 												class='unselectable'
