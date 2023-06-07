@@ -6,7 +6,7 @@
 			:indeterminate='loading'
 			bg-opacity='0'
 			class='mb-n2'
-			color='error'
+			color='primary'
 			top
 		/>
 
