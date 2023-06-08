@@ -22,7 +22,6 @@
 <script setup lang='ts'>
 import { mdiArrowDownBold, mdiArrowUpBold, mdiSwapVerticalBold } from '@mdi/js';
 import { useDisplay } from 'vuetify';
-import DocumentationLink from '@/components/Buttons/DocumentationLink.vue';
 import type { TDeviceInfo, TSortableColumns, TSortedBy } from '@/types';
 
 const { mdAndUp, smAndDown } = useDisplay();

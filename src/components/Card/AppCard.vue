@@ -42,9 +42,7 @@
 
 <script setup lang='ts'>
 import type { VRow } from 'vuetify/components/VGrid';
-
 import { useDisplay } from 'vuetify';
-import CardHeading from '@/components/Card/CardHeading.vue';
 
 const { smAndDown } = useDisplay();
 
@@ -57,21 +55,21 @@ const border = computed((): string => {
 });
 
 const props = withDefaults(defineProps<{
-	disabled: boolean,
-	flat: boolean,
-	hasButton: boolean,
-	heading: string,
+	disabled?: boolean,
+	flat?: boolean,
+	hasButton?: boolean,
+	heading?: string,
 	heading_justify?: VRow['$props']['justify'],
 	heading_class?: string,
 	heading_size?: string,
-	lg: string,
-	loading: boolean,
-	my: string,
-	outlined: boolean,
-	pad: boolean,
-	sm: string,
-	tile: boolean,
-	xl: string
+	lg?: string,
+	loading?: boolean,
+	my?: string,
+	outlined?: boolean,
+	pad?: boolean,
+	sm?: string,
+	tile?: boolean,
+	xl?: string
 }>(), {
 	disabled: false,
 	flat: false,

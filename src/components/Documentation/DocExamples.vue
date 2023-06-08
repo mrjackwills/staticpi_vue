@@ -16,9 +16,6 @@
 </template>
 
 <script setup lang='ts'>
-import DocumentationCard from '@/components/Card/DocumentationCard.vue';
-import StaticPi from '@/components/StaticPi.vue';
-
 const examples = [
 
 	{

@@ -105,7 +105,6 @@ import { axios_authenticatedUser } from '@/services/axios';
 import { snackError, snackSuccess } from '@/services/snack';
 import { useDisplay } from 'vuetify';
 import { mdiApple, mdiClose, mdiCheck, mdiCellphoneInformation, mdiGooglePlay } from '@mdi/js';
-import ActionButton from '@/components/Buttons/ActionButton.vue';
 import QrCode from 'qrcode.vue';
 
 const { mdAndUp, smAndDown } = useDisplay();

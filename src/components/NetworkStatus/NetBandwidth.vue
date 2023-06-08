@@ -57,9 +57,8 @@
 
 import { axios_incognito } from '@/services/axios';
 import { convert_bytes } from '@/vanillaTS/convert_bytes';
-import { mdiArrowDownBold, mdiArrowUpBold } from '@mdi/js';
 import { useDisplay } from 'vuetify';
-import { mdiCalendarBlank, mdiClockOutline, mdiEarth, } from '@mdi/js';
+import { mdiArrowDownBold, mdiArrowUpBold, mdiCalendarBlank, mdiClockOutline, mdiEarth } from '@mdi/js';
 import type { TComputedBandwidth } from '@/types';
 
 const { smAndDown, mobile } = useDisplay();

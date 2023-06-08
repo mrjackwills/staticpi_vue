@@ -83,7 +83,6 @@ import { axios_admin } from '@/services/axios';
 import { mdiCloseCircle } from '@mdi/js';
 import { secondsToDays } from '@/vanillaTS/convert_seconds';
 import { useDisplay } from 'vuetify';
-import AppCard from '@/components/Card/AppCard.vue';
 import type { TAdminLimit } from '@/types';
 
 const { mdAndDown } = useDisplay();

@@ -77,13 +77,6 @@
 import { axios_device } from '@/services/axios';
 import { mdiPlus } from '@mdi/js';
 import { useDisplay } from 'vuetify';
-import ActionButton from '@/components/Buttons/ActionButton.vue';
-import AddDevice from '@/components/Devices/AddDevice.vue';
-import AllDeviceTable from '@/components/Devices/AllDeviceTable.vue';
-import DeleteAll from '@/components/Devices/DeleteAll.vue';
-import NoDevices from '@/components/Devices/NoDevices.vue';
-import NumberOfDevices from '@/components/Devices/NumberOfDevices.vue';
-import ThePage from '@/components/ThePage.vue';
 import type { TDeviceInfo } from '@/types';
 
 const { smAndDown } = useDisplay();

@@ -1,14 +1,14 @@
 <template>
 	<v-app class='ma-0 pa-0' id='staticpi'>
-		<TheAppBar :order='mdAndDown?"2":"1"'/>
-		<NavDrawer :order='mdAndDown?"1":"2"' />
+		<AppBar :order='mdAndDown?"2":"1"'/>
+		<AppNavDrawer :order='mdAndDown?"1":"2"' />
 		<v-main>
 			<router-view v-if='pageReady' />
 		</v-main>
-		<TheDialog />
-		<TheSnackbar />
-		<TheUpArrow />
-		<TheFooter v-if='(!authenticated && !mdAndDown)' />
+		<AppDialog />
+		<AppSnackBar />
+		<AppUpArrow />
+		<AppFooter v-if='(!authenticated && !mdAndDown)' />
 	</v-app>
 </template>
 
@@ -20,12 +20,6 @@ import { useDisplay } from 'vuetify';
 import { useHead } from '@vueuse/head';
 import { useRegisterSW } from 'virtual:pwa-register/vue';
 import { useRoute } from 'vue-router';
-import NavDrawer from '@/components/NavDrawer.vue';
-import TheAppBar from '@/components/AppBar.vue';
-import TheDialog from '@/components/AppDialog.vue';
-import TheFooter from '@/components/AppFooter.vue';
-import TheSnackbar from '@/components/TheSnackBar.vue';
-import TheUpArrow from '@/components/UpArrow.vue';
 
 const { mdAndDown } = useDisplay();
 const { updateServiceWorker } = useRegisterSW();

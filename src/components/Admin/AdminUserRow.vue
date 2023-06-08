@@ -167,8 +167,6 @@ import { mdiAccountRemove, mdiCloseCircle, mdiChevronDown, mdiChevronUp, mdiChec
 import { secondsToDays } from '@/vanillaTS/convert_seconds';
 import { useDisplay } from 'vuetify';
 import { UserLevel } from '@/types/enum_userLevel';
-import AdminDeviceRow from '@/components/Admin/AdminDeviceRow.vue';
-import ExtraBandwidth from '@/components/Devices/AllDeviceTable/ExtraInformation/ExtraBandwidth.vue';
 import type { AdminDeviceAndConnections, TAdminSession, TAdminUser, TAuthObject, TDeviceInfo } from '@/types';
 
 const { mobile } = useDisplay();

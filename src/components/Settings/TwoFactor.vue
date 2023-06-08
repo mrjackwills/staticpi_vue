@@ -44,7 +44,6 @@
 			<v-expand-transition>
 				<TFAInstructions
 					v-if='!active && setupProcessStarted'
-				
 				/>
 			</v-expand-transition>
 		</template>
@@ -71,14 +70,6 @@ import { axios_authenticatedUser } from '@/services/axios';
 import { dialoger } from '@/services/dialog';
 import { snackSuccess } from '@/services/snack';
 import { mdiClose, mdiDeleteCircle, mdiShieldHalfFull } from '@mdi/js';
-import ActionButton from '@/components/Buttons/ActionButton.vue';
-import SettingSection from '@/components/Settings/SettingSection.vue';
-import TFAAlwaysRequired from '@/components/Settings/TwoFA/TFAAlwaysRequired.vue';
-import TFABackup from '@/components/Settings/TwoFA/TFABackup.vue';
-import TFAEnable from '@/components/Settings/TwoFA/TFAEnableTwoFAButton.vue';
-import TFAInactiveText from '@/components/Settings/TwoFA/TFAInactiveText.vue';
-import TFAInstructions from '@/components/Settings/TwoFA/TFAInstructions.vue';
-import TFAStatusRow from '@/components/Settings/TwoFA/TFAStatusRow.vue';
 import type { TAuthObject } from '@/types';
 
 import { useDisplay } from 'vuetify';

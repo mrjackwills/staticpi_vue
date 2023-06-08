@@ -9,7 +9,7 @@
 
 		<template v-slot:body >
 			<UserLevel />
-			<TwoFA />
+			<TwoFactor />
 			<ChangePassword />
 			<ChangeFullname />
 			<DownloadData />
@@ -22,14 +22,7 @@
 
 <script setup lang='ts'>
 import { axios_authenticatedUser, axios_device } from '@/services/axios';
-import ChangeFullname from '@/components/Settings/ChangeFullname.vue';
-import ChangePassword from '@/components/Settings/ChangePassword.vue';
-import DeleteAccount from '@/components/Settings/DeleteAccount.vue';
-import DownloadData from '@/components/Settings/DownloadData.vue';
-import ThePage from '@/components/ThePage.vue';
-import TwoFA from '@/components/Settings/TwoFactor.vue';
 import type { TSettingSection, u } from '@/types';
-import UserLevel from '@/components/Settings/UserLevel.vue';
 
 onMounted(() => {
 	browserModule().set_description(`staticPi settings page - control the settings for your staticPi user account`);

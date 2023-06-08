@@ -90,10 +90,6 @@
 
 <script setup lang='ts'>
 import { FrontEndRoutes } from '@/types/enum_routes';
-import CodeBlock from '@/components/CodeBlock.vue';
-import DocumentationCard from '@/components/Card/DocumentationCard.vue';
-import ProUserChip from '@/components/Buttons/ProUserChip.vue';
-import StaticPi from '@/components/StaticPi.vue';
 
 const structured_link = (): string =>{
 	return `${FrontEndRoutes.DOCUMENTATION}#structured-data`;

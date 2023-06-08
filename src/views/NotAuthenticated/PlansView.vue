@@ -58,7 +58,7 @@
 												cols='12'
 												md='6'
 											>
-												<UserPlanCell
+												<PlanUserCell
 													:detail='level.detail'
 													:freePlan='level.freePlan'
 												/>
@@ -141,7 +141,7 @@
 										<v-row class='ma-0 pa-0'>
 											<v-col class='ma-0 pa-0' cols='12' >
 
-												<UserPlanCell
+												<PlanUserCell
 													:detail='item.level[mobileLevel.level].detail'
 													:freePlan='item.level[mobileLevel.level].freePlan'
 												/>
@@ -185,10 +185,6 @@
 import { FrontEndRoutes } from '@/types/enum_routes';
 import { mdiAccountPlus, mdiInformation } from '@mdi/js';
 import { useDisplay } from 'vuetify';
-import ActionButton from '@/components/Buttons/ActionButton.vue';
-import AppCard from '@/components/Card/AppCard.vue';
-import ThePage from '@/components/ThePage.vue';
-import UserPlanCell from '@/components/Plans/PlanUserCell.vue';
 
 const { mdAndUp, smAndUp, smAndDown, mobile } = useDisplay();
 

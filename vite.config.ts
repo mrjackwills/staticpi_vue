@@ -5,6 +5,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify';
 import type { VitePWAOptions } from 'vite-plugin-pwa';
 import AutoImport from 'unplugin-auto-import/vite';
+import Components from 'unplugin-vue-components/vite';
 
 // Utilities
 import { defineConfig } from 'vite';
@@ -59,6 +60,7 @@ export default defineConfig({
 		vuetify({
 			autoImport: true,
 		}),
+		Components(),
 		AutoImport({
 			include: [
 				/\.[tj]sx?$/,

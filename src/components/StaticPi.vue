@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 
-withDefaults(defineProps<{color: string}>(), {
+withDefaults(defineProps<{color?: string}>(), {
 	color: 'pi'
 });
 

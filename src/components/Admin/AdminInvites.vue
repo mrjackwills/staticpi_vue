@@ -110,9 +110,6 @@ import { dialoger } from '@/services/dialog';
 import { integer, minLength, minValue, required } from '@vuelidate/validators';
 import { mdiCloseCircle, mdiPlus } from '@mdi/js';
 import { useDisplay } from 'vuetify';
-import ActionButton from '@/components/Buttons/ActionButton.vue';
-import AppCard from '@/components/Card/AppCard.vue';
-import CopyButton from '@/components/Buttons/CopyButton.vue';
 import type { TAdminInvite, TAuthObject } from '@/types';
 import useVuelidate from '@vuelidate/core';
 

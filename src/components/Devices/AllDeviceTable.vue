@@ -28,9 +28,6 @@
 </template>
 
 <script setup lang='ts'>
-import AppCard from '@/components/Card/AppCard.vue';
-import DeviceHeaders from '@/components/Devices/AllDeviceTable/DeviceHeaders.vue';
-import DeviceRow from './AllDeviceTable/DeviceRow.vue';
 import type { TDeviceInfo } from '@/types';
 
 const deviceStore = deviceModule();

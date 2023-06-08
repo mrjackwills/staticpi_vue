@@ -119,7 +119,6 @@
 					All device settings can be modified after creation
 				</v-col>
 			</v-row>
-			<!-- </section> -->
 		</template>
 	</AppCard>
 </template>
@@ -129,9 +128,6 @@ import { axios_device } from '@/services/axios';
 import { mdiClose, mdiDevices, mdiCheck } from '@mdi/js';
 import { snackSuccess } from '@/services/snack';
 import { useDisplay } from 'vuetify';
-import ActionButton from '@/components/Buttons/ActionButton.vue';
-import AppCard from '@/components/Card/AppCard.vue';
-import SwitchRow from '@/components/Devices/AddDevice/SwitchRow.vue';
 import type { TAddDevice } from '@/types';
 
 const { smAndDown, mobile } = useDisplay();

@@ -13,6 +13,4 @@
 
 <script setup lang='ts'>
 import { mdiOpenInNew } from '@mdi/js';
-import StaticPi from '@/components/StaticPi.vue';
-
 </script>

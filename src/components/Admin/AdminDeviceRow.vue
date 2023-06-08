@@ -75,7 +75,6 @@ import { axios_admin } from '@/services/axios';
 import { dialoger } from '@/services/dialog';
 import { mdiCheck, mdiChevronDown, mdiChevronUp, mdiClose, mdiDeleteCircle, mdiPause, mdiPauseCircle, mdiPlay } from '@mdi/js';
 import { snackSuccess } from '@/services/snack';
-import CopyButton from '@/components/Buttons/CopyButton.vue';
 import type { AdminDeviceAndConnections, TAuthObject } from '@/types';
 import { useDisplay } from 'vuetify';
 

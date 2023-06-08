@@ -1,3 +1,16 @@
+# <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.5'>v0.1.5</a>
+### 2023-06-07
+
+### Chores
++ dependencies updated, [a9d3230d](https://github.com/mrjackwills/staticpi_vue/commit/a9d3230d08219ccb9c2f434f00628a489f3355eb), [67d9b903](https://github.com/mrjackwills/staticpi_vue/commit/67d9b903d525ee18585d6e985313680cf4a816a8)
+
+### Features
++ use unplugin-vue-components to auto import, [41495b50](https://github.com/mrjackwills/staticpi_vue/commit/41495b50bd9ebe7fe5751850a8fa12fa6467e0a3), [88af45e1](https://github.com/mrjackwills/staticpi_vue/commit/88af45e13236884c484bab621326005401c3b122), [eeb707df](https://github.com/mrjackwills/staticpi_vue/commit/eeb707df36f56fce80fdeb31bb9fbc047468bdaa)
+
+### Fixes
++ loading bar color to primary, [d1d2beb6](https://github.com/mrjackwills/staticpi_vue/commit/d1d2beb642aa990cf02be41f11edec189aac113e)
++ snackbar margin, [ec0b811c](https://github.com/mrjackwills/staticpi_vue/commit/ec0b811c8110917872744aa6a148b7f88a8e3579)
+
 # <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.4'>v0.1.4</a>
 ### 2023-05-11
 

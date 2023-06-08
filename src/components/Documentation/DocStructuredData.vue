@@ -141,9 +141,6 @@
 
 <script setup lang='ts'>
 import { generateRandomHex } from '@/vanillaTS/generateHex';
-import CodeBlock from '@/components/CodeBlock.vue';
-import DocumentationCard from '@/components/Card/DocumentationCard.vue';
-import StaticPi from '@/components/StaticPi.vue';
 import type { TStructuredKey } from '@/types';
 
 const code_structured_data_json = computed((): string => {

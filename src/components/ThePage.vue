@@ -6,7 +6,7 @@
 			:indeterminate='loading'
 			bg-opacity='0'
 			class='mb-n2'
-			color='error'
+			color='primary'
 			top
 		/>
 
@@ -34,7 +34,6 @@
 </template>
 
 <script setup lang='ts'>
-import CardHeading from '@/components/Card/CardHeading.vue';
 import type { VRow } from 'vuetify/components/VGrid';
 
 const loading = computed((): boolean => {
@@ -42,12 +41,12 @@ const loading = computed((): boolean => {
 });
 
 withDefaults(defineProps<{
-	fillHeight: boolean,
-	heading: string,
-	headingJustify: VRow['$props']['justify'],
-	justify: VRow['$props']['justify'],
-	margin: string,
-	pageReady: boolean
+	fillHeight?: boolean,
+	heading?: string,
+	headingJustify?: VRow['$props']['justify'],
+	justify?: VRow['$props']['justify'],
+	margin?: string,
+	pageReady?: boolean
 }>(), {
 	fillHeight: false,
 	heading: '',

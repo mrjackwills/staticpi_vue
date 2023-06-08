@@ -94,7 +94,6 @@ import { axios_authenticatedUser } from '@/services/axios';
 import { dialoger } from '@/services/dialog';
 import { useDisplay } from 'vuetify';
 import { mdiChevronDoubleLeft, mdiChevronDoubleRight, mdiClose, mdiLoginVariant } from '@mdi/js';
-import FooterText from '@/components/FooterText.vue';
 import type { TNavigationLink } from '@/types';
 
 const { mdAndUp, mdAndDown, lgAndUp } = useDisplay();

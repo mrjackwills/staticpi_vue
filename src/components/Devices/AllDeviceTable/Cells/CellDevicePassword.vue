@@ -104,7 +104,6 @@ import { dialoger } from '@/services/dialog';
 import { mdiClose, mdiContentSave, mdiLock, mdiLockPlus, mdiLockRemove, mdiDelete, mdiEye, mdiEyeOff } from '@mdi/js';
 import { snackSuccess } from '@/services/snack';
 import { useDisplay } from 'vuetify';
-import FabTooltip from '@/components/Buttons/FabTooltip.vue';
 import type { TAuthObject, TChangeDevicePassword, TDeviceTableFields, TDeviceInfo } from '@/types';
 import type { VRow } from 'vuetify/components/VGrid';
 

@@ -71,8 +71,6 @@ import CellMaxClients from '@/components/Devices/AllDeviceTable/Cells/CellMaxCli
 import CellOnline from '@/components/Devices/AllDeviceTable/Cells/CellOnline.vue';
 import CellPause from '@/components/Devices/AllDeviceTable/Cells/CellPause.vue';
 import CellStructuredData from '@/components/Devices/AllDeviceTable/Cells/CellStructuredData.vue';
-import DocumentationLink from '@/components/Buttons/DocumentationLink.vue';
-import ExtraInfo from '@/components/Devices/AllDeviceTable/ExtraInformation/ExtraInfo.vue';
 import type { TDeviceInfo } from '@/types';
 const { smAndDown } = useDisplay();
 

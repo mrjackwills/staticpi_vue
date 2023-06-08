@@ -99,12 +99,6 @@ import { required, minLength } from '@vuelidate/validators';
 import { snackSuccess } from '@/services/snack';
 import { useDisplay } from 'vuetify';
 import { useVuelidate } from '@vuelidate/core';
-import ActionButton from '@/components/Buttons/ActionButton.vue';
-import AppCard from '@/components/Card/AppCard.vue';
-import HibpMessage from '@/components/Hibp/HibpMessage.vue';
-import PasswordDescription from '@/components/Hibp/PasswordDescription.vue';
-import PasswordStrength from '@/components/Hibp/PasswordStrength.vue';
-import ThePage from '@/components/ThePage.vue';
 import type { TResetFields } from '@/types';
 
 const { smAndDown } = useDisplay();

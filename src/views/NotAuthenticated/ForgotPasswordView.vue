@@ -70,10 +70,6 @@ import { required, email } from '@vuelidate/validators';
 import { snackSuccess } from '@/services/snack';
 import { useDisplay } from 'vuetify';
 import { useVuelidate } from '@vuelidate/core';
-import ActionButton from '@/components/Buttons/ActionButton.vue';
-import AppCard from '@/components/Card/AppCard.vue';
-import BackButton from '@/components/Buttons/BackButton.vue';
-import ThePage from '@/components/ThePage.vue';
 
 const { smAndDown } = useDisplay();
 

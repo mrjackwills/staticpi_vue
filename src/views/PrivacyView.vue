@@ -99,8 +99,6 @@
 
 <script setup lang='ts'>
 /* eslint-disable max-len */
-import AppCard from '@/components/Card/AppCard.vue';
-import ThePage from '@/components/ThePage.vue';
 import { FrontEndRoutes } from '@/types/enum_routes';
 import { zero_pad } from '@/vanillaTS/convert_seconds';
 

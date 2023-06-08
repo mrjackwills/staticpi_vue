@@ -83,9 +83,8 @@
 
 <script setup lang="ts">
 import { mdiChevronDoubleUp, mdiSwapVerticalBold, } from '@mdi/js';
-import BandwidthDetailed from '@/components/Devices/AllDeviceTable/ExtraInformation/ExtraBandwidthDetailed.vue';
-import BandwidthSimple from '@/components/Devices/AllDeviceTable/ExtraInformation/ExtraBandwidthSimple.vue';
-import SubHeading from '@/components/Card/SubHeading.vue';
+import ExtraBandwidthDetailed from '@/components/Devices/AllDeviceTable/ExtraInformation/ExtraBandwidthDetailed.vue';
+import ExtraBandwidthSimple from '@/components/Devices/AllDeviceTable/ExtraInformation/ExtraBandwidthSimple.vue';
 import { useDisplay } from 'vuetify';
 import type { TDeviceInfo } from '@/types';
 import type { VRow } from 'vuetify/components/VGrid';
@@ -106,7 +105,7 @@ const showDetailSwitch = computed((): boolean => {
 });
 
 const isComponent = computed(() => {
-	return switchDetailed.value?BandwidthDetailed:BandwidthSimple;
+	return switchDetailed.value? ExtraBandwidthDetailed : ExtraBandwidthSimple;
 });
 
 const headers = [ 'device', 'clients', 'all' ];
@@ -124,7 +123,7 @@ const toggleHidden = (): void => {
 	emit('hidden', hidden.value);
 };
 
-withDefaults(defineProps<{device: TDeviceInfo, show_calc: boolean}>(), {
+withDefaults(defineProps<{device: TDeviceInfo, show_calc?: boolean}>(), {
 	show_calc: true,
 });
 

@@ -42,8 +42,6 @@ import { axios_authenticatedUser } from '@/services/axios';
 import { dialoger } from '@/services/dialog';
 import { mdiAccountArrowDown, mdiDownload } from '@mdi/js';
 import { useDisplay } from 'vuetify';
-import ActionButton from '@/components/Buttons/ActionButton.vue';
-import SettingSection from '@/components/Settings/SettingSection.vue';
 import type { TAuthObject } from '@/types';
 
 const { smAndDown } = useDisplay();

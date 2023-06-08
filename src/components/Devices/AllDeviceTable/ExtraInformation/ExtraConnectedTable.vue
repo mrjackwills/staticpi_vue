@@ -72,9 +72,6 @@
 <script setup lang="ts">
 import { mdiAccessPointNetwork, mdiAccessPointNetworkOff, mdiChevronDoubleUp, mdiPlaylistCheck, mdiPlaylistRemove } from '@mdi/js';
 import { useDisplay } from 'vuetify';
-import ExtraIp from '@/components/Devices/AllDeviceTable/ExtraInformation/ExtraIp.vue';
-import ExtraOnlineSince from '@/components/Devices/AllDeviceTable/ExtraInformation/ExtraOnlineSince.vue';
-import SubHeading from '@/components/Card/SubHeading.vue';
 import type { TExtraTableRow } from '@/types';
 import type { VRow } from 'vuetify/components/VGrid';
 
