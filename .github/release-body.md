@@ -1,15 +1,13 @@
-### 2023-05-11
+### 2023-06-07
 
 ### Chores
-+ devcontainer updated, [004326c0d4e6af7fb9d62e528f24f7327ae761ba]
-+ dependencies updated, [4709949df9c6d1bd26c4c4feb78f3770db1cd4b8]
++ dependencies updated, [a9d3230d08219ccb9c2f434f00628a489f3355eb], [67d9b903d525ee18585d6e985313680cf4a816a8]
+
+### Features
++ use unplugin-vue-components to auto import, [41495b50bd9ebe7fe5751850a8fa12fa6467e0a3], [88af45e13236884c484bab621326005401c3b122], [eeb707df36f56fce80fdeb31bb9fbc047468bdaa]
 
 ### Fixes
-+ console.log() removed, [49c7ef03e1f8cdfed422147feab47c2a6eab714b]
-+ typos, [edb4676b491fde2fa5a62cbcb81592ede150ad22]
-+ defineProps with types, [9bee8add8e0d3b413bc4f9153968a236040743fe]
-+ switchRow isComponent ternary, [b5c37ae63e02e469548e88c50e2fadf80174b0d0]
-+ add spacing underneath tooltip, [0dd9a868eb3d708d85e05a5d71fd7c04b744547a]
-+ pinia store re-export removed, [be05a6c3e9be4b790bcb736bb2da3a6e72e66bee]
++ loading bar color to primary, [d1d2beb642aa990cf02be41f11edec189aac113e]
++ snackbar margin, [ec0b811c8110917872744aa6a148b7f88a8e3579]
 
 see <a href='https://github.com/mrjackwills/staticpi_vue/blob/main/CHANGELOG.md'>CHANGELOG.md</a> for more details
