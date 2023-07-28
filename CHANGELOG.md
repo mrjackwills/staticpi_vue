@@ -1,3 +1,7 @@
+### Chores
++ create_release 0.2.0, [55a2aee267472c67acc982fc824c19a623d09fc8]
++ dependencies updated, [4aecac6275c0665feb65c4a40a3ce6976fe8ee98]
+
 # <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.5'>v0.1.5</a>
 ### 2023-06-07
 
