@@ -14,7 +14,7 @@
 		<v-list class='pt-0' density='compact'>
 
 			<section v-if='mdAndDown'>
-				<v-list-item @click='(open=!open)' class='cl' title='minimize'>
+				<v-list-item @click='(open=!open)' class='cl'>
 					<template v-slot:prepend>
 						<v-icon :icon='mdiClose' class='flipx' />
 					</template>
@@ -162,12 +162,16 @@ const minimize = (): void => {
 
 </script>
 
-<style scoped>
+<style>
 .divider{
 	opacity: .35;
 }
 
 .v-list-item__prepend > .v-icon {
 	margin-inline-end: 0;
+}
+
+.v-list-item__spacer{
+	width: 0px!important;
 }
 </style>
