@@ -230,7 +230,7 @@ const click_device = async (): Promise<void> => {
 const show_devices = ref(false);
 const show_devices_interval = ref(0);
 
-watch(() => show_devices.value, (i) => {
+watch(show_devices, (i) => {
 	if (i) {
 		show_devices_interval.value = setInterval(async () => {
 			await update_device();
@@ -241,7 +241,7 @@ watch(() => show_devices.value, (i) => {
 	}
 });
 
-watch(() => all_devices.value, (i) => {
+watch(all_devices, (i) => {
 	if (i.length == 0) {
 		show_devices.value = false;
 	}

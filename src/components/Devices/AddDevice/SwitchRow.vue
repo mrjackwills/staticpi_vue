@@ -54,7 +54,7 @@ const device_passwordInput = (i: string): void => {
 	emit('device_passwordInput', i);
 };
 
-watch(() => switched.value, (i) => {
+watch(switched, (i) => {
 	emit('switched', i);
 });
 
