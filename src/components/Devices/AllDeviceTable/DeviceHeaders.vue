@@ -2,15 +2,17 @@
 	<section v-if='mdAndUp'>
 		<v-row align='center' justify='space-between' class='ma-0 pa-0 no-gutters py-2'>
 			<v-col v-for='(item, index) in headings' :key='index'
-				:cols='item.cols' class='text-center unselectable ma-0 pa-0 text-table-heading text-black small-text' :class='{"cl": item.sortable}' @click='item.sortable ? sort(item.text) : undefined'>
-				<DocumentationLink v-if='item.link' :section='item.link' />
-				{{ item.text }}
-				<v-icon
-					v-if='item.sortable'
-					:icon='columnIcon(item.text)'
-					:size='smAndDown?"x-small":"small"'
-					color='primary'
-				/>
+				:cols='item.cols' class='text-center unselectable ma-0 pa-0 text-table-heading text-black small-text' :class='{"cl": item.sortable}'>
+				<DocumentationLink v-if='item.link' :section='item.link' class='mr-1' />
+				<span @click='item.sortable ? sort(item.text) : undefined'>
+					{{ item.text }}
+					<v-icon
+						v-if='item.sortable'
+						:icon='columnIcon(item.text)'
+						:size='smAndDown?"x-small":"small"'
+						color='primary'
+					/>
+				</span>
 			</v-col>
 
 		</v-row>

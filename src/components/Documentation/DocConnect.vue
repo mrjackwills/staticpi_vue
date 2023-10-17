@@ -28,7 +28,7 @@
 			<v-divider class='my-1'/>
 			<br>
 			<v-row justify='center' align='center'>
-				<v-col cols='12' md='6' lg='4'>
+				<v-col cols='12' md='6'>
 					<AppCard
 						sm='12'
 						md='12'
@@ -62,7 +62,7 @@
 			Every device is restricted to a single Pi connection, and Pro members can have as many as 100 client connections, while free members are limited to just 1 client connection.
 			<br>
 			<br>
-			Access tokens are valid for 20 seconds, limited to the IP address of the requestor, and are destroyed as soon as they has been used to open a websocket connection.
+			Access tokens are valid for 20 seconds, limited to the IP address of the requester, and are destroyed as soon as they has been used to open a websocket connection.
 			<br>
 			<br>
 			In order to keep connections alive, the <StaticPi /> servers send a <span class='font-weight-bold'>PING</span> message every 30 seconds, these are not counted against your monthly bandwidth allowance.

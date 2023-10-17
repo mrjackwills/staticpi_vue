@@ -43,7 +43,7 @@ const appUpdate = (): void => {
 
 const platform = useDisplay().platform;
 
-watch(() => platform.value, (i) => {
+watch(platform, (i) => {
 	browserStore.set_android_ios(i.ios || i.android);
 });
 

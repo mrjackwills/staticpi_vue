@@ -201,6 +201,10 @@ const addNewDevice = async (): Promise<void> => {
 	if (deviceStore.numberOfDevices === userStore.maxDevices) return;
 	localLoading.value = true;
 	loading.value = true;
+	if (deviceSettings.value.device_password === '') {
+		deviceSettings.value.device_password = undefined;
+		deviceSettings.value.client_password = undefined;
+	}
 	const response = await axios_device.deviceAdd_post(deviceSettings.value);
 	if (response) snackSuccess({ message: `New device added: ${response}` });
 	emit('refresh');

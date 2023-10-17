@@ -110,7 +110,7 @@ const rows = computed((): Array<TFooterRow> => {
 		},
 		{
 			text: String(api_version.value),
-			tooltip: 'api version',
+			tooltip: 'API version',
 			model: 'apiVersion' as const
 		}
 	];

@@ -26,7 +26,7 @@
 				>
 					<v-icon color='pi' :icon='mdiAutorenew' />
 					<v-tooltip v-if='show_tooltip' activator='parent' location='top center' content-class='tooltip'>
-						<span>regenerate api key</span>
+						<span>regenerate API key</span>
 					</v-tooltip>
 				</v-btn>
 			</template>
