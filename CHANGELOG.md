@@ -7,6 +7,7 @@
 + device table headers @click location, [83bc1ec266d2c492987368269fef05db78de20bd]
 + navbar spacing, [0a21f733b863ecab526364d46bbafcc199f74968]
 + documentation image size, [c0fb41d896740154e55decdcbc2c342d0cc88288]
++ docs typos, [7d3a627b8c8bf85549ac9a613d38beb4ae4eb932]
 
 ### Refactors
 + watchers .value, [a635aaf5444c7ac801dd8c5989306de0f907df1f]
