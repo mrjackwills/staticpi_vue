@@ -2,6 +2,7 @@
 + dependencies updated, [5c43da13c556f52ce92be4b81bdd538296268ac4]
 
 ### Fixes
++ SwitchRow emit issue, [38e9c02e883632d66a49813bf7e83f0d570ef109]
 + add device password, [b95f13426ba88ce8f413fe4e7cd009732db78514]
 + `api` > `API`, [dbe145dcf9e2c6b01d37653acde1ad5003ac5b26]
 + device table headers @click location, [83bc1ec266d2c492987368269fef05db78de20bd]
