@@ -1,17 +1,20 @@
+# <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.7'>v0.1.7</a>
+### 2023-10-17
+
 ### Chores
-+ dependencies updated, [5c43da13c556f52ce92be4b81bdd538296268ac4]
++ dependencies updated, [5c43da13](https://github.com/mrjackwills/staticpi_vue/commit/5c43da13c556f52ce92be4b81bdd538296268ac4)
 
 ### Fixes
-+ SwitchRow emit issue, [38e9c02e883632d66a49813bf7e83f0d570ef109]
-+ add device password, [b95f13426ba88ce8f413fe4e7cd009732db78514]
-+ `api` > `API`, [dbe145dcf9e2c6b01d37653acde1ad5003ac5b26]
-+ device table headers @click location, [83bc1ec266d2c492987368269fef05db78de20bd]
-+ navbar spacing, [0a21f733b863ecab526364d46bbafcc199f74968]
-+ documentation image size, [c0fb41d896740154e55decdcbc2c342d0cc88288]
-+ docs typos, [7d3a627b8c8bf85549ac9a613d38beb4ae4eb932]
++ SwitchRow emit issue, [38e9c02e](https://github.com/mrjackwills/staticpi_vue/commit/38e9c02e883632d66a49813bf7e83f0d570ef109)
++ add device password, [b95f1342](https://github.com/mrjackwills/staticpi_vue/commit/b95f13426ba88ce8f413fe4e7cd009732db78514)
++ `api` > `API`, [dbe145dc](https://github.com/mrjackwills/staticpi_vue/commit/dbe145dcf9e2c6b01d37653acde1ad5003ac5b26)
++ device table headers @click location, [83bc1ec2](https://github.com/mrjackwills/staticpi_vue/commit/83bc1ec266d2c492987368269fef05db78de20bd)
++ navbar spacing, [0a21f733](https://github.com/mrjackwills/staticpi_vue/commit/0a21f733b863ecab526364d46bbafcc199f74968)
++ documentation image size, [c0fb41d8](https://github.com/mrjackwills/staticpi_vue/commit/c0fb41d896740154e55decdcbc2c342d0cc88288)
++ docs typos, [7d3a627b](https://github.com/mrjackwills/staticpi_vue/commit/7d3a627b8c8bf85549ac9a613d38beb4ae4eb932)
 
 ### Refactors
-+ watchers .value, [a635aaf5444c7ac801dd8c5989306de0f907df1f]
++ watchers .value, [a635aaf5](https://github.com/mrjackwills/staticpi_vue/commit/a635aaf5444c7ac801dd8c5989306de0f907df1f)
 
 # <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.6'>v0.1.6</a>
 ### 2023-07-28
