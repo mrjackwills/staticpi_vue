@@ -28,7 +28,7 @@
 			<v-divider class='my-1'/>
 			<br>
 			<v-row justify='center' align='center'>
-				<v-col cols='12' md='6' lg='4'>
+				<v-col cols='12' md='6'>
 					<AppCard
 						sm='12'
 						md='12'
