@@ -1,3 +1,16 @@
+### Chores
++ dependencies updated, [5c43da13c556f52ce92be4b81bdd538296268ac4]
+
+### Fixes
++ add device password, [b95f13426ba88ce8f413fe4e7cd009732db78514]
++ `api` > `API`, [dbe145dcf9e2c6b01d37653acde1ad5003ac5b26]
++ device table headers @click location, [83bc1ec266d2c492987368269fef05db78de20bd]
++ navbar spacing, [0a21f733b863ecab526364d46bbafcc199f74968]
++ documentation image size, [c0fb41d896740154e55decdcbc2c342d0cc88288]
+
+### Refactors
++ watchers .value, [a635aaf5444c7ac801dd8c5989306de0f907df1f]
+
 # <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.6'>v0.1.6</a>
 ### 2023-07-28
 
