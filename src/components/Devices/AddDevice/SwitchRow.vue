@@ -27,9 +27,9 @@
 			<section v-if='switched && component' class=''>
 				<component
 					:is='isComponent'
-					@update:model-value='input_method'
-					@client_passwordInput='client_passwordInput'
-					@device_passwordInput='device_passwordInput'
+					@update:model-value='x => emit("input", x)'
+					@client_passwordInput='x => emit("client_passwordInput", x)'
+					@device_passwordInput='x => emit("device_passwordInput", x)'
 				/>
 			</section>
 		</v-expand-transition>
@@ -43,16 +43,6 @@ import MaxClients from '@/components/Devices/AddDevice/MaxClients.vue';
 const switched = ref(false);
 
 const emit = defineEmits([ 'switched', 'input', 'client_passwordInput', 'device_passwordInput' ]);
-const input_method = (i: string): void => {
-	emit('input', i);
-};
-
-const client_passwordInput = (i: string): void => {
-	emit('client_passwordInput', i);
-};
-const device_passwordInput = (i: string): void => {
-	emit('device_passwordInput', i);
-};
 
 watch(switched, (i) => {
 	emit('switched', i);
