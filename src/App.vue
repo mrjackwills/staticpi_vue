@@ -113,7 +113,7 @@ useHead({
 			}
 		}
 	],
-	link: [ { rel: 'canonical', href: `${env.domain_www}${route?.path}` } ],
+	link:() => [ { rel: 'canonical', href: `${env.domain_www}${route?.path}` } ],
 });
 
 </script>
