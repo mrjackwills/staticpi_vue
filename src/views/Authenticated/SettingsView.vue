@@ -1,6 +1,5 @@
 
 <template>
-	<!-- :fillHeight='true' -->
 	<ThePage
 		:pageReady='pageReady'
 		:heading='pageTitle'

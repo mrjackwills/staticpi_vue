@@ -1,6 +1,5 @@
 
 <template>
-	<!-- <section> -->
 	<AppCard
 		v-intersect='onIntersect'
 		:hasButton='false'

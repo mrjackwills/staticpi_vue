@@ -255,14 +255,10 @@ watch(() => user.value.email, (_) => {
 	}
 	if (!v$.value.email.$dirty) return;
 	if (!v$.value.email.required) errorMessages.value.email = 'email required';
-	// if (!v$.value.email.email) errorMessages.value.email = 'email invalid';
 	errorMessages.value.email = 'email invalid';
 });
 
 watch(() => user.value.full_name, (_) => {
-	// TODO VUELIDATE THIS?
-	// user.value.full_name = i. ? i.trim(): '';
-	// user.value.full_name = i
 	if (!v$.value?.full_name?.$invalid) {
 		errorMessages.value.full_name = '';
 		return;

@@ -40,8 +40,6 @@
 						<v-col cols='12' md='8' class='ma-0 pa-0'>
 							<v-form v-on:submit.prevent>
 								<section v-for='(item,index) in textFields' :key='index'>
-									<!-- @update:model-value='valueTouch(item.model, $event)' -->
-									<!-- :value='user[item.model]' -->
 									<v-text-field
 										v-model='user[item.model]'
 										@click:append-inner='appendClick(item.model)'

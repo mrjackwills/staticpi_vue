@@ -25,9 +25,9 @@
 					</v-row>
 					<v-row
 						align='center'
+						class='mt-8 ma-0 pa-0'
 						justify='center'
 						no-gutters
-						class='mt-8 ma-0 pa-0'
 					>
 						<v-col cols='auto' class='pa-0 ma-0' :class='`text-${h1}`'>
 							<StaticPi color='pi' />

@@ -1,5 +1,4 @@
 <template>
-	<!-- <v-col cols='12' class='ma-0 pa-0' v-for='(item, index) in all_devices' :key='index'> -->
 	<v-row align='center' justify='space-between' class='ma-0 pa-0'>
 		<v-col cols='4' class='ma-0 pa-0 text-left'>
 			<v-icon v-if='(device.connections.length > 0)' :icon='connections_icon' @click='click_connections' :color='connections_color' />
