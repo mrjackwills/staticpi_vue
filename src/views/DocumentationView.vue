@@ -58,7 +58,6 @@
 									md='auto'
 									class=''
 								>
-									<!-- @click='goto(item.id)' -->
 									<router-link class='text-primary' :to='createLink(item.id)'
 									>{{ item.display }}</router-link>
 								</v-col>

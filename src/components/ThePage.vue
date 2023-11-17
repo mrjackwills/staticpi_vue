@@ -10,8 +10,15 @@
 			top
 		/>
 
-		<v-row class='ma-0 pa-0 no-gutters' :class='{"fill-height":fillHeight}'  v-if='pageReady' align='center' :justify='justify' id='the_page'>
-			
+		<v-row
+			v-if='pageReady'
+			:class='{"fill-height":fillHeight}'
+			:justify='justify'
+			align='center'
+			class='ma-0 pa-0 no-gutters'
+			id='the_page'
+		>
+		
 			<v-container fluid class='ma-0 pa-0' :class='{"fill-height":fillHeight}' >
 				<v-row class='ma-0 pa-0' dense justify='center' align='center'>
 					<v-col cols='12' class='pa-0 ma-0 mt-1'>

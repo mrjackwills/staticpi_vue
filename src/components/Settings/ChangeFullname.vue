@@ -42,9 +42,6 @@
 						<v-col cols='12' md='8' class='ma-0 pa-0'>
 							<v-form v-on:submit.prevent>
 								<section v-for='(item,index) in textField' :key='index'>
-									<!-- @click:append='appendClick(item.model)' -->
-									<!-- :append-icon='item.appendIcon' -->
-									<!-- @update:model-value='@update:model-value='v$[item.model]?.$touch()'valueTouch(item.model, $event)' -->
 									<v-text-field
 										v-model='user[item.model]'
 										@update:model-value='v$[item.model]?.$touch()'
