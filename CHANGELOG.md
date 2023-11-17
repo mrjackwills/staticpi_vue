@@ -1,3 +1,13 @@
+### Chores
++ dependencies updated, [61d87fd7ccb4173c1361f4eb787b48463f0c3acd], [d8f161411bd7b94c6e1dde0de1f80072e3430013], [422060d88a283fd3d020bedf114f071002a7217c]
++ .devcontainer updated, [b8724ef1eb8792bfc79f243a85881fd09315e907]
+
+### Fixes
+* meta canonical link, [caa9d660731b4c7b80fde4124eb1fa5414f35425]
+
+### Refactos
++ dead code removed, [c075662d6d1aba295b25d6d1c5664b9e8655b55f], [5b5f040f022baecc3788b339728c08a684091c9e]
+
 # <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.7'>v0.1.7</a>
 ### 2023-10-17
 
