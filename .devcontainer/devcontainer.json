@@ -1,13 +1,11 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.202.1/containers/typescript-node
 {
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"name": "Node.js & TypeScript",
 	"runArgs": ["--init"],
 	"build": {
-		"dockerfile": "Dockerfile",
-		"args": { 
-			"VARIANT": "16"
-		}
+		"dockerfile": "Dockerfile"
 	},
 
 	"mounts": [
@@ -29,6 +27,7 @@
 				"meganrogge.template-string-converter",
 				"mutantdino.resourcemonitor",
 				"timonwong.shellcheck",
+				"redhat.vscode-yaml",
 				"vue.volar",
 				"vue.vscode-typescript-vue-plugin",
 				"wix.vscode-import-cost",
