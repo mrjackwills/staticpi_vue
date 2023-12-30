@@ -1,3 +1,16 @@
+# <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.8'>v0.1.8</a>
+### 2023-12-30
+
+### Chores
++ dependencies updated, [61d87fd7](https://github.com/mrjackwills/staticpi_vue/commit/61d87fd7ccb4173c1361f4eb787b48463f0c3acd), [d8f16141](https://github.com/mrjackwills/staticpi_vue/commit/d8f161411bd7b94c6e1dde0de1f80072e3430013), [422060d8](https://github.com/mrjackwills/staticpi_vue/commit/422060d88a283fd3d020bedf114f071002a7217c), [ad0e5eda](https://github.com/mrjackwills/staticpi_vue/commit/ad0e5eda698ff33e5d83b5bf445a4d43ff8d02ba)
++ .devcontainer updated, [b8724ef1](https://github.com/mrjackwills/staticpi_vue/commit/b8724ef1eb8792bfc79f243a85881fd09315e907), [035dcbdd](https://github.com/mrjackwills/staticpi_vue/commit/035dcbddd6480a92c871fbb64950cb42bedca897)
+
+### Fixes
++ meta canonical link, [caa9d660](https://github.com/mrjackwills/staticpi_vue/commit/caa9d660731b4c7b80fde4124eb1fa5414f35425)
+
+### Refactos
++ dead code removed, [c075662d](https://github.com/mrjackwills/staticpi_vue/commit/c075662d6d1aba295b25d6d1c5664b9e8655b55f), [5b5f040f](https://github.com/mrjackwills/staticpi_vue/commit/5b5f040f022baecc3788b339728c08a684091c9e)
+
 # <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.7'>v0.1.7</a>
 ### 2023-10-17
 

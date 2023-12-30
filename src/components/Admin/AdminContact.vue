@@ -20,7 +20,6 @@
 							cols='12'
 							class='ma-1 pa-1'
 						>
-							<!-- class='ma-0 pa-0 my-1' -->
 							<v-row align='center' justify='space-around' class='ma-0 pa-0'>
 								<v-col cols='1' class='ma-0 pa-0'>
 									<span class='text-pi'>

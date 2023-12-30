@@ -4,10 +4,10 @@
 		<AppNavDrawer :order='mdAndDown?"1":"2"' />
 		<v-main>
 			<router-view v-if='pageReady' />
+			<AppDialog />
+			<AppSnackBar />
+			<AppUpArrow />
 		</v-main>
-		<AppDialog />
-		<AppSnackBar />
-		<AppUpArrow />
 		<AppFooter v-if='(!authenticated && !mdAndDown)' />
 	</v-app>
 </template>
@@ -23,7 +23,7 @@ import { useRoute } from 'vue-router';
 
 const { mdAndDown } = useDisplay();
 const { updateServiceWorker } = useRegisterSW();
-
+const platform = useDisplay().platform;
 const route = useRoute();
 
 if ('serviceWorker' in navigator) {
@@ -40,8 +40,6 @@ const appUpdate = (): void => {
 	window.setTimeout(() => updateServiceWorker(), 4000);
 	
 };
-
-const platform = useDisplay().platform;
 
 watch(platform, (i) => {
 	browserStore.set_android_ios(i.ios || i.android);
@@ -113,7 +111,7 @@ useHead({
 			}
 		}
 	],
-	link: [ { rel: 'canonical', href: `${env.domain_www}${route?.path}` } ],
+	link: () => [ { rel: 'canonical', href: `${env.domain_www}${route?.path}` } ],
 });
 
 </script>

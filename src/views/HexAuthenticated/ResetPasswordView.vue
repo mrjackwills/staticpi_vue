@@ -182,15 +182,6 @@ const hibpCheck = async (): Promise<boolean|void> => {
 	return passwordCompromised.value ? true : false;
 
 };
-// /*
-// ** Instead of v-model, use this to change the value, and also touch the $v object
-// * @param {String} model - current model/textfield name
-// * @param {any} value - current values of the model
-// * */
-// const valueTouch = (model: 'password', value: string): void => {
-// 	user.value[model] = value?.trim();
-// 	v$?.value[model]?.$touch();
-// };
 
 const router = useRouter();
 
