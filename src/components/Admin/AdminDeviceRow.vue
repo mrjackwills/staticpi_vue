@@ -173,12 +173,12 @@ const close_connection = async (connection_ulid: string, device_id: number, devi
 
 const emits = defineEmits([ 'refresh' ]);
 
+const props = defineProps<{device: AdminDeviceAndConnections, email: string}>();
+
 watch(() => props.device.connections.length, (i) => {
 	if (i==0) {
 		show_connections.value = false;
 	}
 });
-
-const props = defineProps<{device: AdminDeviceAndConnections, email: string}>();
 
 </script>

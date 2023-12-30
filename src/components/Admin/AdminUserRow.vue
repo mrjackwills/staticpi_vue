@@ -274,12 +274,6 @@ const click_attempt = async (): Promise<void> => {
 	emit('update');
 };
 
-watch(() => props.sessions.length, (i) => {
-	if (i === 0) {
-		show_session.value = false;
-	}
-});
-
 const show_session = ref(false);
 const session_icon = computed((): string => {
 	return show_session.value ? mdiChevronUp: mdiChevronDown;
@@ -333,6 +327,12 @@ const fake_device = computed((): TDeviceInfo => {
 const emit = defineEmits([ 'update' ]);
 
 const props = defineProps<{user: TAdminUser, sessions: Array<TAdminSession>}>();
+
+watch(() => props.sessions.length, (i) => {
+	if (i === 0) {
+		show_session.value = false;
+	}
+});
 
 const loading = computed({
 	get (): boolean {
