@@ -16,10 +16,10 @@
 			<section v-if='mdAndDown'>
 				<v-list-item @click='(open=!open)' class='cl'>
 					<template v-slot:prepend>
-						<v-icon :icon='mdiClose' class='flipx' />
+						<v-icon :icon='mdiClose' class='flipx mr-2' />
 					</template>
 					<template v-slot:title>
-						<span class='ml-2'>close</span>
+						<span class=''>close</span>
 					</template>
 				</v-list-item>
 			
@@ -34,10 +34,10 @@
 				class='cl'
 			>
 				<template v-slot:prepend>
-					<v-icon :icon='item.icon' />
+					<v-icon :icon='item.icon' class='mr-2'/>
 				</template>
 				<template v-slot:title>
-					<span class='ml-2'>{{ item.message }}</span>
+					<span class=''>{{ item.message }}</span>
 				</template>
 			</v-list-item>
 
@@ -51,10 +51,10 @@
 						class='cl'
 					>
 						<template v-slot:prepend>
-							<v-icon :icon='item.icon' />
+							<v-icon :icon='item.icon' class='mr-2' />
 						</template>
 						<template v-slot:title>
-							<span class='ml-2'>{{ item.message }}</span>
+							<span class=''>{{ item.message }}</span>
 						</template>
 					</v-list-item>
 				</section>
@@ -63,19 +63,19 @@
 			<section v-if='authenticated'>
 				<v-list-item v-if='lgAndUp' @click='minimize' class='cl' title='minimize'>
 					<template v-slot:prepend>
-						<v-icon :icon='miniLogo' />
+						<v-icon :icon='miniLogo' class='mr-2' />
 					</template>
 					<template v-slot:title>
-						<span class='ml-2'>minimize</span>
+						<span class=''>minimize</span>
 					</template>
 				</v-list-item>
 				<v-divider color='white' class='divider' />
 				<v-list-item @click='logout' class='cl' title='minimize'>
 					<template v-slot:prepend>
-						<v-icon :icon='mdiLoginVariant' class='flipx' />
+						<v-icon :icon='mdiLoginVariant' class='flipx mr-2' />
 					</template>
 					<template v-slot:title>
-						<span class='ml-2'>logout</span>
+						<span class=''>logout</span>
 					</template>
 				</v-list-item>
 			</section>
