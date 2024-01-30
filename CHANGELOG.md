@@ -1,3 +1,11 @@
+### Chores
++ dependencies updated, [bea7a99385e9c68566a9184367d0fcb090275578]
++ .devcontainer formatted, [1e664edb25ccd1a4d0bfe77cb15e1bea64f75a31]
++ gitattributes updated, [3f5e02b233ec434c1c57fb8cdad477d45afa0275]
+
+### Fixes
++ navbar icon margin, [6d51638985ae6320e769443a2891bf1e0b5f0bae]
+
 # <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.8'>v0.1.8</a>
 ### 2023-12-30
 
