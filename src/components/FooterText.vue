@@ -1,8 +1,7 @@
 <template>
 	<section
-		
-		class='text-caption unselectable'
 		:class='computedClasses'
+		class='text-caption unselectable'
 	>
 		<v-row justify='center' align='center' class='ma-0 pa-0' no-gutters order='1'>
 			<v-col
