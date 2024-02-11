@@ -137,7 +137,7 @@ import useVuelidate from '@vuelidate/core';
 const { mdAndUp, smAndDown } = useDisplay();
 
 onMounted(() => {
-	browserModule().set_description(`staticPi login page - log into staticPi`);
+	browserModule().set_description(`staticPi login page - log in to staticPi`);
 	browserModule().set_title(pageTitle);
 });
 

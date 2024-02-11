@@ -68,7 +68,8 @@
 					</v-row>
 				</v-col>
 			</v-row>
-			<v-row no-gutters align='center' justify='center' class='ma-0 pa-0 text-h5' style='height:90vh' id='about' >
+			
+			<v-row no-gutters align='center' justify='center' class='ma-0 pa-0 text-h5 mb-14' style='height:90vh' id='about' >
 				<AppCard
 					:hasButton='false'
 					heading='about'
