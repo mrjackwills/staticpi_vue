@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# Vue release
-# v0.2.4
+# release_vue v0.2.4
 
 # Colours for echo
 RED='\033[0;31m'

@@ -22,7 +22,7 @@ const size = computed(() => {
 	if (mobile.value) {
 		return 'x-small';
 	} else {
-		'default';
+		return 'default';
 	}
 });
 
