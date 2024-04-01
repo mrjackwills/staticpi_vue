@@ -1,6 +1,9 @@
+# <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.10'>v0.1.10</a>
+### 2024-04-01
+
 ### Chores
-+ .devcontainer import cost removed, [4e72f8f4796cd856b15f100f2a79ba6cc14380ce]
-+ dependencies updated, [c3693dc007ff52fc57ed6598b3d318488305649b]
++ .devcontainer import cost removed, [4e72f8f4](https://github.com/mrjackwills/staticpi_vue/commit/4e72f8f4796cd856b15f100f2a79ba6cc14380ce)
++ dependencies updated, [c3693dc0](https://github.com/mrjackwills/staticpi_vue/commit/c3693dc007ff52fc57ed6598b3d318488305649b)
 
 # <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.9'>v0.1.9</a>
 ### 2024-02-11
