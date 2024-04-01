@@ -1,3 +1,7 @@
+### Chores
++ .devcontainer import cost removed, [4e72f8f4796cd856b15f100f2a79ba6cc14380ce]
++ dependencies updated, [c3693dc007ff52fc57ed6598b3d318488305649b]
+
 # <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.9'>v0.1.9</a>
 ### 2024-02-11
 
