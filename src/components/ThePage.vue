@@ -1,13 +1,13 @@
 
 <template>
+
 	<v-container fluid class='ma-0 pa-0 no-gutters' :class='{"fill-height":fillHeight}'>
 		<v-progress-linear
 			:active='true'
 			:indeterminate='loading'
 			bg-opacity='0'
-			class='mb-n2'
+			class='mb-n2 sticky-loading'
 			color='primary'
-			top
 		/>
 
 		<v-row
@@ -43,9 +43,7 @@
 <script setup lang='ts'>
 import type { VRow } from 'vuetify/components/VGrid';
 
-const loading = computed((): boolean => {
-	return loadingModule().loading;
-});
+const loading = computed(() => loadingModule().loading);
 
 withDefaults(defineProps<{
 	fillHeight?: boolean,
@@ -84,5 +82,10 @@ withDefaults(defineProps<{
 	min-width: 100%;
 	top: 0;
 	z-index: 100;
+}
+
+.sticky-loading{
+	position: fixed;
+	z-index: 101;
 }
 </style>
