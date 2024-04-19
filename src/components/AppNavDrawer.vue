@@ -27,7 +27,7 @@
 			</section>
 
 			<v-list-item v-for='(item, index) in links'
-				:key='index'
+				:key='item.route'
 				:to='item.route'
 				router
 				density='compact'
@@ -44,7 +44,7 @@
 			<v-expand-transition>
 				<section v-if='isAdmin'>
 					<v-list-item v-for='(item, index) in adminLinks'
-						:key='index'
+						:key='item.route'
 						:to='item.route'
 						router
 						density='compact'

@@ -55,7 +55,7 @@
 					v-for='(item, index) in notAuthenticatedLinks'
 					:to='item.route'
 					class='elevation-0'
-					:key='index'
+					:key='item.route'
 				>
 					<v-icon class='mr-2' :icon='item.icon' />
 					{{ item.message }}
