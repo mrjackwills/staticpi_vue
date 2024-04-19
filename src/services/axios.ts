@@ -9,6 +9,11 @@ type ErrorData = {data: { response: string } }
 
 type AxiosClasses = AdminUser | AuthenticatedUser | Incognito | Device | SiteStatus | AxiosWs
 
+// Allow for longer timeouts when in debug mode
+const get_timeout = ():  number => {
+	return env.mode_production? 7000 : 70000
+}
+
 const isAuthenticated = <T> () => {
 	return function (_target: AxiosClasses, _propertyKey: string, descriptor: PropertyDescriptor): void {
 		const original = descriptor.value;
@@ -122,6 +127,7 @@ class BaseAxios {
 		this.baseAxios = Axios.create({
 			baseURL: `${env.domain_api}/${url}`,
 			withCredentials: true,
+			timeout: get_timeout(),
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json; charset=utf-8',
