@@ -52,10 +52,10 @@
 			</template>
 			<template v-if='!authenticated && onDesktop'>
 				<v-btn
-					v-for='(item, index) in notAuthenticatedLinks'
+					v-for='item in notAuthenticatedLinks'
 					:to='item.route'
 					class='elevation-0'
-					:key='index'
+					:key='item.route'
 				>
 					<v-icon class='mr-2' :icon='item.icon' />
 					{{ item.message }}
@@ -103,30 +103,15 @@ import { useDisplay } from 'vuetify';
 
 const { lgAndUp } = useDisplay();
 
-const alert_class = computed((): string => {
-	return !onDesktop.value? 'alert-bottom' : 'alert-top';
-});
-const appbarHeight = computed((): string => {
-	return onDesktop.value ? '76': '56';
-});
-const authenticated = computed((): boolean => {
-	return userModule().authenticated;
-});
-const email = computed((): string => {
-	return userModule().email;
-});
-const logoMargin = computed((): string => {
-	return onDesktop.value ? 'mr-3': 'mr-1';
-});
-const logoSize = computed((): string => {
-	return onDesktop.value ? '46px' : '36px';
-});
-const onDesktop = computed((): boolean => {
-	return lgAndUp.value;
-});
-const online = computed((): boolean => {
-	return browserModule().online;
-});
+const alert_class = computed(() => !onDesktop.value? 'alert-bottom' : 'alert-top');
+const appbarHeight = computed(() => onDesktop.value ? '76': '56');
+const authenticated = computed(() => userModule().authenticated);
+const email = computed(() => userModule().email);
+const logoMargin = computed(() => onDesktop.value ? 'mr-3': 'mr-1');
+const logoSize = computed(() => onDesktop.value ? '46px' : '36px');
+const onDesktop = computed(() => lgAndUp.value);
+const online = computed(() => browserModule().online);
+
 const open = computed({
 	get (): boolean {
 		return navDrawerModule().open;

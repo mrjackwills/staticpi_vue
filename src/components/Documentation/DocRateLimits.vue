@@ -68,7 +68,7 @@
 
 				<v-row justify='center' class='ma-0 pa-0'>
 					<v-col cols='12' class='ma-0 pa-0'>
-						<CodeBlock :titleBar='false' code='{ response: "rate limited for 51 seconds" }' />
+						<CodeBlock :titleBar='false' code='{ "response": "rate limited for 51 seconds" }' />
 					</v-col>
 				</v-row>
 

@@ -112,9 +112,7 @@ onMounted(() => {
 	}
 });
 
-const authenticated = computed((): boolean => {
-	return userModule().authenticated;
-});
+const authenticated = computed(() => userModule().authenticated);
 
 const disabled = computed((): boolean => {
 	return v$.value.$invalid || complete.value || localLoading.value ? true: false;

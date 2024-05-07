@@ -109,7 +109,6 @@
 import { mdiCellphoneInformation, mdiCheck, mdiClose, mdiEyeOff, mdiEye, mdiLock, mdiTimerOutline } from '@mdi/js';
 import { token_regex } from '@/vanillaTS/globalConst';
 import { useDisplay } from 'vuetify';
-import type { TConfirmMethod, TDialogFields, u } from '@/types';
 
 const { lgAndUp, mdAndUp, smAndDown } = useDisplay();
 
@@ -126,54 +125,37 @@ const density = computed(() => {
 	return smAndDown.value ? 'compact':'default';
 });
 
-const confirmMethod = computed((): u<TConfirmMethod> => {
-	return dialogStore.confirmMethod;
-});
-const confirmButton = computed((): string => {
-	return dialogStore.confirmButton ?? 'confirm';
-});
-const disabled = computed((): boolean => {
-	return loading.value
-		|| timeout.value
-		|| tokenError.value
-		|| passwordRequired.value && !user.value.password
-		|| passwordRequired.value && twoFA_always_required.value && !user.value.token
-		|| twoFA_always_required.value && passwordRequired.value && tokenLength.value < 6
-		? true: false;
-});
-const icon = computed((): string|undefined => {
-	return dialogStore.icon;
-});
-const logout = computed((): boolean => {
-	return title.value.toLowerCase() === 'logout';
-});
-const maxWidth = computed((): string => {
-	return lgAndUp.value? '40vw' : '80vw';
-});
-const message = computed((): string| undefined => {
-	return dialogStore.message;
-});
-const messageSize = computed((): string => {
-	return mdAndUp.value? 'text-h5' : 'text-subtitle-1';
-});
-const monospace = computed((): boolean => {
-	return timeout.value > 0 ? true : false;
-});
-const passwordRequired = computed((): boolean => {
-	return dialogStore.passwordRequired;
-});
-const textFields = computed((): Array<TDialogFields> =>{
-	return [
-		{
-			appendIcon: passwordVisible.value ? mdiEyeOff : mdiEye,
-			autocomplete: 'password',
-			icon: mdiLock,
-			label: 'user password',
-			model: 'password' as const,
-			type: passwordVisible.value ? 'text' : 'password',
-		},
-	];
-});
+const confirmMethod = computed(() => dialogStore.confirmMethod);
+
+const confirmButton = computed(() => dialogStore.confirmButton ?? 'confirm');
+
+const disabled = computed(() => loading.value
+	|| timeout.value
+	|| tokenError.value
+	|| passwordRequired.value && !user.value.password
+	|| passwordRequired.value && twoFA_always_required.value && !user.value.token
+	|| twoFA_always_required.value && passwordRequired.value && tokenLength.value < 6
+	? true: false
+);
+const icon = computed(() =>dialogStore.icon);
+
+const logout = computed(() => title.value.toLowerCase() === 'logout');
+const maxWidth = computed(() => lgAndUp.value? '40vw' : '80vw');
+const message = computed(() => dialogStore.message);
+const messageSize = computed(() => mdAndUp.value? 'text-h5' : 'text-subtitle-1');
+const monospace = computed(() => timeout.value > 0 ? true : false);
+const passwordRequired = computed(() => dialogStore.passwordRequired);
+const textFields = computed(() => [
+	{
+		appendIcon: passwordVisible.value ? mdiEyeOff : mdiEye,
+		autocomplete: 'password',
+		icon: mdiLock,
+		label: 'user password',
+		model: 'password' as const,
+		type: passwordVisible.value ? 'text' : 'password',
+	},
+]);
+
 const timeout = computed({
 	get (): number {
 		return dialogStore.timeout;
@@ -182,30 +164,21 @@ const timeout = computed({
 		dialogStore.set_timeout(n);
 	},
 });
-const timeout_text = computed((): string => {
-	return timeout.value? `${String(timeout.value).padStart(2, '0')}` : passwordRequired.value && !user.value.password
+const timeout_text = computed(() =>
+	timeout.value? `${String(timeout.value).padStart(2, '0')}` : passwordRequired.value && !user.value.password
 		? 'password required ' : passwordRequired.value && twoFA_always_required.value && !user.value.token
 			|| passwordRequired.value && twoFA_always_required.value && tokenError.value
-			? 'token required' : confirmButton.value;
-});
-const timeout_icon = computed((): string => {
-	return timeout.value ? mdiTimerOutline : passwordRequired.value && !user.value.password
+			? 'token required' : confirmButton.value);
+const timeout_icon = computed(() =>
+	timeout.value ? mdiTimerOutline : passwordRequired.value && !user.value.password
 		? mdiLock: passwordRequired.value && twoFA_always_required.value && !user.value.token
 			|| passwordRequired.value && twoFA_always_required.value && tokenError.value ? mdiCellphoneInformation: icon.value
-				? icon.value : mdiCheck;
-});
-const title = computed((): string => {
-	return dialogStore.title ?? 'warning';
-});
-const titleSize = computed((): string => {
-	return mdAndUp.value? 'text-h4' : 'text-h6';
-});
-const tokenLength = computed((): number => {
-	return user.value.token ? user.value.token.length: 0;
-});
-const twoFA_always_required = computed((): boolean => {
-	return twoFAStore.always_required || dialogStore.twoFARequired && twoFAStore.active;
-});
+				? icon.value : mdiCheck);
+
+const title = computed(() => dialogStore.title ?? 'warning');
+const titleSize = computed(() => mdAndUp.value? 'text-h4' : 'text-h6');
+const tokenLength = computed(() => user.value.token ? user.value.token.length: 0);
+const twoFA_always_required = computed(() => twoFAStore.always_required || dialogStore.twoFARequired && twoFAStore.active);
 
 const visible = computed({
 	get (): boolean {
@@ -271,7 +244,7 @@ const focusMethod = (model: string): void => {
 const mountedTimeout = (): void => {
 	if (!isIntersecting.value) return ;
 	if (!timeout.value) return;
-	timeoutInterval.value = setInterval(() => {
+	timeoutInterval.value = window.setInterval(() => {
 		timeout.value = timeout.value > 0 ? timeout.value -= 1: timeout.value;
 		if (timeout.value < 1) clearInterval(timeoutInterval.value);
 	}, 1000);

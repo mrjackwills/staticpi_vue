@@ -55,9 +55,7 @@ onBeforeMount(() => {
 	}
 });
 
-const componentDisabled = computed((): boolean => {
-	return settingSectionStore.current_section && settingSectionStore.current_section !== 'downloaddata' ? true : false;
-});
+const componentDisabled = computed(() => settingSectionStore.current_section && settingSectionStore.current_section !== 'downloaddata' ? true : false);
 
 const loading = computed({
 	get (): boolean {

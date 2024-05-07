@@ -171,14 +171,10 @@ import type { AdminDeviceAndConnections, TAdminSession, TAdminUser, TAuthObject,
 
 const { mobile } = useDisplay();
 
-const disabled = computed((): boolean => {
-	return props.user.email === userModule().email;
-});
+const disabled = computed(() => props.user.email === userModule().email);
 
 /// Don't show tooltips when on android or ios if also on mobile view!
-const show_tooltip = computed((): boolean => {
-	return !(browserModule().android_ios && mobile.value);
-});
+const show_tooltip = computed(() => !(browserModule().android_ios && mobile.value));
 const all_devices: Ref<Array<AdminDeviceAndConnections>> = ref([]);
 
 const active = ref(false);
@@ -203,12 +199,8 @@ const click_active = async (): Promise<void> => {
 
 	}
 };
-const bool_icon = (x: boolean) : string => {
-	return x? mdiCheck: mdiClose;
-};
-const bool_color = (x: boolean) : string => {
-	return x? 'primary' : 'pi';
-};
+const bool_icon = (x: boolean): string => x? mdiCheck: mdiClose;
+const bool_color = (x: boolean): string => x? 'primary' : 'pi';
 
 const user_level_class = computed(():string =>{
 	return props.user.user_level === UserLevel.ADMIN ? 'text-pi font-weight-bold' : props.user.user_level === UserLevel.PRO ? 'text-primary':'';
@@ -247,23 +239,15 @@ watch(all_devices, (i) => {
 	}
 });
 
-const device_icon = computed((): string => {
-	return show_devices.value ? mdiChevronUp: mdiChevronDown;
-});
-const device_color = computed((): string => {
-	return show_devices.value ? 'pi' :'primary';
-});
+const device_icon = computed(() => show_devices.value ? mdiChevronUp: mdiChevronDown);
+const device_color = computed(() => show_devices.value ? 'pi' :'primary');
 
 const click_bandwidth = (): void => {
 	show_bandwidth.value = !show_bandwidth.value;
 };
 const show_bandwidth = ref(false);
-const bandwidth_icon = computed((): string => {
-	return show_bandwidth.value ? mdiChevronUp: mdiChevronDown;
-});
-const bandwidth_color = computed((): string => {
-	return show_bandwidth.value ? 'pi' :'primary';
-});
+const bandwidth_icon = computed(() => show_bandwidth.value ? mdiChevronUp: mdiChevronDown);
+const bandwidth_color = computed(() => show_bandwidth.value ? 'pi' :'primary');
 
 const click_session = (): void => {
 	show_session.value = !show_session.value;
