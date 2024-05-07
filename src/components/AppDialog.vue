@@ -244,7 +244,7 @@ const focusMethod = (model: string): void => {
 const mountedTimeout = (): void => {
 	if (!isIntersecting.value) return ;
 	if (!timeout.value) return;
-	timeoutInterval.value = setInterval(() => {
+	timeoutInterval.value = window.setInterval(() => {
 		timeout.value = timeout.value > 0 ? timeout.value -= 1: timeout.value;
 		if (timeout.value < 1) clearInterval(timeoutInterval.value);
 	}, 1000);
