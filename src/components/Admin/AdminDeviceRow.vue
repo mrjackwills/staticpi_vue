@@ -78,21 +78,15 @@ import type { AdminDeviceAndConnections, TAuthObject } from '@/types';
 import { useDisplay } from 'vuetify';
 
 const show_connections = ref(false);
-const connections_icon = computed((): string => {
-	return show_connections.value ? mdiChevronUp: mdiChevronDown;
-});
-const connections_color = computed((): string => {
-	return show_connections.value ? 'pi' :'primary';
-});
+const connections_icon = computed(() => show_connections.value ? mdiChevronUp: mdiChevronDown);
+const connections_color = computed(() => show_connections.value ? 'pi' :'primary');
 
 const click_connections = () : void => {
 	show_connections.value = !show_connections.value;
 };
 
 /// Don't show tooltips when on android or ios if also on mobile view!
-const show_tooltip = computed((): boolean => {
-	return !(browserModule().android_ios && useDisplay().mobile.value);
-});
+const show_tooltip = computed(() => !(browserModule().android_ios && useDisplay().mobile.value));
 
 const loading = computed({
 	get (): boolean {
@@ -103,17 +97,12 @@ const loading = computed({
 	}
 });
 
-const pause_icon = computed(() : string => {
-	return props.device.device.paused? mdiPause: mdiPlay;
-});
+const pause_icon = computed(() => props.device.device.paused? mdiPause: mdiPlay);
 
-const tooltip = computed((): string => {
-	return props.device.device.paused ? 'un' : '';
-});
+const tooltip = computed(() => props.device.device.paused ? 'un' : '');
 
-const bool_icon = (x: boolean) : string => {
-	return x? mdiCheck: mdiClose;
-};
+const bool_icon = (x: boolean): string => x? mdiCheck: mdiClose;
+
 const deleteDevice = async (): Promise<void> => {
 	dialoger({
 		message: `Are you sure you want to delete device "${props.device.device.name_of_device}"`,
@@ -138,9 +127,7 @@ const deleteDevice_confirm = async (authentication: TAuthObject): Promise<void> 
 	}
 };
 
-const bool_color = (x: boolean) : string => {
-	return x? 'primary': 'pi';
-};
+const bool_color = (x: boolean): string => x? 'primary': 'pi';
 
 const pauseDevice = async (): Promise<void> => {
 	dialoger({

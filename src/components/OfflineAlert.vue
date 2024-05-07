@@ -34,15 +34,9 @@ onBeforeUnmount(() => {
 	browserModule().set_force_refresh(true);
 });
 
-const authenticated = computed((): boolean => {
-	return userModule().authenticated;
-});
-const messageSize = computed((): string => {
-	return mdAndUp.value ? 'text-h6' : 'text-subtitle-1';
-});
-const spacerClass = computed((): string => {
-	return navDrawerModule().mini? 'nav-spacer-mini' : 'nav-spacer';
-});
+const authenticated = computed(() => userModule().authenticated);
+const messageSize = computed(() => mdAndUp.value ? 'text-h6' : 'text-subtitle-1');
+const spacerClass = computed(()=> navDrawerModule().mini? 'nav-spacer-mini' : 'nav-spacer');
 
 const reconnectInterval = ref(0);
 

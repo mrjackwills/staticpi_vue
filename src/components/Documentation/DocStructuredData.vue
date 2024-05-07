@@ -48,13 +48,13 @@
 				To set a message in cache, the pi simply needs to send a structured message with <span class='font-weight-bold'>"cache: true" </span>
 				<v-row justify='center' class='ma-0 pa-0 my-2'>
 					<v-col cols='12' class='ma-0 pa-0'>
-						<CodeBlock :titleBar='false' code='{ data: { any: "message allowed here" } }, cache: true }' />
+						<CodeBlock :titleBar='false' code='{ "data": { "any": "message allowed here" } }, "cache": true }' />
 					</v-col>
 				</v-row>
 				To remove the cache, the pi simply needs to send a structured message with <span class='font-weight-bold'>"cache: false" </span>
 				<v-row justify='center' class='ma-0 pa-0 my-2'>
 					<v-col cols='12' class='ma-0 pa-0'>
-						<CodeBlock :titleBar='false' code='{ data: { any: "message allowed here" } }, cache: false }' />
+						<CodeBlock :titleBar='false' code='{ "data": { "any": "message allowed here" } }, "cache": false }' />
 					</v-col>
 				</v-row>
 

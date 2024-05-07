@@ -83,9 +83,7 @@ import { useDisplay } from 'vuetify';
 
 const { mdAndUp, smAndDown } = useDisplay();
 
-const authenticated = computed((): boolean => {
-	return userModule().authenticated;
-});
+const authenticated = computed(() => userModule().authenticated);
 
 const iconSize = computed((): string => {
 	if (mdAndUp.value) {

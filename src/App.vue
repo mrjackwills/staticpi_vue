@@ -3,11 +3,14 @@
 		<AppBar :order='mdAndDown?"2":"1"'/>
 		<AppNavDrawer :order='mdAndDown?"1":"2"' />
 		<v-main>
+		
 			<router-view v-if='pageReady' />
 			<AppDialog />
 			<AppSnackBar />
 			<AppUpArrow />
+
 		</v-main>
+	
 		<AppFooter v-if='(!authenticated && !mdAndDown)' />
 	</v-app>
 </template>
@@ -52,9 +55,7 @@ onMounted(() => {
 
 const browserStore = browserModule();
 
-const authenticated = computed((): boolean => {
-	return userModule().authenticated;
-});
+const authenticated = computed(() => userModule().authenticated);
 
 const pwa = computed({
 	get (): boolean {
@@ -82,13 +83,9 @@ onBeforeMount(() => {
 
 const pageReady = ref(false);
 
-const title = computed((): string => {
-	return browserStore.title;
-});
+const title = computed(() => browserStore.title);
 
-const description = computed((): string => {
-	return browserStore.description;
-});
+const description = computed(() => browserStore.description);
 
 useHead({
 	title: () => {

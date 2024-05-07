@@ -26,7 +26,7 @@
 				<v-divider color='white' class='divider' />
 			</section>
 
-			<v-list-item v-for='(item, index) in links'
+			<v-list-item v-for='item in links'
 				:key='item.route'
 				:to='item.route'
 				router
@@ -43,7 +43,7 @@
 
 			<v-expand-transition>
 				<section v-if='isAdmin'>
-					<v-list-item v-for='(item, index) in adminLinks'
+					<v-list-item v-for='item in adminLinks'
 						:key='item.route'
 						:to='item.route'
 						router
@@ -94,23 +94,17 @@ import { axios_authenticatedUser } from '@/services/axios';
 import { dialoger } from '@/services/dialog';
 import { useDisplay } from 'vuetify';
 import { mdiChevronDoubleLeft, mdiChevronDoubleRight, mdiClose, mdiLoginVariant } from '@mdi/js';
-import type { TNavigationLink } from '@/types';
 
 const { mdAndUp, mdAndDown, lgAndUp } = useDisplay();
 
 const navDrawerStore = navDrawerModule();
 
-const authenticated = computed((): boolean => {
-	return userModule().authenticated;
-});
+const authenticated = computed(() => userModule().authenticated);
 
-const isAdmin = computed((): boolean => {
-	return userModule().isAdminUser;
-});
+const isAdmin = computed(() => userModule().isAdminUser);
 
-const links = computed((): Array<TNavigationLink> => {
-	return authenticated.value ? authenticatedLinks: notAuthenticatedLinks;
-});
+const links = computed(() =>authenticated.value ? authenticatedLinks: notAuthenticatedLinks);
+
 const mini = computed({
 	get (): boolean {
 		if (mdAndUp.value) {
@@ -123,9 +117,7 @@ const mini = computed({
 		navDrawerStore.set_mini(b);
 	},
 });
-const miniLogo = computed((): string => {
-	return mini.value ? mdiChevronDoubleRight : mdiChevronDoubleLeft ;
-});
+const miniLogo = computed(() => mini.value ? mdiChevronDoubleRight : mdiChevronDoubleLeft);
 
 const open = computed({
 	get (): boolean {

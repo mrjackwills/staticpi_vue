@@ -10,9 +10,9 @@ type ErrorData = {data: { response: string } }
 type AxiosClasses = AdminUser | AuthenticatedUser | Incognito | Device | SiteStatus | AxiosWs
 
 // Allow for longer timeouts when in debug mode
-const get_timeout = ():  number => {
-	return env.mode_production? 7000 : 70000
-}
+const get_timeout = (): number => {
+	return env.mode_production? 7000 : 70000;
+};
 
 const isAuthenticated = <T> () => {
 	return function (_target: AxiosClasses, _propertyKey: string, descriptor: PropertyDescriptor): void {

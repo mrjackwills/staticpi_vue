@@ -43,7 +43,6 @@
 <script setup lang='ts'>
 import { mdiClose } from '@mdi/js';
 import { useDisplay } from 'vuetify';
-import type { su, nu, TSnackPosition } from '@/types';
 import type { VDialog } from 'vuetify/components';
 
 const { mdAndUp, smAndDown } = useDisplay();
@@ -53,24 +52,12 @@ onBeforeUnmount(() => {
 	clearInterval(localInterval.value);
 	clearInterval(reloadTimeout.value);
 });
-const authenticated = computed((): boolean => {
-	return userStore.authenticated;
-});
-const closable = computed((): boolean => {
-	return snackbarStore.closable;
-});
-const color = computed((): su => {
-	return snackbarStore.color;
-});
-const icon = computed((): su => {
-	return snackbarStore.icon;
-});
-const isDesktop = computed((): boolean => {
-	return mdAndUp.value;
-});
-const loading = computed((): boolean => {
-	return snackbarStore.loading;
-});
+const authenticated = computed(()=> userStore.authenticated);
+const closable = computed(() => snackbarStore.closable);
+const color = computed(() => snackbarStore.color);
+const icon = computed(() => snackbarStore.icon);
+const isDesktop = computed(() => mdAndUp.value);
+const loading = computed(() => snackbarStore.loading);
 
 // Not sure if this is correct, but satisfies the type checker
 const snack_location = computed((): VDialog['$props']['location']=> {
@@ -81,9 +68,7 @@ const snack_location = computed((): VDialog['$props']['location']=> {
 		return `bottom center`;
 	}
 });
-const margin = computed((): string => {
-	return smAndDown.value || !authenticated.value ? '' : navDrawerModule().mini ? 'mini_margin' : 'margin';
-});
+const margin = computed(() => smAndDown.value || !authenticated.value ? '' : navDrawerModule().mini ? 'mini_margin' : 'margin');
 const message = computed({
 	get (): string {
 		return snackbarStore.message;
@@ -92,12 +77,9 @@ const message = computed({
 		snackbarStore.set_message(s);
 	}
 });
-const position = computed((): TSnackPosition => {
-	return snackbarStore.position;
-});
-const timeoutValue = computed((): nu => {
-	return snackbarStore.timeout;
-});
+const position = computed(() => snackbarStore.position);
+const timeoutValue = computed(() => snackbarStore.timeout);
+
 const visible = computed({
 	get (): boolean {
 		return snackbarStore.visible;

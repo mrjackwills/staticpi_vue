@@ -115,9 +115,7 @@ import useVuelidate from '@vuelidate/core';
 
 const { mdAndDown } = useDisplay();
 
-const text_class = computed((): string => {
-	return mdAndDown.value ? 'small-text' : '';
-});
+const text_class = computed(() => mdAndDown.value ? 'small-text' : '');
 
 const model = ref({
 	invite: '',
@@ -151,9 +149,7 @@ const rules = {
 	},
 };
 
-const disabled = computed((): boolean => {
-	return v$.value.$invalid;
-});
+const disabled = computed(() =>v$.value.$invalid);
 
 const v$ = useVuelidate(rules, model);
 

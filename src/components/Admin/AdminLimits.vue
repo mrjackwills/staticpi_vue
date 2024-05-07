@@ -87,9 +87,7 @@ import type { TAdminLimit } from '@/types';
 
 const { mdAndDown } = useDisplay();
 
-const text_class = computed((): string => {
-	return mdAndDown.value ? 'small-text' : '';
-});
+const text_class = computed(() => mdAndDown.value ? 'small-text' : '');
 
 const emit = defineEmits([ 'update' ]);
 

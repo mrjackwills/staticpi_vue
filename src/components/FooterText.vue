@@ -76,25 +76,13 @@ onBeforeUnmount(() => {
 });
 
 /// Don't show tooltips when on android or ios if also on mobile view!
-const show_tooltip = computed((): boolean => {
-	return !(browserModule().android_ios && useDisplay().mobile.value);
-});
+const show_tooltip = computed(() => !(browserModule().android_ios && useDisplay().mobile.value));
 
-const api_version = computed((): string|undefined => {
-	return browserModule().api_version;
-});
-const appVersion = computed((): string => {
-	return env.app_version;
-});
-const authed = computed((): boolean => {
-	return userStore.authenticated;
-});
-const buildDate = computed((): string => {
-	return env.build_date;
-});
-const computedClasses = computed((): string => {
-	return userStore.authenticated ? 'cl text-white' : '';
-});
+const api_version = computed(() => browserModule().api_version);
+const appVersion = computed(() => env.app_version);
+const authed = computed(() => userStore.authenticated);
+const buildDate = computed(() => env.build_date);
+const computedClasses = computed(() => userStore.authenticated ? 'cl text-white' : '');
 const rows = computed((): Array<TFooterRow> => {
 	return [
 		{
