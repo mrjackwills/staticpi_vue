@@ -27,7 +27,7 @@ module.exports = {
 		'arrow-parens': [ 'error', 'always' ],
 		'comma-spacing': [ 'error', { before: false, after: true } ],
 		'generator-star-spacing': 'off',
-		indent: [ 'error', 'tab' ],
+		'indent': [ 'error', 'tab' ],
 		'key-spacing': [ 1, { beforeColon: false, afterColon: true } ],
 		'keyword-spacing': [ 'error', { before: true } ],
 		'max-len': [
@@ -49,9 +49,9 @@ module.exports = {
 		'no-trailing-spaces': [ 'error', { skipBlankLines: true } ],
 		'no-unused-vars': 'off',
 		'object-curly-spacing': [ 'error', 'always' ],
-		quotes: [ 'error', 'single', { allowTemplateLiterals: true } ],
+		'quotes': [ 'error', 'single', { allowTemplateLiterals: true } ],
 		'require-atomic-updates': 1,
-		semi: [ 'error', 'always' ],
+		'semi': [ 'error', 'always' ],
 		'space-before-blocks': [
 			'error',
 			{ functions: 'always', keywords: 'always', classes: 'always' },
