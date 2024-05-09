@@ -3,7 +3,6 @@ import '@/scss/variables.scss';
 
 import { aliases, mdi } from 'vuetify/iconsets/mdi-svg';
 import { createVuetify } from 'vuetify';
-import { nonce } from '@/vanillaTS/globalConst';
 
 export default createVuetify({
 	icons: {
@@ -15,7 +14,7 @@ export default createVuetify({
 	},
 	
 	theme: {
-		cspNonce: nonce,
+		cspNonce: document.querySelector<HTMLMetaElement>('meta[property=csp-nonce]')?.nonce,
 		themes: {
 			light: {
 				colors: {
