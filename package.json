@@ -25,11 +25,11 @@
     "secure-json-parse": "^2.7.0",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2",
-    "vuetify": "^3.6.3"
+    "vuetify": "^3.6.4"
   },
   "devDependencies": {
     "@mdi/js": "^7.4.47",
-    "@types/node": "^20.12.10",
+    "@types/node": "^20.12.11",
     "@types/prismjs": "^1.26.4",
     "@types/secure-json-parse": "^1.0.5",
     "@typescript-eslint/eslint-plugin": "^7.8.0",
@@ -37,7 +37,7 @@
     "@vue/eslint-config-typescript": "^13.0.0",
     "@vue/tsconfig": "^0.5.1",
     "eslint": "^8.57.0",
-    "eslint-plugin-vue": "^9.25.0",
+    "eslint-plugin-vue": "^9.26.0",
     "sass": "^1.77.0",
     "typescript": "^5.4.5",
     "unplugin-auto-import": "^0.17.5",
