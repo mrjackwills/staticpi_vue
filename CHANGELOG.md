@@ -4,7 +4,7 @@
 ### Fixes
 + GitHub workflow tag, [7f954e042fc172e69580dbdf2caa72fc7952544f]
 
-### Refactos
+### Refactors
 + dead code removed, [2170b718939a9ff24aa3bbd50f429a043cf77f24]
 
 # <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.11'>v0.1.11</a>
