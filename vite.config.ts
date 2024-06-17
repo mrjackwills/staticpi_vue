@@ -52,6 +52,7 @@ const pwaOptions: Partial<VitePWAOptions> = {
   
 // https://vitejs.dev/config/
 export default defineConfig({
+
 	plugins: [
 		vue({
 			template: { transformAssetUrls }
@@ -84,7 +85,8 @@ export default defineConfig({
 		viteCompression({ algorithm: 'brotliCompress' }),
 		viteCompression({ algorithm: 'gzip' }),
 	],
-	define: { 'process.env': {},
+	define: {
+		'process.env': {},
 		'import.meta.env.BUILD_DATE': Date.now(),
 		'import.meta.env.VERSION': JSON.stringify(process.env.npm_package_version),
 	},

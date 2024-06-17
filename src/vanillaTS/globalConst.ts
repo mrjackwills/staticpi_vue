@@ -22,6 +22,4 @@ export const months: Readonly<Array<string>> = [
 	'December',
 ];
 
-export const nonce: Readonly<string> ='f73ba6133da5dc5d985b5ab9388e2beef532f43cff754fffce7e57b2046cc22ed8542f6f29408e7c';
-
 export const token_regex = /^[0-9]{6}$|^[a-fA-F0-9]{16}$/;

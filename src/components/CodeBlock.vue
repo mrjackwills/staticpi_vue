@@ -28,7 +28,7 @@
 				</v-row>
 
 				<v-row align='center' justify='center' class='ma-0 pa-0 text-white' >
-					<v-col cols='12' class='ma-0 pa-0' :nonce='`nonce-${nonce}`'>
+					<v-col cols='12' class='ma-0 pa-0' >
 
 						<pre
 							class='language-js'
@@ -46,7 +46,6 @@
 <script setup lang="ts">
 import '@/scss/vscode.css';
 import { mdiCheckboxBlankCircle } from '@mdi/js';
-import { nonce } from '@/vanillaTS/globalConst';
 import { useDisplay } from 'vuetify';
 import prism from 'prismjs';
 
