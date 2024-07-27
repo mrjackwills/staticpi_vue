@@ -1,12 +1,10 @@
-### 2024-06-17
+### 2024-07-27
 
-### Chores
-+ dependencies updated, [07d0fa60bdac383c167cb04eef9dd6e680749ffb], [89be823a9f0123edc716f91fcd7496739ab6a083], [833892dba79e94752c1d607600154e4838962617]
+### CHores
++ .devcontainer updated, [31872e437377bf006ada8e8e7af6a91cba877025]
++ dependencies updated, [5bc229fdc73213a7991fb08958b78a45cc0965d7]
 
 ### Fixes
-+ GitHub workflow tag, [7f954e042fc172e69580dbdf2caa72fc7952544f]
-
-### Refactors
-+ dead code removed, [2170b718939a9ff24aa3bbd50f429a043cf77f24]
++ emit typing, [85392e00f6cb85ef7305048df4f38f1f4f1186f0]
 
 see <a href='https://github.com/mrjackwills/staticpi_vue/blob/main/CHANGELOG.md'>CHANGELOG.md</a> for more details
