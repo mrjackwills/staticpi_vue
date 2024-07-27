@@ -27,9 +27,9 @@
 			<section v-if='switched && component' class=''>
 				<component
 					:is='isComponent'
-					@update:model-value='x => emit("input", x)'
-					@client_passwordInput='x => emit("client_passwordInput", x)'
-					@device_passwordInput='x => emit("device_passwordInput", x)'
+					@update:model-value='(x: string) => emit("input", x)'
+					@client_passwordInput='(x: string) => emit("client_passwordInput", x)'
+					@device_passwordInput='(x: string) => emit("device_passwordInput", x)'
 				/>
 			</section>
 		</v-expand-transition>
