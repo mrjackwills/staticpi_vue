@@ -49,7 +49,7 @@ watch(switched, (i) => {
 });
 
 const isComponent = computed(() => {
-	return props.component === 'DevicePassword' ? DevicePassword : MaxClients;
+	return props.component === 'DevicePassword' ? DevicePassword : props.component === 'MaxClients'? MaxClients : null;
 });
 
 const props = defineProps<{

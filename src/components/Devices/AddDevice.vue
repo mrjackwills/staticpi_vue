@@ -63,7 +63,6 @@
 								/>
 							</v-col>
 							<v-col cols='12' class='mb-n4'>
-								
 								<SwitchRow
 									@client_passwordInput='client_passwordInput'
 									@device_passwordInput='device_passwordInput'
