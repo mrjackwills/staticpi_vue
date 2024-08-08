@@ -7,7 +7,7 @@
 ### Fixes
 + SwitchRow isComponent ternary, [0bdbf77685894b413f2c6c1df76926cc88b74da4]
 
-<a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.13'>v0.1.13</a>
+# <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.13'>v0.1.13</a>
 ### 2024-07-27
 
 ### Chores
