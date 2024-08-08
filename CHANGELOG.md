@@ -1,4 +1,13 @@
-# <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.13'>v0.1.13</a>
+### Chores
++ dependencies updated, [a31908bc5f049c8f660aeb3a3ca77eba7ec3fe80]
+
+## Features
++ Enable frontend cache management, [2e790779c4f39a67f53421b1e10c5ec401dc6e5a]
+
+### Fixes
++ SwitchRow isComponent ternary, [0bdbf77685894b413f2c6c1df76926cc88b74da4]
+
+ <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.13'>v0.1.13</a>
 ### 2024-07-27
 
 ### CHores
