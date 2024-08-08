@@ -61,6 +61,7 @@ declare module 'vue' {
     ExtraBandwidthCell: typeof import('./src/components/Devices/AllDeviceTable/ExtraInformation/ExtraBandwidthCell.vue')['default']
     ExtraBandwidthDetailed: typeof import('./src/components/Devices/AllDeviceTable/ExtraInformation/ExtraBandwidthDetailed.vue')['default']
     ExtraBandwidthSimple: typeof import('./src/components/Devices/AllDeviceTable/ExtraInformation/ExtraBandwidthSimple.vue')['default']
+    ExtraCache: typeof import('./src/components/Devices/AllDeviceTable/ExtraInformation/ExtraCache.vue')['default']
     ExtraConnectedTable: typeof import('./src/components/Devices/AllDeviceTable/ExtraInformation/ExtraConnectedTable.vue')['default']
     ExtraInfo: typeof import('./src/components/Devices/AllDeviceTable/ExtraInformation/ExtraInfo.vue')['default']
     ExtraIp: typeof import('./src/components/Devices/AllDeviceTable/ExtraInformation/ExtraIp.vue')['default']
