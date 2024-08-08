@@ -1,7 +1,7 @@
 ### Chores
 + dependencies updated, [a31908bc5f049c8f660aeb3a3ca77eba7ec3fe80]
 
-## Features
+### Features
 + Enable frontend cache management, [2e790779c4f39a67f53421b1e10c5ec401dc6e5a]
 
 ### Fixes
