@@ -601,6 +601,21 @@ class Device extends BaseAxios {
 		await this.baseAxios.patch(`/${input.name}/api_key`, { ...input.authentication });
 		return true;
 	}
+
+	@wrap<Required<types.TBaseDevicePatch>>()
+	@isAuthenticated<Required<types.TBaseDevicePatch>>()
+	async cache_delete (input: Required<types.TBaseDevicePatch>): Promise<boolean> {
+		await this.baseAxios.delete(`/${input.name}/cache`, { data: { ...input.authentication } });
+		return true;
+	}
+
+	@wrap<types.TDeviceNamedGet>()
+	@isAuthenticated<types.TDeviceNamedGet>()
+	async cache_get (name: string): Promise<string> {
+		if (!name) throw Error('No device name given');
+		const response = await this.baseAxios.get(`/${name}/cache`);
+		return response?.data?.response.cache;
+	}
 	
 }
 

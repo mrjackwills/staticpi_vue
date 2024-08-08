@@ -21,6 +21,12 @@
 				</v-col>
 			</v-row>
 
+			<v-row align='center' justify='center' class='ma-0 pa-0 no-gutters'>
+				<v-col cols='11' class='ma-0 pa-0 text-center ma-1'>
+					<ExtraCache :device='device' />
+				</v-col>
+			</v-row>
+
 			<v-row align='start' justify='center' class='ma-0 pa-0 no-gutters' >
 				<v-col cols='11' class='ma-0 pa-0'>
 					<v-row align='start' justify='center' class='ma-0 pa-0 no-gutters'>
