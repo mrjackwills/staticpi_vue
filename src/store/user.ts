@@ -18,11 +18,6 @@ export const userModule = defineStore(ModuleName.USER, {
 		userLevel: UserLevel.FREE,
 	}),
 
-	persist: {
-		storage: localStorage,
-		pick: [ 'authenticated' ],
-	},
-
 	getters: {
 		isFreeUser (): boolean {
 			return this.userLevel === UserLevel.FREE;
@@ -87,5 +82,10 @@ export const userModule = defineStore(ModuleName.USER, {
 			settingSectionModule().$reset();
 		}
 
+	},
+
+	persist: {
+		storage: localStorage,
+		pick: [ 'authenticated' ],
 	},
 });
