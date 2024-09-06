@@ -20,7 +20,7 @@ export const userModule = defineStore(ModuleName.USER, {
 
 	persist: {
 		storage: localStorage,
-		paths: [ 'authenticated' ],
+		pick: [ 'authenticated' ],
 	},
 
 	getters: {
