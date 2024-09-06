@@ -1,3 +1,10 @@
+# <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.15'>v0.1.15</a>
+### 2024-09-06
+
+### Chores
++ dependencies updated, [dd10333c](https://github.com/mrjackwills/staticpi_vue/commit/dd10333cc0733d29ff9abe5f91b203759e9c4fa3), [c5c66365](https://github.com/mrjackwills/staticpi_vue/commit/c5c66365fb699ef5fff9f2e94cebb723756b3a3a), [8ffe7b2e](https://github.com/mrjackwills/staticpi_vue/commit/8ffe7b2e3e1877dec5931c6b4acfde0ce5463ee6)
++ GitHub workflow dependency updated, [85900572](https://github.com/mrjackwills/staticpi_vue/commit/85900572407361039e826614d711bcb32b887fe5)
+
 # <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.14'>v0.1.14</a>
 ### 2024-08-08
 
