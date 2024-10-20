@@ -52,7 +52,13 @@ const pwaOptions: Partial<VitePWAOptions> = {
   
 // https://vitejs.dev/config/
 export default defineConfig({
-
+	css: {
+		preprocessorOptions: {
+			scss: {
+				api: 'modern-compiler',
+			},
+		},
+	},
 	plugins: [
 		vue({
 			template: { transformAssetUrls }
