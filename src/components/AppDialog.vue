@@ -250,7 +250,7 @@ const mountedTimeout = (): void => {
 	}, 1000);
 };
 /**
- ** update this.isIntersectin when visible & not
+ ** update isIntersecting when visible & not
  */
 const onIntersect = (is_i: boolean, _entries: Array<IntersectionObserverEntry>, _observer: IntersectionObserver): void => {
 	isIntersecting.value = is_i;
