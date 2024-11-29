@@ -1,6 +1,9 @@
 ### Chores
 + dependencies updated, [30d3c303c4cf2bfcc30732f495ed7048263357c9]
 
+### Docs
++ typos, [4ee05206ae9dc09ad280ad0311b034539ba1918f]
+
 # <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.16'>v0.1.16</a>
 ### 2024-10-20
 
