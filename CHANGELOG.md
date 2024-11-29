@@ -1,5 +1,5 @@
 ### Chores
-+ dependencies updated, [78bfd2e0d97680a2ef50643576b5d9ff51105025]
++ dependencies updated, [30d3c303c4cf2bfcc30732f495ed7048263357c9]
 
 # <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.16'>v0.1.16</a>
 ### 2024-10-20
