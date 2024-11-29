@@ -2,7 +2,7 @@
 	<section>
 		<v-row align='center' justify='center' class='ma-0 pa-0' v-if='!backup && !backupProcess'>
 			<v-col cols='12' class='pa-0 mb-4'>
-				Backups enable a user to login to their account in situations where their Two-Factor Authentcation app is unavailable. Each backup code can only be used once, and must be safely stored by the user.
+				Backups enable a user to login to their account in situations where their Two-Factor Authentication app is unavailable. Each backup code can only be used once, and must be safely stored by the user.
 				<br>
 				<br>
 				All backup tokens are salted and hashed before being written to the database. This means that lost backup tokens cannot be retrieved by <StaticPi />.
