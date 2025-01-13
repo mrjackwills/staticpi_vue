@@ -1,3 +1,6 @@
+### Chores
++ dependencies updated, [05e8ffe11506cc9017125c602d061518f5e01134]
+
 # <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.17'>v0.1.17</a>
 ### 2024-11-29
 
