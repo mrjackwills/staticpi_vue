@@ -1,5 +1,8 @@
+# <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.18'>v0.1.18</a>
+### 2025-01-13
+
 ### Chores
-+ dependencies updated, [05e8ffe11506cc9017125c602d061518f5e01134]
++ dependencies updated, [05e8ffe1](https://github.com/mrjackwills/staticpi_vue/commit/05e8ffe11506cc9017125c602d061518f5e01134)
 
 # <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.17'>v0.1.17</a>
 ### 2024-11-29
