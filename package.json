@@ -1,6 +1,6 @@
 {
   "name": "staticpi-vue",
-  "version": "0.1.18",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -48,6 +48,6 @@
     "vite": "^6.2.0",
     "vue-tsc": "^2.2.4"
   },
-  "buildDate": "Mon 13 2025 January 13:55:17 GMT",
+  "buildDate": "Tue 25 2025 February 23:03:34 GMT",
   "homepage": "https://github.com/mrjackwills/staticpi_vue"
 }
