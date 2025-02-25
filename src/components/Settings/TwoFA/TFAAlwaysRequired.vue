@@ -69,7 +69,10 @@ const confirm_function_add = async (): Promise<void> => {
 };
 const confirm_function_remove = async (authentication: TAuthObject): Promise<void> => {
 	loading.value = true;
-	await axios_authenticatedUser.twoFA_patch({ always_required: false, ...authentication });
+	await axios_authenticatedUser.twoFA_patch({
+		always_required: false,
+		...authentication 
+	});
 	loading.value = false;
 };
 const show_dialog_add = async (): Promise<void> => {
@@ -82,7 +85,7 @@ const show_dialog_add = async (): Promise<void> => {
 		passwordrequired: false,
 		timeout: 5,
 		twoFABackup: false,
-		twoFARequired: false,
+		twoFARequired: false
 
 	});
 };
@@ -95,7 +98,7 @@ const show_dialog_remove = async (): Promise<void> => {
 		icon: '',
 		passwordrequired: true,
 		twoFABackup: true,
-		twoFARequired: true,
+		twoFARequired: true
 
 	});
 };

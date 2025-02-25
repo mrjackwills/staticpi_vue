@@ -27,21 +27,21 @@ const pwaOptions: Partial<VitePWAOptions> = {
 			{
 				src: 'img/icons/android-chrome-192x192.png',
 				sizes: '192x192',
-				type: 'image/png',
+				type: 'image/png'
 			},
 			{
 				src: 'img/icons/android-chrome-512x512.png',
 				sizes: '512x512',
-				type: 'image/png',
-			},
+				type: 'image/png'
+			}
 			// {
 			// 	src: 'img/icons/android-chrome-512x512.png',
 			// 	sizes: '512x512',
 			// 	type: 'image/png',
 			// 	purpose: 'any maskable'
 			// },
-		],
-	},
+		]
+	}
 	// devOptions: {
 	// 	enabled: true,
 	// 	/* when using generateSW the PWA plugin will switch to classic */
@@ -52,58 +52,44 @@ const pwaOptions: Partial<VitePWAOptions> = {
   
 // https://vitejs.dev/config/
 export default defineConfig({
-	css: {
-		preprocessorOptions: {
-			scss: {
-				api: 'modern-compiler',
-			},
-		},
-	},
+	css: { preprocessorOptions: { scss: { api: 'modern-compiler' } } },
 	plugins: [
-		vue({
-			template: { transformAssetUrls }
-		}),
+		vue({ template: { transformAssetUrls } }),
 		// https://github.com/vuetifyjs/vuetify-loader/tree/next/packages/vite-plugin
-		vuetify({
-			autoImport: true,
-		}),
+		vuetify({ autoImport: true }),
 		Components(),
 		AutoImport({
 			include: [
 				/\.[tj]sx?$/,
 				/\.vue$/, /\.vue\?vue/,
-				/\.md$/,
+				/\.md$/
 			],
 			imports: [
 				'vue',
-				'vue-router',
+				'vue-router'
 			],
 			dts: 'src/auto-imports.d.ts',
-			eslintrc: {
-				enabled: true,
-			},
+			eslintrc: { enabled: true },
 			dirs: [
-				'src/store',
+				'src/store'
 			],
-			vueTemplate: false,
+			vueTemplate: false
 		}),
 		VitePWA(pwaOptions),
 		viteCompression({ algorithm: 'brotliCompress' }),
-		viteCompression({ algorithm: 'gzip' }),
+		viteCompression({ algorithm: 'gzip' })
 	],
 	define: {
 		'process.env': {},
 		'import.meta.env.BUILD_DATE': Date.now(),
-		'import.meta.env.VERSION': JSON.stringify(process.env.npm_package_version),
+		'import.meta.env.VERSION': JSON.stringify(process.env.npm_package_version)
 	},
 	resolve: {
-		alias: {
-			'@': fileURLToPath(new URL('./src', import.meta.url)),
-		},
-		extensions: [ '.js', '.json', '.jsx', '.mjs', '.ts', '.tsx', '.vue' ],
+		alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
+		extensions: [ '.js', '.json', '.jsx', '.mjs', '.ts', '.tsx', '.vue' ]
 	},
 	server: {
 		port: 8002,
 		host: '127.0.0.1'
-	},
+	}
 });

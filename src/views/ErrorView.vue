@@ -77,7 +77,7 @@
 
 <script setup lang='ts'>
 
-import { FrontEndNames, FrontEndRoutes } from '@/types/enum_routes';
+import { FrontEndNames, FrontEndRoutes } from '@/types/const_routes';
 import { mdiHome } from '@mdi/js';
 import { useDisplay } from 'vuetify';
 
@@ -109,8 +109,8 @@ onMounted(() => {
 	browserStore.set_description('staticPi error page - the content was not found');
 });
 
-let router = useRouter();
-let route = useRoute();
+const router = useRouter();
+const route = useRoute();
 
 const goHome = (): void => {
 	

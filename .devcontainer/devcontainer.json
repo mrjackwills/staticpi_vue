@@ -19,7 +19,7 @@
 			"extensions": [
 				"christian-kohler.path-intellisense",
 				"dbaeumer.vscode-eslint",
-				"fill-labs.dependi",
+				"citreae535.sparse-crates",
 				"foxundermoon.shell-format",
 				"gruntfuggly.todo-tree",
 				"meganrogge.template-string-converter",

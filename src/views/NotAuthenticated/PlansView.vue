@@ -182,7 +182,7 @@
 </template>
 
 <script setup lang='ts'>
-import { FrontEndRoutes } from '@/types/enum_routes';
+import { FrontEndRoutes } from '@/types/const_routes';
 import { mdiAccountPlus, mdiInformation } from '@mdi/js';
 import { useDisplay } from 'vuetify';
 
@@ -206,8 +206,14 @@ const priceSize = computed((): string => {
 	return mdAndUp.value ? 'text-h3' : 'text-h5';
 });
 const plans = [
-	{ name: `free`, price: `0` },
-	{ name: `pro`, price: `tbc` }
+	{
+		name: `free`,
+		price: `0` 
+	},
+	{
+		name: `pro`,
+		price: `tbc` 
+	}
 ];
 const mobileLevels = [
 	{
@@ -229,12 +235,12 @@ const planData = [
 		level: [
 			{
 				detail: 'Two-Factor logins, 100% TLS, no user tracking',
-				freePlan: false,
+				freePlan: false
 			},
 			{
 				detail: 'Two-Factor logins, 100% TLS, no user tracking',
-				freePlan: false,
-			},
+				freePlan: false
+			}
 		]
 	},
 
@@ -244,13 +250,13 @@ const planData = [
 		level: [
 			{
 				detail: '15 per minute',
-				freePlan: true,
+				freePlan: true
 			},
 			{
 				detail: '300 per minute',
-				freePlan: false,
-			},
-		],
+				freePlan: false
+			}
+		]
 	},
 		
 	{
@@ -259,13 +265,13 @@ const planData = [
 		level: [
 			{
 				detail: 'randomly assigned',
-				freePlan: true,
+				freePlan: true
 			},
 			{
 				detail: 'customisable',
-				freePlan: false,
-			},
-		],
+				freePlan: false
+			}
+		]
 	},
 		
 	{
@@ -274,13 +280,13 @@ const planData = [
 		level: [
 			{
 				detail: 'not available',
-				freePlan: true,
+				freePlan: true
 			},
 			{
 				detail: 'Pi and Clients can either share or have separate passwords',
-				freePlan: false,
-			},
-		],
+				freePlan: false
+			}
+		]
 	},
 	{
 		feature: 'message size',
@@ -288,13 +294,13 @@ const planData = [
 		level: [
 			{
 				detail: '10kB',
-				freePlan: true,
+				freePlan: true
 			},
 			{
 				detail: '5MB',
-				freePlan: false,
-			},
-		],
+				freePlan: false
+			}
+		]
 	},
 	{
 		feature: 'bandwidth',
@@ -302,13 +308,13 @@ const planData = [
 		level: [
 			{
 				detail: '5MB / month',
-				freePlan: true,
+				freePlan: true
 			},
 			{
 				detail: '10GB / month',
-				freePlan: false,
-			},
-		],
+				freePlan: false
+			}
+		]
 	},
 	{
 		feature: 'number of devices',
@@ -316,13 +322,13 @@ const planData = [
 		level: [
 			{
 				detail: '1',
-				freePlan: true,
+				freePlan: true
 			},
 			{
 				detail: '20',
-				freePlan: false,
+				freePlan: false
 			}
-		],
+		]
 	},
 	{
 		feature: 'clients per device',
@@ -330,13 +336,13 @@ const planData = [
 		level: [
 			{
 				detail: '1',
-				freePlan: true,
+				freePlan: true
 			},
 			{
 				detail: '100',
-				freePlan: false,
-			},
-		],
+				freePlan: false
+			}
+		]
 	},
 	{
 		feature: 'support',
@@ -344,13 +350,13 @@ const planData = [
 		level: [
 			{
 				detail: 'web-based documentation',
-				freePlan: true,
+				freePlan: true
 			},
 			{
 				detail: 'priority email based assistance',
-				freePlan: false,
-			},
-		],
+				freePlan: false
+			}
+		]
 	},
 	{
 		feature: 'cache',
@@ -358,16 +364,16 @@ const planData = [
 		level: [
 			{
 				detail: 'none',
-				freePlan: true,
+				freePlan: true
 			},
 			{
 				detail: 'optional device message cache',
-				freePlan: false,
-			},
-		],
-	},
+				freePlan: false
+			}
+		]
+	}
 		
-] as const ;
+] as const;
 </script>
 
 <style scoped>

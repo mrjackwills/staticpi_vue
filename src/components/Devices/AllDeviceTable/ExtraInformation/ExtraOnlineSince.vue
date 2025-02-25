@@ -33,8 +33,8 @@ onBeforeUnmount(() => {
 	clear();
 });
 	
-const text = computed((): string|void => {
-	if (!props.timestamp) return;
+const text = computed((): string=> {
+	if (!props.timestamp) return '';
 	return new Date(props.timestamp).toLocaleString();
 });
 	
@@ -55,7 +55,7 @@ const updateTooltip = (): void => {
 	tooltipText.value = secondsToDays(new Date().getTime() - new Date(props.timestamp).getTime(), false);
 };
 	
-const props = defineProps<{timestamp?: string}>();
+const props = defineProps<{ timestamp?: string }>();
 
 watch(isIntersecting, (i: boolean): void => {
 	if (i) updateTooltip();

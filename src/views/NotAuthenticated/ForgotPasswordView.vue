@@ -82,12 +82,13 @@ const pageTitle = 'forgotten password?';
 const emailError = ref('');
 const complete = ref(false);
 const localLoading = ref(false);
-const user = ref({
-	email: '',
-});
+const user = ref({ email: '' });
 
 const rules = {
-	email: { email, required },
+	email: {
+		email,
+		required 
+	}
 };
 const v$ = useVuelidate(rules, user);
 
@@ -109,7 +110,7 @@ const forgot = async (): Promise<void> => {
 };
 
 watch(() => user.value.email, (_) => {
-	user.value.email = user.value.email ? user.value.email.toLowerCase().trim(): '';
+	user.value.email = user.value.email ? user.value.email.toLowerCase().trim() : '';
 	if (!v$.value.email.$invalid) {
 		emailError.value = '';
 		return;

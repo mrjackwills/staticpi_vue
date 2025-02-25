@@ -162,11 +162,12 @@ const label = computed((): string =>{
 	return isFreeUser.value ? 'device name will be randomly assigned' : 'device name (optional)';
 });
 const max_clientsDescription = computed((): string => {
-	return isFreeUser.value ? 'Free users are only allowed 1 connected client per device': `Limit the number of simultaneous client connections to the device. The maximum allowed is ${max_clients.value}`;
+	return isFreeUser.value ? 'Free users are only allowed 1 connected client per device' :
+		`Limit the number of simultaneous client connections to the device. The maximum allowed is ${max_clients.value}`;
 });
 const passwordDescription = computed((): string => {
 	return isFreeUser.value ?
-		'Device password authentication is not available for free user':
+		'Device password authentication is not available for free user' :
 		'Device passwords are optional, when enabled they require a request to be made to our authentication api in order for the websocket connection to be established';
 });
 const structuredDescription = computed((): string => {
@@ -226,7 +227,7 @@ const max_clientsInput = (i: string): void => {
 	if (!num && !switchStatus.value.max_clients) deviceSettings.value.max_clients = Math.ceil(max_clients.value / 2);
 	else {
 		deviceSettings.value.max_clients = num;
-		deviceClientError.value ='';
+		deviceClientError.value = '';
 	}
 };
 
@@ -240,7 +241,7 @@ const client_passwordInput = (i: string): void => {
 
 const max_clientsSwitch = (i: boolean): void => {
 	switchStatus.value.max_clients = i;
-	if (!i) deviceSettings.value.max_clients = Math.ceil(max_clients.value /2);
+	if (!i) deviceSettings.value.max_clients = Math.ceil(max_clients.value / 2);
 };
 		
 const passwordSwitch = (i: boolean): void => {
@@ -257,10 +258,8 @@ const structuredSwitch = (i: boolean): void => {
 };
 
 onMounted(() => {
-	document.getElementById('add-device')?.scrollIntoView({
-		behavior: 'smooth'
-	});
-	if (!isFreeUser.value) deviceSettings.value.max_clients = Math.ceil(max_clients.value /2);
+	document.getElementById('add-device')?.scrollIntoView({ behavior: 'smooth' });
+	if (!isFreeUser.value) deviceSettings.value.max_clients = Math.ceil(max_clients.value / 2);
 });
 
 watch(() => deviceSettings.value.name, (i): void => {

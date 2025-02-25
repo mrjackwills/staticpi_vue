@@ -146,7 +146,7 @@ const rules = {
 		required,
 		integer,
 		minValue: minValue(1)
-	},
+	}
 };
 
 const disabled = computed(() =>v$.value.$invalid);
@@ -163,7 +163,7 @@ const addInvite = (): void => {
 		confirmMethod: addInvite_confirm,
 		passwordrequired: true,
 		twoFABackup: false,
-		twoFARequired: false,
+		twoFARequired: false
 	});
 };
 
@@ -179,16 +179,20 @@ const emit = defineEmits([ 'update' ]);
 const addInvite_confirm = async (auth: TAuthObject): Promise<void> => {
 	if (v$.value.$invalid) return;
 	loadingModule().loading = true;
-	await axios_admin.invite_post({ ...auth, count: Number(model.value.count), invite: model.value.invite });
+	await axios_admin.invite_post({
+		...auth,
+		count: Number(model.value.count),
+		invite: model.value.invite 
+	});
 	loadingModule().loading = false;
-	// eslint-disable-next-line require-atomic-updates
+	 
 	model.value.count = undefined;
-	// eslint-disable-next-line require-atomic-updates
+	 
 	model.value.invite = '';
 	emit('update');
 
 };
 
-defineProps<{inviteCodes: Array<TAdminInvite>}>();
+defineProps<{ inviteCodes: Array<TAdminInvite> }>();
 
 </script>

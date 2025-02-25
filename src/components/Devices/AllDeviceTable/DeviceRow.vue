@@ -142,7 +142,7 @@ const cells = [
 		cols: '1',
 		component: CellDelete,
 		link: ''
-	},
+	}
 ] as const;
 
 const refreshInterval = ref(0);
@@ -163,7 +163,7 @@ const startRefreshInterval = (): void => {
 	refreshInterval.value = setInterval(() => emit('refresh'), 15000);
 };
 
-const props = defineProps<{device: TDeviceInfo}>();
+const props = defineProps<{ device: TDeviceInfo }>();
 
 </script>
 

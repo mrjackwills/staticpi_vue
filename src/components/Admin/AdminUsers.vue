@@ -68,6 +68,6 @@ const headers = [
 ];
 
 const emit = defineEmits([ 'update' ]);
-const props = defineProps<{users: Array<TAdminUserAndSessions>}>();
+const props = defineProps<{ users: Array<TAdminUserAndSessions> }>();
 
 </script>

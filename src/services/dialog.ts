@@ -11,5 +11,5 @@ export const dialoger = (data: TDialogData): void => {
 	dialog_store.set_twoFABackup(data.twoFABackup);
 	dialog_store.set_twoFARequired(data.twoFARequired);
 	if (data.timeout) dialog_store.set_timeout(data.timeout);
-	dialog_store.set_visible(data.visible??true);
+	dialog_store.set_visible(data.visible ?? true);
 };

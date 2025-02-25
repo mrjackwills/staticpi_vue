@@ -1,3 +1,13 @@
+# <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.2.0'>v0.2.0</a>
+### 2025-02-25
+
+### Chores
++ dependencies updated, [a8751224](https://github.com/mrjackwills/staticpi_vue/commit/a87512246a888f84c80248df0a724a30aebeade9), [e9dc7c06](https://github.com/mrjackwills/staticpi_vue/commit/e9dc7c068a1e4845dbbe762003a0da50fddd520e)
++ create_release.sh updated, [d4c33887](https://github.com/mrjackwills/staticpi_vue/commit/d4c338879bfbdf3738af6199a998f5b2bd150538)
+
+### Features
++ update to eslint v9, [8325cf96](https://github.com/mrjackwills/staticpi_vue/commit/8325cf9632ca8450afa14cc02ab3d5ebbf64a496)
+
 # <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.1.18'>v0.1.18</a>
 ### 2025-01-13
 

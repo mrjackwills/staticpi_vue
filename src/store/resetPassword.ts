@@ -1,12 +1,12 @@
 import { defineStore } from 'pinia';
-import { ModuleName } from '@/types/enum_module';
+import { ModuleName } from '@/types/const_module';
 
 export const resetPasswordModule = defineStore(ModuleName.RESET_PASSWORD, {
 
 	state: () => ({
 		id: '',
 		two_fa_backup: false,
-		two_fa_enabled: false,
+		two_fa_enabled: false
 	}),
 
 	actions: {
@@ -18,6 +18,6 @@ export const resetPasswordModule = defineStore(ModuleName.RESET_PASSWORD, {
 		},
 		set_two_fa_enabled (value: boolean) {
 			this.two_fa_enabled = value;
-		},
+		}
 	}
 });

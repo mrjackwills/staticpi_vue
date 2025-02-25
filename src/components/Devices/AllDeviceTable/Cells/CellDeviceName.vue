@@ -76,14 +76,14 @@ const buttons = computed((): Array<TDeviceTableFields> => {
 		{
 			click: clear,
 			color: 'pi',
-			icon: mdiClose,
+			icon: mdiClose
 		},
 		{
 			class: disabled.value ? '' : 'heartbeat',
 			click: renameDevice,
 			color: 'primary',
 			disabled: disabled.value,
-			icon: mdiContentSave,
+			icon: mdiContentSave
 		}
 	];
 });
@@ -145,10 +145,17 @@ const onIntersect = (is_i: boolean, _entries: Array<IntersectionObserverEntry>, 
 const emit = defineEmits([ 'refresh' ]);
 const renameDevice_confirm = async (authentication?: TAuthObject): Promise<void> => {
 	loading.value = true;
-	const response = await axios_device.rename_patch({ new_name: newName.value, name: name_of_device.value, authentication });
+	const response = await axios_device.rename_patch({
+		new_name: newName.value,
+		name: name_of_device.value,
+		authentication 
+	});
 	loading.value = false;
 	if (response) {
-		snackSuccess({ message: `${name_of_device.value}: renamed "${newName.value}"`, icon: mdiContentSave });
+		snackSuccess({
+			message: `${name_of_device.value}: renamed "${newName.value}"`,
+			icon: mdiContentSave 
+		});
 		emit('refresh');
 		inFocus.value = false;
 		errorMessage.value = '';
@@ -165,9 +172,9 @@ const renameDevice = (): void => {
 		confirmMethod: renameDevice_confirm,
 		icon: '',
 		twoFABackup: false,
-		twoFARequired: false,
+		twoFARequired: false
 	});
-} ;
+};
 
 const clear_ttl = async (): Promise<void> => {
 	clearInterval(ttl_timeout.value);
@@ -187,7 +194,7 @@ const ttl_interval = async (): Promise<void> => {
 	}
 };
 
-const props = defineProps<{device: TDeviceInfo}>();
+const props = defineProps<{ device: TDeviceInfo }>();
 
 watch(newName, async (i: string): Promise<void> => {
 	if (i === name_of_device.value) {
@@ -201,7 +208,7 @@ watch(newName, async (i: string): Promise<void> => {
 		return;
 	}
 	if (newName.value !== name_of_device.value) {
-		errorMessage.value= 'new name not saved';
+		errorMessage.value = 'new name not saved';
 		return;
 	}
 	errorMessage.value = '';
@@ -213,7 +220,7 @@ watch(paused, (i: boolean): void => {
 		errorMessage.value = '';
 	}
 });
-watch(ttl, (i: number) : void => {
+watch(ttl, (i: number): void => {
 	if (i > 0 && i > local_ttl.value) {
 		local_ttl.value = i;
 		ttl_interval();

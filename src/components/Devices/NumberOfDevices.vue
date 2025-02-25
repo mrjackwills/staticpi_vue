@@ -39,7 +39,7 @@ const deviceNumber = computed((): number => {
 });
 const used_percentage = computed((): string => {
 	if (Number(totalBandwidth.value) > 0) {
-		return Number(totalBandwidth.value) > 0 ? (Number(totalBandwidth.value) / Number(maxBandwidth.value) *100).toFixed(2) : '00.00';
+		return Number(totalBandwidth.value) > 0 ? (Number(totalBandwidth.value) / Number(maxBandwidth.value) * 100).toFixed(2) : '00.00';
 	} else {
 		return '00.00';
 	}
@@ -72,8 +72,6 @@ const converted_total = computed((): TConvertBytes => {
 	return convert_bytes(totalBandwidth.value);
 });
 
-const props = withDefaults(defineProps<{rowCols?: string}>(), {
-	rowCols: '12',
-});
+const props = withDefaults(defineProps<{ rowCols?: string }>(), { rowCols: '12' });
 
 </script>

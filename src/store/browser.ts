@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { ModuleName } from '@/types/enum_module';
+import { ModuleName } from '@/types/const_module';
 
 export const browserModule = defineStore(ModuleName.BROWSER, {
 
@@ -60,7 +60,7 @@ export const browserModule = defineStore(ModuleName.BROWSER, {
 
 		set_title (x: string): void {
 			this.title = x;
-		},
+		}
 		
 	}
 });

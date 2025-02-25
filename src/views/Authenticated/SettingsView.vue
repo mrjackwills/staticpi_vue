@@ -78,24 +78,23 @@ watch(current_section, (i: u<TSettingSection>): void => {
 	if (i) {
 		const sBase = `${base}:`;
 		switch (i) {
-		case '2fa':
-			pageTitle.value = `${sBase} Two-Factor Authentication`;
-			break;
-		case 'changepassword':
-			pageTitle.value = `${sBase} Change Password`;
-			break;
-		case 'userlevel':
-			pageTitle.value = `${sBase} User Level`;
-			break;
-		case 'changefullname':
-			pageTitle.value = `${sBase} Change Name`;
-			break;
-		case 'deleteaccount':
-			pageTitle.value = `${sBase} Delete Account`;
-			break;
+			case '2fa':
+				pageTitle.value = `${sBase} Two-Factor Authentication`;
+				break;
+			case 'changepassword':
+				pageTitle.value = `${sBase} Change Password`;
+				break;
+			case 'userlevel':
+				pageTitle.value = `${sBase} User Level`;
+				break;
+			case 'changefullname':
+				pageTitle.value = `${sBase} Change Name`;
+				break;
+			case 'deleteaccount':
+				pageTitle.value = `${sBase} Delete Account`;
+				break;
 		}
-	}
-	else pageTitle.value = base;
+	} else pageTitle.value = base;
 });
 
 watch(force_refresh, (i: boolean): void => {

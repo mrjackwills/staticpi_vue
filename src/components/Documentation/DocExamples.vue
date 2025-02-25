@@ -50,7 +50,7 @@ const examples = [
 		title: 'mealpedant_backup',
 		description: `An automated, simple, backup client`,
 		href: 'https://github.com/mrjackwills/mealpedant_backup_pi'
-	},
+	}
 ];
 
 </script>

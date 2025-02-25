@@ -174,8 +174,10 @@ check_tag() {
 			break
 			;;
 		*)
-			error_close "invalid option $REPLY"
+			echo -e "\n\"${REPLY}\" ${RED}- invalid option. Please select 1, 2, or 3.${RESET}"
+			continue
 			;;
+
 		esac
 	done
 }

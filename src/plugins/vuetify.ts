@@ -8,9 +8,7 @@ export default createVuetify({
 	icons: {
 		defaultSet: 'mdi',
 		aliases,
-		sets: {
-			mdi,
-		},
+		sets: { mdi }
 	},
 	
 	theme: {
@@ -28,8 +26,8 @@ export default createVuetify({
 					backgroundColor: '#f5f4f2',
 					cardColor: '#fafafa',
 					rowHover: '#dededf'
-				},
-			},
-		},
-	},
+				}
+			}
+		}
+	}
 });

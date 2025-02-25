@@ -149,6 +149,7 @@ const showAddNewDevice = (): void => {
 	if (disabled.value) return;
 	showAdd.value = !showAdd.value;
 };
+
 /**
 ** Show a tooltip saying max devices.
 ** Uses disabled boolean which also disable the add new device button itself, base upon device numbers

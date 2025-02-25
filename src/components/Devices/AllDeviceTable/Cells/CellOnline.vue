@@ -30,7 +30,9 @@ const show_tooltip = computed((): boolean => {
 });
 
 const tooltipText = computed((): string =>{
-	return timestamp_online.value && !timestamp_offline.value ? `online since ${timestamp_online.value.toLocaleString()}`: timestamp_online.value && timestamp_offline.value ? `offline since ${timestamp_offline.value.toLocaleString()}` : 'never connected';
+	return timestamp_online.value && !timestamp_offline.value ?
+		`online since ${timestamp_online.value.toLocaleString()}` : timestamp_online.value && timestamp_offline.value ?
+			`offline since ${timestamp_offline.value.toLocaleString()}` : 'never connected';
 });
 const online = computed((): boolean =>{
 	return timestamp_online.value && !timestamp_offline.value ? true : false;
@@ -54,7 +56,7 @@ const paused = computed((): boolean =>{
 	return props.device.paused;
 });
 	
-const props = defineProps<{device: TDeviceInfo}>();
+const props = defineProps<{ device: TDeviceInfo }>();
 
 </script>
 

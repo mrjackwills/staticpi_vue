@@ -36,7 +36,8 @@
 					</v-col>
 				</v-row>
 
-				If a device has structured data enabled, but does not send correctly formatted message, an error will be received, <router-link :to='structured_id("error")' class='text-primary'>as seen here</router-link>
+				If a device has structured data enabled, but does not send correctly formatted message, an error will be received,
+				<router-link :to='structured_id("error")' class='text-primary'>as seen here</router-link>
 
 				<v-divider color='secondary' class='my-2' thickness='2' />
 				<span class='text-h6 font-weight-bold text-pi' :id='structured_key_id("cache")'>
@@ -79,9 +80,11 @@
 				</span>
 				<br>
 				By default, all message sent out from a connected <span class='font-weight-bold'>pi</span> are delivered to all connected <span class='font-weight-bold'>clients</span>, but
-				if you want to be able to send a message to a single connected <span class='font-weight-bold'>client</span>, the <span class='font-weight-bold text-primary'>unique</span> key name can be used.
+				if you want to be able to send a message to a single connected
+				<span class='font-weight-bold'>client</span>, the <span class='font-weight-bold text-primary'>unique</span> key name can be used.
 				<br>
-				<span class='font-weight-bold'>Clients</span> can only send a message where <span class='font-weight-bold text-primary'>unique</span> is set to <span class='font-weight-bold'>true</span>.
+				<span class='font-weight-bold'>Clients</span>
+				can only send a message where <span class='font-weight-bold text-primary'>unique</span> is set to <span class='font-weight-bold'>true</span>.
 				This is transformed, by <StaticPi /> into a unique string. The unique strings are created at each <span class='font-weight-bold'>client</span> connection,
 				are available for the lifetime of the <span class='font-weight-bold '>clients</span> websocket connection, and are valid
 				<a href='https://github.com/ulid/spec' target='_blank' rel='noopener noreferrer' class='text-primary font-weight-bold'>ULID</a>
@@ -111,7 +114,8 @@
 					error
 				</span>
 				<br>
-				The error key can only be set by <StaticPi /> servers, and code uses <a :href='error_codes_href' rel='noopener noreferrer' target='_blank' class='text-primary'>standard http error codes</a>.
+				The error key can only be set by <StaticPi /> servers, and code uses
+				<a :href='error_codes_href' rel='noopener noreferrer' target='_blank' class='text-primary'>standard http error codes</a>.
 				<br>
 				If a device has structured data enabled, and an invalid formatted message is sent, the sender of the invalid message will receive the following error message
 				<v-row justify='center' class='ma-0 pa-0 my-2'>
@@ -194,7 +198,7 @@ websocket_connection.addEventListener('message', (event) => {
 	console.log(event.data);
 	// { data: "some response", unique: true }
 });`;
-}) ;
+});
 const code_structured_data_unique_pi = computed((): string => {
 	return `import WebSocket from 'ws';
 
@@ -252,11 +256,11 @@ const structured_id = (short: TStructuredKey): string => {
 };
 
 const props = defineProps<{
-	address_token: string,
-	address_wss_client: string,
-	address_wss_pi: string,
-	apiKey: string,
-	componentKey: number,
-	password: string
+	address_token: string;
+	address_wss_client: string;
+	address_wss_pi: string;
+	apiKey: string;
+	componentKey: number;
+	password: string;
 }>();
 </script>

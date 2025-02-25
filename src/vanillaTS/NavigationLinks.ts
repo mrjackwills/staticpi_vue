@@ -7,10 +7,10 @@ import {
 	mdiLayers,
 	mdiLoginVariant,
 	mdiRouterWirelessSettings,
-	mdiWan,
+	mdiWan
 } from '@mdi/js';
 import type { TNavigationLink } from '@/types';
-import { FrontEndRoutes } from '@/types/enum_routes';
+import { FrontEndRoutes } from '@/types/const_routes';
 
 export const notAuthenticatedLinks: Array<TNavigationLink> = [
 	{
@@ -24,7 +24,8 @@ export const notAuthenticatedLinks: Array<TNavigationLink> = [
 		route: FrontEndRoutes.DOCUMENTATION
 	},
 
-	{	icon: mdiWan,
+	{
+		icon: mdiWan,
 		message: 'status',
 		route: FrontEndRoutes.STATUS
 	},
@@ -42,7 +43,7 @@ export const notAuthenticatedLinks: Array<TNavigationLink> = [
 		icon: mdiLoginVariant,
 		message: 'login',
 		route: FrontEndRoutes.LOGIN
-	},
+	}
 ];
 
 export const authenticatedLinks: Array<TNavigationLink> = [
@@ -51,7 +52,8 @@ export const authenticatedLinks: Array<TNavigationLink> = [
 		message: 'devices',
 		route: FrontEndRoutes.USER_DEVICES
 	},
-	{	icon: mdiBookOpenPageVariant,
+	{
+		icon: mdiBookOpenPageVariant,
 		message: 'documentation',
 		route: FrontEndRoutes.DOCUMENTATION
 	},
@@ -65,10 +67,11 @@ export const authenticatedLinks: Array<TNavigationLink> = [
 		message: 'contact',
 		route: FrontEndRoutes.CONTACT
 	},
-	{	icon: mdiWan,
+	{
+		icon: mdiWan,
 		message: 'status',
 		route: FrontEndRoutes.STATUS
-	},
+	}
 ];
 
 export const adminLinks: Array<TNavigationLink> = [
@@ -76,5 +79,5 @@ export const adminLinks: Array<TNavigationLink> = [
 		icon: mdiAccountCogOutline,
 		message: 'admin',
 		route: FrontEndRoutes.ADMIN
-	},
+	}
 ];

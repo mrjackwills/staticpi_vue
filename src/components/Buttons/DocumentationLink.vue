@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { FrontEndRoutes } from '@/types/enum_routes';
+import { FrontEndRoutes } from '@/types/const_routes';
 import { mdiLinkVariant } from '@mdi/js';
 import { useDisplay } from 'vuetify';
 
@@ -32,12 +32,12 @@ const iconSize = computed((): string => {
 });
 
 const props = withDefaults(defineProps<{
-	section: string,
-	small?: boolean,
-	xsmall?: boolean,
+	section: string;
+	small?: boolean;
+	xsmall?: boolean;
 }>(), {
 	small: true,
-	xsmall: false,
+	xsmall: false
 });
 
 </script>

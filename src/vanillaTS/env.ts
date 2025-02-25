@@ -1,11 +1,17 @@
 class Env {
 	readonly #app_version = String(import.meta.env.VERSION);
+
 	readonly #domain_api = String(import.meta.env.VITE_APP_DOMAIN_API);
+
 	readonly #domain_auth = String(import.meta.env.VITE_APP_DOMAIN_AUTH);
+
 	readonly #domain_wss = String(import.meta.env.VITE_APP_DOMAIN_WSS);
+
 	readonly #domain_www = String(import.meta.env.VITE_APP_DOMAIN_WWW);
+
 	readonly #build_date = new Date(import.meta.env.BUILD_DATE);
-	readonly #mode_production = import.meta.env.PROD ;
+
+	readonly #mode_production = import.meta.env.PROD;
 
 	get app_version (): string {
 		return this.#app_version;

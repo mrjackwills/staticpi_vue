@@ -52,20 +52,20 @@ const tableData = computed((): Array<TExtraBandwidthSimple> =>{
 		{
 			period: 'last 24 hours',
 			...convert_bytes(Number(props.device.pi_bytes_day_out) + Number(props.device.client_bytes_day_out)),
-			bytes: `${Number(props.device.pi_bytes_day_out) + Number(props.device.client_bytes_day_out)}`,
+			bytes: `${Number(props.device.pi_bytes_day_out) + Number(props.device.client_bytes_day_out)}`
 		},
 		{
 			period: 'this month',
 			...convert_bytes(Number(props.device.pi_bytes_month_out) + Number(props.device.client_bytes_month_out)),
-			bytes: `${Number(props.device.pi_bytes_month_out) + Number(props.device.client_bytes_month_out)}`,
+			bytes: `${Number(props.device.pi_bytes_month_out) + Number(props.device.client_bytes_month_out)}`
 		},
 		{
 			period: 'all time',
 			...convert_bytes(Number(props.device.pi_bytes_total_out) + Number(props.device.client_bytes_total_out)),
-			bytes: `${Number(props.device.pi_bytes_total_out) + Number(props.device.client_bytes_total_out)}`,
-		},
+			bytes: `${Number(props.device.pi_bytes_total_out) + Number(props.device.client_bytes_total_out)}`
+		}
 	];
 });
 
-const props = defineProps<{device: TDeviceInfo}>();
+const props = defineProps<{ device: TDeviceInfo }>();
 </script>

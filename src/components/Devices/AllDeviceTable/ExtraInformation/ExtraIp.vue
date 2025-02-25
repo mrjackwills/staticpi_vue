@@ -19,5 +19,5 @@
 </template>
 
 <script setup lang='ts'>
-defineProps<{ip: string}>();
+defineProps<{ ip: string }>();
 </script>

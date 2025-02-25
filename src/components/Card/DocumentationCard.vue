@@ -34,7 +34,7 @@ const { mobile } = useDisplay();
 const createId = computed((): string => {
 	return props.heading.toLowerCase().replaceAll(' ', '-');
 });
-const proMargin = computed(() :string => {
+const proMargin = computed((): string => {
 	return mobile.value ? 'mr-2' : 'mr-12';
 });
 const smallText = computed((): string => {
@@ -42,10 +42,8 @@ const smallText = computed((): string => {
 });
 
 const props = withDefaults(defineProps<{
-	heading: string,
-	pro?: boolean
-}>(), {
-	pro: false,
-});
+	heading: string;
+	pro?: boolean;
+}>(), { pro: false });
 
 </script>

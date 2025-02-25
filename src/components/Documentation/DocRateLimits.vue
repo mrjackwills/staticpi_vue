@@ -60,7 +60,8 @@
 
 				<span class='font-weight-bold text-pi text-h6 '>Connecting limits</span>
 				<br>
-				When opening a new websocket connection with <StaticPi />, rate limits are applied based on the API key used, the IP address of the connection, and whether the connection is from a Pi or a client.
+				When opening a new websocket connection with <StaticPi />,
+				rate limits are applied based on the API key used, the IP address of the connection, and whether the connection is from a Pi or a client.
 				<br>
 				<br>
 				<span class='font-weight-bold'>{{ address_token }}</span> calculate rate limit on both the API key and the IP address of the requester.
@@ -89,7 +90,7 @@
 </template>
 
 <script setup lang='ts'>
-import { FrontEndRoutes } from '@/types/enum_routes';
+import { FrontEndRoutes } from '@/types/const_routes';
 
 const structured_link = (): string =>{
 	return `${FrontEndRoutes.DOCUMENTATION}#structured-data`;
@@ -105,13 +106,13 @@ const limit_ws = [
 		name: 'pro',
 		value: 300,
 		class: 'text-primary'
-	},
+	}
 ];
 
 defineProps<{
-	address_token: string,
-	address_wss_client: string,
-	address_wss_pi: string,
+	address_token: string;
+	address_wss_client: string;
+	address_wss_pi: string;
 }>();
 
 </script>

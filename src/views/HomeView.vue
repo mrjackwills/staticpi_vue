@@ -152,7 +152,7 @@
 </template>
 
 <script setup lang='ts'>
-import { FrontEndRoutes } from '@/types/enum_routes';
+import { FrontEndRoutes } from '@/types/const_routes';
 import { mdiAccountPlus, mdiChevronDoubleDown } from '@mdi/js';
 import { useDisplay } from 'vuetify';
 

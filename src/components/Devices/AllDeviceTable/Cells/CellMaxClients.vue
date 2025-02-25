@@ -73,15 +73,15 @@ const buttons = computed((): Array<TDeviceTableFields> => {
 		{
 			click: clear,
 			color: 'pi',
-			icon: mdiClose,
+			icon: mdiClose
 		},
 		{
 			class: disabled.value ? '' : 'heartbeat',
 			click: updateMaxClients,
 			color: 'primary',
 			disabled: disabled.value,
-			icon: mdiContentSave,
-		},
+			icon: mdiContentSave
+		}
 	];
 });
 
@@ -131,7 +131,7 @@ const changeOutFocus = (): void => {
 	inFocus.value = false;
 };
 const clear = (): void => {
-	new_value.value= current_value.value;
+	new_value.value = current_value.value;
 	inFocus.value = false;
 };
 const onIntersect = (is_i: boolean, _entries: Array<IntersectionObserverEntry>, _observer: IntersectionObserver): void => {
@@ -140,9 +140,16 @@ const onIntersect = (is_i: boolean, _entries: Array<IntersectionObserverEntry>, 
 const emit = defineEmits([ 'refresh' ]);
 const update_maxClients_confirm = async (authentication?: TAuthObject): Promise<void> => {
 	loading.value = true;
-	const response = await axios_device.maxClients_patch({ maxClients: new_value.value, name: name_of_device.value, authentication });
+	const response = await axios_device.maxClients_patch({
+		maxClients: new_value.value,
+		name: name_of_device.value,
+		authentication 
+	});
 	loading.value = false;
-	if (response) snackSuccess({ message: `${name_of_device.value}: max clients changed to ${new_value.value}`, icon: mdiContentSave });
+	if (response) snackSuccess({
+		message: `${name_of_device.value}: max clients changed to ${new_value.value}`,
+		icon: mdiContentSave 
+	});
 	emit('refresh');
 	changeOutFocus();
 	errorMessage.value = '';
@@ -158,11 +165,11 @@ const updateMaxClients = (): void => {
 		confirmMethod: update_maxClients_confirm,
 		icon: '',
 		twoFABackup: false,
-		twoFARequired: false,
+		twoFARequired: false
 	});
 };
 
-const props = defineProps<{device: TDeviceInfo}>();
+const props = defineProps<{ device: TDeviceInfo }>();
 
 watch(new_value, (i) => {
 	if (!upperLimit.value) return;
@@ -171,19 +178,17 @@ watch(new_value, (i) => {
 		error.value = true;
 		errorMessage.value = 'Invalid number';
 		return;
-	}
-	else if (num > upperLimit.value) {
+	} else if (num > upperLimit.value) {
 		error.value = true;
 		errorMessage.value = `${upperLimit.value} upper limit`;
 		return;
-	}
-	else {
+	} else {
 		error.value = false;
 		if (num !== current_value.value) {
 			errorMessage.value = 'max clients not saved';
 			return;
 		}
-		errorMessage.value ='';
+		errorMessage.value = '';
 	}
 });
 watch(paused, (i: boolean): void => {

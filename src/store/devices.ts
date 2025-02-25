@@ -1,6 +1,6 @@
 
 import { defineStore } from 'pinia';
-import { ModuleName } from '@/types/enum_module';
+import { ModuleName } from '@/types/const_module';
 import type { TDeviceInfo, TLimits } from '@/types';
 
 export const deviceModule = defineStore(ModuleName.DEVICES, {
@@ -23,7 +23,7 @@ export const deviceModule = defineStore(ModuleName.DEVICES, {
 			return (x: string): string => {
 				const index = state.all.findIndex((i) => i.name_of_device === x);
 				const device = state.all[index];
-				return device? device.api_key : '';
+				return device ? device.api_key : '';
 			};
 		},
 
@@ -31,7 +31,7 @@ export const deviceModule = defineStore(ModuleName.DEVICES, {
 			return (x: string): number => {
 				const index = state.rate_limit.findIndex((i) => i.name_of_device === x);
 				const device = state.rate_limit[index];
-				return device? device.ttl : 0;
+				return device ? device.ttl : 0;
 			};
 		},
 		
@@ -44,7 +44,7 @@ export const deviceModule = defineStore(ModuleName.DEVICES, {
 				const output = state.all.findIndex((i) => i.name_of_device === x);
 				return output >= 0;
 			};
-		},
+		}
 
 	},
 
@@ -63,6 +63,6 @@ export const deviceModule = defineStore(ModuleName.DEVICES, {
 		},
 		set_timestamp (): void {
 			this.timestamp = new Date();
-		},
+		}
 	}
 });

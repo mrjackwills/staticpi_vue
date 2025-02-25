@@ -71,5 +71,5 @@ const data = computed(() => {
 	];
 });
 
-const props = defineProps<{memory: TAdminMemory}>();
+const props = defineProps<{ memory: TAdminMemory }>();
 </script>

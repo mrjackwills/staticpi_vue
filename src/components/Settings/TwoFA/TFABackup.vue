@@ -2,7 +2,8 @@
 	<section>
 		<v-row align='center' justify='center' class='ma-0 pa-0' v-if='!backup && !backupProcess'>
 			<v-col cols='12' class='pa-0 mb-4'>
-				Backups enable a user to login to their account in situations where their Two-Factor Authentication app is unavailable. Each backup code can only be used once, and must be safely stored by the user.
+				Backups enable a user to login to their account in situations where their Two-Factor Authentication app is unavailable.
+				Each backup code can only be used once, and must be safely stored by the user.
 				<br>
 				<br>
 				All backup tokens are salted and hashed before being written to the database. This means that lost backup tokens cannot be retrieved by <StaticPi />.
@@ -114,7 +115,7 @@
 
 import { axios_authenticatedUser } from '@/services/axios';
 import { dialoger } from '@/services/dialog';
-import { mdiClose, mdiContentCopy, mdiDownload, mdiShieldKey, mdiShieldRefresh, } from '@mdi/js';
+import { mdiClose, mdiContentCopy, mdiDownload, mdiShieldKey, mdiShieldRefresh } from '@mdi/js';
 import { snackSuccess } from '@/services/snack';
 import { useClipboard } from '@vueuse/core';
 import { useDisplay } from 'vuetify';
@@ -123,7 +124,7 @@ import type { TAuthObject } from '@/types';
 const settingsSectionStore = settingSectionModule();
 onBeforeUnmount(() => {
 	clearTimeout(showTooltipTimeout.value);
-	showTooltipTimeout.value =0;
+	showTooltipTimeout.value = 0;
 	backupProcess.value = false;
 
 });
@@ -165,7 +166,7 @@ const loading = computed({
 	}
 });
 
-const backupArray: Ref<undefined|Array<string>> = ref(undefined);
+const backupArray: Ref<undefined | Array<string>> = ref(undefined);
 const localLoading = ref(false);
 const showTooltipTimeout = ref(0);
 const showTooltip = ref(true);
@@ -174,7 +175,7 @@ const backupArrayIndexPlusFive = (index: number): string => {
 	if (!backupArray.value) return 'ERROR';
 	const i = index + 5;
 	const indexed = backupArray.value[i];
-	return indexed ? indexed: 'error' ;
+	return indexed ? indexed : 'error';
 };
 
 const backupCodes = (): string => {
@@ -189,6 +190,7 @@ const close = (): void => {
 	backupProcess.value = false;
 	backupArray.value = undefined;
 };
+
 /**
  ** Copy the 2fa codes, create multi-line string with description as first line
  */
@@ -226,7 +228,7 @@ const generateBackups = async (): Promise<void> => {
 			confirmMethod: re_generateBackups_confirm,
 			icon: '',
 			twoFABackup: true,
-			twoFARequired: true,
+			twoFARequired: true
 		});
 	} else {
 		generateBackups_confirm();
@@ -250,6 +252,7 @@ const re_generateBackups_confirm = async (authentication: TAuthObject): Promise<
 	loading.value = false;
 	localLoading.value = false;
 };
+
 /**
  ** Post request to generate new backup tokens
  */

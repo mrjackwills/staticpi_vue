@@ -39,7 +39,7 @@ const backupProcess = computed((): boolean => {
 	return twoFAModule().backupProcess;
 });
 const icon = computed((): string => {
-	return props.active ? mdiCheckCircle: mdiAlertCircle;
+	return props.active ? mdiCheckCircle : mdiAlertCircle;
 });
 const iconColor = computed((): string => {
 	return props.active ? 'primary' : 'error';
@@ -59,5 +59,8 @@ const click = (): void => {
 	emit('click');
 };
 
-const props = defineProps<{active: boolean, text: string}>();
+const props = defineProps<{
+	active: boolean;
+	text: string; 
+}>();
 </script>

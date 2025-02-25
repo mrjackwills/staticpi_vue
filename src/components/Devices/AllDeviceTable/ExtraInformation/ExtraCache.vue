@@ -59,7 +59,7 @@ const loading = computed({
 	}
 });
 const cache = ref('');
-const props = defineProps<{device: TDeviceInfo}>();
+const props = defineProps<{ device: TDeviceInfo }>();
 const local_loading = ref(false);
 
 const hide = ref(true);
@@ -85,18 +85,24 @@ const delete_cache = (): void => {
 		confirmMethod: delete_cache_confirm,
 		passwordrequired: true,
 		twoFABackup: false,
-		twoFARequired: false,
+		twoFARequired: false
 	});
 };
 
 const delete_cache_confirm = async (authentication: TAuthObject): Promise<void> => {
 	loading.value = true;
 	local_loading.value = true;
-	const response = await axios_device.cache_delete({ authentication, name: props.device.name_of_device });
+	const response = await axios_device.cache_delete({
+		authentication,
+		name: props.device.name_of_device 
+	});
 	loading.value = false;
 	local_loading.value = false;
 	if (response) {
-		snackSuccess({ message: `"${props.device.name_of_device}" message cache deleted`, icon: mdiDelete });
+		snackSuccess({
+			message: `"${props.device.name_of_device}" message cache deleted`,
+			icon: mdiDelete 
+		});
 		await check_cache();
 	}
 };

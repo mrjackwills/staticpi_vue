@@ -12,7 +12,7 @@
 <script setup lang='ts'>
 import { axios_device } from '@/services/axios';
 import { dialoger } from '@/services/dialog';
-import { mdiDelete, } from '@mdi/js';
+import { mdiDelete } from '@mdi/js';
 import type { TAuthObject } from '@/types';
 
 const emit = defineEmits([ 'refresh' ]);
@@ -32,7 +32,7 @@ const deleteAll = async (): Promise<void> => {
 		twoFABackup: true,
 		icon: '',
 		confirmMethod: deleteAll_confirm,
-		twoFARequired: false,
+		twoFARequired: false
 	});
 };
 

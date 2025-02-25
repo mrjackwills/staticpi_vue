@@ -62,11 +62,15 @@ const highlighted_code = computed((): string => {
 	return prism.highlight(props.code, prism.languages.js, 'js').trim();
 });
 
-const codeIcons= [ '#ff5f56', '#ffbd2e', '#27c93f' ];
+const codeIcons = [ '#ff5f56', '#ffbd2e', '#27c93f' ];
 
-const props = withDefaults(defineProps<{code: string, filename?: string, titleBar?: boolean}>(), {
+const props = withDefaults(defineProps<{
+	code: string;
+	filename?: string;
+	titleBar?: boolean; 
+}>(), {
 	filename: '',
-	titleBar: true,
+	titleBar: true
 });
 
 </script>

@@ -116,7 +116,7 @@
 
 <script setup lang='ts'>
 import { axios_device } from '@/services/axios';
-import { FrontEndRoutes } from '@/types/enum_routes';
+import { FrontEndRoutes } from '@/types/const_routes';
 import { mdiRouterWirelessSettings } from '@mdi/js';
 import { useDisplay } from 'vuetify';
 
@@ -132,13 +132,13 @@ onBeforeMount(async ()=> {
 	if (authenticated.value) await axios_device.deviceAll_get();
 });
 
-const authenticated = computed(():boolean => {
+const authenticated = computed((): boolean => {
 	return userModule().authenticated;
 });
 
 const apiKey = computed((): string => {
 	const data = deviceStore.get_api_key(deviceSelected.value);
-	return data ? data: 'EXAMPLE_API_KEY';
+	return data ? data : 'EXAMPLE_API_KEY';
 });
 const device_name = computed((): Array<string> => {
 	return deviceStore.device_names;
@@ -179,7 +179,7 @@ const links = [
 	{
 		id: 'examples',
 		display: 'examples'
-	},
+	}
 ] as const;
 
 const createLink = (section: 'connect' | 'connect-with-password' | 'rate-limits' | 'structured-data' | 'binary-data' | 'examples'): string => {

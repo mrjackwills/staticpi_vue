@@ -1,6 +1,6 @@
 import { axios_admin, axios_authenticatedUser, axios_incognito } from '@/services/axios';
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
-import { FrontEndNames, FrontEndRoutes } from '@/types/enum_routes';
+import { FrontEndNames, FrontEndRoutes } from '@/types/const_routes';
 import { snackError, snackSuccess } from '@/services/snack';
 import EmptyComponent from '@/components/EmptyComponent.vue';
 import Home from '@/views/HomeView.vue';
@@ -30,14 +30,18 @@ const adminRoutes: Array<RouteRecordRaw> = [
 		path: FrontEndRoutes.ADMIN,
 		name: FrontEndNames.ADMIN,
 		component: () => import('@/views/Admin/AdminView.vue')
-	},
+	}
 ];
 
 for (const route of adminRoutes) {
-	route.beforeEnter = async (to, _from, next): Promise<void> => {
+	route.beforeEnter = async (_to, _from, next): Promise<void> => {
 		await init_check();
 		const isAdmin = userModule().isAdminUser;
-		isAdmin ? next(): next(FrontEndRoutes.BASE);
+		if (isAdmin) {
+			next();
+		} else {
+			next(FrontEndRoutes.BASE);
+		}
 	};
 }
 
@@ -52,7 +56,7 @@ const authenticatedRoutes: Array<RouteRecordRaw> = [
 		path: FrontEndRoutes.USER_DEVICES,
 		name: FrontEndNames.USER_DEVICES,
 		component: () => import('@/views/Authenticated/DevicesView.vue')
-	},
+	}
 
 ];
 
@@ -64,8 +68,7 @@ for (const route of authenticatedRoutes) {
 		if (!isAuthenticated) {
 			browser_store.set_redirect(to.path);
 			next(FrontEndRoutes.LOGIN);
-		}
-		else next();
+		} else next();
 	};
 }
 
@@ -114,6 +117,7 @@ const hexRoutes: Array<RouteRecordRaw> = [
 		}
 	},
 	{
+
 		/** Verify user after successful register - componentless */
 		path: FrontEndRoutes.VERIFY_param_ID,
 		name: FrontEndNames.USER_VERIFY_param_ID,
@@ -130,7 +134,10 @@ const hexRoutes: Array<RouteRecordRaw> = [
 					const success = await axios_incognito.verify_get(String(to.params.id));
 					if (success) {
 						next(FrontEndRoutes.LOGIN);
-						snackSuccess({ message: 'Verified, please sign in to continue', timeout: 15000 });
+						snackSuccess({
+							message: 'Verified, please sign in to continue',
+							timeout: 15000 
+						});
 						loadingModule().set_loading(false);
 						return;
 					}
@@ -139,7 +146,7 @@ const hexRoutes: Array<RouteRecordRaw> = [
 				next(FrontEndRoutes.BASE);
 			}
 		}
-	},
+	}
 ];
 
 /** Routes only available to none authenticated users */
@@ -164,14 +171,18 @@ const notAuthenticatedRoutes: Array<RouteRecordRaw> = [
 		path: FrontEndRoutes.REGISTER,
 		name: FrontEndNames.REGISTER,
 		component: () => import('@/views/NotAuthenticated/RegisterView.vue')
-	},
+	}
 
 ];
 
 for (const route of notAuthenticatedRoutes) {
 	route.beforeEnter = async (_to, _from, next): Promise<void> => {
 		await init_check();
-		userModule().authenticated ? next(FrontEndRoutes.BASE) : next();
+		if (userModule().authenticated) {
+			next(FrontEndRoutes.BASE);
+		} else {
+			next();
+		} 
 	};
 }
 
@@ -180,12 +191,12 @@ const baseRoutes: Array<RouteRecordRaw> = [
 	{
 		path: FrontEndRoutes.BASE,
 		name: FrontEndNames.HOME,
-		component: Home,
+		component: Home
 	},
 	{
 		path: FrontEndRoutes.ERROR,
 		name: FrontEndNames.ERROR,
-		component: () => import('@/views/ErrorView.vue'),
+		component: () => import('@/views/ErrorView.vue')
 	},
 	{
 		path: FrontEndRoutes.STATUS,
@@ -215,8 +226,8 @@ const baseRoutes: Array<RouteRecordRaw> = [
 	},
 	{
 		path: FrontEndRoutes.CATCH_ALL,
-		redirect: { name: 'error' },
-	},
+		redirect: { name: 'error' }
+	}
 ];
 
 for (const route of baseRoutes) {
@@ -238,13 +249,12 @@ const router = createRouter({
 	scrollBehavior (to, from, savedPosition) {
 		if (savedPosition) {
 			return savedPosition;
-		}
-		else if (to.hash) {
+		} else if (to.hash) {
 			return {
 				el: to.hash,
 				behavior: 'smooth',
 				// this is to counter the height of the app bar, if on mobile!
-				top: 76,
+				top: 76
 			};
 		/// Settings page amends url, so need to skip scrolling if both to & from are in the same page!
 		} else if (to.name?.toString() !== from.name?.toString()) {

@@ -53,7 +53,7 @@
 </template>
 
 <script setup lang='ts'>
-import { FrontEndRoutes } from '@/types/enum_routes';
+import { FrontEndRoutes } from '@/types/const_routes';
 import { mdiDragHorizontalVariant, mdiInfinity, mdiCheck, mdiMinus } from '@mdi/js';
 import { useDisplay } from 'vuetify';
 
@@ -74,7 +74,11 @@ const priceSize = computed((): string => {
 	return mdAndUp.value ? 'text-h3' : 'text-h5';
 });
 
-const sorted_details: Ref<Array<{icon: number, description: string, detail: string}>> = ref([]);
+const sorted_details: Ref<Array<{
+	icon: number;
+	description: string;
+	detail: string; 
+}>> = ref([]);
 
 const icon = (icon: number): string => {
 	return icon === 0 ? mdiMinus : icon === 1 ? mdiDragHorizontalVariant : icon === 2 ? mdiCheck : mdiInfinity;
@@ -85,33 +89,35 @@ const color = (icon: number): string => {
 const tooltipText = (description: string): string => {
 	if (!description) return '!error';
 	switch (description) {
-	case 'client connections':
-		return 'Number of clients that are able to connect to each pi';
-	case 'device names':
-		return 'Customise the name of your pi';
-	case 'max devices':
-		return 'Max number of different devices per account';
-	case 'message size':
-		return 'Max size for each message';
-	case 'rate limit':
-		return 'Max number of message that can be sent, or received, to the device';
-	default:
-		return 'Set up email alters on specific device actions, e.g. on connection';
+		case 'client connections':
+			return 'Number of clients that are able to connect to each pi';
+		case 'device names':
+			return 'Customise the name of your pi';
+		case 'max devices':
+			return 'Max number of different devices per account';
+		case 'message size':
+			return 'Max size for each message';
+		case 'rate limit':
+			return 'Max number of message that can be sent, or received, to the device';
+		default:
+			return 'Set up email alters on specific device actions, e.g. on connection';
 	}
 };
 onMounted(() => {
 	sorted_details.value = [ ...props.details ];
 
 });
-type TDetails = {icon: number, description: string, detail: string}
+type TDetails = {
+	icon: number;
+	description: string;
+	detail: string; 
+};
 
 const props = withDefaults(defineProps<{
-	heading: string,
-	price: string,
-	perMonth: boolean,
-	details: Array<TDetails>
-}>(), {
-	perMonth: false,
-});
+	heading: string;
+	price: string;
+	perMonth: boolean;
+	details: Array<TDetails>;
+}>(), { perMonth: false });
 
 </script>

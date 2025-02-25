@@ -82,7 +82,7 @@ const deleteAccount = async (): Promise<void> => {
 		confirmMethod: deleteAccount_confirm,
 		passwordrequired: true,
 		twoFABackup: true,
-		twoFARequired: true,
+		twoFARequired: true
 	});
 
 };

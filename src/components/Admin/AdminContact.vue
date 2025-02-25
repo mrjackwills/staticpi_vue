@@ -67,8 +67,8 @@ import type { TAdminContactMessage } from '@/types';
 
 const emit = defineEmits([ 'update' ]);
 
-const text_color = (x: number|null) : string => {
-	return x? 'text-primary':'text-pi';
+const text_color = (x: number | null): string => {
+	return x ? 'text-primary' : 'text-pi';
 };
 
 const delete_message = async (contact_id: number): Promise<void> => {
@@ -78,6 +78,6 @@ const delete_message = async (contact_id: number): Promise<void> => {
 	emit('update');
 };
 
-const props = defineProps<{contact_messages: Array<TAdminContactMessage>}>();
+const props = defineProps<{ contact_messages: Array<TAdminContactMessage> }>();
 
 </script>

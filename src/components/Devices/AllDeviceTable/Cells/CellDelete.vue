@@ -52,21 +52,27 @@ const deleteDevice = async (): Promise<void> => {
 		confirmMethod: deleteDevice_confirm,
 		passwordrequired: true,
 		twoFABackup: true,
-		twoFARequired: false,
+		twoFARequired: false
 	});
 
 };
 const deleteDevice_confirm = async (authentication: TAuthObject): Promise<void> => {
 	loading.value = true;
-	const response = await axios_device.named_delete({ name: name_of_device.value, authentication });
+	const response = await axios_device.named_delete({
+		name: name_of_device.value,
+		authentication 
+	});
 	loading.value = false;
 	if (response) {
-		snackSuccess({ message: `Deleted "${name_of_device.value}"`, icon: mdiDeleteCircle });
+		snackSuccess({
+			message: `Deleted "${name_of_device.value}"`,
+			icon: mdiDeleteCircle 
+		});
 		emit('refresh');
 	}
 };
 
 const emit = defineEmits([ 'refresh' ]);
 
-const props = defineProps<{device: TDeviceInfo}>();
+const props = defineProps<{ device: TDeviceInfo }>();
 </script>

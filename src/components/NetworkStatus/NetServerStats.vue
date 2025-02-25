@@ -91,7 +91,7 @@ const servers = ref([
 		loading: false,
 		api_version: '',
 		uptime: ''
-	},
+	}
 
 ]);
 
@@ -108,41 +108,41 @@ const convertTime = (data: string): string => {
 
 const wsParser = (input: string): void => {
 	try {
-		let parsed = parse(input);
+		const parsed = parse(input);
 		const serverIndex = servers.value.findIndex((i) => i.description === 'wss');
 		const serverEntry = servers.value[serverIndex];
 		if (!serverEntry) return;
 		serverEntry.api_version = parsed.api_version;
 		serverEntry.uptime = convertTime(parsed.uptime);
-	} catch (e) {
+	} catch (_e) {
 		return;
 	}
 };
 
-const updateServerStatus = async (server: 'api'|'token'|'website'): Promise<void> => {
+const updateServerStatus = async (server: 'api' | 'token' | 'website'): Promise<void> => {
 	const serverIndex = servers.value.findIndex((i) => i.description === server);
 	const serverEntry = servers.value[serverIndex];
 	if (!serverEntry) return;
 	serverEntry.loading = true;
 	switch (server) {
-	case 'api':
-	case 'token': {
-		const response = server === 'api' ? await axios_incognito.online_get(): await axios_ws.online();
-		if (response) {
-			serverEntry.api_version = response.api_version;
-			serverEntry.status = true;
-			serverEntry.uptime = convertTime(response.uptime);
+		case 'api':
+		case 'token': {
+			const response = server === 'api' ? await axios_incognito.online_get() : await axios_ws.online();
+			if (response) {
+				serverEntry.api_version = response.api_version;
+				serverEntry.status = true;
+				serverEntry.uptime = convertTime(response.uptime);
+			}
+			break;
 		}
-		break;
-	}
-	case 'website' : {
-		const response = await axios_site_status.manifest_online();
-		if (response) {
-			serverEntry.api_version = response;
-			serverEntry.status = true;
+		case 'website' : {
+			const response = await axios_site_status.manifest_online();
+			if (response) {
+				serverEntry.api_version = response;
+				serverEntry.status = true;
+			}
+			break;
 		}
-		break;
-	}
 	}
 	serverEntry.loading = false;
 	serverEntry.updateTime = new Date().toLocaleString();
@@ -158,14 +158,14 @@ const checkWssServer = (): void => {
 	checkSocket.addEventListener('error', (_event) => {
 		serverEntry.status = false;
 		serverEntry.loading = false;
-		serverEntry.updateTime = new Date().toLocaleString(),
+		serverEntry.updateTime = new Date().toLocaleString();
 		checkSocket.close();
 	});
 	checkSocket.addEventListener('message', (event) => {
 		wsParser(event.data);
 		serverEntry.status = true;
 		serverEntry.loading = false;
-		serverEntry.updateTime = new Date().toLocaleString(),
+		serverEntry.updateTime = new Date().toLocaleString();
 		checkSocket.close();
 	});
 

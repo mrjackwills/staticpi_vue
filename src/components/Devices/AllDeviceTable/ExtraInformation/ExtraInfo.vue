@@ -35,7 +35,8 @@
 						</v-col>
 				
 						<v-col cols='11' md='4' class='ma-0 pa-0' :order='orderClient'>
-							<ExtraConnectedTable :class='{"pl-6": !smAndDown}' :online='connectedClients.length > 0' v-model:tableRows='connectedClients' :is_device='false' @hidden='handleHidden($event, 1)'  />
+							<ExtraConnectedTable :class='{"pl-6": !smAndDown}' 
+								:online='connectedClients.length > 0' v-model:tableRows='connectedClients' :is_device='false' @hidden='handleHidden($event, 1)'  />
 						</v-col>
 
 						<v-col cols='11' :md='singleRow?"4":"8"' class='ma-0 pa-0' :order='orderBandwidth'>
@@ -126,10 +127,10 @@ const onlineColor = computed((): string => {
 	return deviceOnline.value ? 'text-primary' : 'text-pi';
 });
 const orderBandwidth = computed((): string => {
-	return smAndDown.value ? '1' : singleRow.value ? '2': '3';
+	return smAndDown.value ? '1' : singleRow.value ? '2' : '3';
 });
 const orderClient = computed((): string => {
-	return singleRow.value ? '3': '3';
+	return singleRow.value ? '3' : '3';
 });
 const orderDevice = computed((): string => {
 	return smAndDown.value ? '2' : '1';
@@ -157,7 +158,7 @@ const clear = (): void => {
 	init.value = false;
 	clearInterval(refreshInterval.value);
 };
-const handleHidden = (value: boolean, index: 0|1|2): void => {
+const handleHidden = (value: boolean, index: 0 | 1 | 2): void => {
 	hidden.value[index] = value;
 	if (!hidden.value.includes(false)) singleRow.value = true;
 	else singleRow.value = false;
@@ -177,18 +178,17 @@ const updateExtraInfo = async (): Promise<void> => {
 	init.value = true;
 };
 
-const props = defineProps<{device: TDeviceInfo}>();
+const props = defineProps<{ device: TDeviceInfo }>();
 
 watch(isIntersecting, async (i) => {
 	if (i) {
 		refresh();
 		updateExtraInfo();
 		refreshInterval.value = setInterval(() => updateExtraInfo(), 10000);
-	}
-	else clear();
-},
+	} else clear();
+}
 );
-watch(paused, (i:boolean): void => {
+watch(paused, (i: boolean): void => {
 	if (i) emit('emitClose');
 });
 

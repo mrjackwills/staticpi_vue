@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang='ts'>
-import { FrontEndRoutes } from '@/types/enum_routes';
+import { FrontEndRoutes } from '@/types/const_routes';
 import { mdiArrowLeft } from '@mdi/js';
 
 const router = useRouter();
@@ -22,5 +22,5 @@ const goBack = (): void => {
 	else router.push(FrontEndRoutes.BASE);
 };
 
-withDefaults(defineProps<{disabled?: boolean}>(), { disabled: false });
+withDefaults(defineProps<{ disabled?: boolean }>(), { disabled: false });
 </script>

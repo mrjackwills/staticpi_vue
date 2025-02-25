@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia';
-import { FrontEndRoutes } from '@/types/enum_routes';
+import { FrontEndRoutes } from '@/types/const_routes';
 import { getActivePinia } from 'pinia';
-import { ModuleName } from '@/types/enum_module';
-import { UserLevel } from '@/types/enum_userLevel';
+import { ModuleName } from '@/types/const_module';
+import { UserLevel } from '@/types/const_userLevel';
 
 export const userModule = defineStore(ModuleName.USER, {
 
@@ -15,7 +15,7 @@ export const userModule = defineStore(ModuleName.USER, {
 		maxMessageSize: 0,
 		maxDevices: 0,
 		timestamp: undefined as undefined | string,
-		userLevel: UserLevel.FREE,
+		userLevel: UserLevel.FREE as UserLevel
 	}),
 
 	getters: {
@@ -30,7 +30,7 @@ export const userModule = defineStore(ModuleName.USER, {
 		},
 		isProOrAdminUser (): boolean {
 			return this.isProUser || this.isAdminUser;
-		},
+		}
 	},
 
 	actions: {
@@ -62,7 +62,7 @@ export const userModule = defineStore(ModuleName.USER, {
 			this.maxMessageSize = x;
 		},
 
-		set_timestamp (x: string|undefined): void {
+		set_timestamp (x: string | undefined): void {
 			this.timestamp = x;
 		},
 
@@ -86,6 +86,6 @@ export const userModule = defineStore(ModuleName.USER, {
 
 	persist: {
 		storage: localStorage,
-		pick: [ 'authenticated' ],
-	},
+		pick: [ 'authenticated' ]
+	}
 });

@@ -1,17 +1,17 @@
-import { HttpCode } from '@/types/enum_http';
+import { HttpCode } from '@/types/const_http';
 import { snackError } from './snack';
-import { UserLevel } from '@/types/enum_userLevel';
+import { UserLevel } from '@/types/const_userLevel';
 import type * as types from '@/types';
 import Axios, { type AxiosInstance, AxiosError } from 'axios';
 import { env } from '@/vanillaTS/env';
 
-type ErrorData = {data: { response: string } }
+type ErrorData = { data: { response: string } };
 
-type AxiosClasses = AdminUser | AuthenticatedUser | Incognito | Device | SiteStatus | AxiosWs
+type AxiosClasses = AdminUser | AuthenticatedUser | Incognito | Device | SiteStatus | AxiosWs;
 
 // Allow for longer timeouts when in debug mode
 const get_timeout = (): number => {
-	return env.mode_production? 7000 : 70000;
+	return env.mode_production ? 7000 : 70000;
 };
 
 const isAuthenticated = <T> () => {
@@ -23,8 +23,7 @@ const isAuthenticated = <T> () => {
 			if (authenticated) {
 				const result = await original.call(this, t);
 				return result;
-			}
-			else snackError({ message: 'Invalid Authentication' });
+			} else snackError({ message: 'Invalid Authentication' });
 			return;
 		};
 	};
@@ -39,8 +38,7 @@ const isNotAuthenticated = <T> () => {
 			if (!authenticated) {
 				const result = await original.call(this, t);
 				return result;
-			}
-			else snackError({ message: 'Invalid Authentication' });
+			} else snackError({ message: 'Invalid Authentication' });
 			return;
 		};
 	};
@@ -53,8 +51,7 @@ const isAdmin = <T> () => {
 			if (userModule().isAdminUser) {
 				const result = await original.call(this, t);
 				return result;
-			}
-			else snackError({ message: 'Invalid Authentication' });
+			} else snackError({ message: 'Invalid Authentication' });
 			return;
 		};
 	};
@@ -69,14 +66,13 @@ const AllowedUsers = <T> (allowedUsers: Array<UserLevel>) => {
 			if (userLevel && allowedUsers.includes(userLevel)) {
 				const result = await original.call(this, t);
 				return result;
-			}
-			else snackError({ message: `Not available to ${userLevel?? 'unregistered'} users` });
+			} else snackError({ message: `Not available to ${userLevel ?? 'unregistered'} users` });
 			return;
 		};
 	};
 };
 
-const wrap= <T>() => function (_target: AxiosClasses, propertyKey: string, descriptor: PropertyDescriptor): void {
+const wrap = <T>() => function (_target: AxiosClasses, propertyKey: string, descriptor: PropertyDescriptor): void {
 		
 	const original = descriptor.value;
 	descriptor.value = async function (args: T): Promise<unknown> {
@@ -87,31 +83,31 @@ const wrap= <T>() => function (_target: AxiosClasses, propertyKey: string, descr
 			return result;
 		} catch (err) {
 			browserModule().set_init(true);
-			const e = <AxiosError>err;
+			const e = err as AxiosError;
 			if (e.message === 'offline' && propertyKey !== 'online') {
 				if (browser_store.online) {
 					snackError({ message: 'Server offline' });
 					browser_store.set_online(false);
 				}
+			// eslint-disable-next-line @stylistic/ts/brace-style
 			}
+
 			// This is a branch for the server status checker, maybe change name from online to serverStatus
 			// the api propertyKey is online_get, so this has different effect from the ws and site online method
 			else if (propertyKey === 'online') return false;
 			else if (e.response?.status === HttpCode.FORBIDDEN) {
-				const p = <ErrorData>e.response;
+				const p = e.response as ErrorData;
 				const authenticated = user_store.authenticated;
 				const message = authenticated ? 'You have been signed out' : p?.data?.response;
 				if (authenticated) {
 					await user_store.clientSideSignout();
 				}
 				snackError({ message });
-			}
-			else if (e.response?.status === HttpCode.TOO_MANY_REQUESTS) {
-				const p = <ErrorData>e.response;
+			} else if (e.response?.status === HttpCode.TOO_MANY_REQUESTS) {
+				const p = e.response as ErrorData;
 				snackError({ message: p.data.response });
-			}
-			else {
-				const p = <ErrorData>e?.response;
+			} else {
+				const p = e?.response as ErrorData;
 				const eeee = p.data?.response ?? 'Unable to access server';
 				snackError({ message: eeee });
 			}
@@ -129,10 +125,10 @@ class BaseAxios {
 			withCredentials: true,
 			timeout: get_timeout(),
 			headers: {
-				'Accept': 'application/json',
+				Accept: 'application/json',
 				'Content-Type': 'application/json; charset=utf-8',
 				'Cache-control': 'no-cache'
-			},
+			}
 		});
 
 		this.baseAxios.interceptors.response.use(
@@ -144,13 +140,13 @@ class BaseAxios {
 
 class Incognito extends BaseAxios {
 
-	constructor (url: string) {
-		super(url);
-	}
+	// constructor (url: string) {
+	// 	super(url);
+	// }
 	
 	@wrap<string>()
 	@isNotAuthenticated()
-	async forgot_post (email: string): Promise<string|undefined> {
+	async forgot_post (email: string): Promise<string | undefined> {
 		const response = await this.baseAxios.post(`/reset`, { email });
 		return response?.data?.response;
 	}
@@ -188,14 +184,20 @@ class Incognito extends BaseAxios {
 	@wrap<types.TPasswordPatch>()
 	@isNotAuthenticated()
 	async reset_patch ({ resetId, password, token }: types.TPasswordPatch): Promise<boolean> {
-		await this.baseAxios.patch(`/reset/${resetId}`, { password, token });
+		await this.baseAxios.patch(`/reset/${resetId}`, {
+			password,
+			token 
+		});
 		return true;
 	}
 
 	@wrap<types.TSignin>()
 	async signin_post (authObject: types.TSignin): Promise<types.TSigninResponse> {
 		const response = await this.baseAxios.post(`/signin`, authObject);
-		return { response: response.data.response, status: response.status };
+		return {
+			response: response.data.response,
+			status: response.status as HttpCode
+		};
 	}
 
 	@wrap()
@@ -214,9 +216,9 @@ class Incognito extends BaseAxios {
 
 class AdminUser extends BaseAxios {
 
-	constructor (url: string) {
-		super(url);
-	}
+	// constructor (url: string) {
+	// 	super(url);
+	// }
 	
 	@wrap()
 	@isAuthenticated()
@@ -312,6 +314,7 @@ class AdminUser extends BaseAxios {
 		const response = await this.baseAxios.get('/users');
 		return response.data.response;
 	}
+
 	@wrap()
 	@isAdmin()
 	async user_connections_get (email: string): Promise<Array<types.AdminDeviceAndConnections>> {
@@ -335,30 +338,43 @@ class AdminUser extends BaseAxios {
 	@wrap()
 	@isAdmin()
 	async user_delete (data: types.TAdminUserDelete): Promise<boolean> {
-		await this.baseAxios.delete(`/user/${data.email}`, { data: { password: data.password, token: data.token } });
+		await this.baseAxios.delete(`/user/${data.email}`, {
+			data: {
+				password: data.password,
+				token: data.token 
+			} 
+		});
 		return true;
 	}
 
 	@wrap()
 	@isAdmin()
 	async device_delete (data: types.TAdminEmailDevice): Promise<boolean> {
-		await this.baseAxios.delete(`/user/${data.email}/device/${data.device_name}`, { data: { password: data.password, token: data.token } });
+		await this.baseAxios.delete(`/user/${data.email}/device/${data.device_name}`, {
+			data: {
+				password: data.password,
+				token: data.token 
+			} 
+		});
 		return true;
 	}
 
 	@wrap()
 	@isAdmin()
 	async device_pause_patch (data: types.TAdminEmailDevice): Promise<boolean> {
-		await this.baseAxios.patch(`/user/${data.email}/device/${data.device_name}`, { password: data.password, token: data.token });
+		await this.baseAxios.patch(`/user/${data.email}/device/${data.device_name}`, {
+			password: data.password,
+			token: data.token 
+		});
 		return true;
 	}
 }
 
 class AuthenticatedUser extends BaseAxios {
 
-	constructor (url: string) {
-		super(url);
-	}
+	// constructor (url: string) {
+	// 	super(url);
+	// }
 	
 	@wrap()
 	async signout_post (): Promise<void> {
@@ -492,9 +508,9 @@ class AuthenticatedUser extends BaseAxios {
 
 class Device extends BaseAxios {
 
-	constructor (url: string) {
-		super(url);
-	}
+	// constructor (url: string) {
+	// 	super(url);
+	// }
 
 	@wrap<types.TAuthObject>()
 	@isAuthenticated<types.TAuthObject>()
@@ -532,13 +548,18 @@ class Device extends BaseAxios {
 	@isAuthenticated<types.TDeviceNamedDelete>()
 	async named_delete (data: types.TDeviceNamedDelete): Promise<boolean> {
 		if (!data.name) throw Error('No device name given');
-		await this.baseAxios.delete(`/${data.name}`, { data: { password: data.authentication.password, token: data.authentication.token } });
+		await this.baseAxios.delete(`/${data.name}`, {
+			data: {
+				password: data.authentication.password,
+				token: data.authentication.token 
+			} 
+		});
 		return true;
 	}
 
 	@wrap<types.TDeviceNamedGet>()
 	@isAuthenticated<types.TDeviceNamedGet>()
-	async named_get (data: types.TDeviceNamedGet): Promise<Array<types.TSelectConnectedClient>|undefined> {
+	async named_get (data: types.TDeviceNamedGet): Promise<Array<types.TSelectConnectedClient> | undefined> {
 		if (!data.name) throw Error('No device name given');
 		const response = await this.baseAxios.get(`/${data.name}`);
 		return response?.data?.response;
@@ -584,7 +605,10 @@ class Device extends BaseAxios {
 	@AllowedUsers<types.TDevicePasswordPatch>([ UserLevel.PRO, UserLevel.ADMIN ])
 	async password_patch (input: types.TDevicePasswordPatch): Promise<boolean> {
 		if (!input.name) throw Error('device name invalid');
-		await this.baseAxios.patch(`/${input.name}/password`, { device_password: input.device_password, client_password: input.client_password });
+		await this.baseAxios.patch(`/${input.name}/password`, {
+			device_password: input.device_password,
+			client_password: input.client_password 
+		});
 		return true;
 	}
 
@@ -627,10 +651,10 @@ class AxiosWs {
 			baseURL: wsAuthUrl,
 			withCredentials: false,
 			headers: {
-				'Accept': 'application/json',
+				Accept: 'application/json',
 				'Content-Type': 'application/json; charset=utf-8',
 				'Cache-control': 'no-cache'
-			},
+			}
 		});
 
 		this.axios_ws_token.interceptors.response.use(
@@ -647,12 +671,15 @@ class AxiosWs {
 	}
 	
 	@isAuthenticated<types.TWsAuth>()
-	async auth ({ key, password } : types.TWsAuth) : Promise<string|void> {
+	async auth ({ key, password }: types.TWsAuth): Promise<string | null> {
 		try {
-			const response = await this.axios_ws_token.post(`/client`, { key, password });
+			const response = await this.axios_ws_token.post(`/client`, {
+				key,
+				password 
+			});
 			return response.data?.response;
 		} catch {
-			return;
+			return null;
 		}
 	}
 
@@ -666,10 +693,10 @@ class SiteStatus {
 			baseURL: websiteUrl,
 			withCredentials: false,
 			headers: {
-				'Accept': 'application/json',
+				Accept: 'application/json',
 				'Content-Type': 'application/json; charset=utf-8',
 				'Cache-control': 'no-cache'
-			},
+			}
 		});
 
 		this.axios_website.interceptors.response.use(
@@ -683,7 +710,7 @@ class SiteStatus {
 		try {
 			const response = await this.axios_website.get(`/manifest.webmanifest`);
 			return response.data.id;
-		} catch (e) {
+		} catch (_e) {
 			return '';
 		}
 	}

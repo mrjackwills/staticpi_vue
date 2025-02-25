@@ -78,10 +78,10 @@ import type { AdminDeviceAndConnections, TAuthObject } from '@/types';
 import { useDisplay } from 'vuetify';
 
 const show_connections = ref(false);
-const connections_icon = computed(() => show_connections.value ? mdiChevronUp: mdiChevronDown);
-const connections_color = computed(() => show_connections.value ? 'pi' :'primary');
+const connections_icon = computed(() => show_connections.value ? mdiChevronUp : mdiChevronDown);
+const connections_color = computed(() => show_connections.value ? 'pi' : 'primary');
 
-const click_connections = () : void => {
+const click_connections = (): void => {
 	show_connections.value = !show_connections.value;
 };
 
@@ -97,11 +97,11 @@ const loading = computed({
 	}
 });
 
-const pause_icon = computed(() => props.device.device.paused? mdiPause: mdiPlay);
+const pause_icon = computed(() => props.device.device.paused ? mdiPause : mdiPlay);
 
 const tooltip = computed(() => props.device.device.paused ? 'un' : '');
 
-const bool_icon = (x: boolean): string => x? mdiCheck: mdiClose;
+const bool_icon = (x: boolean): string => x ? mdiCheck : mdiClose;
 
 const deleteDevice = async (): Promise<void> => {
 	dialoger({
@@ -112,22 +112,29 @@ const deleteDevice = async (): Promise<void> => {
 		confirmMethod: deleteDevice_confirm,
 		passwordrequired: true,
 		twoFABackup: true,
-		twoFARequired: true,
+		twoFARequired: true
 	});
 
 };
 
 const deleteDevice_confirm = async (authentication: TAuthObject): Promise<void> => {
 	loading.value = true;
-	const response = await axios_admin.device_delete({ device_name: props.device.device.name_of_device, email: props.email, ...authentication });
+	const response = await axios_admin.device_delete({
+		device_name: props.device.device.name_of_device,
+		email: props.email,
+		...authentication 
+	});
 	loading.value = false;
 	if (response) {
-		snackSuccess({ message: `Deleted "${ props.device.device.name_of_device}"`, icon: mdiDeleteCircle });
+		snackSuccess({
+			message: `Deleted "${ props.device.device.name_of_device}"`,
+			icon: mdiDeleteCircle 
+		});
 		emits('refresh');
 	}
 };
 
-const bool_color = (x: boolean): string => x? 'primary': 'pi';
+const bool_color = (x: boolean): string => x ? 'primary' : 'pi';
 
 const pauseDevice = async (): Promise<void> => {
 	dialoger({
@@ -138,32 +145,46 @@ const pauseDevice = async (): Promise<void> => {
 		confirmMethod: pauseDevice_confirm,
 		passwordrequired: true,
 		twoFABackup: true,
-		twoFARequired: true,
+		twoFARequired: true
 	});
 
 };
 
 const pauseDevice_confirm = async (authentication: TAuthObject): Promise<void> => {
 	loading.value = true;
-	const response = await axios_admin.device_pause_patch({ device_name: props.device.device.name_of_device, email: props.email, ...authentication });
+	const response = await axios_admin.device_pause_patch({
+		device_name: props.device.device.name_of_device,
+		email: props.email,
+		...authentication 
+	});
 	loading.value = false;
 	if (response) {
-		snackSuccess({ message: `${props.device.device.paused ? 'Unpaused' : 'Paused'} "${ props.device.device.name_of_device}"`, icon: props.device.device.paused ? mdiPlay : mdiPause });
+		snackSuccess({
+			message: `${props.device.device.paused ? 'Unpaused' : 'Paused'} "${ props.device.device.name_of_device}"`,
+			icon: props.device.device.paused ? mdiPlay : mdiPause 
+		});
 		emits('refresh');
 	}
 };
 
 const close_connection = async (connection_ulid: string, device_id: number, device_type: string): Promise<void> => {
-	await axios_admin.connection_delete({ connection_ulid, device_id, device_type });
+	await axios_admin.connection_delete({
+		connection_ulid,
+		device_id,
+		device_type 
+	});
 	emits('refresh');
 };
 
 const emits = defineEmits([ 'refresh' ]);
 
-const props = defineProps<{device: AdminDeviceAndConnections, email: string}>();
+const props = defineProps<{
+	device: AdminDeviceAndConnections;
+	email: string; 
+}>();
 
 watch(() => props.device.connections.length, (i) => {
-	if (i==0) {
+	if (i == 0) {
 		show_connections.value = false;
 	}
 });

@@ -99,7 +99,7 @@ import { axios_incognito } from '@/services/axios';
 import { required, email, maxLength, minLength } from '@vuelidate/validators';
 import { snackSuccess } from '@/services/snack';
 import { useDisplay } from 'vuetify';
-import { mdiEmail, mdiEmailFastOutline, mdiMessageTextOutline, } from '@mdi/js';
+import { mdiEmail, mdiEmailFastOutline, mdiMessageTextOutline } from '@mdi/js';
 import useVuelidate from '@vuelidate/core';
 
 const { smAndDown } = useDisplay();
@@ -115,7 +115,7 @@ onMounted(() => {
 const authenticated = computed(() => userModule().authenticated);
 
 const disabled = computed((): boolean => {
-	return v$.value.$invalid || complete.value || localLoading.value ? true: false;
+	return v$.value.$invalid || complete.value || localLoading.value ? true : false;
 });
 
 const textFieldRows = computed(() => {
@@ -127,8 +127,8 @@ const textFieldRows = computed(() => {
 			icon: mdiEmail,
 			label: 'email address',
 			model: 'email' as const,
-			type: 'email',
-		},
+			type: 'email'
+		}
 		
 	];
 });
@@ -144,7 +144,7 @@ const textAreaRows = computed(() => {
 			model: 'message' as const,
 			type: 'text',
 			rows: 10
-		},
+		}
 		
 	];
 });
@@ -152,7 +152,7 @@ const textAreaRows = computed(() => {
 const complete = ref(false);
 const errorMessages = ref({
 	email: '',
-	message: '',
+	message: ''
 });
 
 const localLoading = ref(false);
@@ -160,7 +160,7 @@ const pageTitle = 'contact us';
 
 const message_data = ref({
 	email: '',
-	message: '',
+	message: ''
 });
 
 const submit = async (): Promise<void> => {
@@ -173,26 +173,30 @@ const submit = async (): Promise<void> => {
 	localLoading.value = false;
 	complete.value = true;
 	if (response) {
-		snackSuccess({ message: 'Your message has been sent', closable: false, type: 'success' });
+		snackSuccess({
+			message: 'Your message has been sent',
+			closable: false,
+			type: 'success' 
+		});
 	}
 };
 
 const rules = {
 	email: {
 		email,
-		required,
+		required
 	},
 	message: {
 		required,
 		max: maxLength(1024),
 		min: minLength(64)
-	},
+	}
 };
 
 const v$ = useVuelidate(rules, message_data);
 
 watch(() => message_data.value.email, (_) => {
-	message_data.value.email = message_data.value.email ? message_data.value.email.toLowerCase().trim(): '';
+	message_data.value.email = message_data.value.email ? message_data.value.email.toLowerCase().trim() : '';
 	if (!v$.value?.email?.$invalid) {
 		errorMessages.value.email = '';
 		return;

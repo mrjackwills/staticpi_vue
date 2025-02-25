@@ -114,13 +114,13 @@
 <script setup lang='ts'>
 
 import { axios_incognito } from '@/services/axios';
-import { FrontEndRoutes } from '@/types/enum_routes';
+import { FrontEndRoutes } from '@/types/const_routes';
 import { minPassLength } from '@/vanillaTS/globalConst';
 import { passwordCheck } from '@/vanillaTS/hibp';
 import { required, email, minLength } from '@vuelidate/validators';
 import { snackSuccess } from '@/services/snack';
 import { useDisplay } from 'vuetify';
-import { mdiAccountCheck, mdiAccountOutline, mdiAlertCircleOutline, mdiEmail, mdiEye, mdiEyeOff, mdiHelpCircleOutline, mdiLock, } from '@mdi/js';
+import { mdiAccountCheck, mdiAccountOutline, mdiAlertCircleOutline, mdiEmail, mdiEye, mdiEyeOff, mdiHelpCircleOutline, mdiLock } from '@mdi/js';
 import type { TRegisterTextField, TRegisterModels } from '@/types';
 import useVuelidate from '@vuelidate/core';
 
@@ -132,7 +132,7 @@ onMounted(() => {
 });
 
 const disabled = computed((): boolean => {
-	return v$.value.$invalid || passwordCompromised.value || errorMessages.value.password || complete.value || localLoading.value || !user.value.age || !user.value.agree? true: false;
+	return v$.value.$invalid || passwordCompromised.value || errorMessages.value.password || complete.value || localLoading.value || !user.value.age || !user.value.agree ? true : false;
 });
 
 const textFieldRows = computed((): Array<TRegisterTextField> => {
@@ -144,7 +144,7 @@ const textFieldRows = computed((): Array<TRegisterTextField> => {
 			icon: mdiAccountOutline,
 			label: 'full name',
 			model: 'full_name' as const,
-			type: 'text',
+			type: 'text'
 		},
 		{
 			appendIcon: '',
@@ -153,7 +153,7 @@ const textFieldRows = computed((): Array<TRegisterTextField> => {
 			icon: mdiEmail,
 			label: 'email address',
 			model: 'email' as const,
-			type: 'email',
+			type: 'email'
 		},
 		{
 			appendIcon: user.value.password ? passwordVisible.value ? mdiEyeOff : mdiEye : '',
@@ -162,7 +162,7 @@ const textFieldRows = computed((): Array<TRegisterTextField> => {
 			icon: mdiLock,
 			label: 'password',
 			model: 'password' as const,
-			type: passwordVisible.value? 'text' : 'password',
+			type: passwordVisible.value ? 'text' : 'password'
 		},
 		{
 			appendIcon: '',
@@ -171,8 +171,8 @@ const textFieldRows = computed((): Array<TRegisterTextField> => {
 			icon: mdiHelpCircleOutline,
 			label: 'invite code',
 			model: 'invite' as const,
-			type: 'text',
-		},
+			type: 'text'
+		}
 	];
 });
 
@@ -181,7 +181,7 @@ const errorMessages = ref({
 	email: '',
 	full_name: '',
 	password: '',
-	invite: '',
+	invite: ''
 });
 
 const localLoading = ref(false);
@@ -196,6 +196,7 @@ const user = ref({
 	agree: false,
 	age: false
 });
+
 /**
 ** Set the password visible
 * */
@@ -210,7 +211,7 @@ const appendClick = (): void => {
 */
 const hibpCheck = async (model: TRegisterModels): Promise<void> => {
 	if (model !== 'password' || !user.value.password || passwordCompromised.value || v$?.value.password?.$invalid) return;
-	// eslint-disable-next-line require-atomic-updates
+	 
 	passwordCompromised.value = await passwordCheck(user.value.password);
 	if (passwordCompromised.value) errorMessages.value.password = 'unsafe password';
 };
@@ -223,7 +224,12 @@ const register = async (): Promise<void> => {
 	localLoading.value = false;
 	if (registerResponse) {
 		complete.value = true;
-		snackSuccess({ message: registerResponse, timeout: 20000, closable: false, type: 'success' });
+		snackSuccess({
+			message: registerResponse,
+			timeout: 20000,
+			closable: false,
+			type: 'success' 
+		});
 		v$.value.$reset();
 	}
 };
@@ -231,14 +237,10 @@ const register = async (): Promise<void> => {
 const rules = {
 	email: {
 		email,
-		required,
+		required
 	},
-	full_name: {
-		required,
-	},
-	invite: {
-		required,
-	},
+	full_name: { required },
+	invite: { required },
 	password: {
 		required,
 		min: minLength(minPassLength)
@@ -248,7 +250,7 @@ const rules = {
 const v$ = useVuelidate(rules, user);
 
 watch(() => user.value.email, (_) => {
-	user.value.email = user.value.email ? user.value.email.toLowerCase().trim(): '';
+	user.value.email = user.value.email ? user.value.email.toLowerCase().trim() : '';
 	if (!v$.value?.email?.$invalid) {
 		errorMessages.value.email = '';
 		return;
@@ -269,7 +271,7 @@ watch(() => user.value.full_name, (_) => {
 });
 
 watch(() => user.value.invite, (_) => {
-	user.value.invite = user.value.invite ? user.value.invite.trim(): '';
+	user.value.invite = user.value.invite ? user.value.invite.trim() : '';
 	if (!v$.value?.invite?.$invalid) {
 		errorMessages.value.invite = '';
 		return;

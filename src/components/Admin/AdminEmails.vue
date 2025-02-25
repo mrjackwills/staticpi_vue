@@ -56,10 +56,10 @@ const data = computed(() => {
 		{
 			name: 'total',
 			data: props.emails.total
-		},
+		}
 	];
 });
 
-const props = defineProps<{emails: TAdminEmailCount}>();
+const props = defineProps<{ emails: TAdminEmailCount }>();
 
 </script>

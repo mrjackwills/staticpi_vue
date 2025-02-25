@@ -60,10 +60,10 @@ const data = computed(() => {
 		{
 			name: 'total',
 			data: props.connectedCount.client + props.connectedCount.pi
-		},
+		}
 	];
 });
 
-const props = defineProps<{connectedCount: TAdminConnectedCount}>();
+const props = defineProps<{ connectedCount: TAdminConnectedCount }>();
 
 </script>

@@ -19,8 +19,7 @@ const start2FASetup = async (): Promise<void> => {
 	if (setupValid) {
 		settingsectionStore.set_current_section('2fa');
 		twofaStore.set_setupProcessStarted(true);
-	}
-	else {
+	} else {
 		settingsectionStore.set_current_section(undefined);
 		twofaStore.set_setupProcessStarted(false);
 	}

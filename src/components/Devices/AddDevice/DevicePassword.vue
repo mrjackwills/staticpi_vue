@@ -50,9 +50,9 @@ const textFields = computed((): Array<TChangeDevicePassword> =>{
 			icon: mdiLock,
 			label: 'add device password',
 			model: 'device_password' as const,
-			type: device_passwordVisible.value? 'text' : 'password',
-			appendIcon: device_passwordVisible.value ? mdiEyeOff : mdiEye,
-		},
+			type: device_passwordVisible.value ? 'text' : 'password',
+			appendIcon: device_passwordVisible.value ? mdiEyeOff : mdiEye
+		}
 	];
 
 	if (!password_synced.value) {
@@ -61,8 +61,8 @@ const textFields = computed((): Array<TChangeDevicePassword> =>{
 			icon: mdiLock,
 			label: 'add client password',
 			model: 'client_password' as const,
-			type: client_passwordVisible.value? 'text' : 'password',
-			appendIcon: client_passwordVisible.value ? mdiEyeOff : mdiEye,
+			type: client_passwordVisible.value ? 'text' : 'password',
+			appendIcon: client_passwordVisible.value ? mdiEyeOff : mdiEye
 		});
 
 	}
@@ -74,7 +74,7 @@ const password_synced = ref(true);
 
 const deviceSetting = ref({
 	device_password: '',
-	client_password: '',
+	client_password: ''
 });
 
 const device_passwordVisible = ref(false);
@@ -82,7 +82,7 @@ const client_passwordVisible = ref(false);
 
 const emit = defineEmits([ 'device_passwordInput', 'client_passwordInput' ]);
 
-const textField_method = (model: 'client_password'|'device_password'): void => {
+const textField_method = (model: 'client_password' | 'device_password'): void => {
 	if (model === 'client_password') {
 		emit('client_passwordInput', deviceSetting.value.client_password);
 	} else {
@@ -90,7 +90,7 @@ const textField_method = (model: 'client_password'|'device_password'): void => {
 	}
 };
 
-const visible = (model: 'client_password'|'device_password'):void => {
+const visible = (model: 'client_password' | 'device_password'): void => {
 	if (model === 'client_password') {
 		client_passwordVisible.value = !client_passwordVisible.value;
 	} else {

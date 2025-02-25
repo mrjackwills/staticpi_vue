@@ -63,8 +63,7 @@ const loading = computed(() => snackbarStore.loading);
 const snack_location = computed((): VDialog['$props']['location']=> {
 	if (mdAndUp.value) {
 		return `${snackbarStore.position.x} ${snackbarStore.position.y}`;
-	}
-	else {
+	} else {
 		return `bottom center`;
 	}
 });

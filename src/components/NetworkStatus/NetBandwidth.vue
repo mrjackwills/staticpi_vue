@@ -84,11 +84,11 @@ const computed_bandwidth = computed((): Array<TComputedBandwidth> => {
 			timespan: 'last hour',
 			in: {
 				human_readable: convert_bytes(bandwidth.value.hour_in),
-				bytes: bandwidth.value.hour_in,
+				bytes: bandwidth.value.hour_in
 			},
 			out: {
 				human_readable: convert_bytes(bandwidth.value.hour_out),
-				bytes: bandwidth.value.hour_out,
+				bytes: bandwidth.value.hour_out
 						
 			}
 		},
@@ -97,11 +97,11 @@ const computed_bandwidth = computed((): Array<TComputedBandwidth> => {
 			timespan: 'last 24 hours',
 			in: {
 				human_readable: convert_bytes(bandwidth.value.day_in),
-				bytes: bandwidth.value.day_in,
+				bytes: bandwidth.value.day_in
 			},
 			out: {
 				human_readable: convert_bytes(bandwidth.value.day_out),
-				bytes: bandwidth.value.day_out,
+				bytes: bandwidth.value.day_out
 						
 			}
 		},
@@ -111,14 +111,14 @@ const computed_bandwidth = computed((): Array<TComputedBandwidth> => {
 			timespan: 'all time',
 			in: {
 				human_readable: convert_bytes(bandwidth.value.total_in),
-				bytes: bandwidth.value.total_in,
+				bytes: bandwidth.value.total_in
 			},
 			out: {
 				human_readable: convert_bytes(bandwidth.value.total_out),
-				bytes: bandwidth.value.total_out,
+				bytes: bandwidth.value.total_out
 						
 			}
-		},
+		}
 			
 	];
 });
@@ -137,7 +137,7 @@ const bandwidth = ref({
 	month_in: 0,
 	month_out: 0,
 	total_in: 0,
-	total_out: 0,
+	total_out: 0
 });
 
 const checkAll = async (): Promise<void> => {
@@ -148,7 +148,7 @@ const checkBandwidth = async (): Promise<void> => {
 	const bandwidthRequest = await axios_incognito.bandwidth_get();
 	if (bandwidthRequest) bandwidth.value = bandwidthRequest;
 	init.value = true;
-} ;
+};
 
 </script>
 

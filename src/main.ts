@@ -1,3 +1,5 @@
+/* eslint-disable @stylistic/ts/object-curly-newline */
+/* eslint-disable @typescript-eslint/consistent-type-definitions */
 // Components
 import App from './App.vue';
 import { createPinia } from 'pinia';
@@ -16,10 +18,10 @@ const head = createHead();
 
 declare module 'pinia' {
 	export interface Pinia {
-		router: () => Router
+		router: () => Router;
 	}
 	export interface PiniaCustomProperties {
-		router: Router
+		router: Router;
 	}
 }
 

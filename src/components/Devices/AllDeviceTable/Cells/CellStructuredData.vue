@@ -39,7 +39,7 @@
 <script setup lang='ts'>
 import { axios_device } from '@/services/axios';
 import { dialoger } from '@/services/dialog';
-import { mdiContentSave, } from '@mdi/js';
+import { mdiContentSave } from '@mdi/js';
 import { useDisplay } from 'vuetify';
 import type { TAuthObject, TSwitchButton, TDeviceInfo } from '@/types';
 import type { VRow } from 'vuetify/components/VGrid';
@@ -66,7 +66,7 @@ const button = computed((): TSwitchButton => {
 const justify = computed((): VRow['$props']['justify'] => {
 	return mdAndUp.value ? 'center' : 'end';
 });
-const loading= computed({
+const loading = computed({
 	get (): boolean {
 		return loadingModule().loading;
 	},
@@ -100,7 +100,10 @@ const emit = defineEmits([ 'refresh' ]);
 
 const save_confirm = async (_auth?: TAuthObject): Promise<void> => {
 	loading.value = true;
-	await axios_device.structuredData_patch({ name: name_of_device.value, structured_data: new_value.value });
+	await axios_device.structuredData_patch({
+		name: name_of_device.value,
+		structured_data: new_value.value 
+	});
 	loading.value = false;
 	emit('refresh');
 };
@@ -117,12 +120,12 @@ const save = async (): Promise<void> => {
 			icon: '',
 			timeout: 5,
 			confirmMethod: save_confirm,
-			twoFARequired: false,
+			twoFARequired: false
 		});
 	}
 };
 
-const props = defineProps<{device: TDeviceInfo}>();
+const props = defineProps<{ device: TDeviceInfo }>();
 	
 watch(paused, (i: boolean): void => {
 	if (i) new_value.value = current_value.value;

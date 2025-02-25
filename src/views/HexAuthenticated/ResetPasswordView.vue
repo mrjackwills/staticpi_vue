@@ -91,7 +91,7 @@
 
 <script setup lang='ts'>
 import { axios_incognito } from '@/services/axios';
-import { FrontEndRoutes } from '@/types/enum_routes';
+import { FrontEndRoutes } from '@/types/const_routes';
 import { mdiCellphoneInformation, mdiEye, mdiEyeOff, mdiLock, mdiSend } from '@mdi/js';
 import { minPassLength } from '@/vanillaTS/globalConst';
 import { passwordCheck } from '@/vanillaTS/hibp';
@@ -113,7 +113,7 @@ onMounted(() => {
 });
 
 const disabled = computed((): boolean => {
-	return v$.value.$invalid || errorMessages.value.password || passwordCompromised.value || tokenDisabled.value || localLoading.value? true : false;
+	return v$.value.$invalid || errorMessages.value.password || passwordCompromised.value || tokenDisabled.value || localLoading.value ? true : false;
 });
 const tokenDisabled = computed((): boolean => {
 	return two_fa_enabled.value ? two_fa_enabled.value && !user.value.token : false;
@@ -133,20 +133,20 @@ const textFields = computed((): Array<TResetFields> => {
 			icon: mdiLock,
 			label: 'password',
 			model: 'password' as const,
-			type: passwordVisible.value? 'text' : 'password',
-			appendIcon: user.value.password ? passwordVisible.value ? mdiEyeOff : mdiEye : '',
-		},
+			type: passwordVisible.value ? 'text' : 'password',
+			appendIcon: user.value.password ? passwordVisible.value ? mdiEyeOff : mdiEye : ''
+		}
 	];
 });
 const two_fa_enabled = computed((): boolean => {
 	return resetPasswordModule().two_fa_enabled;
 });
 		
-const pageTitle ='reset password';
+const pageTitle = 'reset password';
 
 const errorMessages = ref({
 	password: '',
-	token: '',
+	token: ''
 });
 const localLoading = ref(false);
 const passwordCompromised = ref(false);
@@ -156,8 +156,8 @@ const tokenFields = [
 		clearable: true,
 		icon: mdiCellphoneInformation,
 		label: '2FA code',
-		model: 'token' as const,
-	},
+		model: 'token' as const
+	}
 ];
 const user = ref({
 	password: '',
@@ -170,13 +170,14 @@ const user = ref({
 const appendClick = (): void => {
 	passwordVisible.value = !passwordVisible.value;
 };
+
 /**
 ** Run hibp check, and set passwordCompromised if breach found
 * @param {String} model - current model/textfield name
 */
-const hibpCheck = async (): Promise<boolean|void> => {
-	if (!user.value.password || passwordCompromised.value || v$.value.password.$invalid) return;
-	// eslint-disable-next-line require-atomic-updates
+const hibpCheck = async (): Promise<boolean | null> => {
+	if (!user.value.password || passwordCompromised.value || v$.value.password.$invalid) return null;
+	 
 	passwordCompromised.value = await passwordCheck(user.value.password);
 	if (passwordCompromised.value) errorMessages.value.password = 'unsafe password';
 	return passwordCompromised.value ? true : false;
@@ -194,19 +195,24 @@ const submit = async (): Promise<void> => {
 		localLoading.value = false;
 		return;
 	}
-	const response = await axios_incognito.reset_patch({ resetId: resetId.value, password: user.value.password, token: user.value.token? user.value.token:undefined });
+	const response = await axios_incognito.reset_patch({
+		resetId: resetId.value,
+		password: user.value.password,
+		token: user.value.token ? user.value.token : undefined 
+	});
 	localLoading.value = false;
 	if (response) {
 		router.push(FrontEndRoutes.BASE);
-		snackSuccess({ message: 'Password changed - please log in to continue', timeout: 20000 });
-	}
-	else {
+		snackSuccess({
+			message: 'Password changed - please log in to continue',
+			timeout: 20000 
+		});
+	} else {
 		if (two_fa_enabled.value) {
 			const m = 'Invalid password or token';
 			errorMessages.value.token = m;
 			errorMessages.value.password = m;
-		}
-		else {
+		} else {
 			errorMessages.value.password = 'Invalid password';
 		}
 	}
@@ -216,7 +222,7 @@ const rules = {
 	password: {
 		required,
 		min: minLength(minPassLength)
-	},
+	}
 };
 const v$ = useVuelidate(rules, user);
 

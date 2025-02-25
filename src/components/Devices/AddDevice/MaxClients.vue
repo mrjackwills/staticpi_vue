@@ -31,7 +31,7 @@ const isFreeUser = computed((): boolean => {
 const upperLimit = computed((): number => {
 	return userStore.maxClients;
 });
-const defaultClients =computed((): string => {
+const defaultClients = computed((): string => {
 	return String(Math.ceil(upperLimit.value / 2));
 });
 	
@@ -43,7 +43,7 @@ const textField = ref({
 	icon: mdiLanConnect,
 	label: 'max clients',
 	model: 'maxClients' as const,
-	type: 'text',
+	type: 'text'
 });
 
 const emit = defineEmits([ 'input' ]);
