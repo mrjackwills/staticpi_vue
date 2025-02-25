@@ -46,12 +46,12 @@ import type { VRow } from 'vuetify/components/VGrid';
 const loading = computed(() => loadingModule().loading);
 
 withDefaults(defineProps<{
-	fillHeight?: boolean,
-	heading?: string,
-	headingJustify?: VRow['$props']['justify'],
-	justify?: VRow['$props']['justify'],
-	margin?: string,
-	pageReady?: boolean
+	fillHeight?: boolean;
+	heading?: string;
+	headingJustify?: VRow['$props']['justify'];
+	justify?: VRow['$props']['justify'];
+	margin?: string;
+	pageReady?: boolean;
 }>(), {
 	fillHeight: false,
 	heading: '',

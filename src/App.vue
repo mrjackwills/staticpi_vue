@@ -39,7 +39,13 @@ if ('serviceWorker' in navigator) {
 }
 
 const appUpdate = (): void => {
-	snackSuccess({ message: 'Updating website', loading: true, timeout: 4500, closable: false, icon: '' });
+	snackSuccess({
+		message: 'Updating website',
+		loading: true,
+		timeout: 4500,
+		closable: false,
+		icon: '' 
+	});
 	window.setTimeout(() => updateServiceWorker(), 4000);
 	
 };
@@ -108,7 +114,10 @@ useHead({
 			}
 		}
 	],
-	link: () => [ { rel: 'canonical', href: `${env.domain_www}${route?.path}` } ],
+	link: () => [ {
+		rel: 'canonical',
+		href: `${env.domain_www}${route?.path}` 
+	} ]
 });
 
 </script>

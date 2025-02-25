@@ -91,10 +91,10 @@ const text_class = computed(() => mdAndDown.value ? 'small-text' : '');
 
 const emit = defineEmits([ 'update' ]);
 
-const remove_key = async (key: string) :Promise<void> => {
+const remove_key = async (key: string): Promise<void> => {
 	await axios_admin.limit_delete(key);
 	emit('update');
 };
 
-defineProps<{limits: Array<TAdminLimit>}>();
+defineProps<{ limits: Array<TAdminLimit> }>();
 </script>

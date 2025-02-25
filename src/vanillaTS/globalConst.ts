@@ -19,7 +19,7 @@ export const months: Readonly<Array<string>> = [
 	'September',
 	'October',
 	'November',
-	'December',
+	'December'
 ];
 
 export const token_regex = /^[0-9]{6}$|^[a-fA-F0-9]{16}$/;

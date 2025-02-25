@@ -3,7 +3,8 @@
 
 	<DocumentationCard heading='Binary Data'>
 		<template v-slot:doc-body>
-			If a device does not have <router-link :to='structured_link()' class='font-weight-bold text-primary'>structured data</router-link> enabled, binary messages will be sent and received as normal.
+			If a device does not have <router-link :to='structured_link()' class='font-weight-bold text-primary'>structured data</router-link> enabled,
+			binary messages will be sent and received as normal.
 			<br>
 			If it is enabled, binary data sent will result in a invalid message returned to the sender
 			<v-row justify='center' class='ma-0 pa-0 my-2'>
@@ -32,7 +33,7 @@
 </template>
 
 <script setup lang='ts'>
-import { FrontEndRoutes } from '@/types/enum_routes';
+import { FrontEndRoutes } from '@/types/const_routes';
 
 const json_structured_invalid = `{ "error": { "message" : "received data is invalid structure", "code": 400 } }`;
 
@@ -71,12 +72,12 @@ const b64_received = computed((): string => {
 });
 
 const props = defineProps<{
-	address_token: string,
-	address_wss_client: string,
-	address_wss_pi: string,
-	apiKey: string,
-	componentKey: number,
-	password: string
+	address_token: string;
+	address_wss_client: string;
+	address_wss_pi: string;
+	apiKey: string;
+	componentKey: number;
+	password: string;
 }>();
 
 </script>

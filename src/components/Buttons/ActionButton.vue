@@ -81,7 +81,7 @@ const iconOrder = computed((): string => {
 	return props.iconFirst ? '1' : '2';
 });
 const flipx = computed((): string => {
-	return props.text === 'logout' ? 'flipx' :'';
+	return props.text === 'logout' ? 'flipx' : '';
 });
 const online = computed((): boolean => {
 	return browserModule().online;
@@ -109,17 +109,17 @@ onMounted(() => {
 });
 
 const props = withDefaults(defineProps<{
-	block?: boolean,
-	color?: string,
-	disabled?: boolean,
-	icon?: string,
-	iconFirst?: boolean,
-	monospace?: boolean,
-	mouseOverEvents?: boolean,
-	overrideDisabled?: boolean,
-	routerLink?: string
-	small?: boolean,
-	text?: string
+	block?: boolean;
+	color?: string;
+	disabled?: boolean;
+	icon?: string;
+	iconFirst?: boolean;
+	monospace?: boolean;
+	mouseOverEvents?: boolean;
+	overrideDisabled?: boolean;
+	routerLink?: string;
+	small?: boolean;
+	text?: string;
 }>(), {
 	block: false,
 	color: 'primary',

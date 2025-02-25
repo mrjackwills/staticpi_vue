@@ -40,14 +40,14 @@ const iconSize = computed(() => {
 });
 
 const props = withDefaults(defineProps<{
-	color: string,
-	disabled?: boolean,
-	icon: string,
-	medium?: boolean,
-	tooltip_text: string
+	color: string;
+	disabled?: boolean;
+	icon: string;
+	medium?: boolean;
+	tooltip_text: string;
 }>(), {
 	disabled: false,
-	medium: false,
+	medium: false
 });
 
 const emit = defineEmits([ 'click' ]);

@@ -65,7 +65,8 @@
 			Access tokens are valid for 20 seconds, limited to the IP address of the requester, and are destroyed as soon as they has been used to open a websocket connection.
 			<br>
 			<br>
-			In order to keep connections alive, the <StaticPi /> servers send a <span class='font-weight-bold'>PING</span> message every 30 seconds, these are not counted against your monthly bandwidth allowance.
+			In order to keep connections alive, the <StaticPi /> servers send a <span class='font-weight-bold'>PING</span>
+			message every 30 seconds, these are not counted against your monthly bandwidth allowance.
 			<br>
 			If a <span class='font-weight-bold'>PONG</span> message is not sent back within 40 seconds of receiving a <span class='font-weight-bold'>PING</span> message,
 			the connection will be closed. This should be automatically handled by whichever WebSocket library that you use.
@@ -156,12 +157,12 @@ const wssAddressRow = computed((): Array<TAddressRow> => {
 });
 
 const props = defineProps<{
-	address_token: string,
-	address_wss_client: string,
-	address_wss_pi: string,
-	apiKey: string,
-	componentKey: number,
-	password: string
+	address_token: string;
+	address_wss_client: string;
+	address_wss_pi: string;
+	apiKey: string;
+	componentKey: number;
+	password: string;
 }>();
 
 </script>

@@ -96,18 +96,18 @@
 </template>
 
 <script setup lang='ts'>
-import { FrontEndNames, FrontEndRoutes } from '@/types/enum_routes';
+import { FrontEndNames, FrontEndRoutes } from '@/types/const_routes';
 import { mdiAccountCircle, mdiMenu } from '@mdi/js';
 import { notAuthenticatedLinks } from '@/vanillaTS/NavigationLinks';
 import { useDisplay } from 'vuetify';
 
 const { lgAndUp } = useDisplay();
 
-const alert_class = computed(() => !onDesktop.value? 'alert-bottom' : 'alert-top');
-const appbarHeight = computed(() => onDesktop.value ? '76': '56');
+const alert_class = computed(() => !onDesktop.value ? 'alert-bottom' : 'alert-top');
+const appbarHeight = computed(() => onDesktop.value ? '76' : '56');
 const authenticated = computed(() => userModule().authenticated);
 const email = computed(() => userModule().email);
-const logoMargin = computed(() => onDesktop.value ? 'mr-3': 'mr-1');
+const logoMargin = computed(() => onDesktop.value ? 'mr-3' : 'mr-1');
 const logoSize = computed(() => onDesktop.value ? '46px' : '36px');
 const onDesktop = computed(() => lgAndUp.value);
 const online = computed(() => browserModule().online);
@@ -120,8 +120,8 @@ const open = computed({
 		navDrawerModule().set_open(b);
 	}
 });
-let router = useRouter();
-let route = useRoute();
+const router = useRouter();
+const route = useRoute();
 
 const goHome = (): void => {
 	

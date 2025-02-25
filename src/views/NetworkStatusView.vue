@@ -63,7 +63,7 @@ import NetServerStats from '@/components/NetworkStatus/NetServerStats.vue';
 import {
 	mdiCalendarText,
 	mdiServerNetwork,
-	mdiSwapVerticalBold,
+	mdiSwapVerticalBold
 } from '@mdi/js';
 
 const pageTitle = 'network status';

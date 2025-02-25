@@ -125,7 +125,7 @@
 
 <script setup lang='ts'>
 import { axios_authenticatedUser, axios_incognito } from '@/services/axios';
-import { FrontEndRoutes } from '@/types/enum_routes';
+import { FrontEndRoutes } from '@/types/const_routes';
 import { mdiCellphoneInformation, mdiClose, mdiEmail, mdiEye, mdiEyeOff, mdiLock, mdiSend } from '@mdi/js';
 import { required, email } from '@vuelidate/validators';
 import { RouterLink } from 'vue-router';
@@ -164,16 +164,16 @@ const textFields = computed((): Array<TLoginFields> => {
 			icon: mdiEmail,
 			label: 'email address',
 			model: 'email' as const,
-			type: 'email',
+			type: 'email'
 		},
 		{
-			appendIcon: user.value.password ? passwordVisible.value ? mdiEyeOff: mdiEye : '',
+			appendIcon: user.value.password ? passwordVisible.value ? mdiEyeOff : mdiEye : '',
 			autocomplete: 'password',
 			icon: mdiLock,
 			label: 'password',
 			model: 'password' as const,
-			type: passwordVisible.value ? 'text' : 'password',
-		},
+			type: passwordVisible.value ? 'text' : 'password'
+		}
 	];
 });
 
@@ -192,8 +192,8 @@ const tokenFields = [
 		clearable: true,
 		icon: mdiCellphoneInformation,
 		label: '2FA code',
-		model: 'token' as const,
-	},
+		model: 'token' as const
+	}
 ];
 const twoFATokenRequired = ref(false);
 const twoFABackupEnabled = ref(false);
@@ -201,7 +201,7 @@ const user = ref({
 	password: '',
 	email: '',
 	remember: false,
-	token: '',
+	token: ''
 });
 
 /**
@@ -211,6 +211,7 @@ const appendClick = (): void => {
 	if (localLoading.value) return;
 	passwordVisible.value = !passwordVisible.value;
 };
+
 /**
 ** set the this.focus to the currently in focus text field
 ** If the in focus field ISN't the password field, then set passwordVisible to false
@@ -222,12 +223,12 @@ const focusMethod = (model: TLoginModel): void => {
 };
 
 const cancel = (): void => {
-	user.value= {
+	user.value = {
 		password: '',
 		email: '',
 		remember: false,
-		token: '',
-	},
+		token: ''
+	};
 	twoFATokenRequired.value = false;
 	twoFABackupEnabled.value = false;
 	passwordVisible.value = false;
@@ -251,7 +252,7 @@ const login = async (): Promise<void> => {
 	const authObject = {
 		email: user.value.email.toLowerCase(),
 		password: user.value.password,
-		token: user.value.token? user.value.token.replace(/\s/g, ''): undefined,
+		token: user.value.token ? user.value.token.replace(/\s/g, '') : undefined,
 		remember: user.value.remember
 	};
 	const loginRequest = await axios_incognito.signin_post(authObject);
@@ -270,14 +271,11 @@ const login = async (): Promise<void> => {
 		const destination = redirect.value ? redirect.value : FrontEndRoutes.USER_DEVICES;
 		router.push(destination);
 		redirect.value = '';
-	}
-
-	else if (loginRequest?.status === 202) {
+	} else if (loginRequest?.status === 202) {
 		snackbarModule().$reset();
 		twoFATokenRequired.value = true;
 		twoFABackupEnabled.value = loginRequest.response.two_fa_backup;
-	}
-	else if (twoFATokenRequired.value) {
+	} else if (twoFATokenRequired.value) {
 		errorMessages.value.token = 'invalid token';
 	} else {
 		errorMessages.value.email = 'invalid email and/or password';
@@ -290,14 +288,12 @@ const rules = {
 		email,
 		required
 	},
-	password: {
-		required,
-	}
+	password: { required }
 };
 const v$ = useVuelidate(rules, user);
 watch(() => user.value.email, (_) => {
-	user.value.email = user.value.email ? user.value.email.trim().toLowerCase(): '';
-	errorMessages.value.email = !v$.value.email.email ? 'email invalid': '';
+	user.value.email = user.value.email ? user.value.email.trim().toLowerCase() : '';
+	errorMessages.value.email = !v$.value.email.email ? 'email invalid' : '';
 });
 
 watch(() => user.value.token, (i) => {

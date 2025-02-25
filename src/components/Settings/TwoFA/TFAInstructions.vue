@@ -114,7 +114,7 @@ onBeforeUnmount(() => {
 });
 onMounted(() => {
 	// Cancel setup after 2 minutes of inacitivy
-	setupTimeout.value = setTimeout (() => {
+	setupTimeout.value = setTimeout(() => {
 		cancel();
 	}, 120 * 1000);
 });
@@ -188,8 +188,7 @@ const verify = async (): Promise<void> => {
 		snackSuccess({ message: 'Two-Factor Authentication activated' });
 		settingSectionStore.set_current_section(undefined);
 		await axios_authenticatedUser.user_get();
-	}
-	else {
+	} else {
 		errorMessage.value = 'generated code invalid';
 		snackError({ message: 'generated code incorrect' });
 	}

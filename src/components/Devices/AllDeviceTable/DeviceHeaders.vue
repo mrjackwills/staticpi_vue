@@ -90,38 +90,41 @@ const headings = [
 		cols: '1',
 		sortable: false,
 		link: ''
-	},
+	}
 ] as const;
 
-const sortedBy: Ref<TSortedBy>= ref({ name: undefined, largestFirst: true });
+const sortedBy: Ref<TSortedBy> = ref({
+	name: undefined,
+	largestFirst: true 
+});
 
 const columnIcon = (columnName: TSortableColumns): string => {
-	return sortedBy.value.name === columnName? sortedBy.value.largestFirst? mdiArrowUpBold : mdiArrowDownBold :mdiSwapVerticalBold;
+	return sortedBy.value.name === columnName ? sortedBy.value.largestFirst ? mdiArrowUpBold : mdiArrowDownBold : mdiSwapVerticalBold;
 };
 
 const sort = (heading: TSortableColumns): void => {
 	switch (heading) {
-	case 'name':
-		sortByName();
-		break;
-	case 'connection':
-		sortByConnection();
-		break;
-	case 'bandwidth':
-		sortByBandwidth();
-		break;
-	case 'max clients' :
-		sortByMaxClients();
-		break;
-	case 'structured data':
-		sortByStructuredData();
-		break;
-	case 'device password':
-		sortByPasswordRequired();
-		break;
-	case 'status':
-		sortByDeviceStatus();
-		break;
+		case 'name':
+			sortByName();
+			break;
+		case 'connection':
+			sortByConnection();
+			break;
+		case 'bandwidth':
+			sortByBandwidth();
+			break;
+		case 'max clients' :
+			sortByMaxClients();
+			break;
+		case 'structured data':
+			sortByStructuredData();
+			break;
+		case 'device password':
+			sortByPasswordRequired();
+			break;
+		case 'status':
+			sortByDeviceStatus();
+			break;
 	}
 };
 
@@ -143,7 +146,8 @@ const sortByConnection = (): void => {
 
 const sortByName = (): void => {
 	sortedBy.value.name = 'name';
-	const tmp = sortedBy.value.largestFirst ? tableData.value.sort((a, b) => a.name_of_device.localeCompare(b.name_of_device)) : tableData.value.sort((a, b) => b.name_of_device.localeCompare(a.name_of_device));
+	const tmp = sortedBy.value.largestFirst ? tableData.value.sort((a, b) => a.name_of_device.localeCompare(b.name_of_device)) 
+		: tableData.value.sort((a, b) => b.name_of_device.localeCompare(a.name_of_device));
 	sortedBy.value.largestFirst = !sortedBy.value.largestFirst;
 	deviceStore.set_all_devices(tmp);
 };
@@ -151,7 +155,7 @@ const sortByName = (): void => {
 const sortByBandwidth = (): void => {
 	sortedBy.value.name = 'bandwidth';
 	const tmp = tableData.value.sort((a, b) => {
-		return Number(a.pi_bytes_month_out??0) + Number(a.client_bytes_month_out??0) >= Number(b.pi_bytes_day_out??0) + Number(b.client_bytes_month_out??0) ?
+		return Number(a.pi_bytes_month_out ?? 0) + Number(a.client_bytes_month_out ?? 0) >= Number(b.pi_bytes_day_out ?? 0) + Number(b.client_bytes_month_out ?? 0) ?
 			sortedBy.value.largestFirst
 				? -1 : 1 : sortedBy.value.largestFirst
 				? 1 : -1;
@@ -175,7 +179,7 @@ const sortByStructuredData = (): void => {
 	sortedBy.value.name = 'structured data';
 	const tmp = tableData.value.sort((a, b) => {
 		if (a.structured_data && !b.structured_data) return sortedBy.value.largestFirst ? -1 : 1;
-		if (!a.structured_data && b.structured_data) return sortedBy.value.largestFirst ? 1:-1;
+		if (!a.structured_data && b.structured_data) return sortedBy.value.largestFirst ? 1 : -1;
 		return a.name_of_device.localeCompare(b.name_of_device);
 	});
 	sortedBy.value.largestFirst = !sortedBy.value.largestFirst;
@@ -186,7 +190,7 @@ const sortByPasswordRequired = (): void => {
 	sortedBy.value.name = 'device password';
 	const tmp = tableData.value.sort((a, b) => {
 		if (a.device_password_required && !b.device_password_required) return sortedBy.value.largestFirst ? -1 : 1;
-		if (!a.device_password_required && b.device_password_required) return sortedBy.value.largestFirst ? 1:-1;
+		if (!a.device_password_required && b.device_password_required) return sortedBy.value.largestFirst ? 1 : -1;
 		return a.name_of_device.localeCompare(b.name_of_device);
 	});
 	sortedBy.value.largestFirst = !sortedBy.value.largestFirst;
@@ -197,7 +201,7 @@ const sortByDeviceStatus = (): void=> {
 	sortedBy.value.name = 'status';
 	const tmp = tableData.value.sort((a, b) => {
 		if (!a.paused && b.paused) return sortedBy.value.largestFirst ? -1 : 1;
-		if (a.paused && !b.paused) return sortedBy.value.largestFirst ? 1:-1;
+		if (a.paused && !b.paused) return sortedBy.value.largestFirst ? 1 : -1;
 		return a.name_of_device.localeCompare(b.name_of_device);
 	});
 	sortedBy.value.largestFirst = !sortedBy.value.largestFirst;

@@ -120,14 +120,14 @@ const buttons = computed((): Array<TDeviceTableFields> => {
 			click: clear,
 			color: 'pi',
 			icon: mdiClose,
-			disabled: disabled.value,
+			disabled: disabled.value
 		},
 		{
 			class: disabled.value ? '' : 'heartbeat',
 			click: addPassword,
 			color: 'primary',
 			disabled: disabled.value || !deviceSetting.value.device_password,
-			icon: mdiContentSave,
+			icon: mdiContentSave
 		}
 	];
 });
@@ -155,9 +155,9 @@ const textFields = computed((): Array<TChangeDevicePassword> => {
 			icon: mdiLock,
 			label: 'device password',
 			model: 'device_password' as const,
-			type: device_passwordVisible.value? 'text' : 'password',
-			appendIcon: device_passwordVisible.value ? mdiEyeOff : mdiEye,
-		},
+			type: device_passwordVisible.value ? 'text' : 'password',
+			appendIcon: device_passwordVisible.value ? mdiEyeOff : mdiEye
+		}
 	];
 
 	if (!password_synced.value) {
@@ -166,8 +166,8 @@ const textFields = computed((): Array<TChangeDevicePassword> => {
 			icon: mdiLock,
 			label: 'client password',
 			model: 'client_password' as const,
-			type: client_passwordVisible.value? 'text' : 'password',
-			appendIcon: client_passwordVisible.value ? mdiEyeOff : mdiEye,
+			type: client_passwordVisible.value ? 'text' : 'password',
+			appendIcon: client_passwordVisible.value ? mdiEyeOff : mdiEye
 		});
 
 	}
@@ -195,7 +195,7 @@ const client_passwordVisible = ref(false);
 const device_passwordVisible = ref(false);
 const deviceSetting = ref({
 	device_password: '',
-	client_password: '',
+	client_password: ''
 });
 const showTextField = ref(false);
 
@@ -211,11 +211,17 @@ const emit = defineEmits([ 'refresh' ]);
 const removePassword_confirm = async (authentication: TAuthObject): Promise<void> =>{
 	loading.value = true;
 	localLoading.value = true;
-	const response = await axios_device.password_delete({ name: name_of_device.value, authentication });
+	const response = await axios_device.password_delete({
+		name: name_of_device.value,
+		authentication 
+	});
 	loading.value = false;
 	localLoading.value = false;
 	if (response) {
-		snackSuccess({ message: `Password removed from: ${name_of_device.value}`, icon: mdiDelete });
+		snackSuccess({
+			message: `Password removed from: ${name_of_device.value}`,
+			icon: mdiDelete 
+		});
 		emit('refresh');
 		inFocus.value = false;
 	}
@@ -232,7 +238,7 @@ const addPassword = (): void => {
 		confirmMethod: addPassword_confirm,
 		icon: '',
 		twoFABackup: false,
-		twoFARequired: false,
+		twoFARequired: false
 	});
 };
 const addPassword_confirm = async (): Promise<void> => {
@@ -245,17 +251,24 @@ const addPassword_confirm = async (): Promise<void> => {
 	if (password_synced.value) {
 		deviceSetting.value.client_password = deviceSetting.value.device_password;
 	}
-	const response = await axios_device.password_patch({ device_password: deviceSetting.value.device_password, client_password: deviceSetting.value.client_password, name: name_of_device.value });
+	const response = await axios_device.password_patch({
+		device_password: deviceSetting.value.device_password,
+		client_password: deviceSetting.value.client_password,
+		name: name_of_device.value 
+	});
 	loading.value = false;
 	localLoading.value = false;
 	if (response) {
-		snackSuccess({ message: `Password added to device: ${name_of_device.value}`, icon: mdiContentSave });
+		snackSuccess({
+			message: `Password added to device: ${name_of_device.value}`,
+			icon: mdiContentSave 
+		});
 		emit('refresh');
 		clear();
 	}
 };
 
-const visible = (model: 'client_password'|'device_password'):void => {
+const visible = (model: 'client_password' | 'device_password'): void => {
 	if (model === 'client_password') {
 		client_passwordVisible.value = !client_passwordVisible.value;
 	} else {
@@ -273,11 +286,11 @@ const removePassword = (): void =>{
 		confirmMethod: removePassword_confirm,
 		icon: '',
 		twoFABackup: false,
-		twoFARequired: false,
+		twoFARequired: false
 	});
 };
 
-const props = defineProps<{device: TDeviceInfo}>();
+const props = defineProps<{ device: TDeviceInfo }>();
 
 watch(paused, (i: boolean): void => {
 	if (i) {

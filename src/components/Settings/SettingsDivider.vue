@@ -11,7 +11,7 @@
 
 <script setup lang='ts'>
 
-const current_section = computed((): string|undefined => {
+const current_section = computed((): string | undefined => {
 	return settingSectionModule().current_section;
 });
 </script>

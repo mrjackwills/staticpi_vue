@@ -237,8 +237,10 @@ import { parse } from 'secure-json-parse';
 import { snackError } from '@/services/snack';
 import { useDisplay } from 'vuetify';
 import type { TDeviceInfo, TDialogFields } from '@/types';
-import { mdiArrowDownBold, mdiArrowUpBold, mdiCheckboxBlankCircleOutline, mdiCheckCircle, mdiCircleHalfFull,
-	mdiClose, mdiEye, mdiEyeOff, mdiKey, mdiLock, mdiMessageReplyText, mdiSend, mdiTimerOutline, } from '@mdi/js';
+import {
+	mdiArrowDownBold, mdiArrowUpBold, mdiCheckboxBlankCircleOutline, mdiCheckCircle, mdiCircleHalfFull,
+	mdiClose, mdiEye, mdiEyeOff, mdiKey, mdiLock, mdiMessageReplyText, mdiSend, mdiTimerOutline 
+} from '@mdi/js';
 
 const { mobile } = useDisplay();
 
@@ -263,7 +265,7 @@ const connectedIcon = computed((): string => {
 	return isConnected.value ? mdiCheckCircle : localLoading.value ? mdiCircleHalfFull : mdiCheckboxBlankCircleOutline;
 });
 const connectedText = computed((): string => {
-	return isConnected.value ? 'connected' : localLoading.value ? 'connecting...' : `not connected${props.device.device_password_required?' - password required':''}`;
+	return isConnected.value ? 'connected' : localLoading.value ? 'connecting...' : `not connected${props.device.device_password_required ? ' - password required' : ''}`;
 });
 const copySentMessage = computed((): string => {
 	if (!props.device.structured_data) return message.value;
@@ -276,13 +278,18 @@ const isConnected = computed((): boolean => {
 	return connected.value;
 });
 		
-const latencyRow = computed((): Array<{text: string, value: string, color: string, icon: string}> => {
+const latencyRow = computed((): Array<{
+	text: string;
+	value: string;
+	color: string;
+	icon: string; 
+}> => {
 	return [
 		{
 			text: 'latency',
 			value: latency.value ? `${latency.value} ms` : '',
 			color: 'secondary',
-			icon: mdiTimerOutline,
+			icon: mdiTimerOutline
 		},
 		{
 			text: 'size sent',
@@ -295,7 +302,7 @@ const latencyRow = computed((): Array<{text: string, value: string, color: strin
 			value: size_response.value,
 			color: 'primary',
 			icon: mdiArrowDownBold
-		},
+		}
 	];
 });
 const sendDisabled = computed((): boolean => {
@@ -318,8 +325,8 @@ const textFields = computed((): Array<TDialogFields> => {
 			icon: mdiLock,
 			label: 'device password',
 			model: 'password' as const,
-			type: passwordVisible.value? 'text' : 'password',
-		},
+			type: passwordVisible.value ? 'text' : 'password'
+		}
 	];
 });
 const ttl = computed((): boolean => {
@@ -366,8 +373,11 @@ const formatMessage = (data: string): string => {
 	
 const getAuthToken = async (): Promise<void> => {
 	errorMessage.value = '';
-	const token = await axios_ws.auth({ key: props.device.api_key, password: password.value });
-	// eslint-disable-next-line require-atomic-updates
+	const token = await axios_ws.auth({
+		key: props.device.api_key,
+		password: password.value 
+	});
+	 
 	password.value = '';
 	if (token) authToken.value = token;
 	else {
@@ -413,19 +423,21 @@ const openWs = async (): Promise<void> => {
 		// If the response is an object, aka a buffer, attempt to convert the buffer back into text
 		if (typeof event.data === 'object') {
 			response.value = await event.data.text();
-		}
-		else {
+		} else {
 			response.value = String(event.data);
 		}
 	});
 };
 
-const parser = (input: string): unknown|never => {
+const parser = (input: string): unknown | never => {
 	try {
-		const output = parse(input, undefined, { protoAction: 'remove', constructorAction: 'remove' });
+		const output = parse(input, undefined, {
+			protoAction: 'remove',
+			constructorAction: 'remove' 
+		});
 		if (Object.keys(output).length === 0) throw Error('Empty object');
 		return output;
-	} catch (e) {
+	} catch (_e) {
 		errorMessage.value = 'invalid message';
 		return;
 	}
@@ -433,14 +445,16 @@ const parser = (input: string): unknown|never => {
 
 const sendMessage = async (): Promise<void> => {
 	sentTime.value = Date.now();
-	let data = message.value.startsWith('{') ? parser(message.value) : message.value;
+	const data = message.value.startsWith('{') ? parser(message.value) : message.value;
 	if (!data) return snackError({ message: 'parsing error - invalid message' });
 	if (props.device.structured_data) {
-		const toSend = unique.value ? JSON.stringify({ data, unique: true }): JSON.stringify({ data });
+		const toSend = unique.value ? JSON.stringify({
+			data,
+			unique: true 
+		}) : JSON.stringify({ data });
 		if (!toSend) return snackError({ message: 'parsing error - invalid message' });
 		ws.value?.send(toSend);
-	}
-	else ws.value?.send(message.value);
+	} else ws.value?.send(message.value);
 	updateExtra();
 };
 
@@ -449,7 +463,10 @@ const updateExtra = (): void => {
 	emit('refresh');
 };
 
-const props = defineProps<{device: TDeviceInfo, maxConnected: boolean}>();
+const props = defineProps<{
+	device: TDeviceInfo;
+	maxConnected: boolean; 
+}>();
 
 watch(isIntersecting, (i: boolean): void => {
 	if (i && !props.device.device_password_required) openWs();

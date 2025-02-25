@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { ModuleName } from '@/types/enum_module';
+import { ModuleName } from '@/types/const_module';
 import type { TSnackPosition } from '@/types';
 
 export const snackbarModule = defineStore(ModuleName.SNACKBAR, {
@@ -10,9 +10,12 @@ export const snackbarModule = defineStore(ModuleName.SNACKBAR, {
 		icon: '',
 		loading: false,
 		message: '',
-		position: { x: 'right', y: 'bottom' } as TSnackPosition,
+		position: {
+			x: 'right',
+			y: 'bottom' 
+		} as TSnackPosition,
 		timeout: 0,
-		visible: false,
+		visible: false
 
 	}),
 

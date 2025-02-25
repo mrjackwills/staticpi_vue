@@ -75,7 +75,7 @@ import { mdiCakeVariant, mdiCardAccountDetails, mdiProgressUpload } from '@mdi/j
 import { useDisplay } from 'vuetify';
 import { zero_pad } from '@/vanillaTS/convert_seconds';
 import type { TSettingSection, u } from '@/types';
-import type { UserLevel } from '@/types/enum_userLevel';
+import type { UserLevel } from '@/types/const_userLevel';
 
 const { smAndDown } = useDisplay();
 const [ settingSectionStore, userStore ] = [ settingSectionModule(), userModule() ];
@@ -91,14 +91,14 @@ onBeforeMount(() => {
 const birthday_tooltip = computed((): string => {
 	if (!timestamp.value) return '';
 	const number = now.getFullYear() - timestamp.value.getFullYear();
-	return number === 0 ? 'joined today!' :`member for ${number} year${number>1 ? 's' : ''}`;
+	return number === 0 ? 'joined today!' : `member for ${number} year${number > 1 ? 's' : ''}`;
 });
 // Do not like this
 const birthday = computed((): boolean => {
 	if (!timestamp.value) return false;
-	let month_day =timestamp.value.toISOString().substring(5, 10);
+	const month_day = timestamp.value.toISOString().substring(5, 10);
 	const now_day = now.getDate();
-	const now_month = now.getMonth() +1;
+	const now_month = now.getMonth() + 1;
 	return `${month_day}` === `${zero_pad(now_month)}-${zero_pad(now_day)}`;
 });
 
@@ -106,7 +106,7 @@ const text_size = computed((): string => {
 	return smAndDown.value ? 'small-text' : '';
 });
 const timestamp = computed((): u<Date> => {
-	return userStore.timestamp? new Date(userStore.timestamp.substring(0, 10)) : new Date();
+	return userStore.timestamp ? new Date(userStore.timestamp.substring(0, 10)) : new Date();
 });
 const userLevel = computed((): UserLevel => {
 	return userStore.userLevel;
@@ -120,7 +120,7 @@ const emitter: Ref<u<TSettingSection>> = ref(undefined);
 const show_tooltip = ref(false);
 
 const upgradeAccount = (): void => {
-	emitter.value = !emitter.value ? 'userlevel': undefined;
+	emitter.value = !emitter.value ? 'userlevel' : undefined;
 	settingSectionStore.set_current_section(emitter.value);
 };
 

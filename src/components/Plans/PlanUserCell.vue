@@ -32,5 +32,8 @@ const order_detail = computed((): string => {
 	return mdAndUp.value ? '2' : '1';
 });
 	
-const props = defineProps<{freePlan: boolean, detail: string}>();
+const props = defineProps<{
+	freePlan: boolean;
+	detail: string; 
+}>();
 </script>

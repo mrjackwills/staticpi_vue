@@ -36,7 +36,7 @@ onBeforeUnmount(() => {
 
 const authenticated = computed(() => userModule().authenticated);
 const messageSize = computed(() => mdAndUp.value ? 'text-h6' : 'text-subtitle-1');
-const spacerClass = computed(()=> navDrawerModule().mini? 'nav-spacer-mini' : 'nav-spacer');
+const spacerClass = computed(()=> navDrawerModule().mini ? 'nav-spacer-mini' : 'nav-spacer');
 
 const reconnectInterval = ref(0);
 

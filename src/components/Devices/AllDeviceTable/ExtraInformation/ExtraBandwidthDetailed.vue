@@ -99,37 +99,38 @@ const tableData = computed((): Array<TExtraBandwidthDetailed> => {
 				},
 				total: {
 					...convert_bytes(Number(props.device.pi_bytes_day_in) + Number(props.device.pi_bytes_day_out)),
-					bytes: `${Number(props.device.pi_bytes_day_in) + Number(props.device.pi_bytes_day_out)}`,
+					bytes: `${Number(props.device.pi_bytes_day_in) + Number(props.device.pi_bytes_day_out)}`
 				}
 			},
 			client: {
 				in: {
 					...convert_bytes(props.device.client_bytes_day_in),
-					bytes: props.device.client_bytes_day_in,
+					bytes: props.device.client_bytes_day_in
 				},
 				out: {
 					...convert_bytes(props.device.client_bytes_day_out),
-					bytes: props.device.client_bytes_day_out,
+					bytes: props.device.client_bytes_day_out
 				},
 				total: {
 					...convert_bytes(Number(props.device.client_bytes_day_in) + Number(props.device.client_bytes_day_out)),
-					bytes: `${Number(props.device.client_bytes_day_in) + Number(props.device.client_bytes_day_out)}`,
+					bytes: `${Number(props.device.client_bytes_day_in) + Number(props.device.client_bytes_day_out)}`
 				}
 			},
 			all: {
 				in: {
 					...convert_bytes(Number(props.device.pi_bytes_day_in) + Number(props.device.client_bytes_day_in)),
-					bytes: `${Number(props.device.pi_bytes_day_in) + Number(props.device.client_bytes_day_in)}`,
+					bytes: `${Number(props.device.pi_bytes_day_in) + Number(props.device.client_bytes_day_in)}`
 				},
 				out: {
 					...convert_bytes(Number(props.device.pi_bytes_day_out) + Number(props.device.client_bytes_day_out)),
-					bytes: `${Number(props.device.pi_bytes_day_out) + Number(props.device.client_bytes_day_out)}`,
+					bytes: `${Number(props.device.pi_bytes_day_out) + Number(props.device.client_bytes_day_out)}`
 				},
 				total: {
-					...convert_bytes(Number(props.device.pi_bytes_day_in) + Number(props.device.client_bytes_day_in) + Number(props.device.pi_bytes_day_out) + Number(props.device.client_bytes_day_out)),
-					bytes: `${Number(props.device.pi_bytes_day_in) + Number(props.device.client_bytes_day_in) + Number(props.device.pi_bytes_day_out) + Number(props.device.client_bytes_day_out)}`,
+					...convert_bytes(Number(props.device.pi_bytes_day_in)
+					 + Number(props.device.client_bytes_day_in) + Number(props.device.pi_bytes_day_out) + Number(props.device.client_bytes_day_out)),
+					bytes: `${Number(props.device.pi_bytes_day_in) + Number(props.device.client_bytes_day_in) + Number(props.device.pi_bytes_day_out) + Number(props.device.client_bytes_day_out)}`
 				}
-			},
+			}
 		},
 		{
 			period: 'this month',
@@ -145,37 +146,39 @@ const tableData = computed((): Array<TExtraBandwidthDetailed> => {
 				},
 				total: {
 					...convert_bytes(Number(props.device.pi_bytes_month_in) + Number(props.device.pi_bytes_month_out)),
-					bytes: `${Number(props.device.pi_bytes_month_in) + Number(props.device.pi_bytes_month_out)}`,
+					bytes: `${Number(props.device.pi_bytes_month_in) + Number(props.device.pi_bytes_month_out)}`
 				}
 			},
 			client: {
 				in: {
 					...convert_bytes(props.device.client_bytes_month_in),
-					bytes: props.device.client_bytes_month_in,
+					bytes: props.device.client_bytes_month_in
 				},
 				out: {
 					...convert_bytes(props.device.client_bytes_month_out),
-					bytes: props.device.client_bytes_month_out,
+					bytes: props.device.client_bytes_month_out
 				},
 				total: {
 					...convert_bytes(Number(props.device.client_bytes_month_in) + Number(props.device.client_bytes_month_out)),
-					bytes: `${Number(props.device.client_bytes_month_in) + Number(props.device.client_bytes_month_out)}`,
+					bytes: `${Number(props.device.client_bytes_month_in) + Number(props.device.client_bytes_month_out)}`
 				}
 			},
 			all: {
 				in: {
 					...convert_bytes(Number(props.device.pi_bytes_month_in) + Number(props.device.client_bytes_month_in)),
-					bytes: `${Number(props.device.pi_bytes_month_in) + Number(props.device.client_bytes_month_in)}`,
+					bytes: `${Number(props.device.pi_bytes_month_in) + Number(props.device.client_bytes_month_in)}`
 				},
 				out: {
 					...convert_bytes(Number(props.device.pi_bytes_month_out) + Number(props.device.client_bytes_month_out)),
-					bytes: `${Number(props.device.pi_bytes_month_out) + Number(props.device.client_bytes_month_out)}`,
+					bytes: `${Number(props.device.pi_bytes_month_out) + Number(props.device.client_bytes_month_out)}`
 				},
 				total: {
-					...convert_bytes(Number(props.device.pi_bytes_month_in) + Number(props.device.client_bytes_month_in) + Number(props.device.pi_bytes_month_out) + Number(props.device.client_bytes_month_out)),
-					bytes: `${Number(props.device.pi_bytes_month_in) + Number(props.device.client_bytes_month_in) + Number(props.device.pi_bytes_month_out) + Number(props.device.client_bytes_month_out)}`,
+					...convert_bytes(Number(props.device.pi_bytes_month_in)
+					+ Number(props.device.client_bytes_month_in) + Number(props.device.pi_bytes_month_out) + Number(props.device.client_bytes_month_out)),
+					bytes: `${Number(props.device.pi_bytes_month_in)
+					+ Number(props.device.client_bytes_month_in) + Number(props.device.pi_bytes_month_out) + Number(props.device.client_bytes_month_out)}`
 				}
-			},
+			}
 		},
 		{
 			period: 'all time',
@@ -191,37 +194,39 @@ const tableData = computed((): Array<TExtraBandwidthDetailed> => {
 				},
 				total: {
 					...convert_bytes(Number(props.device.pi_bytes_total_in) + Number(props.device.pi_bytes_total_out)),
-					bytes: `${Number(props.device.pi_bytes_total_in) + Number(props.device.pi_bytes_total_out)}`,
+					bytes: `${Number(props.device.pi_bytes_total_in) + Number(props.device.pi_bytes_total_out)}`
 				}
 			},
 			client: {
 				in: {
 					...convert_bytes(props.device.client_bytes_total_in),
-					bytes: props.device.client_bytes_total_in,
+					bytes: props.device.client_bytes_total_in
 				},
 				out: {
 					...convert_bytes(props.device.client_bytes_total_out),
-					bytes: props.device.client_bytes_total_out,
+					bytes: props.device.client_bytes_total_out
 				},
 				total: {
 					...convert_bytes(Number(props.device.client_bytes_total_in) + Number(props.device.client_bytes_total_out)),
-					bytes: `${Number(props.device.client_bytes_total_in) + Number(props.device.client_bytes_total_out)}`,
+					bytes: `${Number(props.device.client_bytes_total_in) + Number(props.device.client_bytes_total_out)}`
 				}
 			},
 			all: {
 				in: {
 					...convert_bytes(Number(props.device.pi_bytes_total_in) + Number(props.device.client_bytes_total_in)),
-					bytes: `${Number(props.device.pi_bytes_total_in) + Number(props.device.client_bytes_total_in)}`,
+					bytes: `${Number(props.device.pi_bytes_total_in) + Number(props.device.client_bytes_total_in)}`
 				},
 				out: {
 					...convert_bytes(Number(props.device.pi_bytes_total_out) + Number(props.device.client_bytes_total_out)),
-					bytes: `${Number(props.device.pi_bytes_total_out) + Number(props.device.client_bytes_total_out)}`,
+					bytes: `${Number(props.device.pi_bytes_total_out) + Number(props.device.client_bytes_total_out)}`
 				},
 				total: {
-					...convert_bytes(Number(props.device.pi_bytes_total_in) + Number(props.device.client_bytes_total_in) + Number(props.device.pi_bytes_total_out) + Number(props.device.client_bytes_total_out)),
-					bytes: `${Number(props.device.pi_bytes_total_in) + Number(props.device.client_bytes_total_in) + Number(props.device.pi_bytes_total_out) + Number(props.device.client_bytes_total_out)}`,
+					...convert_bytes(Number(props.device.pi_bytes_total_in)
+					+ Number(props.device.client_bytes_total_in) + Number(props.device.pi_bytes_total_out) + Number(props.device.client_bytes_total_out)),
+					bytes: `${Number(props.device.pi_bytes_total_in)
+					+ Number(props.device.client_bytes_total_in) + Number(props.device.pi_bytes_total_out) + Number(props.device.client_bytes_total_out)}`
 				}
-			},
+			}
 		}
 
 	];
@@ -230,11 +235,11 @@ const dataKeys = [ 'device', 'client', 'all' ] as const;
 const detailHeaders = [ 'received', 'sent', 'combined' ] as const;
 
 const borderRight = (index: number, innerIndex: number): string => {
-	return index !==2 ? 'border-right' : innerIndex !== 2 ? 'border-right': '';
+	return index !== 2 ? 'border-right' : innerIndex !== 2 ? 'border-right' : '';
 
 };
 
-const props = defineProps<{device: TDeviceInfo}>();
+const props = defineProps<{ device: TDeviceInfo }>();
 
 </script>
 

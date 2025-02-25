@@ -82,7 +82,7 @@
 </template>
 
 <script setup lang="ts">
-import { mdiChevronDoubleUp, mdiSwapVerticalBold, } from '@mdi/js';
+import { mdiChevronDoubleUp, mdiSwapVerticalBold } from '@mdi/js';
 import ExtraBandwidthDetailed from '@/components/Devices/AllDeviceTable/ExtraInformation/ExtraBandwidthDetailed.vue';
 import ExtraBandwidthSimple from '@/components/Devices/AllDeviceTable/ExtraInformation/ExtraBandwidthSimple.vue';
 import { useDisplay } from 'vuetify';
@@ -105,7 +105,7 @@ const showDetailSwitch = computed((): boolean => {
 });
 
 const isComponent = computed(() => {
-	return switchDetailed.value? ExtraBandwidthDetailed : ExtraBandwidthSimple;
+	return switchDetailed.value ? ExtraBandwidthDetailed : ExtraBandwidthSimple;
 });
 
 const headers = [ 'device', 'clients', 'all' ];
@@ -123,9 +123,10 @@ const toggleHidden = (): void => {
 	emit('hidden', hidden.value);
 };
 
-withDefaults(defineProps<{device: TDeviceInfo, show_calc?: boolean}>(), {
-	show_calc: true,
-});
+withDefaults(defineProps<{
+	device: TDeviceInfo;
+	show_calc?: boolean; 
+}>(), { show_calc: true });
 
 watch(isIntersecting, (i: boolean): void => {
 	if (!i) {

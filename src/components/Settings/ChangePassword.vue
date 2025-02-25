@@ -144,7 +144,7 @@ import {
 	mdiLockOpen,
 	mdiLockReset,
 	mdiLockCheck,
-	mdiSend,
+	mdiSend
 } from '@mdi/js';
 
 const { smAndDown } = useDisplay();
@@ -196,17 +196,17 @@ const textFields = computed((): Array<TChangeUserPassword> => {
 			icon: mdiLockOpen,
 			label: 'current password',
 			model: 'current_password' as const,
-			type: passwordVisible.value? 'text' : 'password',
-			appendIcon: passwordVisible.value ? mdiEyeOff : mdiEye,
+			type: passwordVisible.value ? 'text' : 'password',
+			appendIcon: passwordVisible.value ? mdiEyeOff : mdiEye
 		},
 		{
 			autocomplete: 'one-time-code',
 			icon: mdiLock,
 			label: 'new password',
 			model: 'new_password' as const,
-			type: new_passwordVisible.value? 'text' : 'password',
-			appendIcon: new_passwordVisible.value ? mdiEyeOff : mdiEye,
-		},
+			type: new_passwordVisible.value ? 'text' : 'password',
+			appendIcon: new_passwordVisible.value ? mdiEyeOff : mdiEye
+		}
 	];
 });
 
@@ -217,7 +217,7 @@ const twoFA_always_required = computed((): boolean => {
 const errorMessages = ref({
 	new_password: '',
 	current_password: '',
-	token: '',
+	token: ''
 });
 const componentId = 'changepassword-setting-section';
 const new_passwordVisible = ref(false);
@@ -229,13 +229,13 @@ const tokenFields = ref([
 		clearable: true,
 		icon: mdiCellphoneInformation,
 		label: '2FA code',
-		model: 'token' as const,
-	},
+		model: 'token' as const
+	}
 ]);
 const user = ref({
 	new_password: '',
 	current_password: '',
-	token: '',
+	token: ''
 });
 
 /**
@@ -272,7 +272,7 @@ const focusMethod = (model: string): void => {
 	if (model === 'current_password') passwordVisible.value = false;
 	else {
 		new_passwordVisible.value = false;
-		passwordVisible.value = false ;
+		passwordVisible.value = false;
 	}
 };
 		
@@ -287,28 +287,33 @@ const submit = async (): Promise<void> => {
 	loading.value = true;
 	new_passwordVisible.value = false;
 	passwordVisible.value = false;
-	// eslint-disable-next-line require-atomic-updates
+	 
 	passwordCompromised.value = await passwordCheck(user.value.new_password);
 	if (passwordCompromised.value) {
-		// eslint-disable-next-line require-atomic-updates
+		 
 		errorMessages.value.new_password = 'unsafe password';
-		// eslint-disable-next-line require-atomic-updates
+		 
 		loading.value = false;
 		return;
 	}
-	const response = await axios_authenticatedUser.password_patch({ current_password: user.value.current_password, token: user.value.token ? user.value.token:undefined, new_password: user.value.new_password });
-	// eslint-disable-next-line require-atomic-updates
+	const response = await axios_authenticatedUser.password_patch({
+		current_password: user.value.current_password,
+		token: user.value.token ? user.value.token : undefined,
+		new_password: user.value.new_password 
+	});
+	 
 	loading.value = false;
 	if (response) {
 		snackSuccess({ message: 'Password changed' });
 		cancel();
 	} else {
-		// eslint-disable-next-line require-atomic-updates
-		errorMessages.value.current_password = twoFA_always_required.value? 'password and/or token invalid' : 'incorrect password';
-		// eslint-disable-next-line require-atomic-updates
-		errorMessages.value.token = twoFA_always_required.value? 'password and/or token invalid' : '';
+		 
+		errorMessages.value.current_password = twoFA_always_required.value ? 'password and/or token invalid' : 'incorrect password';
+		 
+		errorMessages.value.token = twoFA_always_required.value ? 'password and/or token invalid' : '';
 	}
 };
+
 /**
  ** common watcher method, for new and current password watcher
  */
@@ -339,7 +344,8 @@ const watch_password_common = (): void => {
 
 	if (!v$?.value.new_password?.required) {
 		errorMessages.value.new_password = 'a password is required';
-		return;}
+		return; 
+	}
 
 	if (!v$.value.new_password.minLen) {
 		errorMessages.value.new_password = `${minPassLength} characters minimum`;
@@ -348,9 +354,7 @@ const watch_password_common = (): void => {
 };
 
 const rules = {
-	current_password: {
-		required
-	},
+	current_password: { required },
 	new_password: {
 		required,
 		min: minLength(minPassLength)
@@ -375,9 +379,7 @@ watch(() => user.value.new_password, (_) => {
 watch(showTextFields, (i) => {
 	if (i) {
 		setTimeout(() => {
-			document.getElementById(componentId)?.scrollIntoView({
-				behavior: 'smooth'
-			});
+			document.getElementById(componentId)?.scrollIntoView({ behavior: 'smooth' });
 			
 		}, 210);
 	}

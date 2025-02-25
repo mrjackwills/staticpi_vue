@@ -75,14 +75,14 @@ const downloadData = async (): Promise<void> => {
 		confirmMethod: downloadData_confirm,
 		passwordrequired: true,
 		twoFABackup: true,
-		twoFARequired: true,
+		twoFARequired: true
 	});
 
 };
 
 const downloadData_confirm = async (authentication: TAuthObject): Promise<void> => {
 	loading.value = true;
-	let data = await axios_authenticatedUser.data_get(authentication);
+	const data = await axios_authenticatedUser.data_get(authentication);
 	if (data) {
 
 		const file = document.createElement('a');

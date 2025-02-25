@@ -57,7 +57,7 @@ const onMobile = computed((): boolean => {
 });
 
 const message = computed((): string => {
-	return click.value? props.tooltipMessage : props.hoverMessage;
+	return click.value ? props.tooltipMessage : props.hoverMessage;
 });
 	
 const click = ref(false);
@@ -94,21 +94,21 @@ const onIntersect = (is_i: boolean, _entries: Array<IntersectionObserverEntry>, 
 };
 
 const props = withDefaults(defineProps<{
-	color?: string,
-	dark?: boolean,
-	density?: VBtn['$props']['density'],
-	disabled?: boolean,
-	hoverMessage?: string,
-	small?:boolean
-	toCopy: string,
-	tooltipMessage: string,
-	xsmall?: boolean,
+	color?: string;
+	dark?: boolean;
+	density?: VBtn['$props']['density'];
+	disabled?: boolean;
+	hoverMessage?: string;
+	small?: boolean;
+	toCopy: string;
+	tooltipMessage: string;
+	xsmall?: boolean;
 }>(), {
 	color: 'black',
 	dark: false,
 	density: 'default',
 	disabled: false,
-	hoverMessage: '',
+	hoverMessage: ''
 });
 
 watch(isIntersecting, (i) => {

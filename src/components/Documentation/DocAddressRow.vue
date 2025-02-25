@@ -20,11 +20,11 @@
 <script setup lang="ts">
 
 defineProps<{
-	address: string,
-	name: string,
-	toCopy: string,
-	tooltipMessage: string,
-	hoverMessage: string
+	address: string;
+	name: string;
+	toCopy: string;
+	tooltipMessage: string;
+	hoverMessage: string;
 }>();
 
 </script>

@@ -122,7 +122,7 @@ onMounted(() => {
 });
 
 const density = computed(() => {
-	return smAndDown.value ? 'compact':'default';
+	return smAndDown.value ? 'compact' : 'default';
 });
 
 const confirmMethod = computed(() => dialogStore.confirmMethod);
@@ -135,14 +135,14 @@ const disabled = computed(() => loading.value
 	|| passwordRequired.value && !user.value.password
 	|| passwordRequired.value && twoFA_always_required.value && !user.value.token
 	|| twoFA_always_required.value && passwordRequired.value && tokenLength.value < 6
-	? true: false
+	? true : false
 );
 const icon = computed(() =>dialogStore.icon);
 
 const logout = computed(() => title.value.toLowerCase() === 'logout');
-const maxWidth = computed(() => lgAndUp.value? '40vw' : '80vw');
+const maxWidth = computed(() => lgAndUp.value ? '40vw' : '80vw');
 const message = computed(() => dialogStore.message);
-const messageSize = computed(() => mdAndUp.value? 'text-h5' : 'text-subtitle-1');
+const messageSize = computed(() => mdAndUp.value ? 'text-h5' : 'text-subtitle-1');
 const monospace = computed(() => timeout.value > 0 ? true : false);
 const passwordRequired = computed(() => dialogStore.passwordRequired);
 const textFields = computed(() => [
@@ -152,8 +152,8 @@ const textFields = computed(() => [
 		icon: mdiLock,
 		label: 'user password',
 		model: 'password' as const,
-		type: passwordVisible.value ? 'text' : 'password',
-	},
+		type: passwordVisible.value ? 'text' : 'password'
+	}
 ]);
 
 const timeout = computed({
@@ -162,22 +162,22 @@ const timeout = computed({
 	},
 	set (n: number): void {
 		dialogStore.set_timeout(n);
-	},
+	}
 });
 const timeout_text = computed(() =>
-	timeout.value? `${String(timeout.value).padStart(2, '0')}` : passwordRequired.value && !user.value.password
+	timeout.value ? `${String(timeout.value).padStart(2, '0')}` : passwordRequired.value && !user.value.password
 		? 'password required ' : passwordRequired.value && twoFA_always_required.value && !user.value.token
 			|| passwordRequired.value && twoFA_always_required.value && tokenError.value
 			? 'token required' : confirmButton.value);
 const timeout_icon = computed(() =>
 	timeout.value ? mdiTimerOutline : passwordRequired.value && !user.value.password
-		? mdiLock: passwordRequired.value && twoFA_always_required.value && !user.value.token
-			|| passwordRequired.value && twoFA_always_required.value && tokenError.value ? mdiCellphoneInformation: icon.value
+		? mdiLock : passwordRequired.value && twoFA_always_required.value && !user.value.token
+			|| passwordRequired.value && twoFA_always_required.value && tokenError.value ? mdiCellphoneInformation : icon.value
 				? icon.value : mdiCheck);
 
 const title = computed(() => dialogStore.title ?? 'warning');
-const titleSize = computed(() => mdAndUp.value? 'text-h4' : 'text-h6');
-const tokenLength = computed(() => user.value.token ? user.value.token.length: 0);
+const titleSize = computed(() => mdAndUp.value ? 'text-h4' : 'text-h6');
+const tokenLength = computed(() => user.value.token ? user.value.token.length : 0);
 const twoFA_always_required = computed(() => twoFAStore.always_required || dialogStore.twoFARequired && twoFAStore.active);
 
 const visible = computed({
@@ -200,12 +200,12 @@ const tokenFields = [
 		clearable: true,
 		icon: mdiCellphoneInformation,
 		label: '2FA code',
-		model: 'token' as const,
+		model: 'token' as const
 	}
 ];
 const user = ref({
 	password: '',
-	token: undefined as string | undefined,
+	token: undefined as string | undefined
 });
 
 const cancel = (): void => {
@@ -224,7 +224,7 @@ const click = async (): Promise<void> => {
 	visible.value = false;
 	const data = {
 		password: user.value.password,
-		token: user.value.token,
+		token: user.value.token
 	};
 	await confirmMethod.value(data);
 	dialogStore.$reset();
@@ -238,17 +238,19 @@ const click = async (): Promise<void> => {
 const focusMethod = (model: string): void => {
 	if (model !== 'password') passwordVisible.value = false;
 };
+
 /**
  ** When visible, set a timeout for the button, if params are met
  */
 const mountedTimeout = (): void => {
-	if (!isIntersecting.value) return ;
+	if (!isIntersecting.value) return;
 	if (!timeout.value) return;
 	timeoutInterval.value = window.setInterval(() => {
-		timeout.value = timeout.value > 0 ? timeout.value -= 1: timeout.value;
+		timeout.value = timeout.value > 0 ? timeout.value -= 1 : timeout.value;
 		if (timeout.value < 1) clearInterval(timeoutInterval.value);
 	}, 1000);
 };
+
 /**
  ** update isIntersecting when visible & not
  */

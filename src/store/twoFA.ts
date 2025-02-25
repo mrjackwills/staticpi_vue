@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { ModuleName } from '@/types/enum_module';
+import { ModuleName } from '@/types/const_module';
 
 export const twoFAModule = defineStore(ModuleName.TWO_FA, {
 
@@ -9,7 +9,7 @@ export const twoFAModule = defineStore(ModuleName.TWO_FA, {
 		backupProcess: false,
 		count: 0,
 		secret: '',
-		setupProcessStarted: false,
+		setupProcessStarted: false
 	}),
 
 	actions: {
@@ -35,6 +35,6 @@ export const twoFAModule = defineStore(ModuleName.TWO_FA, {
 	
 		set_setupProcessStarted (x: boolean): void {
 			this.setupProcessStarted = x;
-		},
+		}
 	}
 });

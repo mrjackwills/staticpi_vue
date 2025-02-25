@@ -40,18 +40,18 @@ const calc_strength = (): number => {
 	const symbols = /\W+/g;
 	const upper = /[A-Z]+/g;
 	const scores = {
-		lowerScore: props.password.match(lower)? 1.25 : 1,
-		numbersScore: props.password.match(numbers)? 1.5 : 1,
-		symbolsScore: props.password.match(symbols)? 1.6 : 1,
-		upperScore: props.password.match(upper)? 1.55 : 1,
+		lowerScore: props.password.match(lower) ? 1.25 : 1,
+		numbersScore: props.password.match(numbers) ? 1.5 : 1,
+		symbolsScore: props.password.match(symbols) ? 1.6 : 1,
+		upperScore: props.password.match(upper) ? 1.55 : 1
 	};
-	return scores.lowerScore * scores.upperScore * scores.symbolsScore * scores.numbersScore * (length * .75) ;
+	return scores.lowerScore * scores.upperScore * scores.symbolsScore * scores.numbersScore * (length * .75);
 };
 
 const props = defineProps<{
-	passwordCompromised: boolean,
-	password: string,
-	errorMessage: string,
+	passwordCompromised: boolean;
+	password: string;
+	errorMessage: string;
 }>();
 
 watch(() => props.password, (): void => {

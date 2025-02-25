@@ -59,7 +59,8 @@
 							<br>
 							Engage with us in other related ways, including any sales, marketing, or events.
 							<br>
-							Questions or concerns? Reading this privacy notice will help you understand your privacy rights and choices. If you do not agree with our policies and practices, please do not use our Services.
+							Questions or concerns? Reading this privacy notice will help you understand your privacy rights and choices.
+							If you do not agree with our policies and practices, please do not use our Services.
 							If you still have any questions or concerns, <router-link :to='FrontEndRoutes.CONTACT' target='_blank' class='ml-1 text-primary'>please contact us</router-link>
 							<br><br>
 							
@@ -99,7 +100,7 @@
 
 <script setup lang='ts'>
 /* eslint-disable max-len */
-import { FrontEndRoutes } from '@/types/enum_routes';
+import { FrontEndRoutes } from '@/types/const_routes';
 import { zero_pad } from '@/vanillaTS/convert_seconds';
 
 onMounted(() => {
@@ -109,7 +110,7 @@ onMounted(() => {
 
 const pageTitle = 'Terms & Conditions, Privacy Policy';
 
-const privacy= [
+const privacy = [
 	{
 		title: 'Agreement',
 		cols: [
@@ -145,7 +146,7 @@ const privacy= [
 			'• Attempt to bypass any measures of the Site designed to prevent or restrict access to the Site, or any portion of the Site.',
 			'• Use a buying agent or purchasing agent to make purchases on the Site.',
 			'• Make any unauthorized use of the Site, including collecting usernames and/or email addresses of users by electronic or other means for the purpose of sending unsolicited email, or creating user accounts by automated means or under false pretenses.',
-			'• Use the Site as part of any effort to compete with us or otherwise use the Site and/or the Content for any revenue-generating endeavor or commercial enterprise.',
+			'• Use the Site as part of any effort to compete with us or otherwise use the Site and/or the Content for any revenue-generating endeavor or commercial enterprise.'
 		]
 	},
 	{
@@ -215,11 +216,11 @@ const privacy= [
 		cols: [
 			'These Terms of Use and any policies or operating rules posted by us on the Site or in respect to the Site constitute the entire agreement and understanding between you and us. Our failure to exercise or enforce any right or provision of these Terms of Use shall not operate as a waiver of such right or provision. These Terms of Use operate to the fullest extent permissible by law. We may assign any or all of our rights and obligations to others at any time. We shall not be responsible or liable for any loss, damage, delay, or failure to act caused by any cause beyond our reasonable control. If any provision or part of a provision of these Terms of Use is determined to be unlawful, void, or unenforceable, that provision or part of the provision is deemed severable from these Terms of Use and does not affect the validity and enforceability of any remaining provisions. There is no joint venture, partnership, employment or agency relationship created between you and us as a result of these Terms of Use or use of the Site. You agree that these Terms of Use will not be construed against us by virtue of having drafted them. You hereby waive any and all defenses you may have based on the electronic form of these Terms of Use and the lack of signing by the parties hereto to execute these Terms of Use.'
 		]
-	},
+	}
 
 ];
 
-const summary =[
+const summary = [
 	'This summary provides key points from our privacy notice, but you can find out more information is available below.',
 	'What personal information do we process? When you visit, use, or navigate our Services, we may process personal information depending on how you interact with staticPi and the Services, the choices you make, and the products and features you use.',
 	'Do we process any sensitive personal information? We do not process sensitive personal information.',
@@ -231,7 +232,7 @@ const summary =[
 	'or other unauthorised third parties will not be able to defeat our security and improperly collect, access, steal, or modify your information.',
 	'What are your rights? Depending on where you are located geographically, the applicable privacy law may mean you have certain rights regarding your personal information.',
 	'How do you exercise your rights? The easiest way to exercise your rights is by filling out our data subject request form available at https://www.staticpi.com/user/settings, or by contacting us.',
-	'We will consider and act upon any request in accordance with applicable data protection laws.',
+	'We will consider and act upon any request in accordance with applicable data protection laws.'
 ];
 
 const sections = [
@@ -248,7 +249,7 @@ const sections = [
 			'• ip addresses',
 			'• user agent',
 			'Sensitive Information. We do not process sensitive information.',
-			'All personal information that you provide to us must be true, complete, and accurate, and you must notify us of any changes to such personal information.\'',
+			'All personal information that you provide to us must be true, complete, and accurate, and you must notify us of any changes to such personal information.\''
 		]
 
 	},
@@ -259,7 +260,7 @@ const sections = [
 			'We process your personal information for a variety of reasons, depending on how you interact with our Services, including:',
 			'•To facilitate account creation and authentication and otherwise manage user accounts. We may process your information so you can create and log in to your account, as well as keep your account in working order.',
 			'•To protect our Services. We may process your information as part of our efforts to keep our Services safe and secure, including fraud monitoring and prevention.',
-			'•To save or protect an individual\'s vital interest. We may process your information when necessary to save or protect an individual’s vital interest, such as to prevent harm.',
+			'•To save or protect an individual\'s vital interest. We may process your information when necessary to save or protect an individual’s vital interest, such as to prevent harm.'
 		]
 	},
 	{
@@ -287,7 +288,7 @@ const sections = [
 			'• If disclosure is required to comply with a subpoena, warrant, court order, or rules of the court relating to the production of records',
 			'• If it was produced by an individual in the course of their employment, business, or profession and the collection is consistent with the purposes for which the information was produced',
 			'• If the collection is solely for journalistic, artistic, or literary purposes',
-			'• If the information is publicly available and is specified by the regulations',
+			'• If the information is publicly available and is specified by the regulations'
 		]
 	},
 	{
@@ -335,21 +336,21 @@ const sections = [
 			'If you would at any time like to review or change the information in your account or terminate your account, you can:',
 			'Log in to your account settings and update your user account.',
 			'Upon your request to terminate your account, we will deactivate or delete your account and information from our active databases. However, we may retain some information in our files to prevent fraud, troubleshoot problems, assist with any investigations, enforce our legal terms and/or comply with applicable legal requirements.',
-			'If you have questions or comments about your privacy rights, you may email us at terms@staticpi.com.',
+			'If you have questions or comments about your privacy rights, you may email us at terms@staticpi.com.'
 		]
 	},
 	{
 		title: 'Controls for do-not-track features',
 		cols: [
-			'Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track ("DNT") feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. At this stage no uniform technology standard for recognising and implementing DNT signals has been finalised. As such, we do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online. If a standard for online tracking is adopted that we must follow in the future, we will inform you about that practice in a revised version of this privacy notice.',
-		],
+			'Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track ("DNT") feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. At this stage no uniform technology standard for recognising and implementing DNT signals has been finalised. As such, we do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online. If a standard for online tracking is adopted that we must follow in the future, we will inform you about that practice in a revised version of this privacy notice.'
+		]
 	},
 	
 	{
 		title: 'Do we make updates to this notice?',
 		cols: [
 			'In Short: Yes, we will update this notice as necessary to stay compliant with relevant laws.',
-			'We may update this privacy notice from time to time. The updated version will be indicated by an updated "Revised" date and the updated version will be effective as soon as it is accessible. If we make material changes to this privacy notice, we may notify you either by prominently posting a notice of such changes or by directly sending you a notification. We encourage you to review this privacy notice frequently to be informed of how we are protecting your information.',
+			'We may update this privacy notice from time to time. The updated version will be indicated by an updated "Revised" date and the updated version will be effective as soon as it is accessible. If we make material changes to this privacy notice, we may notify you either by prominently posting a notice of such changes or by directly sending you a notification. We encourage you to review this privacy notice frequently to be informed of how we are protecting your information.'
 		]
 	},
 	{
@@ -359,7 +360,7 @@ const sections = [
 	{
 		title: 'How can you review, update, or delete the data we collect from you?',
 		cols: [
-			'You have the right to request access to the personal information we collect from you, change that information, or delete it. To request to review, update, or delete your personal information, please visit: http://www.staticpi.com/user/settings',
+			'You have the right to request access to the personal information we collect from you, change that information, or delete it. To request to review, update, or delete your personal information, please visit: http://www.staticpi.com/user/settings'
 		]
 	}
 

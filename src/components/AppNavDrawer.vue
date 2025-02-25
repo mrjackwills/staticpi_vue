@@ -103,7 +103,7 @@ const authenticated = computed(() => userModule().authenticated);
 
 const isAdmin = computed(() => userModule().isAdminUser);
 
-const links = computed(() =>authenticated.value ? authenticatedLinks: notAuthenticatedLinks);
+const links = computed(() =>authenticated.value ? authenticatedLinks : notAuthenticatedLinks);
 
 const mini = computed({
 	get (): boolean {
@@ -115,7 +115,7 @@ const mini = computed({
 	},
 	set (b: boolean): void {
 		navDrawerStore.set_mini(b);
-	},
+	}
 });
 const miniLogo = computed(() => mini.value ? mdiChevronDoubleRight : mdiChevronDoubleLeft);
 
@@ -129,7 +129,7 @@ const open = computed({
 	},
 	set (b: boolean): void {
 		navDrawerStore.set_open(b);
-	},
+	}
 });
 
 const logout_confirm = async (): Promise<void> => {
@@ -144,7 +144,7 @@ const logout = (): void => {
 		icon: mdiLoginVariant,
 		passwordrequired: false,
 		twoFABackup: false,
-		twoFARequired: false,
+		twoFARequired: false
 	});
 };
 

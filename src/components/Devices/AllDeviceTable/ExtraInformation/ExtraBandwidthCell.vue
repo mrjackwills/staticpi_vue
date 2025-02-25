@@ -19,30 +19,28 @@ import { useDisplay } from 'vuetify';
 
 const { mobile } = useDisplay();
 
-const combined = computed(() :boolean => {
+const combined = computed((): boolean => {
 	return ! [ 'in', 'out' ].includes(props.variety);
 });
 const color = computed((): string => {
 	return props.variety === 'in' ? 'primary' : props.variety === 'out' ? 'secondary' : 'error';
 });
 const icon = computed((): string => {
-	return props.variety === 'in' ? mdiArrowUpBold : props.variety === 'out' ? mdiArrowDownBold: mdiSwapVerticalBold ;
+	return props.variety === 'in' ? mdiArrowUpBold : props.variety === 'out' ? mdiArrowDownBold : mdiSwapVerticalBold;
 });
 const mobileClass = computed((): string => {
 	return mobile.value ? 'small-text' : 'total-unit-width';
 });
-const showBorder = computed(() : string => {
-	return !mobile.value && combined.value && props.borderRight ? 'thick-border-right': !mobile.value && props.borderRight? 'border-right' : '';
+const showBorder = computed((): string => {
+	return !mobile.value && combined.value && props.borderRight ? 'thick-border-right' : !mobile.value && props.borderRight ? 'border-right' : '';
 });
 
 const props = withDefaults(defineProps<{
-	borderRight?: boolean,
-	total: string,
-	unit: string,
-	variety: string
-}>(), {
-	borderRight: true,
-});
+	borderRight?: boolean;
+	total: string;
+	unit: string;
+	variety: string;
+}>(), { borderRight: true });
 	
 </script>
 

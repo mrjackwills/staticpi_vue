@@ -49,7 +49,7 @@
 <script setup lang='ts'>
 import { axios_device } from '@/services/axios';
 import { dialoger } from '@/services/dialog';
-import { mdiAutorenew, } from '@mdi/js';
+import { mdiAutorenew } from '@mdi/js';
 import { snackSuccess } from '@/services/snack';
 import { useDisplay } from 'vuetify';
 import type { TAuthObject, TDeviceInfo } from '@/types';
@@ -73,11 +73,11 @@ const loading = computed({
 		
 const justify = computed((): VRow['$props']['justify'] =>{
 	return mdAndUp.value ? 'center' : 'end';
-},);
+});
 
 const name_of_device = computed((): string =>{
 	return props.device.name_of_device;
-},);
+});
 const paused = computed((): boolean =>{
 	return props.device.paused;
 });
@@ -96,20 +96,26 @@ const regenerateApiKey = (): void => {
 		confirmMethod: regenerateApiKey_confirm,
 		passwordrequired: true,
 		twoFABackup: false,
-		twoFARequired: false,
+		twoFARequired: false
 	});
 };
 
 const emit = defineEmits([ 'refresh' ]);
 const regenerateApiKey_confirm = async (authentication: TAuthObject): Promise<void> => {
 	loading.value = true;
-	const response = await axios_device.apiKey_patch({ authentication, name: name_of_device.value });
+	const response = await axios_device.apiKey_patch({
+		authentication,
+		name: name_of_device.value 
+	});
 	loading.value = false;
 	if (response) {
-		snackSuccess({ message: `"${name_of_device.value}" API key regenerated`, icon: mdiAutorenew });
+		snackSuccess({
+			message: `"${name_of_device.value}" API key regenerated`,
+			icon: mdiAutorenew 
+		});
 		emit('refresh');
 	}
 };
 	
-const props = defineProps<{device: TDeviceInfo}>();
+const props = defineProps<{ device: TDeviceInfo }>();
 </script>

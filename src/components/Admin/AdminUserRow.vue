@@ -166,7 +166,7 @@ import { dialoger } from '@/services/dialog';
 import { mdiAccountRemove, mdiCloseCircle, mdiChevronDown, mdiChevronUp, mdiCheck, mdiClose, mdiDelete } from '@mdi/js';
 import { secondsToDays } from '@/vanillaTS/convert_seconds';
 import { useDisplay } from 'vuetify';
-import { UserLevel } from '@/types/enum_userLevel';
+import { UserLevel } from '@/types/const_userLevel';
 import type { AdminDeviceAndConnections, TAdminSession, TAdminUser, TAuthObject, TDeviceInfo } from '@/types';
 
 const { mobile } = useDisplay();
@@ -199,11 +199,11 @@ const click_active = async (): Promise<void> => {
 
 	}
 };
-const bool_icon = (x: boolean): string => x? mdiCheck: mdiClose;
-const bool_color = (x: boolean): string => x? 'primary' : 'pi';
+const bool_icon = (x: boolean): string => x ? mdiCheck : mdiClose;
+const bool_color = (x: boolean): string => x ? 'primary' : 'pi';
 
-const user_level_class = computed(():string =>{
-	return props.user.user_level === UserLevel.ADMIN ? 'text-pi font-weight-bold' : props.user.user_level === UserLevel.PRO ? 'text-primary':'';
+const user_level_class = computed((): string =>{
+	return props.user.user_level === UserLevel.ADMIN ? 'text-pi font-weight-bold' : props.user.user_level === UserLevel.PRO ? 'text-primary' : '';
 
 });
 
@@ -239,15 +239,15 @@ watch(all_devices, (i) => {
 	}
 });
 
-const device_icon = computed(() => show_devices.value ? mdiChevronUp: mdiChevronDown);
-const device_color = computed(() => show_devices.value ? 'pi' :'primary');
+const device_icon = computed(() => show_devices.value ? mdiChevronUp : mdiChevronDown);
+const device_color = computed(() => show_devices.value ? 'pi' : 'primary');
 
 const click_bandwidth = (): void => {
 	show_bandwidth.value = !show_bandwidth.value;
 };
 const show_bandwidth = ref(false);
-const bandwidth_icon = computed(() => show_bandwidth.value ? mdiChevronUp: mdiChevronDown);
-const bandwidth_color = computed(() => show_bandwidth.value ? 'pi' :'primary');
+const bandwidth_icon = computed(() => show_bandwidth.value ? mdiChevronUp : mdiChevronDown);
+const bandwidth_color = computed(() => show_bandwidth.value ? 'pi' : 'primary');
 
 const click_session = (): void => {
 	show_session.value = !show_session.value;
@@ -260,10 +260,10 @@ const click_attempt = async (): Promise<void> => {
 
 const show_session = ref(false);
 const session_icon = computed((): string => {
-	return show_session.value ? mdiChevronUp: mdiChevronDown;
+	return show_session.value ? mdiChevronUp : mdiChevronDown;
 });
 const session_color = computed((): string => {
-	return show_session.value ? 'pi' :'primary';
+	return show_session.value ? 'pi' : 'primary';
 });
 
 const session_delete = async (key: string): Promise<void> => {
@@ -303,14 +303,17 @@ const fake_device = computed((): TDeviceInfo => {
 		client_bytes_month_in: props.user.client_bytes_month_in,
 		client_bytes_month_out: props.user.client_bytes_month_out,
 		client_bytes_total_in: props.user.client_bytes_total_in,
-		client_bytes_total_out: props.user.client_bytes_total_out,
+		client_bytes_total_out: props.user.client_bytes_total_out
 	};
 
 });
 
 const emit = defineEmits([ 'update' ]);
 
-const props = defineProps<{user: TAdminUser, sessions: Array<TAdminSession>}>();
+const props = defineProps<{
+	user: TAdminUser;
+	sessions: Array<TAdminSession>; 
+}>();
 
 watch(() => props.sessions.length, (i) => {
 	if (i === 0) {
@@ -337,14 +340,17 @@ const deleteUser = async (): Promise<void> => {
 		confirmMethod: deleteUser_confirm,
 		passwordrequired: true,
 		twoFABackup: true,
-		twoFARequired: true,
+		twoFARequired: true
 	});
 
 };
 
 const deleteUser_confirm = async (authentication: TAuthObject): Promise<void> => {
 	loading.value = true;
-	await axios_admin.user_delete({ email: props.user.email, ...authentication });
+	await axios_admin.user_delete({
+		email: props.user.email,
+		...authentication 
+	});
 	loading.value = false;
 	emit('update');
 };

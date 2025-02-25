@@ -4,7 +4,8 @@
 	<DocumentationCard heading='Connect with password' :pro='true' >
 		<template v-slot:doc-body>
 			<p>
-				If you have enabled password protection for the device, the the token request body requires both the <span class='font-weight-bold'>key</span> and <span class='font-weight-bold'>password</span> fields
+				If you have enabled password protection for the device, the the token request body requires both the
+				<span class='font-weight-bold'>key</span> and <span class='font-weight-bold'>password</span> fields
 				<br>
 				When setting a device password, you can choose to set identical or separate password for Pi and Client.
 			</p>
@@ -61,11 +62,11 @@ websocket_connection.addEventListener('message', (event) => {
 });
 
 const props = defineProps<{
-	address_token: string,
-	address_wss_client: string,
-	address_wss_pi: string,
-	apiKey: string,
-	componentKey: number,
-	password: string
+	address_token: string;
+	address_wss_client: string;
+	address_wss_pi: string;
+	apiKey: string;
+	componentKey: number;
+	password: string;
 }>();
 </script>

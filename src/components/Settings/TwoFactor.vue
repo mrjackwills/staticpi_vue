@@ -126,9 +126,7 @@ const singleSectionOpen = computed((): boolean =>{
 });
 
 const scrollIntoView = (): void=> {
-	document.getElementById(componentId)?.scrollIntoView({
-		behavior: 'smooth'
-	});
+	document.getElementById(componentId)?.scrollIntoView({ behavior: 'smooth' });
 };
 const componentId = 'tfa-setting-section';
 const showCancel = ref(false);
@@ -142,14 +140,20 @@ const removeTwoFA_confirm = async (authentication: TAuthObject): Promise<void> =
 	const response = await axios_authenticatedUser.twoFA_delete(authentication);
 	loading.value = false;
 	settingSectionStore.set_current_section(undefined);
-	if (response) snackSuccess({ message: 'Two-Factor Authentication removed', icon: mdiDeleteCircle });
+	if (response) snackSuccess({
+		message: 'Two-Factor Authentication removed',
+		icon: mdiDeleteCircle 
+	});
 };
 const removeBackups_confirm = async (authentication: TAuthObject): Promise<void> => {
 	loading.value = true;
 	const response = await axios_authenticatedUser.twoFA_backup_delete(authentication);
 	loading.value = false;
 	settingSectionStore.set_current_section(undefined);
-	if (response) snackSuccess({ message: 'Two-Factor backup codes removed', icon: mdiDeleteCircle });
+	if (response) snackSuccess({
+		message: 'Two-Factor backup codes removed',
+		icon: mdiDeleteCircle 
+	});
 };
 
 const removeBackups = async (): Promise<void> => {
@@ -161,7 +165,7 @@ const removeBackups = async (): Promise<void> => {
 		confirmMethod: removeBackups_confirm,
 		icon: '',
 		twoFABackup: false,
-		twoFARequired: true,
+		twoFARequired: true
 	});
 };
 
@@ -176,13 +180,13 @@ const removeTwoFA = (): void => {
 		confirmMethod: removeTwoFA_confirm,
 		icon: '',
 		twoFABackup: false,
-		twoFARequired: true,
+		twoFARequired: true
 	});
 };
 
 // watch: {
 
-watch(setupProcessStarted, (i: boolean) :void => {
+watch(setupProcessStarted, (i: boolean): void => {
 	if (!i) browserModule().set_stopScroll(true);
 	else {
 		// this.$vuetify.goTo(`#${this.componentId}`);

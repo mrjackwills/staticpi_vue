@@ -78,11 +78,11 @@ import type { VRow } from 'vuetify/components/VGrid';
 const { mdAndUp, mobile, smAndDown } = useDisplay();
 
 const heading = computed((): string => {
-	let suffix = props.tableRows.length>1 ? `s: ${props.tableRows.length}` : '';
+	const suffix = props.tableRows.length > 1 ? `s: ${props.tableRows.length}` : '';
 	return props.is_device ? 'pi connection' : `client connection${suffix}`;
 });
 const icon = computed((): string => {
-	return props.is_device? props.online? mdiAccessPointNetwork : mdiAccessPointNetworkOff : props.online? mdiPlaylistCheck : mdiPlaylistRemove;
+	return props.is_device ? props.online ? mdiAccessPointNetwork : mdiAccessPointNetworkOff : props.online ? mdiPlaylistCheck : mdiPlaylistRemove;
 });
 const iconColor = computed((): string => {
 	return props.online ? 'primary' : 'pi';
@@ -108,12 +108,12 @@ const toggleHidden = (): void => {
 };
 
 const props = withDefaults(defineProps<{
-	is_device: boolean,
-	online: boolean,
-	tableRows:Array<TExtraTableRow>
+	is_device: boolean;
+	online: boolean;
+	tableRows: Array<TExtraTableRow>;
 }>(), {
 	is_device: true,
-	online: true,
+	online: true
 });
 
 watch(isIntersecting, (i: boolean): void => {

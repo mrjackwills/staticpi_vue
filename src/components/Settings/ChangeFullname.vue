@@ -9,7 +9,8 @@
 		</template>
 
 		<template v-slot:text_description>
-			Your personal information may change over time, and we would like to offer you the opportunity to update your current name, which is currently set as "<span class='font-weight-bold'>{{ current_name }}</span>".
+			Your personal information may change over time, and we would like to offer you the opportunity to update your current name, which is currently set as
+			"<span class='font-weight-bold'>{{ current_name }}</span>".
 			<br>
 			If you would like to make any changes, please feel free to do so by submitting them here.
 		</template>
@@ -93,7 +94,7 @@
 
 <script setup lang='ts'>
 import { axios_authenticatedUser } from '@/services/axios';
-import { mdiAccount, mdiAccountOutline, mdiCardAccountDetailsOutline, mdiClose, mdiSend, } from '@mdi/js';
+import { mdiAccount, mdiAccountOutline, mdiCardAccountDetailsOutline, mdiClose, mdiSend } from '@mdi/js';
 import { required } from '@vuelidate/validators';
 import { snackSuccess } from '@/services/snack';
 import { useDisplay } from 'vuetify';
@@ -125,7 +126,7 @@ const componentDisabled = computed((): boolean => {
 	return settingSectionStore.current_section && settingSectionStore.current_section !== 'changefullname' ? true : false;
 });
 
-const current_name = computed(() :string => {
+const current_name = computed((): string => {
 	return userModule().full_name;
 });
 	
@@ -139,20 +140,16 @@ const loading = computed({
 });
 
 const componentId = 'changefullname-setting-section';
-const errorMessages = ref({
-	full_name: '',
-});
+const errorMessages = ref({ full_name: '' });
 
 const showTextFields = ref(false);
 const textField = [ {
 	autocomplete: 'password',
 	icon: mdiAccountOutline,
 	label: 'full name',
-	model: 'full_name' as const,
+	model: 'full_name' as const
 } ];
-const user = ref({
-	full_name: '',
-});
+const user = ref({ full_name: '' });
 
 const cancel = (): void => {
 	showTextFields.value = false;
@@ -172,7 +169,7 @@ const submit = async (): Promise<void> => {
 	if (disabled.value) return;
 	loading.value = true;
 	const response = await axios_authenticatedUser.name_patch(user.value.full_name.trim());
-	// eslint-disable-next-line require-atomic-updates
+	 
 	loading.value = false;
 	if (response) {
 		snackSuccess({ message: 'name changed' });
@@ -183,16 +180,12 @@ const submit = async (): Promise<void> => {
 watch(showTextFields, (i) => {
 	if (i) {
 		setTimeout(() => {
-			document.getElementById(componentId)?.scrollIntoView({
-				behavior: 'smooth'
-			});
+			document.getElementById(componentId)?.scrollIntoView({ behavior: 'smooth' });
 			
 		}, 210);
 	}
 });
 
-const rules = {
-	full_name: { required },
-};
+const rules = { full_name: { required } };
 const v$ = useVuelidate(rules, user);
 </script>

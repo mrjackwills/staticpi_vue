@@ -1,12 +1,12 @@
 import { defineStore } from 'pinia';
-import { ModuleName } from '@/types/enum_module';
-import type { TConfirmMethod, } from '@/types';
+import { ModuleName } from '@/types/const_module';
+import type { TConfirmMethod } from '@/types';
 
 export const dialogModule = defineStore(ModuleName.DIALOG, {
 
 	state: () => ({
 		confirmButton: '',
-		confirmMethod: undefined as TConfirmMethod|undefined,
+		confirmMethod: undefined as TConfirmMethod | undefined,
 		icon: '',
 		message: '',
 		passwordRequired: false,
@@ -14,7 +14,7 @@ export const dialogModule = defineStore(ModuleName.DIALOG, {
 		title: '',
 		twoFABackup: false,
 		twoFARequired: false,
-		visible: false,
+		visible: false
 	}),
 
 	actions: {
@@ -23,7 +23,7 @@ export const dialogModule = defineStore(ModuleName.DIALOG, {
 			this.confirmButton = x;
 		},
 		
-		set_confirmMethod (x: TConfirmMethod|undefined): void {
+		set_confirmMethod (x: TConfirmMethod | undefined): void {
 			this.confirmMethod = x;
 		},
 		
@@ -57,6 +57,6 @@ export const dialogModule = defineStore(ModuleName.DIALOG, {
 		
 		set_visible (x: boolean): void {
 			this.visible = x;
-		},
+		}
 	}
 });
