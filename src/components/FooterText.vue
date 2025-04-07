@@ -83,25 +83,23 @@ const appVersion = computed(() => env.app_version);
 const authed = computed(() => userStore.authenticated);
 const buildDate = computed(() => env.build_date);
 const computedClasses = computed(() => userStore.authenticated ? 'cl text-white' : '');
-const rows = computed((): Array<TFooterRow> => {
-	return [
-		{
-			text: String(appVersion.value),
-			tooltip: 'site version',
-			model: 'siteVersion' as const
-		},
-		{
-			text: buildDate.value,
-			tooltip: 'site build date',
-			model: 'buildDate' as const
-		},
-		{
-			text: String(api_version.value),
-			tooltip: 'API version',
-			model: 'apiVersion' as const
-		}
-	];
-});
+const rows = computed((): Array<TFooterRow> => [
+	{
+		text: String(appVersion.value),
+		tooltip: 'site version',
+		model: 'siteVersion' as const
+	},
+	{
+		text: buildDate.value,
+		tooltip: 'site build date',
+		model: 'buildDate' as const
+	},
+	{
+		text: String(api_version.value),
+		tooltip: 'API version',
+		model: 'apiVersion' as const
+	}
+]);
 
 const buildTimeout = ref(0);
 const showBuild = ref(false);

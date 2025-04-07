@@ -1,7 +1,6 @@
-
 <template>
 
-	<DocumentationCard heading='Connect with password' :pro='true' >
+	<DocumentationCard heading='Connect with password' :pro='true'>
 		<template v-slot:doc-body>
 			<p>
 				If you have enabled password protection for the device, the the token request body requires both the
@@ -9,8 +8,10 @@
 				<br>
 				When setting a device password, you can choose to set identical or separate password for Pi and Client.
 			</p>
-			<CodeBlock :key='`c_${componentKey}`' :code='code_password_connect_client' filename='connect_client_with_password.js' class='my-3' />
-			<CodeBlock :key='`d_${componentKey}`' :code='code_password_connect_pi' filename='connect_pi_with_password.js' class='my-3' />
+			<CodeBlock :key='`c_${componentKey}`' :code='code_password_connect_client'
+				filename='connect_client_with_password.js' class='my-3' />
+			<CodeBlock :key='`d_${componentKey}`' :code='code_password_connect_pi'
+				filename='connect_pi_with_password.js' class='my-3' />
 		</template>
 	</DocumentationCard>
 
@@ -18,8 +19,7 @@
 
 <script setup lang='ts'>
 
-const code_password_connect_client = computed((): string => {
-	return `const token_body = {
+const code_password_connect_client = computed(() => `const token_body = {
 	 key: "${props.apiKey}",
 	 password: "your_secret_client_password"
 };
@@ -40,11 +40,9 @@ websocket_connection.addEventListener('open', (event) => {
 
 websocket_connection.addEventListener('message', (event) => {
 	console.log(\`message received on client: \${event.data}\`);
-});`;
-});
+});`);
 
-const code_password_connect_pi = computed((): string => {
-	return `const token_body = {
+const code_password_connect_pi = computed(() => `const token_body = {
 	 key: "${props.apiKey}",
 	 password: "your_secret_pi_password"
 };
@@ -58,8 +56,7 @@ websocket_connection.addEventListener('open', (event) => {
 
 websocket_connection.addEventListener('message', (event) => {
 	console.log(\`message received on pi: \${event.data}\`);
-});`;
-});
+});`);
 
 const props = defineProps<{
 	address_token: string;

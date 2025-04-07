@@ -1,5 +1,5 @@
 <template>
-	<v-row align='center' :justify='justify' class='no-gutters pa-0 ma-0' >
+	<v-row align='center' :justify='justify' class='no-gutters pa-0 ma-0'>
 
 		<v-col cols='12' md='8' class='ma-0 pa-0'>
 			<v-expand-transition>
@@ -7,59 +7,30 @@
 					<v-form v-on:submit.prevent autocomplete='off'>
 						<v-row align='center' justify='center' no-gutters class='pt-1 mb-n3 ma-0 pa-0'>
 							<v-col cols='12' class='ma-0 pa-0 pa-1'>
-								<v-text-field
-									v-for='(item, index) in textFields'
-									v-model='deviceSetting[item.model]'
-									@click:append-inner='visible(item.model)'
-									@keydown.enter='addPassword'
-									:append-inner-icon='item.appendIcon'
-									:autocomplete='item.autocomplete'
-									:disabled='loading'
-									:key='index'
-									:label='item.label'
-									:prepend-inner-icon='item.icon'
-									:type='item.type'
-									class='mb-n3 ma-0 pa-0'
-									color='primary'
-									density='compact'
-									required
-								/>
+								<v-text-field v-for='(item, index) in textFields' v-model='deviceSetting[item.model]'
+									@click:append-inner='visible(item.model)' @keydown.enter='addPassword'
+									:append-inner-icon='item.appendIcon' :autocomplete='item.autocomplete'
+									:disabled='loading' :key='index' :label='item.label' :prepend-inner-icon='item.icon'
+									:type='item.type' class='mb-n3 ma-0 pa-0' color='primary' density='compact'
+									required />
 							</v-col>
 						</v-row>
-					
-						<v-row align='center' justify='center'  class='ma-0 pa-0'>
-							<v-col
-								v-for='(item, index) in buttons'
-								:key='index'
-								cols='auto'
-								class='ma-0 pa-0 mx-2'
-							>
-								<v-btn
-									@click='item.click'
-									:class='item.class'
-									:disabled='item.disabled'
-									class='fab-fix'
-									icon
-									variant='text'
-									size='x-small'
-								>
+
+						<v-row align='center' justify='center' class='ma-0 pa-0'>
+							<v-col v-for='(item, index) in buttons' :key='index' cols='auto' class='ma-0 pa-0 mx-2'>
+								<v-btn @click='item.click' :class='item.class' :disabled='item.disabled' class='fab-fix'
+									icon variant='text' size='x-small'>
 									<v-icon :color='item.color' :icon='item.icon' />
 								</v-btn>
 							</v-col>
 						</v-row>
 
-						<v-row align='center' justify='center'  class='ma-0 pa-0'>
+						<v-row align='center' justify='center' class='ma-0 pa-0'>
 							<v-col cols='auto' class='ma-0 pa-0'>
-								<v-switch
-									v-model='password_synced'
-									color='primary'
-									:hide-details='true'
-									class='ma-0 pa-0'
-									density='compact'
-									label='single password'
-								/>
+								<v-switch v-model='password_synced' color='primary' :hide-details='true'
+									class='ma-0 pa-0' density='compact' label='single password' />
 							</v-col>
-							
+
 						</v-row>
 					</v-form>
 				</section>
@@ -67,33 +38,23 @@
 			<v-expand-transition>
 
 				<section v-if='!showTextField'>
-					<v-row :justify='justify' >
-						<v-tooltip v-if='show_tooltip && freeUser' activator='parent' location='top center' content-class='tooltip'>
-							<span >Password authentication is not available for free user</span>
+					<v-row :justify='justify'>
+						<v-tooltip v-if='show_tooltip && freeUser' activator='parent' location='top center'
+							content-class='tooltip'>
+							<span>Password authentication is not available for free user</span>
 						</v-tooltip>
 						<v-col cols='auto'>
-							<FabTooltip
-								v-if='device_password'
-								@click='removePassword'
-								:disabled='disabled'
-								:icon='mdiLockRemove'
-								color='pi'
-								tooltip_text='Remove password'
-							/>
-						
-							<FabTooltip
-								@click='showTextField = true'
-								v-if='!device_password'
-								:disabled='disabled'
-								:icon='mdiLockPlus'
-								:tooltip_text='`Add password to ${name_of_device}`'
-								color='primary'
-							/>
+							<FabTooltip v-if='device_password' @click='removePassword' :disabled='disabled'
+								:icon='mdiLockRemove' color='pi' tooltip_text='Remove password' />
+
+							<FabTooltip @click='showTextField = true' v-if='!device_password' :disabled='disabled'
+								:icon='mdiLockPlus' :tooltip_text='`Add password to ${name_of_device}`'
+								color='primary' />
 						</v-col>
 					</v-row>
 				</section>
 			</v-expand-transition>
-			
+
 		</v-col>
 	</v-row>
 </template>
@@ -110,34 +71,26 @@ import type { VRow } from 'vuetify/components/VGrid';
 const { mdAndUp, mobile } = useDisplay();
 
 /// Don't show tooltips when on android or ios if also on mobile view!
-const show_tooltip = computed((): boolean => {
-	return !(browserModule().android_ios && mobile.value);
-});
+const show_tooltip = computed(() => !(browserModule().android_ios && mobile.value));
 
-const buttons = computed((): Array<TDeviceTableFields> => {
-	return [
-		{
-			click: clear,
-			color: 'pi',
-			icon: mdiClose,
-			disabled: disabled.value
-		},
-		{
-			class: disabled.value ? '' : 'heartbeat',
-			click: addPassword,
-			color: 'primary',
-			disabled: disabled.value || !deviceSetting.value.device_password,
-			icon: mdiContentSave
-		}
-	];
-});
-const disabled = computed((): boolean => {
-	return freeUser.value || paused.value || localLoading.value;
-});
+const buttons = computed((): Array<TDeviceTableFields> => [
+	{
+		click: clear,
+		color: 'pi',
+		icon: mdiClose,
+		disabled: disabled.value
+	},
+	{
+		class: disabled.value ? '' : 'heartbeat',
+		click: addPassword,
+		color: 'primary',
+		disabled: disabled.value || !deviceSetting.value.device_password,
+		icon: mdiContentSave
+	}
+]);
+const disabled = computed(() => freeUser.value || paused.value || localLoading.value);
 
-const justify = computed((): VRow['$props']['justify'] =>{
-	return mdAndUp.value ? 'center' : 'end';
-});
+const justify = computed(() => mdAndUp.value ? 'center' : 'end');
 
 const loading = computed({
 	get (): boolean {
@@ -148,7 +101,6 @@ const loading = computed({
 	}
 });
 const textFields = computed((): Array<TChangeDevicePassword> => {
-			
 	const output: Array<TChangeDevicePassword> = [
 		{
 			autocomplete: 'new-password',
@@ -171,22 +123,12 @@ const textFields = computed((): Array<TChangeDevicePassword> => {
 		});
 
 	}
-
 	return output;
-			
 });
-const freeUser = computed((): boolean => {
-	return userModule().isFreeUser;
-});
-const device_password = computed((): boolean => {
-	return props.device.device_password_required;
-});
-const paused = computed((): boolean => {
-	return props.device.paused;
-});
-const name_of_device = computed((): string => {
-	return props.device.name_of_device;
-});
+const freeUser = computed(() => userModule().isFreeUser);
+const device_password = computed(() => props.device.device_password_required);
+const paused = computed(() => props.device.paused);
+const name_of_device = computed(() => props.device.name_of_device);
 
 const password_synced = ref(true);
 const inFocus = ref(false);
@@ -207,20 +149,20 @@ const clear = (): void => {
 	showTextField.value = false;
 };
 
-const emit = defineEmits([ 'refresh' ]);
-const removePassword_confirm = async (authentication: TAuthObject): Promise<void> =>{
+const emit = defineEmits(['refresh']);
+const removePassword_confirm = async (authentication: TAuthObject): Promise<void> => {
 	loading.value = true;
 	localLoading.value = true;
 	const response = await axios_device.password_delete({
 		name: name_of_device.value,
-		authentication 
+		authentication
 	});
 	loading.value = false;
 	localLoading.value = false;
 	if (response) {
 		snackSuccess({
 			message: `Password removed from: ${name_of_device.value}`,
-			icon: mdiDelete 
+			icon: mdiDelete
 		});
 		emit('refresh');
 		inFocus.value = false;
@@ -254,14 +196,14 @@ const addPassword_confirm = async (): Promise<void> => {
 	const response = await axios_device.password_patch({
 		device_password: deviceSetting.value.device_password,
 		client_password: deviceSetting.value.client_password,
-		name: name_of_device.value 
+		name: name_of_device.value
 	});
 	loading.value = false;
 	localLoading.value = false;
 	if (response) {
 		snackSuccess({
 			message: `Password added to device: ${name_of_device.value}`,
-			icon: mdiContentSave 
+			icon: mdiContentSave
 		});
 		emit('refresh');
 		clear();
@@ -276,7 +218,7 @@ const visible = (model: 'client_password' | 'device_password'): void => {
 	}
 };
 
-const removePassword = (): void =>{
+const removePassword = (): void => {
 	if (disabled.value) return;
 	dialoger({
 		message: `Remove password from device "${name_of_device.value}"`,

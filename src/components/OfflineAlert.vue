@@ -46,9 +46,7 @@ const reconnect = async (): Promise<void> => {
 };
 	
 onMounted(() => {
-	reconnectInterval.value = setInterval(() => {
-		reconnect();
-	}, 10000);
+	reconnectInterval.value = setInterval(reconnect, 10000);
 });
 </script>
 

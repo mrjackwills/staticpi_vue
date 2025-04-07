@@ -1,7 +1,7 @@
 <template>
 	<SettingSection :disabled='componentDisabled'>
 		<template v-slot:titleIcon>
-			<v-icon color='pi' class='mr-2' :size='smAndDown?"small":"default"' :icon='mdiLockCheck' />
+			<v-icon color='pi' class='mr-2' :size='smAndDown ? "small" : "default"' :icon='mdiLockCheck' />
 		</template>
 
 		<template v-slot:title>
@@ -14,60 +14,38 @@
 
 		<template v-slot:action_button>
 			<v-expand-transition>
-				<v-row
-					v-if='!showTextFields'
-					align='center'
-					justify='center'
-					class='ma-0 pa-0'
-				>
+				<v-row v-if='!showTextFields' align='center' justify='center' class='ma-0 pa-0'>
 					<v-col cols='12' md='auto' class='ma-0 pa-0'>
-						<ActionButton
-							@click='showField'
-							:block='true'
-							:icon='mdiLockReset'
-							small
-							text='change password'
-						/>
+						<ActionButton @click='showField' :block='true' :icon='mdiLockReset' small
+							text='change password' />
 					</v-col>
 				</v-row>
 			</v-expand-transition>
 		</template>
-		
+
 		<template v-slot:body>
-			<v-expand-transition >
+			<v-expand-transition>
 				<section v-if='showTextFields'>
 					<v-row class='ma-0 pa-0 mt-3' align='center' justify='center'>
 						<v-col cols='12' md='8' class='ma-0 pa-0'>
 							<v-form v-on:submit.prevent>
-								<section v-for='(item,index) in textFields' :key='index'>
-									<v-text-field
-										v-model='user[item.model]'
-										@click:append-inner='appendClick(item.model)'
-										@focus='focusMethod(item.model)'
-										@keydown.enter='submit'
-										@update:model-value='v$[item.model]?.$touch()'
-										:append-inner-icon='item.appendIcon'
-										:autocomplete='item.autocomplete'
-										:class='{"mb-n6": passwordCompromised && index === 1}'
-										:disabled='loading'
-										:density='smAndDown?"compact":"default"'
+								<section v-for='(item, index) in textFields' :key='index'>
+									<v-text-field v-model='user[item.model]'
+										@click:append-inner='appendClick(item.model)' @focus='focusMethod(item.model)'
+										@keydown.enter='submit' @update:model-value='v$[item.model]?.$touch()'
+										:append-inner-icon='item.appendIcon' :autocomplete='item.autocomplete'
+										:class='{ "mb-n6": passwordCompromised && index === 1 }' :disabled='loading'
+										:density='smAndDown ? "compact" : "default"'
 										:error-messages='errorMessages[item.model]'
-										:error='errorMessages[item.model]? true : false'
-										:label='item.label'
-										:prepend-inner-icon='item.icon'
-										:type='item.type'
-										color='primary'
-										variant='outlined'
-										required
-									/>
+										:error='errorMessages[item.model] ? true : false' :label='item.label'
+										:prepend-inner-icon='item.icon' :type='item.type' color='primary'
+										variant='outlined' required />
 									<section v-if='index === 1'>
 										<v-expand-transition>
-											<PasswordStrength
-												v-if='!passwordCompromised && user.new_password'
+											<PasswordStrength v-if='!passwordCompromised && user.new_password'
 												v-model:password='user.new_password'
 												v-model:errorMessage='errorMessages.new_password'
-												v-model:passwordCompromised='passwordCompromised'
-											/>
+												v-model:passwordCompromised='passwordCompromised' />
 										</v-expand-transition>
 										<v-expand-transition>
 											<v-expand-transition>
@@ -77,20 +55,12 @@
 									</section>
 								</section>
 								<section v-if='twoFA_always_required'>
-									<v-text-field
-										v-for='item in tokenFields'
-										v-model='user[item.model]'
-										v-on:keyup.enter='submit'
-										@focus='focusMethod(item.model)'
-										:density='smAndDown?"compact":"default"'
-										:error-messages='errorMessages[item.model]'
-										:key='item.model'
-										:label='item.label'
-										:prepend-inner-icon='item.icon'
-										color='primary'
-										variant='outlined'
-										required
-									/>
+									<v-text-field v-for='item in tokenFields' v-model='user[item.model]'
+										v-on:keyup.enter='submit' @focus='focusMethod(item.model)'
+										:density='smAndDown ? "compact" : "default"'
+										:error-messages='errorMessages[item.model]' :key='item.model'
+										:label='item.label' :prepend-inner-icon='item.icon' color='primary'
+										variant='outlined' required />
 								</section>
 							</v-form>
 						</v-col>
@@ -98,29 +68,14 @@
 				</section>
 			</v-expand-transition>
 		</template>
-		<template v-slot:cancel_button  v-if='showTextFields' >
+		<template v-slot:cancel_button v-if='showTextFields'>
 
-			<ActionButton
-				@click='cancel'
-				:id='componentId'
-				v-model:disabled='loading'
-				:icon='mdiClose'
-				:iconFirst='true'
-				:block='true'
-				:small='true'
-				color='pi'
-				text='cancel'
-			/>
+			<ActionButton @click='cancel' :id='componentId' v-model:disabled='loading' :icon='mdiClose'
+				:iconFirst='true' :block='true' :small='true' color='pi' text='cancel' />
 		</template>
 		<template v-slot:save_button v-if='showTextFields'>
-			<ActionButton
-				@click='submit'
-				v-model:disabled='disabled'
-				:icon='mdiSend'
-				:block='true'
-				:small='true'
-				text='change'
-			/>
+			<ActionButton @click='submit' v-model:disabled='disabled' :icon='mdiSend' :block='true' :small='true'
+				text='change' />
 		</template>
 	</SettingSection>
 </template>
@@ -149,37 +104,30 @@ import {
 
 const { smAndDown } = useDisplay();
 
-const [ settingSectionStore ] = [ settingSectionModule() ];
+const [settingSectionStore] = [settingSectionModule()];
 
 onBeforeUnmount(() => {
 	showTextFields.value = false;
 });
 
 onBeforeMount(() => {
-
 	if (settingSectionStore.beforemount_open && settingSectionStore.current_section === 'changepassword') {
 		showTextFields.value = true;
 		settingSectionStore.set_beforemount_open(false);
 	}
 });
 
-const disabled = computed((): boolean => {
-	return v$.value.$invalid
-		|| errorMessages.value.new_password
-		|| errorMessages.value.current_password
-		|| passwordCompromised.value
-		|| loading.value
-		|| twoFA_always_required.value && !user.value.token
-		|| twoFA_always_required.value && user.value.token.length < 6 ? true : false;
-});
+const disabled = computed(() => v$.value.$invalid
+	|| errorMessages.value.new_password
+	|| errorMessages.value.current_password
+	|| passwordCompromised.value
+	|| loading.value
+	|| twoFA_always_required.value && !user.value.token
+	|| twoFA_always_required.value && user.value.token.length < 6 ? true : false);
 
-const componentDisabled = computed((): boolean => {
-	return settingSectionStore.current_section && settingSectionStore.current_section !== 'changepassword' ? true : false;
-});
+const componentDisabled = computed(() => settingSectionStore.current_section && settingSectionStore.current_section !== 'changepassword' ? true : false);
 
-const email = computed((): string => {
-	return userModule().email;
-});
+const email = computed(() => userModule().email);
 const loading = computed({
 	get (): boolean {
 		return loadingModule().loading;
@@ -189,30 +137,26 @@ const loading = computed({
 	}
 });
 
-const textFields = computed((): Array<TChangeUserPassword> => {
-	return [
-		{
-			autocomplete: 'password',
-			icon: mdiLockOpen,
-			label: 'current password',
-			model: 'current_password' as const,
-			type: passwordVisible.value ? 'text' : 'password',
-			appendIcon: passwordVisible.value ? mdiEyeOff : mdiEye
-		},
-		{
-			autocomplete: 'one-time-code',
-			icon: mdiLock,
-			label: 'new password',
-			model: 'new_password' as const,
-			type: new_passwordVisible.value ? 'text' : 'password',
-			appendIcon: new_passwordVisible.value ? mdiEyeOff : mdiEye
-		}
-	];
-});
+const textFields = computed((): Array<TChangeUserPassword> => [
+	{
+		autocomplete: 'password',
+		icon: mdiLockOpen,
+		label: 'current password',
+		model: 'current_password' as const,
+		type: passwordVisible.value ? 'text' : 'password',
+		appendIcon: passwordVisible.value ? mdiEyeOff : mdiEye
+	},
+	{
+		autocomplete: 'one-time-code',
+		icon: mdiLock,
+		label: 'new password',
+		model: 'new_password' as const,
+		type: new_passwordVisible.value ? 'text' : 'password',
+		appendIcon: new_passwordVisible.value ? mdiEyeOff : mdiEye
+	}
+]);
 
-const twoFA_always_required = computed((): boolean => {
-	return twoFAModule().always_required;
-});
+const twoFA_always_required = computed(() => twoFAModule().always_required);
 
 const errorMessages = ref({
 	new_password: '',
@@ -275,41 +219,37 @@ const focusMethod = (model: string): void => {
 		passwordVisible.value = false;
 	}
 };
-		
+
 const showField = (): void => {
 	showTextFields.value = true;
 	settingSectionStore.set_current_section('changepassword');
 };
-		
+
 const submit = async (): Promise<void> => {
 	if (v$.value.$invalid || passwordCompromised.value || errorMessages.value.new_password || errorMessages.value.current_password || loading.value) return;
 	if (disabled.value) return;
 	loading.value = true;
 	new_passwordVisible.value = false;
 	passwordVisible.value = false;
-	 
+
 	passwordCompromised.value = await passwordCheck(user.value.new_password);
 	if (passwordCompromised.value) {
-		 
 		errorMessages.value.new_password = 'unsafe password';
-		 
 		loading.value = false;
 		return;
 	}
 	const response = await axios_authenticatedUser.password_patch({
 		current_password: user.value.current_password,
 		token: user.value.token ? user.value.token : undefined,
-		new_password: user.value.new_password 
+		new_password: user.value.new_password
 	});
-	 
+
 	loading.value = false;
 	if (response) {
 		snackSuccess({ message: 'Password changed' });
 		cancel();
 	} else {
-		 
 		errorMessages.value.current_password = twoFA_always_required.value ? 'password and/or token invalid' : 'incorrect password';
-		 
 		errorMessages.value.token = twoFA_always_required.value ? 'password and/or token invalid' : '';
 	}
 };
@@ -344,7 +284,7 @@ const watch_password_common = (): void => {
 
 	if (!v$?.value.new_password?.required) {
 		errorMessages.value.new_password = 'a password is required';
-		return; 
+		return;
 	}
 
 	if (!v$.value.new_password.minLen) {
@@ -380,7 +320,6 @@ watch(showTextFields, (i) => {
 	if (i) {
 		setTimeout(() => {
 			document.getElementById(componentId)?.scrollIntoView({ behavior: 'smooth' });
-			
 		}, 210);
 	}
 });

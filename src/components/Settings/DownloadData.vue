@@ -49,7 +49,6 @@ const { smAndDown } = useDisplay();
 const settingSectionStore = settingSectionModule();
 
 onBeforeMount(() => {
-
 	if (settingSectionStore.beforemount_open && settingSectionStore.current_section === 'downloaddata') {
 		settingSectionStore.set_beforemount_open(false);
 	}
@@ -84,7 +83,6 @@ const downloadData_confirm = async (authentication: TAuthObject): Promise<void> 
 	loading.value = true;
 	const data = await axios_authenticatedUser.data_get(authentication);
 	if (data) {
-
 		const file = document.createElement('a');
 		file.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(JSON.stringify(JSON.parse(data), null, '  ')));
 		file.setAttribute('download', 'staticPi_user_data.txt');

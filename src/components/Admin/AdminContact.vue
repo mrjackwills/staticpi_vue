@@ -67,9 +67,7 @@ import type { TAdminContactMessage } from '@/types';
 
 const emit = defineEmits([ 'update' ]);
 
-const text_color = (x: number | null): string => {
-	return x ? 'text-primary' : 'text-pi';
-};
+const text_color = (x: number | null): string => x ? 'text-primary' : 'text-pi';
 
 const delete_message = async (contact_id: number): Promise<void> => {
 	loadingModule().set_loading(true);

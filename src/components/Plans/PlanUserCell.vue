@@ -19,21 +19,13 @@ import { useDisplay } from 'vuetify';
 
 const { mdAndUp, smAndUp } = useDisplay();
 
-const color = computed((): string => {
-	return props.freePlan ? 'error' : 'primary';
-});
-const icon = computed((): string => {
-	return props.freePlan ? mdiMinus : mdiCheck;
-});
-const order_icon = computed((): string => {
-	return mdAndUp.value ? '1' : '2';
-});
-const order_detail = computed((): string => {
-	return mdAndUp.value ? '2' : '1';
-});
-	
+const color = computed(() => props.freePlan ? 'error' : 'primary');
+const icon = computed(() => props.freePlan ? mdiMinus : mdiCheck);
+const order_icon = computed(() => mdAndUp.value ? '1' : '2');
+const order_detail = computed(() => mdAndUp.value ? '2' : '1');
+
 const props = defineProps<{
 	freePlan: boolean;
-	detail: string; 
+	detail: string;
 }>();
 </script>

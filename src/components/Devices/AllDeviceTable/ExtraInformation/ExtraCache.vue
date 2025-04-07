@@ -2,15 +2,8 @@
 
 	<v-row class='ma-0 pa-0 no gutters' align='center'>
 		<v-col cols='12' class='ma-0 pa-0 my-2'>
-			<ActionButton
-				@click='check_cache'
-				:block='true'
-				:disabled='isFreeUser || local_loading'
-				:icon='mdiRefresh'
-				:small='true'
-				text='check cache'
-				color='secondary'
-			/>
+			<ActionButton @click='check_cache' :block='true' :disabled='isFreeUser || local_loading' :icon='mdiRefresh'
+				:small='true' text='check cache' color='secondary' />
 		</v-col>
 	</v-row>
 
@@ -21,15 +14,8 @@
 		</v-col>
 
 		<v-col cols='12' class='ma-0 pa-0'>
-			<ActionButton
-				@click='delete_cache'
-				:block='true'
-				:disabled='isFreeUser || local_loading || !cache'
-				:icon='mdiDelete'
-				:small='true'
-				text='delete cache'
-				color='pi'
-			/>
+			<ActionButton @click='delete_cache' :block='true' :disabled='isFreeUser || local_loading || !cache'
+				:icon='mdiDelete' :small='true' text='delete cache' color='pi' />
 		</v-col>
 
 	</v-row>
@@ -40,7 +26,7 @@
 		</v-col>
 
 	</v-row>
-	
+
 </template>
 
 <script setup lang='ts'>
@@ -64,7 +50,7 @@ const local_loading = ref(false);
 
 const hide = ref(true);
 
-const check_cache = async (): Promise<void>=> {
+const check_cache = async (): Promise<void> => {
 	if (hide.value) {
 		hide.value = false;
 	}
@@ -94,20 +80,18 @@ const delete_cache_confirm = async (authentication: TAuthObject): Promise<void> 
 	local_loading.value = true;
 	const response = await axios_device.cache_delete({
 		authentication,
-		name: props.device.name_of_device 
+		name: props.device.name_of_device
 	});
 	loading.value = false;
 	local_loading.value = false;
 	if (response) {
 		snackSuccess({
 			message: `"${props.device.name_of_device}" message cache deleted`,
-			icon: mdiDelete 
+			icon: mdiDelete
 		});
 		await check_cache();
 	}
 };
 
-const isFreeUser = computed((): boolean => {
-	return userModule().isFreeUser;
-});
+const isFreeUser = computed(() => userModule().isFreeUser);
 </script>

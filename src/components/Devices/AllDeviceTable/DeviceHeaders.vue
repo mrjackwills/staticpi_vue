@@ -1,17 +1,14 @@
 <template>
 	<section v-if='mdAndUp'>
 		<v-row align='center' justify='space-between' class='ma-0 pa-0 no-gutters py-2'>
-			<v-col v-for='(item, index) in headings' :key='index'
-				:cols='item.cols' class='text-center unselectable ma-0 pa-0 text-table-heading text-black small-text' :class='{"cl": item.sortable}'>
+			<v-col v-for='(item, index) in headings' :key='index' :cols='item.cols'
+				class='text-center unselectable ma-0 pa-0 text-table-heading text-black small-text'
+				:class='{ "cl": item.sortable }'>
 				<DocumentationLink v-if='item.link' :section='item.link' class='mr-1' />
 				<span @click='item.sortable ? sort(item.text) : undefined'>
 					{{ item.text }}
-					<v-icon
-						v-if='item.sortable'
-						:icon='columnIcon(item.text)'
-						:size='smAndDown?"x-small":"small"'
-						color='primary'
-					/>
+					<v-icon v-if='item.sortable' :icon='columnIcon(item.text)' :size='smAndDown ? "x-small" : "small"'
+						color='primary' />
 				</span>
 			</v-col>
 
@@ -29,13 +26,9 @@ import type { TDeviceInfo, TSortableColumns, TSortedBy } from '@/types';
 const { mdAndUp, smAndDown } = useDisplay();
 
 const deviceStore = deviceModule();
-const tableData = computed((): Array<TDeviceInfo> => {
-	return deviceStore.all;
-});
-const devicesUpdatedAxios = computed((): Date => {
-	return deviceStore.timestamp;
-});
-	
+const tableData = computed((): Array<TDeviceInfo> => deviceStore.all);
+const devicesUpdatedAxios = computed(() => deviceStore.timestamp);
+
 const headings = [
 	{
 		text: 'connection',
@@ -95,12 +88,10 @@ const headings = [
 
 const sortedBy: Ref<TSortedBy> = ref({
 	name: undefined,
-	largestFirst: true 
+	largestFirst: true
 });
 
-const columnIcon = (columnName: TSortableColumns): string => {
-	return sortedBy.value.name === columnName ? sortedBy.value.largestFirst ? mdiArrowUpBold : mdiArrowDownBold : mdiSwapVerticalBold;
-};
+const columnIcon = (columnName: TSortableColumns): string => sortedBy.value.name === columnName ? sortedBy.value.largestFirst ? mdiArrowUpBold : mdiArrowDownBold : mdiSwapVerticalBold;
 
 const sort = (heading: TSortableColumns): void => {
 	switch (heading) {
@@ -113,7 +104,7 @@ const sort = (heading: TSortableColumns): void => {
 		case 'bandwidth':
 			sortByBandwidth();
 			break;
-		case 'max clients' :
+		case 'max clients':
 			sortByMaxClients();
 			break;
 		case 'structured data':
@@ -146,12 +137,12 @@ const sortByConnection = (): void => {
 
 const sortByName = (): void => {
 	sortedBy.value.name = 'name';
-	const tmp = sortedBy.value.largestFirst ? tableData.value.sort((a, b) => a.name_of_device.localeCompare(b.name_of_device)) 
+	const tmp = sortedBy.value.largestFirst ? tableData.value.sort((a, b) => a.name_of_device.localeCompare(b.name_of_device))
 		: tableData.value.sort((a, b) => b.name_of_device.localeCompare(a.name_of_device));
 	sortedBy.value.largestFirst = !sortedBy.value.largestFirst;
 	deviceStore.set_all_devices(tmp);
 };
-	
+
 const sortByBandwidth = (): void => {
 	sortedBy.value.name = 'bandwidth';
 	const tmp = tableData.value.sort((a, b) => {
@@ -197,7 +188,7 @@ const sortByPasswordRequired = (): void => {
 	deviceStore.set_all_devices(tmp);
 };
 
-const sortByDeviceStatus = (): void=> {
+const sortByDeviceStatus = (): void => {
 	sortedBy.value.name = 'status';
 	const tmp = tableData.value.sort((a, b) => {
 		if (!a.paused && b.paused) return sortedBy.value.largestFirst ? -1 : 1;
@@ -208,7 +199,7 @@ const sortByDeviceStatus = (): void=> {
 	deviceStore.set_all_devices(tmp);
 };
 
-watch(devicesUpdatedAxios, (_)=> {
+watch(devicesUpdatedAxios, (_) => {
 	if (sortedBy.value.name) {
 		sortedBy.value.largestFirst = !sortedBy.value.largestFirst;
 		sort(sortedBy.value.name);
@@ -217,11 +208,9 @@ watch(devicesUpdatedAxios, (_)=> {
 </script>
 
 <style>
-
 .text-table-heading {
 	font-size: .65rem;
 	text-transform: uppercase;
 	font-weight: 600;
 }
-
 </style>

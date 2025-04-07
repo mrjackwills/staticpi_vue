@@ -73,9 +73,7 @@ import { useVuelidate } from '@vuelidate/core';
 
 const { smAndDown } = useDisplay();
 
-const disabled = computed((): boolean => {
-	return localLoading.value || v$.value.$invalid || complete.value ? true : false;
-});
+const disabled = computed(() => localLoading.value || v$.value.$invalid || complete.value ? true : false);
 
 const pageTitle = 'forgotten password?';
 

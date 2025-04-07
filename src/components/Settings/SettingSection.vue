@@ -58,9 +58,7 @@ import { useDisplay } from 'vuetify';
 
 const { smAndDown } = useDisplay();
 
-const title = computed((): string => {
-	return smAndDown.value ? 'text-h7' : 'text-h6';
-});
+const title = computed(() => smAndDown.value ? 'text-h7' : 'text-h6');
 
 withDefaults(defineProps<{
 	disabled?: boolean;

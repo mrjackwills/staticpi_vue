@@ -122,20 +122,18 @@ const model = ref({
 	count: undefined as undefined | number
 });
 
-const textFieldRows = computed(() => {
-	return [
-		{
-			model: 'invite' as const,
-			label: 'invite',
-			invalid: v$.value.invite.$invalid && model.value.invite?.length > 0
-		},
-		{
-			model: 'count' as const,
-			label: 'count',
-			invalid: v$.value.count.$invalid && !!model.value.count
-		}
-	];
-});
+const textFieldRows = computed(() => [
+	{
+		model: 'invite' as const,
+		label: 'invite',
+		invalid: v$.value.invite.$invalid && model.value.invite?.length > 0
+	},
+	{
+		model: 'count' as const,
+		label: 'count',
+		invalid: v$.value.count.$invalid && !!model.value.count
+	}
+]);
 
 const rules = {
 	invite: {

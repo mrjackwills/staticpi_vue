@@ -2,31 +2,22 @@
 	<section>
 		<v-row align='center' justify='center' class='ma-0 pa-0' v-if='!backup && !backupProcess'>
 			<v-col cols='12' class='pa-0 mb-4'>
-				Backups enable a user to login to their account in situations where their Two-Factor Authentication app is unavailable.
+				Backups enable a user to login to their account in situations where their Two-Factor Authentication app
+				is unavailable.
 				Each backup code can only be used once, and must be safely stored by the user.
 				<br>
 				<br>
-				All backup tokens are salted and hashed before being written to the database. This means that lost backup tokens cannot be retrieved by <StaticPi />.
+				All backup tokens are salted and hashed before being written to the database. This means that lost
+				backup tokens cannot be retrieved by
+				<StaticPi />.
 			</v-col>
 		</v-row>
 		<v-expand-transition>
-			<v-row
-				v-if='!backupArray'
-				align='center'
-				justify='center'
-				class='ma-0 pa-0'
-			>
+			<v-row v-if='!backupArray' align='center' justify='center' class='ma-0 pa-0'>
 				<v-col cols='12' md='auto' class='ma-0 pa-0 my-2'>
-					<ActionButton
-						v-if='!backupProcess'
-						@click='generateBackups'
-						:block='true'
-						:color='backupButtonColor'
-						v-model:disabled='localLoading'
-						:icon='backupButtonIcon'
-						small
-						:text='backupButtonText'
-					/>
+					<ActionButton v-if='!backupProcess' @click='generateBackups' :block='true'
+						:color='backupButtonColor' v-model:disabled='localLoading' :icon='backupButtonIcon' small
+						:text='backupButtonText' />
 				</v-col>
 			</v-row>
 		</v-expand-transition>
@@ -38,18 +29,12 @@
 							These backup tokens need to be stored securely, each token can only be used once
 						</v-col>
 					</v-row>
-					<v-row
-						justify='center'
-						align='center'
-						density='compact'
-						no-gutters
-						class='mt-4'
-					>
+					<v-row justify='center' align='center' density='compact' no-gutters class='mt-4'>
 						<v-col cols='auto' class='ma-0 pa-0'>
 							<v-table>
 								<template v-slot:default>
 									<tbody>
-										<tr v-for='(item, index) in backupArray.slice(0,5)' :key='index'>
+										<tr v-for='(item, index) in backupArray.slice(0, 5)' :key='index'>
 											<td class=''>
 												<v-row class='ma-0 pa-0' dense no-gutters>
 													<v-col class='pa-0 ma-0'>
@@ -68,37 +53,20 @@
 									</tbody>
 								</template>
 							</v-table>
-							<v-row
-								justify='space-between'
-								align='center'
-								no-gutters
-								class='mt-4'
-							>
-								<v-col cols='auto' >
-									<ActionButton
-										@click='close'
-										color='pi'
-										:icon='mdiClose'
-										text='close'
-									/>
-									
+							<v-row justify='space-between' align='center' no-gutters class='mt-4'>
+								<v-col cols='auto'>
+									<ActionButton @click='close' color='pi' :icon='mdiClose' text='close' />
+
 								</v-col>
-								<v-col cols='auto' class='mx-2' >
-									<ActionButton
-										@click='downloadCodes'
-										:icon='mdiDownload'
-										color='secondary'
-										text='download'
-									/>
+								<v-col cols='auto' class='mx-2'>
+									<ActionButton @click='downloadCodes' :icon='mdiDownload' color='secondary'
+										text='download' />
 								</v-col>
-								<v-col cols='auto' >
-									<ActionButton
-										@click='copyCodes'
-										:icon='mdiContentCopy'
-										id='tooltip'
-										text='copy all'
-									/>
-									<v-tooltip v-if='show_tooltip' :open-on-click='true' :open-on-hover='false' activator='parent' location='top center' content-class='tooltip'>
+								<v-col cols='auto'>
+									<ActionButton @click='copyCodes' :icon='mdiContentCopy' id='tooltip'
+										text='copy all' />
+									<v-tooltip v-if='show_tooltip' :open-on-click='true' :open-on-hover='false'
+										activator='parent' location='top center' content-class='tooltip'>
 										<span>copied to clipboard</span>
 									</v-tooltip>
 								</v-col>
@@ -131,24 +99,12 @@ onBeforeUnmount(() => {
 const { mobile } = useDisplay();
 
 /// Don't show tooltips when on android or ios if also on mobile view!
-const show_tooltip = computed((): boolean => {
-	return !(browserModule().android_ios && mobile.value);
-});
-
+const show_tooltip = computed(() => !(browserModule().android_ios && mobile.value));
 const twoFAStore = twoFAModule();
-
-const backup = computed((): boolean => {
-	return twoFAStore.count > 0;
-});
-const backupButtonIcon = computed((): string => {
-	return backup.value ? mdiShieldRefresh : mdiShieldKey;
-});
-const backupButtonText = computed((): string => {
-	return backup.value ? 'refresh backup tokens' : 'generate backup tokens';
-});
-const backupButtonColor = computed((): string => {
-	return backup.value ? 'secondary' : 'primary';
-});
+const backup = computed(() => twoFAStore.count > 0);
+const backupButtonIcon = computed(() => backup.value ? mdiShieldRefresh : mdiShieldKey);
+const backupButtonText = computed(() => backup.value ? 'refresh backup tokens' : 'generate backup tokens');
+const backupButtonColor = computed(() => backup.value ? 'secondary' : 'primary');
 const backupProcess = computed({
 	get (): boolean {
 		return twoFAStore.backupProcess;
@@ -184,7 +140,7 @@ const backupCodes = (): string => {
 	for (const i of backupArray.value) output += `\n${i}\n`;
 	return output;
 };
-		
+
 const close = (): void => {
 	settingsSectionStore.set_current_section(undefined);
 	backupProcess.value = false;
@@ -232,7 +188,6 @@ const generateBackups = async (): Promise<void> => {
 		});
 	} else {
 		generateBackups_confirm();
-					
 	}
 };
 

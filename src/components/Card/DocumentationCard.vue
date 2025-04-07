@@ -31,15 +31,9 @@ import { useDisplay } from 'vuetify';
 
 const { mobile } = useDisplay();
 
-const createId = computed((): string => {
-	return props.heading.toLowerCase().replaceAll(' ', '-');
-});
-const proMargin = computed((): string => {
-	return mobile.value ? 'mr-2' : 'mr-12';
-});
-const smallText = computed((): string => {
-	return mobile.value ? 'small-text' : '';
-});
+const createId = computed(() => props.heading.toLowerCase().replaceAll(' ', '-'));
+const proMargin = computed(() => mobile.value ? 'mr-2' : 'mr-12');
+const smallText = computed(() => mobile.value ? 'small-text' : '');
 
 const props = withDefaults(defineProps<{
 	heading: string;

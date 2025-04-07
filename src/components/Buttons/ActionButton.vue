@@ -74,21 +74,11 @@ const buttonSize = computed(() => {
 
 });
 
-const iconClass = computed((): string => {
-	return props.iconFirst ? 'mr-1' : 'ml-1';
-});
-const iconOrder = computed((): string => {
-	return props.iconFirst ? '1' : '2';
-});
-const flipx = computed((): string => {
-	return props.text === 'logout' ? 'flipx' : '';
-});
-const online = computed((): boolean => {
-	return browserModule().online;
-});
-const textOrder = computed((): string => {
-	return props.iconFirst ? '2' : '1';
-});
+const iconClass = computed(() => props.iconFirst ? 'mr-1' : 'ml-1');
+const iconOrder = computed(() => props.iconFirst ? '1' : '2');
+const flipx = computed(() => props.text === 'logout' ? 'flipx' : '');
+const online = computed(() => browserModule().online);
+const textOrder = computed(() => props.iconFirst ? '2' : '1');
 
 const localDisabled = ref(false);
 
@@ -105,7 +95,6 @@ const mouseover = (): void => {
 
 onMounted(() => {
 	localDisabled.value = props.disabled;
-
 });
 
 const props = withDefaults(defineProps<{

@@ -33,7 +33,6 @@ if ('serviceWorker' in navigator) {
 	registerSW({
 		onNeedRefresh () {
 			appUpdate();
-
 		}
 	});
 }
@@ -84,7 +83,6 @@ onBeforeMount(() => {
 		e.preventDefault();
 	});
 	pageReady.value = true;
-
 });
 
 const pageReady = ref(false);

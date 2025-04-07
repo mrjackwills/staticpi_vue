@@ -13,23 +13,11 @@ import { mdiLinkVariant } from '@mdi/js';
 import { useDisplay } from 'vuetify';
 
 /// Don't show tooltips when on android or ios if also on mobile view!
-const show_tooltip = computed((): boolean => {
-	return !(browserModule().android_ios && useDisplay().mobile.value);
-});
+const show_tooltip = computed(() => !(browserModule().android_ios && useDisplay().mobile.value));
 
-const to = computed((): string =>{
-	return `${FrontEndRoutes.DOCUMENTATION}#${props.section}`;
-});
+const to = computed(() => `${FrontEndRoutes.DOCUMENTATION}#${props.section}`);
 
-const iconSize = computed((): string => {
-	if (props.xsmall) {
-		return 'x-small';
-	}
-	if (props.small) {
-		return 'small';
-	}
-	return 'default';
-});
+const iconSize = computed(() => props.xsmall ? 'x-small' : props.small ? 'small' : 'default');
 
 const props = withDefaults(defineProps<{
 	section: string;

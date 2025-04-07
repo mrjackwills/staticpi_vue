@@ -1,52 +1,30 @@
 <template>
 	<section>
-		<v-expand-transition >
+		<v-expand-transition>
 			<v-row align='center' justify='center' class='ma-0 pa-0 mb-n3 bg-pi' v-if='local_ttl > 0'>
-				<v-col cols='12' class='px-3 error ma-0 pa-0 text-white font-weight-medium text-center text-caption' >
-					rate-limited for {{ secondsToDays(local_ttl*1000) }}
+				<v-col cols='12' class='px-3 error ma-0 pa-0 text-white font-weight-medium text-center text-caption'>
+					rate-limited for {{ secondsToDays(local_ttl * 1000) }}
 				</v-col>
 			</v-row>
-		</v-expand-transition >
+		</v-expand-transition>
 		<v-row align='center' :justify='justify' no-gutters class='pt-1'>
 			<v-col cols='12' class='ma-0 pa-0'>
-				<v-text-field
-					class='mb-n2'
-					v-model='newName'
-					@focus='changeInFocus'
-					@keydown.enter='renameDevice'
-					:append-inner-icon='isFreeUser? `` : mdiPencilOutline'
-					:counter='inFocus?true:undefined'
-					:disabled='paused || isFreeUser'
-					:error-messages='errorMessage'
-					:prepend-inner-icon='mdiDevices'
-					maxlength='64'
-					color='primary'
-					density='compact'
-					single-line
-					validate-on-blur
-				/>
-				<v-tooltip v-if='show_tooltip && isFreeUser' activator='parent' location='top center' content-class='tooltip'>
-					<span >Free users cannot customise device name</span>
+				<v-text-field class='mb-n2' v-model='newName' @focus='changeInFocus' @keydown.enter='renameDevice'
+					:append-inner-icon='isFreeUser ? `` : mdiPencilOutline' :counter='inFocus ? true : undefined'
+					:disabled='paused || isFreeUser' :error-messages='errorMessage' :prepend-inner-icon='mdiDevices'
+					maxlength='64' color='primary' density='compact' single-line validate-on-blur />
+				<v-tooltip v-if='show_tooltip && isFreeUser' activator='parent' location='top center'
+					content-class='tooltip'>
+					<span>Free users cannot customise device name</span>
 				</v-tooltip>
 			</v-col>
 		</v-row>
 		<v-expand-transition>
-			<v-row align='center' justify='center' class='ma-0 pa-0' v-if='inFocus && !paused' v-intersect='onIntersect'>
-				<v-col
-					v-for='(item, index) in buttons'
-					:key='index'
-					cols='auto'
-					class='ma-0 pa-0 pb-2 px-2'
-				>
-					<v-btn
-						@click='item.click'
-						:class='item.class'
-						:disabled='item.disabled'
-						class='fab-fix'
-						variant='text'
-						size='x-small'
-						icon
-					>
+			<v-row align='center' justify='center' class='ma-0 pa-0' v-if='inFocus && !paused'
+				v-intersect='onIntersect'>
+				<v-col v-for='(item, index) in buttons' :key='index' cols='auto' class='ma-0 pa-0 pb-2 px-2'>
+					<v-btn @click='item.click' :class='item.class' :disabled='item.disabled' class='fab-fix'
+						variant='text' size='x-small' icon>
 						<v-icon :color='item.color' :icon='item.icon' />
 					</v-btn>
 				</v-col>
@@ -67,36 +45,26 @@ import type { VRow } from 'vuetify/components/VGrid';
 const { mdAndUp, mobile } = useDisplay();
 
 /// Don't show tooltips when on android or ios if also on mobile view!
-const show_tooltip = computed((): boolean => {
-	return !(browserModule().android_ios && mobile.value);
-});
+const show_tooltip = computed(() => !(browserModule().android_ios && mobile.value));
 
-const buttons = computed((): Array<TDeviceTableFields> => {
-	return [
-		{
-			click: clear,
-			color: 'pi',
-			icon: mdiClose
-		},
-		{
-			class: disabled.value ? '' : 'heartbeat',
-			click: renameDevice,
-			color: 'primary',
-			disabled: disabled.value,
-			icon: mdiContentSave
-		}
-	];
-});
+const buttons = computed((): Array<TDeviceTableFields> => [
+	{
+		click: clear,
+		color: 'pi',
+		icon: mdiClose
+	},
+	{
+		class: disabled.value ? '' : 'heartbeat',
+		click: renameDevice,
+		color: 'primary',
+		disabled: disabled.value,
+		icon: mdiContentSave
+	}
+]);
 
-const disabled = computed((): boolean => {
-	return !newName.value || errorMessage.value != 'new name not saved' || loading.value || newName.value === name_of_device.value;
-});
-const isFreeUser = computed((): boolean => {
-	return userModule().isFreeUser;
-});
-const justify = computed((): VRow['$props']['justify'] => {
-	return mdAndUp.value ? 'center' : 'end';
-});
+const disabled = computed(() => !newName.value || errorMessage.value != 'new name not saved' || loading.value || newName.value === name_of_device.value);
+const isFreeUser = computed(() => userModule().isFreeUser);
+const justify = computed(() => mdAndUp.value ? 'center' : 'end');
 const loading = computed({
 	get (): boolean {
 		return loadingModule().loading;
@@ -105,20 +73,13 @@ const loading = computed({
 		loadingModule().set_loading(b);
 	}
 });
-const name_of_device = computed((): string => {
-	return props.device.name_of_device;
-});
-const paused = computed((): boolean => {
-	return props.device.paused;
-});
+const name_of_device = computed(() => props.device.name_of_device);
+const paused = computed(() => props.device.paused);
 
-const ttl = computed((): number => {
-	return deviceModule().get_ttl(name_of_device.value);
-});
+const ttl = computed(() => deviceModule().get_ttl(name_of_device.value));
 
 onBeforeMount(() => {
 	newName.value = name_of_device.value;
-
 });
 
 onMounted(() => {
@@ -142,19 +103,19 @@ const clear = (): void => {
 const onIntersect = (is_i: boolean, _entries: Array<IntersectionObserverEntry>, _observer: IntersectionObserver): void => {
 	isIntersecting.value = is_i;
 };
-const emit = defineEmits([ 'refresh' ]);
+const emit = defineEmits(['refresh']);
 const renameDevice_confirm = async (authentication?: TAuthObject): Promise<void> => {
 	loading.value = true;
 	const response = await axios_device.rename_patch({
 		new_name: newName.value,
 		name: name_of_device.value,
-		authentication 
+		authentication
 	});
 	loading.value = false;
 	if (response) {
 		snackSuccess({
 			message: `${name_of_device.value}: renamed "${newName.value}"`,
-			icon: mdiContentSave 
+			icon: mdiContentSave
 		});
 		emit('refresh');
 		inFocus.value = false;

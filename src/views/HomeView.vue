@@ -158,9 +158,7 @@ import { useDisplay } from 'vuetify';
 
 const { mdAndUp, smAndDown } = useDisplay();
 
-const h1 = computed((): string => {
-	return mdAndUp.value ? 'h1' : 'h2';
-});
+const h1 = computed(() => mdAndUp.value ? 'h1' : 'h2');
 
 const browserStore = browserModule();
 onMounted(() => {

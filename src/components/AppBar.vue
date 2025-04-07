@@ -124,7 +124,6 @@ const router = useRouter();
 const route = useRoute();
 
 const goHome = (): void => {
-	
 	if (authenticated.value && route.name !== FrontEndNames.USER_DEVICES) router.push(FrontEndRoutes.USER_DEVICES);
 	if (!authenticated.value && route.name !== FrontEndNames.HOME) router.push(FrontEndRoutes.BASE);
 };

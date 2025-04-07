@@ -1,13 +1,8 @@
 <template>
-	<v-row align='center' :justify='justify' class='no-gutters pa-0 ma-0' >
+	<v-row align='center' :justify='justify' class='no-gutters pa-0 ma-0'>
 
-		<FabTooltip
-			@click='deleteDevice'
-			:disabled='!online'
-			:icon='mdiDeleteCircle'
-			:tooltip_text='tooltip_text'
-			color='pi'
-		/>
+		<FabTooltip @click='deleteDevice' :disabled='!online' :icon='mdiDeleteCircle' :tooltip_text='tooltip_text'
+			color='pi' />
 	</v-row>
 </template>
 
@@ -22,9 +17,7 @@ import type { VRow } from 'vuetify/components/VGrid';
 
 const { mdAndUp } = useDisplay();
 
-const justify = computed((): VRow['$props']['justify'] => {
-	return mdAndUp.value ? 'center' : 'end';
-});
+const justify = computed(() => mdAndUp.value ? 'center' : 'end');
 const loading = computed({
 	get (): boolean {
 		return loadingModule().loading;
@@ -33,15 +26,9 @@ const loading = computed({
 		loadingModule().set_loading(b);
 	}
 });
-const tooltip_text = computed((): string => {
-	return `delete: ${name_of_device.value }`;
-});
-const name_of_device = computed((): string => {
-	return props.device.name_of_device;
-});
-const online = computed((): boolean => {
-	return browserModule().online;
-});
+const tooltip_text = computed(() => `delete: ${name_of_device.value}`);
+const name_of_device = computed(() => props.device.name_of_device);
+const online = computed(() => browserModule().online);
 
 const deleteDevice = async (): Promise<void> => {
 	dialoger({
@@ -60,19 +47,19 @@ const deleteDevice_confirm = async (authentication: TAuthObject): Promise<void> 
 	loading.value = true;
 	const response = await axios_device.named_delete({
 		name: name_of_device.value,
-		authentication 
+		authentication
 	});
 	loading.value = false;
 	if (response) {
 		snackSuccess({
 			message: `Deleted "${name_of_device.value}"`,
-			icon: mdiDeleteCircle 
+			icon: mdiDeleteCircle
 		});
 		emit('refresh');
 	}
 };
 
-const emit = defineEmits([ 'refresh' ]);
+const emit = defineEmits(['refresh']);
 
 const props = defineProps<{ device: TDeviceInfo }>();
 </script>
