@@ -1,15 +1,14 @@
 import type { HttpCode } from '@/types/const_http';
 import type { UserLevel } from '@/types/const_userLevel';
 
+export type ConstT<T> = T[keyof T];
+
 export type TAuthentication = { authentication: TAuthObject };
 
 export type TAuthObject = {
 	password: string;
 	token?: string;
 };
-
-// export type TJustify = 'center' |'end' |'start'| 'space-around' | 'space-between' | 'space-evenly' | 'stretch' | undefined
-// export type TDensity = 'default'|'compact'|'comfortable'
 
 export type u<T> = undefined | T;
 export type su = u<string>;
