@@ -397,7 +397,6 @@ class AuthenticatedUser extends BaseAxios {
 		return response?.data?.response;
 	}
 
-	// MAYBE need to be authenticated?
 	@wrap()
 	async user_get (): Promise<boolean> {
 		const response = await this.baseAxios.get('');
@@ -507,10 +506,6 @@ class AuthenticatedUser extends BaseAxios {
 }
 
 class Device extends BaseAxios {
-
-	// constructor (url: string) {
-	// 	super(url);
-	// }
 
 	@wrap<types.TAuthObject>()
 	@isAuthenticated<types.TAuthObject>()

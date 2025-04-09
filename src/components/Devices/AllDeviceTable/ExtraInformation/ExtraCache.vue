@@ -59,7 +59,6 @@ const check_cache = async (): Promise<void> => {
 	cache.value = await axios_device.cache_get(props.device.name_of_device);
 	local_loading.value = false;
 	loading.value = false;
-
 };
 
 const delete_cache = (): void => {

@@ -39,14 +39,13 @@ onBeforeMount(() => {
 /// Don't show tooltips when on android or ios if also on mobile view!
 const show_tooltip = computed(() => !(browserModule().android_ios && mobile.value));
 
-const button = computed((): TSwitchButton => {
-	return {
-		color: 'primary',
-		click: save,
-		icon: mdiContentSave,
-		class: 'heartbeat'
-	};
-});
+const button = computed((): TSwitchButton => ({
+	color: 'primary',
+	click: save,
+	icon: mdiContentSave,
+	class: 'heartbeat'
+}));
+
 const justify = computed(() => mdAndUp.value ? 'center' : 'end');
 const loading = computed({
 	get (): boolean {

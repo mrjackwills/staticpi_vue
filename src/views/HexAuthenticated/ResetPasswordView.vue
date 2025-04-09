@@ -126,11 +126,9 @@ const appendClick = (): void => {
 */
 const hibpCheck = async (): Promise<boolean | null> => {
 	if (!user.value.password || passwordCompromised.value || v$.value.password.$invalid) return null;
-
 	passwordCompromised.value = await passwordCheck(user.value.password);
 	if (passwordCompromised.value) errorMessages.value.password = 'unsafe password';
 	return passwordCompromised.value ? true : false;
-
 };
 
 const router = useRouter();

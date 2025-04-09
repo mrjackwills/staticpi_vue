@@ -25,8 +25,6 @@ declare module 'pinia' {
 	}
 }
 
-// adapt this based on where your router is
-
 const pinia = createPinia();
 pinia.use(({ store }) => {
 	store.router = markRaw(router);

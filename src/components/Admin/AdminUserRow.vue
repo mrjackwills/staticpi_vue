@@ -263,36 +263,33 @@ const monthly_bandwidth = (x: TAdminUser): string => {
 };
 
 /// Make a "fake" device, just so can reuse the bandwidth table
-const fake_device = computed((): TDeviceInfo => {
-	return {
-		name_of_device: '',
-		api_key: '',
-		creation_date: '',
-		client_password_required: false,
-		device_password_required: false,
-		paused: false,
-		structured_data: false,
-		ip: '',
-		timestamp_online: '',
-		timestamp_offline: '',
-		max_clients: 0,
+const fake_device = computed((): TDeviceInfo => ({
+	name_of_device: '',
+	api_key: '',
+	creation_date: '',
+	client_password_required: false,
+	device_password_required: false,
+	paused: false,
+	structured_data: false,
+	ip: '',
+	timestamp_online: '',
+	timestamp_offline: '',
+	max_clients: 0,
 
-		pi_bytes_day_in: props.user.pi_bytes_day_in,
-		pi_bytes_day_out: props.user.pi_bytes_day_out,
-		pi_bytes_month_in: props.user.pi_bytes_month_in,
-		pi_bytes_month_out: props.user.pi_bytes_month_out,
-		pi_bytes_total_in: props.user.pi_bytes_total_in,
-		pi_bytes_total_out: props.user.pi_bytes_total_out,
+	pi_bytes_day_in: props.user.pi_bytes_day_in,
+	pi_bytes_day_out: props.user.pi_bytes_day_out,
+	pi_bytes_month_in: props.user.pi_bytes_month_in,
+	pi_bytes_month_out: props.user.pi_bytes_month_out,
+	pi_bytes_total_in: props.user.pi_bytes_total_in,
+	pi_bytes_total_out: props.user.pi_bytes_total_out,
 
-		client_bytes_day_in: props.user.client_bytes_day_in,
-		client_bytes_day_out: props.user.client_bytes_day_out,
-		client_bytes_month_in: props.user.client_bytes_month_in,
-		client_bytes_month_out: props.user.client_bytes_month_out,
-		client_bytes_total_in: props.user.client_bytes_total_in,
-		client_bytes_total_out: props.user.client_bytes_total_out
-	};
-
-});
+	client_bytes_day_in: props.user.client_bytes_day_in,
+	client_bytes_day_out: props.user.client_bytes_day_out,
+	client_bytes_month_in: props.user.client_bytes_month_in,
+	client_bytes_month_out: props.user.client_bytes_month_out,
+	client_bytes_total_in: props.user.client_bytes_total_in,
+	client_bytes_total_out: props.user.client_bytes_total_out
+}));
 
 const emit = defineEmits(['update']);
 
@@ -328,7 +325,6 @@ const deleteUser = async (): Promise<void> => {
 		twoFABackup: true,
 		twoFARequired: true
 	});
-
 };
 
 const deleteUser_confirm = async (authentication: TAuthObject): Promise<void> => {

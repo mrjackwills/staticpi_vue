@@ -71,7 +71,6 @@ const deleteAccount = async (): Promise<void> => {
 		twoFABackup: true,
 		twoFARequired: true
 	});
-
 };
 
 const deleteAccount_confirm = async (authentication: TAuthObject): Promise<void> => {

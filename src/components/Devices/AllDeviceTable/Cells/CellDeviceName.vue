@@ -40,7 +40,6 @@ import { secondsToDays } from '@/vanillaTS/convert_seconds';
 import { snackSuccess } from '@/services/snack';
 import { useDisplay } from 'vuetify';
 import type { TAuthObject, TDeviceTableFields, TDeviceInfo } from '@/types';
-import type { VRow } from 'vuetify/components/VGrid';
 
 const { mdAndUp, mobile } = useDisplay();
 

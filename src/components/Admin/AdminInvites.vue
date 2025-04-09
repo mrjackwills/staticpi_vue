@@ -183,12 +183,9 @@ const addInvite_confirm = async (auth: TAuthObject): Promise<void> => {
 		invite: model.value.invite 
 	});
 	loadingModule().loading = false;
-	 
 	model.value.count = undefined;
-	 
 	model.value.invite = '';
 	emit('update');
-
 };
 
 defineProps<{ inviteCodes: Array<TAdminInvite> }>();

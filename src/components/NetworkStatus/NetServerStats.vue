@@ -18,7 +18,8 @@
 					</td>
 					<td class='px-1 px-md-4 text-right'>
 						<v-progress-circular v-if='item.loading' :indeterminate='true' :size='20' color='primary' />
-						<v-icon v-else :color='item.status ? "primary" : "error"' :size='smAndDown ? "x-small" : "default"'
+						<v-icon v-else :color='item.status ? "primary" : "error"'
+							:size='smAndDown ? "x-small" : "default"'
 							:icon='item.status ? mdiCheckCircle : mdiCloseCircle' />
 					</td>
 					<td class='px-1 px-md-4 text-right'>
@@ -167,7 +168,6 @@ const checkWssServer = (): void => {
 		serverEntry.updateTime = new Date().toLocaleString();
 		checkSocket.close();
 	});
-
 };
 
 </script>

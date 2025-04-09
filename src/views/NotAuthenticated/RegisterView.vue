@@ -264,7 +264,6 @@ watch(() => user.value.full_name, (_) => {
 	}
 	if (!v$.value.full_name.$dirty) return;
 	if (!v$.value.full_name.required) errorMessages.value.full_name = 'name required';
-
 });
 
 watch(() => user.value.invite, (_) => {
@@ -275,7 +274,6 @@ watch(() => user.value.invite, (_) => {
 	}
 	if (!v$.value.invite.$dirty) return;
 	if (!v$.value.invite.required) errorMessages.value.invite = 'invite required';
-
 });
 
 watch(() => user.value.password, (_) => {
@@ -303,7 +301,6 @@ watch(() => user.value.password, (_) => {
 		errorMessages.value.password = `${minPassLength} characters minimum`;
 		return;
 	}
-
 });
 
 </script>

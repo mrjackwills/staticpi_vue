@@ -41,7 +41,6 @@ const deleteDevice = async (): Promise<void> => {
 		twoFABackup: true,
 		twoFARequired: false
 	});
-
 };
 const deleteDevice_confirm = async (authentication: TAuthObject): Promise<void> => {
 	loading.value = true;

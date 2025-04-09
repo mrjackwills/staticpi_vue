@@ -175,7 +175,6 @@ watch(() => message_data.value.message, (i) => {
 	if (v$.value.message.min) errorMessages.value.message = `message too short`;
 	else if (v$.value.message.max) errorMessages.value.message = `message too long`;
 	else if (!v$.value.message.required) errorMessages.value.message = 'message required';
-
 });
 
 </script>

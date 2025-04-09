@@ -49,7 +49,7 @@
 		</template>
 
 		<template v-slot:cancel_button v-if='showTextFields'>
-			<ActionButton @click='cancel' :id='componentId' v-model:disabled='loading' :icon='mdiClose'
+			<ActionButton @click='cancel' v-model:disabled='loading' :icon='mdiClose'
 				:iconFirst='true' :small='true' :block='true' color='pi' text='cancel' />
 		</template>
 		<template v-slot:save_button v-if='showTextFields'>
@@ -99,7 +99,6 @@ const loading = computed({
 	}
 });
 
-const componentId = 'changefullname-setting-section';
 const errorMessages = ref({ full_name: '' });
 
 const showTextFields = ref(false);
@@ -135,14 +134,6 @@ const submit = async (): Promise<void> => {
 		cancel();
 	}
 };
-
-watch(showTextFields, (i) => {
-	if (i) {
-		setTimeout(() => {
-			document.getElementById(componentId)?.scrollIntoView({ behavior: 'smooth' });
-		}, 210);
-	}
-});
 
 const rules = { full_name: { required } };
 const v$ = useVuelidate(rules, user);

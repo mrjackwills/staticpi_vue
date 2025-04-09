@@ -76,7 +76,6 @@ const downloadData = async (): Promise<void> => {
 		twoFABackup: true,
 		twoFARequired: true
 	});
-
 };
 
 const downloadData_confirm = async (authentication: TAuthObject): Promise<void> => {

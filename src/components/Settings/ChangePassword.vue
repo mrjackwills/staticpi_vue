@@ -5,7 +5,7 @@
 		</template>
 
 		<template v-slot:title>
-			<span>Password</span>
+			<span  >Password</span>
 		</template>
 
 		<template v-slot:text_description>
@@ -62,6 +62,16 @@
 										:label='item.label' :prepend-inner-icon='item.icon' color='primary'
 										variant='outlined' required />
 								</section>
+								<v-row class='ma-0 pa-0 mb-2' align='center' justify='center'>
+									<v-col class='ma-0 pa-0' cols='auto'>
+										<v-checkbox v-model='user.remove_sessions' color=''
+											density='compact' hide-details :disabled='loading'>
+											<template v-slot:label>
+												<span class='text-body-2'>remove other sessions</span>
+											</template>
+										</v-checkbox>
+									</v-col>
+								</v-row>
 							</v-form>
 						</v-col>
 					</v-row>
@@ -70,7 +80,7 @@
 		</template>
 		<template v-slot:cancel_button v-if='showTextFields'>
 
-			<ActionButton @click='cancel' :id='componentId' v-model:disabled='loading' :icon='mdiClose'
+			<ActionButton @click='cancel' v-model:disabled='loading' :icon='mdiClose'
 				:iconFirst='true' :block='true' :small='true' color='pi' text='cancel' />
 		</template>
 		<template v-slot:save_button v-if='showTextFields'>
@@ -163,7 +173,6 @@ const errorMessages = ref({
 	current_password: '',
 	token: ''
 });
-const componentId = 'changepassword-setting-section';
 const new_passwordVisible = ref(false);
 const passwordCompromised = ref(false);
 const passwordVisible = ref(false);
@@ -179,7 +188,8 @@ const tokenFields = ref([
 const user = ref({
 	new_password: '',
 	current_password: '',
-	token: ''
+	token: '',
+	remove_sessions: false
 });
 
 /**
@@ -241,7 +251,8 @@ const submit = async (): Promise<void> => {
 	const response = await axios_authenticatedUser.password_patch({
 		current_password: user.value.current_password,
 		token: user.value.token ? user.value.token : undefined,
-		new_password: user.value.new_password
+		new_password: user.value.new_password,
+		remove_sessions: user.value.remove_sessions
 	});
 
 	loading.value = false;
@@ -315,13 +326,6 @@ watch(() => user.value.new_password, (_) => {
 	passwordCompromised.value = false;
 	errorMessages.value.new_password = '';
 	watch_password_common();
-});
-watch(showTextFields, (i) => {
-	if (i) {
-		setTimeout(() => {
-			document.getElementById(componentId)?.scrollIntoView({ behavior: 'smooth' });
-		}, 210);
-	}
 });
 
 </script>

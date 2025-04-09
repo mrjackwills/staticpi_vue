@@ -94,7 +94,6 @@ onBeforeUnmount(() => {
 	clearTimeout(showTooltipTimeout.value);
 	showTooltipTimeout.value = 0;
 	backupProcess.value = false;
-
 });
 const { mobile } = useDisplay();
 

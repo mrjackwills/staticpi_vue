@@ -1,7 +1,7 @@
 <template>
 	<SettingSection :disabled='componentDisabled'>
 		<template v-slot:title>
-			<span :id='componentId'>Two-Factor Authentication</span>
+			<span>Two-Factor Authentication</span>
 		</template>
 		<template v-slot:titleIcon>
 			<v-icon color='pi' class='mr-2' :size='smAndDown ? "small" : "default"' :icon='mdiShieldHalfFull' />
@@ -70,7 +70,6 @@ onBeforeMount(async () => {
 
 onMounted(() => {
 	if (settingSectionStore.beforemount_open && settingSectionStore.current_section === '2fa') {
-		scrollIntoView();
 		settingSectionStore.set_beforemount_open(false);
 		settingSectionStore.set_current_section(undefined);
 	}
@@ -92,10 +91,6 @@ const loading = computed({
 const setupProcessStarted = computed(() => twoFAStore.setupProcessStarted);
 const singleSectionOpen = computed(() => settingSectionStore.current_section === '2fa');
 
-const scrollIntoView = (): void => {
-	document.getElementById(componentId)?.scrollIntoView({ behavior: 'smooth' });
-};
-const componentId = 'tfa-setting-section';
 const showCancel = ref(false);
 
 const cancel = (): void => {
@@ -151,9 +146,9 @@ const removeTwoFA = (): void => {
 	});
 };
 
-watch(setupProcessStarted, (i: boolean): void => {
-	if (!i) browserModule().set_stopScroll(true);
-	else scrollIntoView();
-});
+// watch(setupProcessStarted, (i: boolean): void => {
+// 	if (!i) browserModule().set_stopScroll(true);
+// 	else scrollIntoView();
+// });
 
 </script>

@@ -64,7 +64,6 @@ const [browserStore, deviceStore, loadingStore, userStore] = [browserModule(), d
 onBeforeMount(async () => {
 	await getData();
 	pageReady.value = true;
-
 });
 
 onMounted(() => {

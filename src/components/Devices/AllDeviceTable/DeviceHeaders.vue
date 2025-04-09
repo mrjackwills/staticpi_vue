@@ -21,12 +21,12 @@
 <script setup lang='ts'>
 import { mdiArrowDownBold, mdiArrowUpBold, mdiSwapVerticalBold } from '@mdi/js';
 import { useDisplay } from 'vuetify';
-import type { TDeviceInfo, TSortableColumns, TSortedBy } from '@/types';
+import type { TSortableColumns, TSortedBy } from '@/types';
 
 const { mdAndUp, smAndDown } = useDisplay();
 
 const deviceStore = deviceModule();
-const tableData = computed((): Array<TDeviceInfo> => deviceStore.all);
+const tableData = computed(() => deviceStore.all);
 const devicesUpdatedAxios = computed(() => deviceStore.timestamp);
 
 const headings = [

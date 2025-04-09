@@ -182,7 +182,7 @@ export type TSignin = TAuthObject & {
 	email: string;
 	remember: boolean; 
 };
-export type TPasswordChange = Record<'current_password' | 'new_password', string> & { token?: string };
+export type TPasswordChange = Record<'current_password' | 'new_password', string> & { token?: string } & { remove_sessions: boolean };
 
 export type TTFASetupPatch = { always_required: true } | { always_required: false } & TAuthObject;
 
