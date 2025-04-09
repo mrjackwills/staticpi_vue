@@ -1,76 +1,40 @@
-
 <template>
-	<ThePage
-		:justify='"center"'
-		:fillHeight='true'
-	>
+	<ThePage :justify='"center"' :fillHeight='true'>
 		<template v-slot:body>
-			<AppCard
-				:hasButton='true'
-				:heading='pageTitle'
-				v-model:loading='localLoading'
-				heading_class='my-3'
-			>
+			<AppCard :hasButton='true' :heading='pageTitle' v-model:loading='localLoading' heading_class='my-3'>
 				<template v-slot:body>
 					<v-form v-on:submit.prevent>
 						<v-expand-transition>
 							<section v-if='!twoFATokenRequired'>
-								<v-text-field
-									v-for='(item,index) in textFields'
-									v-model='user[item.model]'
-									@click:append-inner='appendClick()'
-									@focus='focusMethod(item.model)'
-									v-on:keyup.enter='login'
-									:append-inner-icon='item.appendIcon'
-									:autocomplete='item.autocomplete'
-									:dense='smAndDown'
-									:disabled='localLoading'
-									:error-messages='errorMessages[item.model]'
-									:key='index'
-									:label='item.label'
-									:prepend-inner-icon='item.icon'
-									:type='item.type'
-									color='primary'
-									variant='outlined'
-									required
-								/>
+								<v-text-field v-for='(item, index) in textFields' v-model='user[item.model]'
+									@click:append-inner='appendClick()' @focus='focusMethod(item.model)'
+									v-on:keyup.enter='login' :append-inner-icon='item.appendIcon'
+									:autocomplete='item.autocomplete' :dense='smAndDown' :disabled='localLoading'
+									:error-messages='errorMessages[item.model]' :key='index' :label='item.label'
+									:prepend-inner-icon='item.icon' :type='item.type' color='primary' variant='outlined'
+									required />
 							</section>
 						</v-expand-transition>
 						<v-expand-transition>
 							<template v-if='twoFATokenRequired'>
 
 								<!-- 2FA text input  -->
-								<v-text-field
-									v-for='(item,index) in tokenFields'
-									v-model='user[item.model]'
-									@focus='focusMethod(item.model)'
-									v-on:keyup.enter='login'
-									:autofocus='true'
-									:dense='smAndDown'
-									:disabled='localLoading'
-									:error-messages='errorMessages[item.model]'
-									:key='index'
-									:label='item.label'
-									:prepend-inner-icon='item.icon'
-									autocomplete='one-time-code'
-									color='primary'
-									variant='outlined'
-									required
-								/>
+								<v-text-field v-for='(item, index) in tokenFields' v-model='user[item.model]'
+									@focus='focusMethod(item.model)' v-on:keyup.enter='login' :autofocus='true'
+									:dense='smAndDown' :disabled='localLoading'
+									:error-messages='errorMessages[item.model]' :key='index' :label='item.label'
+									:prepend-inner-icon='item.icon' autocomplete='one-time-code' color='primary'
+									variant='outlined' required />
 							</template>
 						</v-expand-transition>
 
 					</v-form>
 					<v-row justify='center' align='center' wrap class='pa-0 ma-0'>
-						<v-col :order='mdAndUp? 1 : 2' cols='12' md='auto' class='pa-0 ma-0'>
+						<v-col :order='mdAndUp ? 1 : 2' cols='12' md='auto' class='pa-0 ma-0'>
 							<v-row justify='center' align='center' dense no-gutters class='pa-0 ma-0'>
 								<v-col cols='auto' class='ma-0 pa-0 mb-n6' v-if='!twoFATokenRequired'>
-									<v-checkbox
-										v-model='user.remember'
-										:disabled='localLoading'
-										class='ma-0 pa-0 mt-n4'
-										color='primary'
-									>
+									<v-checkbox v-model='user.remember' :disabled='localLoading' class='ma-0 pa-0 mt-n4'
+										color='primary'>
 										<template v-slot:label>
 											<span class='ml-0'>remember me</span>
 										</template>
@@ -81,31 +45,19 @@
 					</v-row>
 				</template>
 				<template v-slot:button>
-					<v-row align='center' :justify='twoFATokenRequired?"space-around":"center"' class='mb-3'>
+					<v-row align='center' :justify='twoFATokenRequired ? "space-around" : "center"' class='mb-3'>
 						<v-col cols='6' v-if='twoFATokenRequired'>
-							<ActionButton
-								@click='cancel'
-								:block='true'
-								:icon='mdiClose'
-								:disabled='localLoading'
-								:iconFirst='true'
-								color='pi'
-								text='cancel'
-							/>
+							<ActionButton @click='cancel' :block='true' :icon='mdiClose' :disabled='localLoading'
+								:iconFirst='true' color='pi' text='cancel' />
 
 						</v-col>
 						<v-col cols='6'>
-							<ActionButton
-								@click='login'
-								:block='true'
-								:icon='mdiSend'
-								text='login'
-								:disabled='disabled'
-							/>
+							<ActionButton @click='login' :block='true' :icon='mdiSend' text='login'
+								:disabled='disabled' />
 
 						</v-col>
 					</v-row>
-				
+
 				</template>
 				<template v-slot:end>
 
@@ -114,7 +66,8 @@
 							<router-link class='text-primary' :to='FrontEndRoutes.REGISTER'>create account</router-link>
 						</v-col>
 						<v-col cols='auto' class='ma-0 pa-0'>
-							<router-link class='text-primary' :to='FrontEndRoutes.FORGOTPASSWORD'>forgotten password?</router-link>
+							<router-link class='text-primary' :to='FrontEndRoutes.FORGOTPASSWORD'>forgotten
+								password?</router-link>
 						</v-col>
 					</v-row>
 				</template>
@@ -145,9 +98,7 @@ onBeforeUnmount(() => {
 	cancel();
 });
 
-const disabled = computed((): boolean => {
-	return localLoading.value || v$.value.$invalid || twoFATokenRequired.value && !!errorMessages.value.token || twoFATokenRequired.value && !user.value.token;
-});
+const disabled = computed(() => localLoading.value || v$.value.$invalid || twoFATokenRequired.value && !!errorMessages.value.token || twoFATokenRequired.value && !user.value.token);
 const redirect = computed({
 	get (): string {
 		return browserModule().redirect;
@@ -156,26 +107,24 @@ const redirect = computed({
 		browserModule().set_redirect(s);
 	}
 });
-const textFields = computed((): Array<TLoginFields> => {
-	return [
-		{
-			appendIcon: '',
-			autocomplete: '',
-			icon: mdiEmail,
-			label: 'email address',
-			model: 'email' as const,
-			type: 'email'
-		},
-		{
-			appendIcon: user.value.password ? passwordVisible.value ? mdiEyeOff : mdiEye : '',
-			autocomplete: 'password',
-			icon: mdiLock,
-			label: 'password',
-			model: 'password' as const,
-			type: passwordVisible.value ? 'text' : 'password'
-		}
-	];
-});
+const textFields = computed((): Array<TLoginFields> => [
+	{
+		appendIcon: '',
+		autocomplete: '',
+		icon: mdiEmail,
+		label: 'email address',
+		model: 'email' as const,
+		type: 'email'
+	},
+	{
+		appendIcon: user.value.password ? passwordVisible.value ? mdiEyeOff : mdiEye : '',
+		autocomplete: 'password',
+		icon: mdiLock,
+		label: 'password',
+		model: 'password' as const,
+		type: passwordVisible.value ? 'text' : 'password'
+	}
+]);
 
 const authed = ref(false);
 const errorMessages = ref({

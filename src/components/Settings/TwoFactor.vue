@@ -1,23 +1,19 @@
 <template>
 	<SettingSection :disabled='componentDisabled'>
 		<template v-slot:title>
-			<span :id='componentId'>Two-Factor Authentication</span>
+			<span>Two-Factor Authentication</span>
 		</template>
 		<template v-slot:titleIcon>
-			<v-icon color='pi' class='mr-2' :size='smAndDown?"small":"default"' :icon='mdiShieldHalfFull' />
+			<v-icon color='pi' class='mr-2' :size='smAndDown ? "small" : "default"' :icon='mdiShieldHalfFull' />
 		</template>
-	
+
 		<template v-slot:text_description>
 			<v-expand-transition>
 				<TFAInactiveText v-if='!active && !setupProcessStarted' />
 			</v-expand-transition>
 			<v-expand-transition>
 				<section v-if='active && !backupProcess'>
-					<TFAStatusRow
-						@click='removeTwoFA'
-						:active='active'
-						text='Two-Factor enabled'
-					/>
+					<TFAStatusRow @click='removeTwoFA' :active='active' text='Two-Factor enabled' />
 					<v-row class='ma-0 pa-0' justify='center'>
 						<v-col cols='12' md='8' class='ma-0 pa-0'>
 							<v-divider />
@@ -26,12 +22,8 @@
 				</section>
 			</v-expand-transition>
 			<v-expand-transition>
-				<TFAStatusRow
-					v-if='active && !backupProcess'
-					@click='removeBackups'
-					:active='count>0'
-					:text='backupText'
-				/>
+				<TFAStatusRow v-if='active && !backupProcess' @click='removeBackups' :active='count > 0'
+					:text='backupText' />
 			</v-expand-transition>
 			<v-expand-transition>
 				<TFABackup v-if='active' />
@@ -42,25 +34,15 @@
 		</template>
 		<template v-slot:body>
 			<v-expand-transition>
-				<TFAInstructions
-					v-if='!active && setupProcessStarted'
-				/>
+				<TFAInstructions v-if='!active && setupProcessStarted' />
 			</v-expand-transition>
 		</template>
 		<template v-slot:action_button>
-			<v-expand-transition >
+			<v-expand-transition>
 				<TFAEnable v-if='!active && !setupProcessStarted' />
 			</v-expand-transition>
-			<ActionButton
-				v-if='showCancel && !backupProcess && singleSectionOpen'
-				@click='cancel'
-				:icon='mdiClose'
-				:iconFirst='true'
-				:small='true'
-				color='pi'
-		
-				text='close'
-			/>
+			<ActionButton v-if='showCancel && !backupProcess && singleSectionOpen' @click='cancel' :icon='mdiClose'
+				:iconFirst='true' :small='true' color='pi' text='close' />
 		</template>
 	</SettingSection>
 </template>
@@ -71,11 +53,11 @@ import { dialoger } from '@/services/dialog';
 import { snackSuccess } from '@/services/snack';
 import { mdiClose, mdiDeleteCircle, mdiShieldHalfFull } from '@mdi/js';
 import type { TAuthObject } from '@/types';
-
 import { useDisplay } from 'vuetify';
+
 const { smAndDown } = useDisplay();
 
-const [ settingSectionStore, twoFAStore ] = [ settingSectionModule(), twoFAModule() ];
+const [settingSectionStore, twoFAStore] = [settingSectionModule(), twoFAModule()];
 
 onBeforeMount(async () => {
 	twoFAStore.set_secret('');
@@ -84,32 +66,20 @@ onBeforeMount(async () => {
 	if (setupProcessStarted.value) {
 		await axios_authenticatedUser.setupTwoFA_delete();
 	}
-		
 });
 
 onMounted(() => {
 	if (settingSectionStore.beforemount_open && settingSectionStore.current_section === '2fa') {
-		scrollIntoView();
 		settingSectionStore.set_beforemount_open(false);
 		settingSectionStore.set_current_section(undefined);
 	}
 });
-	
-const active = computed((): boolean =>{
-	return twoFAStore.active;
-});
-const backupProcess = computed((): boolean =>{
-	return twoFAStore.backupProcess;
-});
-const backupText = computed((): string =>{
-	return Number(count.value) > 0 ? `Backups enabled (${count.value} remaining)` : 'Backup tokens not enabled';
-});
-const componentDisabled = computed((): boolean =>{
-	return settingSectionStore.current_section && settingSectionStore.current_section !== '2fa' ? true : false;
-});
-const count = computed((): number =>{
-	return twoFAStore.count;
-});
+
+const active = computed(() => twoFAStore.active);
+const backupProcess = computed(() => twoFAStore.backupProcess);
+const backupText = computed(() => Number(count.value) > 0 ? `Backups enabled (${count.value} remaining)` : 'Backup tokens not enabled');
+const componentDisabled = computed(() => settingSectionStore.current_section && settingSectionStore.current_section !== '2fa' ? true : false);
+const count = computed(() => twoFAStore.count);
 const loading = computed({
 	get (): boolean {
 		return loadingModule().loading;
@@ -118,17 +88,9 @@ const loading = computed({
 		loadingModule().set_loading(b);
 	}
 });
-const setupProcessStarted = computed((): boolean =>{
-	return twoFAStore.setupProcessStarted;
-});
-const singleSectionOpen = computed((): boolean =>{
-	return settingSectionStore.current_section === '2fa';
-});
+const setupProcessStarted = computed(() => twoFAStore.setupProcessStarted);
+const singleSectionOpen = computed(() => settingSectionStore.current_section === '2fa');
 
-const scrollIntoView = (): void=> {
-	document.getElementById(componentId)?.scrollIntoView({ behavior: 'smooth' });
-};
-const componentId = 'tfa-setting-section';
 const showCancel = ref(false);
 
 const cancel = (): void => {
@@ -142,7 +104,7 @@ const removeTwoFA_confirm = async (authentication: TAuthObject): Promise<void> =
 	settingSectionStore.set_current_section(undefined);
 	if (response) snackSuccess({
 		message: 'Two-Factor Authentication removed',
-		icon: mdiDeleteCircle 
+		icon: mdiDeleteCircle
 	});
 };
 const removeBackups_confirm = async (authentication: TAuthObject): Promise<void> => {
@@ -152,7 +114,7 @@ const removeBackups_confirm = async (authentication: TAuthObject): Promise<void>
 	settingSectionStore.set_current_section(undefined);
 	if (response) snackSuccess({
 		message: 'Two-Factor backup codes removed',
-		icon: mdiDeleteCircle 
+		icon: mdiDeleteCircle
 	});
 };
 
@@ -184,15 +146,9 @@ const removeTwoFA = (): void => {
 	});
 };
 
-// watch: {
-
-watch(setupProcessStarted, (i: boolean): void => {
-	if (!i) browserModule().set_stopScroll(true);
-	else {
-		// this.$vuetify.goTo(`#${this.componentId}`);
-		// browserModule().set_stopScroll(false);
-		scrollIntoView();
-	}
-});
+// watch(setupProcessStarted, (i: boolean): void => {
+// 	if (!i) browserModule().set_stopScroll(true);
+// 	else scrollIntoView();
+// });
 
 </script>

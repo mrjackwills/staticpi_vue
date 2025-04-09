@@ -1,4 +1,3 @@
-
 <template>
 	<v-table>
 		<template v-slot:default>
@@ -13,23 +12,31 @@
 			</thead>
 			<tbody>
 				<tr v-for='(item, index) in servers' :key='index'>
-					<td class='text-left font-weight-bold px-1 px-md-4' :class='[item.status? "text-primary" : "text-error", text_size]'>
+					<td class='text-left font-weight-bold px-1 px-md-4'
+						:class='[item.status ? "text-primary" : "text-error", text_size]'>
 						{{ item.address }}
 					</td>
 					<td class='px-1 px-md-4 text-right'>
 						<v-progress-circular v-if='item.loading' :indeterminate='true' :size='20' color='primary' />
-						<v-icon v-else :color='item.status ? "primary" : "error"' :size='smAndDown?"x-small":"default"' :icon='item.status? mdiCheckCircle: mdiCloseCircle' />
+						<v-icon v-else :color='item.status ? "primary" : "error"'
+							:size='smAndDown ? "x-small" : "default"'
+							:icon='item.status ? mdiCheckCircle : mdiCloseCircle' />
 					</td>
 					<td class='px-1 px-md-4 text-right'>
-						<span class='text-right font-weight-bold' :class='[item.status? "text-primary" : "text-error", text_size]'>
+						<span class='text-right font-weight-bold'
+							:class='[item.status ? "text-primary" : "text-error", text_size]'>
 							<span v-if='item.uptime'>{{ item.uptime }}</span>
 						</span>
 					</td>
 					<td class='px-1 px-md-4 text-right'>
-						<span class=' font-weight-bold' :class='[item.status? "text-primary" : "text-error", text_size]'>{{ item.api_version }}</span>
+						<span class=' font-weight-bold'
+							:class='[item.status ? "text-primary" : "text-error", text_size]'>{{ item.api_version
+							}}</span>
 					</td>
 					<td class='px-1 px-md-4 text-right'>
-						<span v-if='!item.loading' class='text-right font-weight-bold' :class='[item.status? "text-primary" : "text-error", text_size]'>{{ item.updateTime }}</span>
+						<span v-if='!item.loading' class='text-right font-weight-bold'
+							:class='[item.status ? "text-primary" : "text-error", text_size]'>{{ item.updateTime
+							}}</span>
 					</td>
 				</tr>
 			</tbody>
@@ -48,12 +55,9 @@ const { smAndDown } = useDisplay();
 
 onBeforeMount(async () => {
 	await checkAll();
-
 });
 
-const text_size = computed((): string => {
-	return smAndDown.value ? 'small-text' : '';
-});
+const text_size = computed(() => smAndDown.value ? 'small-text' : '');
 
 const servers = ref([
 	{
@@ -92,7 +96,6 @@ const servers = ref([
 		api_version: '',
 		uptime: ''
 	}
-
 ]);
 
 const checkAll = async (): Promise<void> => {
@@ -102,9 +105,7 @@ const checkAll = async (): Promise<void> => {
 	checkWssServer();
 };
 
-const convertTime = (data: string): string => {
-	return secondsToDays(Number(data) * 1000);
-};
+const convertTime = (data: string): string => secondsToDays(Number(data) * 1000);
 
 const wsParser = (input: string): void => {
 	try {
@@ -135,7 +136,7 @@ const updateServerStatus = async (server: 'api' | 'token' | 'website'): Promise<
 			}
 			break;
 		}
-		case 'website' : {
+		case 'website': {
 			const response = await axios_site_status.manifest_online();
 			if (response) {
 				serverEntry.api_version = response;
@@ -146,7 +147,6 @@ const updateServerStatus = async (server: 'api' | 'token' | 'website'): Promise<
 	}
 	serverEntry.loading = false;
 	serverEntry.updateTime = new Date().toLocaleString();
-		
 };
 
 const checkWssServer = (): void => {
@@ -168,7 +168,6 @@ const checkWssServer = (): void => {
 		serverEntry.updateTime = new Date().toLocaleString();
 		checkSocket.close();
 	});
-
 };
 
 </script>

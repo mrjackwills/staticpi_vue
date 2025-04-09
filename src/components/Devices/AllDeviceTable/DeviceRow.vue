@@ -4,44 +4,30 @@
 
 		<v-row align='center' justify='space-around' class='ma-0 pa-0'>
 			<v-col cols='12' :md='item.cols' class='ma-0 pa-0' v-for='(item, index) in cells' :key='index'>
-				<v-row justify='space-around' align='center' class='no-gutters pa-0 ma-0' >
-					<v-col v-if='smAndDown' cols='4' class='my-3 ma-0 pa-0 font-weight-bold unselectable text-uppercase small-text text-right'>
-						<DocumentationLink v-if='item.link' :section='item.link' :xsmall='true'/>
+				<v-row justify='space-around' align='center' class='no-gutters pa-0 ma-0'>
+					<v-col v-if='smAndDown' cols='4'
+						class='my-3 ma-0 pa-0 font-weight-bold unselectable text-uppercase small-text text-right'>
+						<DocumentationLink v-if='item.link' :section='item.link' :xsmall='true' />
 						{{ item.text }}:
 					</v-col>
-					<v-col :cols='smAndDown? "7" : "12"' class='ma-0 pa-0'>
-						<component
-							@refresh='refresh'
-							:device='device'
-							:is='item.component'
-						/>
+					<v-col :cols='smAndDown ? "7" : "12"' class='ma-0 pa-0'>
+						<component @refresh='refresh' :device='device' :is='item.component' />
 					</v-col>
 				</v-row>
 			</v-col>
 		</v-row>
 
-		<v-row align='center' justify='center' class='ma-0 pa-0 py-1 mt-2' :class='{"cl": !device.paused}'>
-			<v-col cols='auto' class='ma-0 pa-0' >
-				<v-btn
-					@click='click_extra'
-					:disabled='device.paused'
-					:variant='show_extra?"outlined":"flat"'
-					class='elevation-0'
-					color='secondary'
-					size='small'
-					rounded
-				>
+		<v-row align='center' justify='center' class='ma-0 pa-0 py-1 mt-2' :class='{ "cl": !device.paused }'>
+			<v-col cols='auto' class='ma-0 pa-0'>
+				<v-btn @click='click_extra' :disabled='device.paused' :variant='show_extra ? "outlined" : "flat"'
+					class='elevation-0' color='secondary' size='small' rounded>
 					<v-row align='center' justify='space-around' class='unselectable px-1'>
 						<v-col cols='auto' class='ma-0 pa-0'>
-							<v-icon
-								:class='show_extra?"":"flipy"'
-								:color='show_extra ? "secondary" : "white"'
-								:icon='mdiChevronDoubleUp'
-								size='small'
-							/>
+							<v-icon :class='show_extra ? "" : "flipy"' :color='show_extra ? "secondary" : "white"'
+								:icon='mdiChevronDoubleUp' size='small' />
 						</v-col>
 						<v-col cols='auto' class='ma-0 pa-0'>
-							<span class='text-overline' :class='show_extra ? "text-secondary" : "text-white"' >
+							<span class='text-overline' :class='show_extra ? "text-secondary" : "text-white"'>
 								{{ show_text }}
 							</span>
 						</v-col>
@@ -49,14 +35,14 @@
 				</v-btn>
 			</v-col>
 		</v-row>
-	
-		<v-expand-transition >
+
+		<v-expand-transition>
 			<section v-if='show_extra'>
 				<ExtraInfo :device='device' @refresh='refresh' @emitClose='refresh_device' />
 			</section>
 		</v-expand-transition>
 	</v-col>
-		
+
 </template>
 
 <script setup lang="ts">
@@ -76,9 +62,7 @@ const { smAndDown } = useDisplay();
 
 const show_extra = ref(false);
 
-const show_text = computed((): string => {
-	return show_extra.value ? 'less' : 'more';
-});
+const show_text = computed(() => show_extra.value ? 'less' : 'more');
 
 const click_extra = (): void => {
 	if (!props.device.paused) show_extra.value = !show_extra.value;
@@ -87,7 +71,7 @@ const click_extra = (): void => {
 const refresh_device = (): void => {
 	emit('refresh');
 };
-	
+
 const cells = [
 	{
 		text: 'connection',
@@ -147,11 +131,9 @@ const cells = [
 
 const refreshInterval = ref(0);
 
-const createDeviceId = computed((): string => {
-	return `${props.device.name_of_device}-extra`;
-});
+const createDeviceId = computed(() => `${props.device.name_of_device}-extra`);
 
-const emit = defineEmits([ 'refresh' ]);
+const emit = defineEmits(['refresh']);
 
 const refresh = (): void => {
 	emit('refresh');
@@ -169,6 +151,6 @@ const props = defineProps<{ device: TDeviceInfo }>();
 
 <style>
 .device_row {
-  scroll-margin: -10px;
+	scroll-margin: -10px;
 }
 </style>

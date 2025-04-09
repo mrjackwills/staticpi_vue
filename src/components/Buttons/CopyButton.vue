@@ -5,23 +5,10 @@
 				<v-tooltip v-if='show_tooltip' activator='parent' location='top center' content-class='tooltip'>
 					<span v-intersect='onIntersect'>{{ message }}</span>
 				</v-tooltip>
-				<v-btn
-					@click='copyItem'
-					@mouseenter='mouseenter'
-					@mouseleave='mouseleave'
-					:dark='disabled && dark'
-					:density='density'
-					:disabled='disabled'
-					:size='iconSize'
-					class='fab-fix pa-0 ma-0'
-					variant='text'
-					icon
-				>
-					<v-icon
-						:color='color'
-						:icon='mdiContentCopy'
-						:size='iconSize'
-					/>
+				<v-btn @click='copyItem' @mouseenter='mouseenter' @mouseleave='mouseleave' :dark='disabled && dark'
+					:density='density' :disabled='disabled' :size='iconSize' class='fab-fix pa-0 ma-0' variant='text'
+					icon>
+					<v-icon :color='color' :icon='mdiContentCopy' :size='iconSize' />
 				</v-btn>
 			</v-col>
 		</v-row>
@@ -39,27 +26,13 @@ onBeforeUnmount(() => {
 });
 
 /// Don't show tooltips when on android or ios if also on mobile view!
-const show_tooltip = computed((): boolean => {
-	return !(browserModule().android_ios && useDisplay().mobile.value);
-});
+const show_tooltip = computed(() => !(browserModule().android_ios && useDisplay().mobile.value));
 
-const iconSize = computed((): string => {
-	if (onMobile.value || props.xsmall) {
-		return 'x-small';
-	}
-	if (props.small) {
-		return 'small';
-	}
-	return 'default';
-});
-const onMobile = computed((): boolean => {
-	return smAndDown.value || props.xsmall;
-});
+const iconSize = computed(() => onMobile.value || props.xsmall ? 'x-small' : props.small ? 'small' : 'default');
+const onMobile = computed(() => smAndDown.value || props.xsmall);
 
-const message = computed((): string => {
-	return click.value ? props.tooltipMessage : props.hoverMessage;
-});
-	
+const message = computed(() => click.value ? props.tooltipMessage : props.hoverMessage);
+
 const click = ref(false);
 const hover = ref(false);
 const isIntersecting = ref(false);

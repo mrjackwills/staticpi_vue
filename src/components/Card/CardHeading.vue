@@ -13,9 +13,7 @@ import type { VRow } from 'vuetify/components/VGrid';
 
 const { mdAndUp } = useDisplay();
 
-const headingSize = computed((): string => {
-	return props.size ? props.size : mdAndUp.value ? 'text-h4' : 'text-h5';
-});
+const headingSize = computed(() => props.size ? props.size : mdAndUp.value ? 'text-h4' : 'text-h5');
 
 const props = withDefaults(defineProps<{
 	divider?: boolean;

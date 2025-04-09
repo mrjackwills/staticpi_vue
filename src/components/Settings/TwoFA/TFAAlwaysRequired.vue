@@ -1,26 +1,13 @@
 <template>
-	<AppCard
-		heading=''
-		xl='12'
-		lg='12'
-		sm='12'
-		my='my-2'
-	>
+	<AppCard heading='' xl='12' lg='12' sm='12' my='my-2'>
 		<template v-slot:body>
-			<section class='my-1' >
-				<v-row class='ma-0 pa-0' align='center' justify='center' >
-					<v-col cols='auto' class='ma-0 pa-0' @click='toggle' >
-						<v-switch
-							v-model='always_required'
-							:disabled='backupProcess'
-							:hide-details='true'
-							class='ma-0 pa-0'
-							color='primary'
-							density='compact'
-							readonly
-						>
+			<section class='my-1'>
+				<v-row class='ma-0 pa-0' align='center' justify='center'>
+					<v-col cols='auto' class='ma-0 pa-0' @click='toggle'>
+						<v-switch v-model='always_required' :disabled='backupProcess' :hide-details='true'
+							class='ma-0 pa-0' color='primary' density='compact' readonly>
 							<template v-slot:label>
-								<span  class='font-weight-bold'>Extra prompts</span>
+								<span class='font-weight-bold'>Extra prompts</span>
 							</template>
 						</v-switch>
 					</v-col>
@@ -28,7 +15,9 @@
 				<v-row class='ma-0 pa-0' align='center' justify='center'>
 					<v-col class='ma-0 pa-0 mb-2 text-center'>
 						When enabled, a Two-Factor Authentication token will be required at all password prompts.
-						Otherwise, a Two-Factor Authentication token will only be required at login, or when changing Two-Factor settings.
+						Otherwise, a Two-Factor Authentication token will only be required at login, or when changing
+						Two-Factor
+						settings.
 					</v-col>
 				</v-row>
 			</section>
@@ -50,9 +39,7 @@ const always_required = computed({
 		twoFAStore.set_alwaysRequired(b);
 	}
 });
-const backupProcess = computed((): boolean => {
-	return twoFAStore.backupProcess;
-});
+const backupProcess = computed(() => twoFAStore.backupProcess);
 const loading = computed({
 	get (): boolean {
 		return loadingModule().loading;
@@ -61,7 +48,7 @@ const loading = computed({
 		loadingModule().set_loading(b);
 	}
 });
-	
+
 const confirm_function_add = async (): Promise<void> => {
 	loading.value = true;
 	await axios_authenticatedUser.twoFA_patch({ always_required: true });
@@ -71,7 +58,7 @@ const confirm_function_remove = async (authentication: TAuthObject): Promise<voi
 	loading.value = true;
 	await axios_authenticatedUser.twoFA_patch({
 		always_required: false,
-		...authentication 
+		...authentication
 	});
 	loading.value = false;
 };

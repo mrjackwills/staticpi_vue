@@ -12,12 +12,8 @@ import type { VRow } from 'vuetify/components/VGrid';
 
 const { mdAndUp } = useDisplay();
 
-const headingSize = computed((): string => {
-	return props.heading_size ? props.heading_size : mdAndUp.value ? 'text-h6' : 'text-h7';
-});
-const headingColor = computed((): string => {
-	return `text-${props.color}`;
-});
+const headingSize = computed(() => props.heading_size ? props.heading_size : mdAndUp.value ? 'text-h6' : 'text-h7');
+const headingColor = computed(() => `text-${props.color}`);
 
 const props = withDefaults(defineProps<{
 	color?: string;

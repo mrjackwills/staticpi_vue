@@ -1,13 +1,7 @@
 <template>
 	<v-row align='center' :justify='justify' no-gutters class=''>
-
-		<FabTooltip
-			@click='pauseDevice'
-			v-model:icon='icon'
-			v-model:tooltip_text='tooltip_text'
-			:color='color'
-			:disabled='!online'
-		/>
+		<FabTooltip @click='pauseDevice' v-model:icon='icon' v-model:tooltip_text='tooltip_text' :color='color'
+			:disabled='!online' />
 	</v-row>
 </template>
 <script setup lang='ts'>
@@ -21,15 +15,9 @@ import type { VRow } from 'vuetify/components/VGrid';
 
 const { mdAndUp } = useDisplay();
 
-const color = computed((): string => {
-	return paused.value ? 'primary' : 'secondary';
-});
-const icon = computed((): string => {
-	return paused.value ? mdiPlayCircle : mdiPauseCircle;
-});
-const justify = computed((): VRow['$props']['justify']=> {
-	return mdAndUp.value ? 'center' : 'end';
-});
+const color = computed(() => paused.value ? 'primary' : 'secondary');
+const icon = computed(() => paused.value ? mdiPlayCircle : mdiPauseCircle);
+const justify = computed(() => mdAndUp.value ? 'center' : 'end');
 const loading = computed({
 	get (): boolean {
 		return loadingModule().loading;
@@ -38,19 +26,11 @@ const loading = computed({
 		loadingModule().set_loading(b);
 	}
 });
-const tooltip_text = computed((): string => {
-	return `${paused.value ? 'resume' : 'pause'}: ${name_of_device.value}`;
-});
+const tooltip_text = computed(() => `${paused.value ? 'resume' : 'pause'}: ${name_of_device.value}`);
 
-const paused = computed((): boolean => {
-	return props.device.paused;
-});
-const name_of_device = computed((): string => {
-	return props.device.name_of_device;
-});
-const online = computed((): boolean => {
-	return browserModule().online;
-});
+const paused = computed(() => props.device.paused);
+const name_of_device = computed(() => props.device.name_of_device);
+const online = computed(() => browserModule().online);
 
 const pauseDevice = (): void => {
 	dialoger({
@@ -66,20 +46,20 @@ const pauseDevice = (): void => {
 	});
 };
 
-const emit = defineEmits([ 'refresh' ]);
+const emit = defineEmits(['refresh']);
 
 const pauseDevice_confirm = async (authentication?: TAuthObject): Promise<void> => {
 	loading.value = true;
 	const response = await axios_device.paused_patch({
 		pause: !paused.value,
 		name: name_of_device.value,
-		authentication 
+		authentication
 	});
 	loading.value = false;
 	if (response) {
 		snackSuccess({
 			message: `${paused.value ? 'resumed' : 'paused'} device : ${name_of_device.value}`,
-			icon: paused.value ? mdiPlayCircle : mdiPauseCircle 
+			icon: paused.value ? mdiPlayCircle : mdiPauseCircle
 		});
 		emit('refresh');
 	}

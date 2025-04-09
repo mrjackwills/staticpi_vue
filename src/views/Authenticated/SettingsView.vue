@@ -45,9 +45,7 @@ onBeforeMount(async () => {
 	await getData();
 });
 
-const current_section = computed((): u<TSettingSection> => {
-	return settingSectionModule().current_section;
-});
+const current_section = computed((): u<TSettingSection> =>  settingSectionModule().current_section);
 const force_refresh = computed({
 	get (): boolean {
 		return browserModule().force_refresh;

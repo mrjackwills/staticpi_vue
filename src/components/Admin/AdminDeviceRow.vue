@@ -1,18 +1,14 @@
 <template>
 	<v-row align='center' justify='space-between' class='ma-0 pa-0'>
 		<v-col cols='4' class='ma-0 pa-0 text-left'>
-			<v-icon v-if='(device.connections.length > 0)' :icon='connections_icon' @click='click_connections' :color='connections_color' />
+			<v-icon v-if='(device.connections.length > 0)' :icon='connections_icon' @click='click_connections'
+				:color='connections_color' />
 			{{ device.device.name_of_device }}
 		</v-col>
-		
+
 		<v-col cols='1' class='ma-0 pa-0 text-right'>
-			<CopyButton
-				:hoverMessage='`copy apikey`'
-				:toCopy='device.device.api_key'
-				:tooltipMessage='"api_key copied!"'
-				color='primary'
-				:small='true'
-			/>
+			<CopyButton :hoverMessage='`copy apikey`' :toCopy='device.device.api_key'
+				:tooltipMessage='"api_key copied!"' color='primary' :small='true' />
 		</v-col>
 		<v-col cols='1' class='ma-0 pa-0 text-right'>
 			{{ new Date(device.device.creation_date).toLocaleDateString() }}
@@ -25,13 +21,15 @@
 			<v-tooltip v-if='show_tooltip' activator='parent' location='top center' content-class='tooltip'>
 				<span>click to {{ tooltip }}pause</span>
 			</v-tooltip>
-			<v-icon :icon='pause_icon' :color='bool_color(!device.device.paused)'/>
+			<v-icon :icon='pause_icon' :color='bool_color(!device.device.paused)' />
 		</v-col>
 		<v-col cols='1' class='ma-0 pa-0 text-right'>
-			<v-icon :icon='bool_icon(device.device.structured_data)' :color='bool_color(device.device.structured_data)' size='small'/>
+			<v-icon :icon='bool_icon(device.device.structured_data)' :color='bool_color(device.device.structured_data)'
+				size='small' />
 		</v-col>
 		<v-col cols='1' class='ma-0 pa-0 text-right'>
-			<v-icon :icon='bool_icon(device.device.device_password_required)' :color='bool_color(device.device.device_password_required)' size='small'/>
+			<v-icon :icon='bool_icon(device.device.device_password_required)'
+				:color='bool_color(device.device.device_password_required)' size='small' />
 		</v-col>
 		<v-col cols='1' class='ma-0 pa-0 text-right'>
 			<v-icon @click='deleteDevice' :icon='mdiDeleteCircle' size='small' color='pi' />
@@ -44,14 +42,16 @@
 				<v-divider />
 			</v-col>
 			<v-col cols='12' class='ma-0 pa-0 text-left'>
-				<v-row align='center' justify='space-between' class=' small-text ma-0 pa-0' v-for='(con_item, index) in device.connections' :key='index'>
+				<v-row align='center' justify='space-between' class=' small-text ma-0 pa-0'
+					v-for='(con_item, index) in device.connections' :key='index'>
 					<v-col cols='3' class='ma-0 pa-0'>
 						type: {{ con_item.device_type }}
 					</v-col>
 					<v-col cols='3' class='ma-0 pa-0'>
 						online_since: {{ new Date(con_item.timestamp).toLocaleString() }}
 					</v-col>
-					<v-col cols='3' class='ma-0 pa-0 cl' @click='close_connection(con_item.ulid, con_item.device_id, con_item.device_type)'>
+					<v-col cols='3' class='ma-0 pa-0 cl'
+						@click='close_connection(con_item.ulid, con_item.device_id, con_item.device_type)'>
 						ulid: {{ con_item.ulid }}
 						<v-tooltip v-if='show_tooltip' activator='parent' location='top center' content-class='tooltip'>
 							<span>click to kill connection</span>
@@ -60,7 +60,7 @@
 					<v-col cols='3' class='ma-0 pa-0'>
 						ip: {{ con_item.ip }}
 					</v-col>
-					<v-col cols='12' class='ma-0 pa-0' v-if='(index !== device.connections.length -1)'>
+					<v-col cols='12' class='ma-0 pa-0' v-if='(index !== device.connections.length - 1)'>
 						<v-divider />
 					</v-col>
 				</v-row>
@@ -114,7 +114,6 @@ const deleteDevice = async (): Promise<void> => {
 		twoFABackup: true,
 		twoFARequired: true
 	});
-
 };
 
 const deleteDevice_confirm = async (authentication: TAuthObject): Promise<void> => {
@@ -122,13 +121,13 @@ const deleteDevice_confirm = async (authentication: TAuthObject): Promise<void> 
 	const response = await axios_admin.device_delete({
 		device_name: props.device.device.name_of_device,
 		email: props.email,
-		...authentication 
+		...authentication
 	});
 	loading.value = false;
 	if (response) {
 		snackSuccess({
-			message: `Deleted "${ props.device.device.name_of_device}"`,
-			icon: mdiDeleteCircle 
+			message: `Deleted "${props.device.device.name_of_device}"`,
+			icon: mdiDeleteCircle
 		});
 		emits('refresh');
 	}
@@ -147,7 +146,6 @@ const pauseDevice = async (): Promise<void> => {
 		twoFABackup: true,
 		twoFARequired: true
 	});
-
 };
 
 const pauseDevice_confirm = async (authentication: TAuthObject): Promise<void> => {
@@ -155,13 +153,13 @@ const pauseDevice_confirm = async (authentication: TAuthObject): Promise<void> =
 	const response = await axios_admin.device_pause_patch({
 		device_name: props.device.device.name_of_device,
 		email: props.email,
-		...authentication 
+		...authentication
 	});
 	loading.value = false;
 	if (response) {
 		snackSuccess({
-			message: `${props.device.device.paused ? 'Unpaused' : 'Paused'} "${ props.device.device.name_of_device}"`,
-			icon: props.device.device.paused ? mdiPlay : mdiPause 
+			message: `${props.device.device.paused ? 'Unpaused' : 'Paused'} "${props.device.device.name_of_device}"`,
+			icon: props.device.device.paused ? mdiPlay : mdiPause
 		});
 		emits('refresh');
 	}
@@ -171,16 +169,16 @@ const close_connection = async (connection_ulid: string, device_id: number, devi
 	await axios_admin.connection_delete({
 		connection_ulid,
 		device_id,
-		device_type 
+		device_type
 	});
 	emits('refresh');
 };
 
-const emits = defineEmits([ 'refresh' ]);
+const emits = defineEmits(['refresh']);
 
 const props = defineProps<{
 	device: AdminDeviceAndConnections;
-	email: string; 
+	email: string;
 }>();
 
 watch(() => props.device.connections.length, (i) => {

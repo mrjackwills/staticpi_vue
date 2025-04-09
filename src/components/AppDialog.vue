@@ -121,9 +121,7 @@ onMounted(() => {
 	mountedTimeout();
 });
 
-const density = computed(() => {
-	return smAndDown.value ? 'compact' : 'default';
-});
+const density = computed(() => smAndDown.value ? 'compact' : 'default');
 
 const confirmMethod = computed(() => dialogStore.confirmMethod);
 

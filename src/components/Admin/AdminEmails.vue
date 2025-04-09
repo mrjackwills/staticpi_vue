@@ -46,19 +46,17 @@
 <script setup lang="ts">
 import type { TAdminEmailCount } from '@/types';
 
-const data = computed(() => {
-	return [
-		{
-			name: 'past hour',
-			data: props.emails.hour
-		},
+const data = computed(() => [
+	{
+		name: 'past hour',
+		data: props.emails.hour
+	},
 
-		{
-			name: 'total',
-			data: props.emails.total
-		}
-	];
-});
+	{
+		name: 'total',
+		data: props.emails.total
+	}
+]);
 
 const props = defineProps<{ emails: TAdminEmailCount }>();
 

@@ -1,28 +1,21 @@
 <template>
 	<v-row align='center' justify='space-between' class='ma-0 pa-0 no-gutters'>
-		
+
 		<v-col cols='1' class='text-left ma-0 pa-0'>
 
 			<v-row align='center' justify='start' class='ma-0 pa-0 no-gutters'>
 
 				<v-col cols='auto' class='ma-0 pa-0'>
-					<v-switch
-						v-model='active'
-						@click='click_active'
-						:disabled='disabled'
-						:hide-details='true'
-						class='ma-0 pa-0'
-						color='primary'
-						density='compact'
-						label=''
-					/>
-					<v-tooltip v-if='show_tooltip && disabled' activator='parent' location='top center' content-class='tooltip'>
+					<v-switch v-model='active' @click='click_active' :disabled='disabled' :hide-details='true'
+						class='ma-0 pa-0' color='primary' density='compact' label='' />
+					<v-tooltip v-if='show_tooltip && disabled' activator='parent' location='top center'
+						content-class='tooltip'>
 						<span>can't disable self</span>
 					</v-tooltip>
-					
+
 				</v-col>
 				<v-col cols='auto' class='ml-2 ma-0 pa-0 cl' v-if='!active'>
-					<v-icon  :icon='mdiDelete' color='pi' @click='deleteUser'/>
+					<v-icon :icon='mdiDelete' color='pi' @click='deleteUser' />
 				</v-col>
 			</v-row>
 		</v-col>
@@ -38,9 +31,9 @@
 		<v-col cols='2' class='text-right ma-0 pa-0 small-text'>
 			{{ user.email }}
 		</v-col>
-	
+
 		<v-col cols='1' class='text-right ma-0 pa-0'>
-			<span :class='user_level_class' >
+			<span :class='user_level_class'>
 				{{ user.user_level }}
 			</span>
 		</v-col>
@@ -50,20 +43,21 @@
 		</v-col>
 		<v-col cols='1' class='text-right ma-0 pa-0'>
 			{{ user.device_count }}
-			<v-icon :icon='device_icon' v-if='user.device_count>0' @click='click_device' :color='device_color' />
+			<v-icon :icon='device_icon' v-if='user.device_count > 0' @click='click_device' :color='device_color' />
 		</v-col>
-		<v-col cols='1'  class='text-right ma-0 pa-0'>
+		<v-col cols='1' class='text-right ma-0 pa-0'>
 			<span v-if='user.two_fa_enabled' class='mr-1'>{{ user.two_fa_backup_count }}</span>
-			<v-icon :icon='bool_icon(user.two_fa_enabled)'  :color='bool_color(user.two_fa_enabled)'  size='small'/>
+			<v-icon :icon='bool_icon(user.two_fa_enabled)' :color='bool_color(user.two_fa_enabled)' size='small' />
 		</v-col>
-		<v-col cols='1'  class='text-right ma-0 pa-0'>
+		<v-col cols='1' class='text-right ma-0 pa-0'>
 			{{ user.password_reset }}
 		</v-col>
-		<v-col cols='1'  class='text-right ma-0 pa-0'>
+		<v-col cols='1' class='text-right ma-0 pa-0'>
 			{{ user.login_attempt_number }}
-			<v-icon color='pi' v-if='(user.login_attempt_number > 0)' :icon='mdiCloseCircle' size='small' @click='click_attempt' />
+			<v-icon color='pi' v-if='(user.login_attempt_number > 0)' :icon='mdiCloseCircle' size='small'
+				@click='click_attempt' />
 		</v-col>
-		<v-col cols='1'  class='text-right ma-0 pa-0'>
+		<v-col cols='1' class='text-right ma-0 pa-0'>
 			{{ sessions.length }}
 			<v-icon v-if='(sessions.length > 0)' :icon='session_icon' @click='click_session' :color='session_color' />
 		</v-col>
@@ -85,7 +79,7 @@
 		<v-row align='center' justify='space-between' class='ma-0 pa-0' v-if='show_devices'>
 			<v-col cols='12' class='ma-0 pa-0'>
 				<v-row align='center' justify='space-between' class='ma-0 pa-0'>
-					<v-col cols='12' class='ma-0 pa-0' >
+					<v-col cols='12' class='ma-0 pa-0'>
 						<v-row align='center' justify='space-between' class='ma-0 pa-0 small-text font-weight-bold'>
 							<v-col cols='4' class='ma-0 pa-0 text-left'>
 								name
@@ -116,7 +110,7 @@
 						<v-divider />
 					</v-col>
 					<v-col cols='12' class='ma-0 pa-0' v-for='(item, index) in all_devices' :key='index'>
-						<AdminDeviceRow :device='item' :email='user.email' @refresh='update_device'/>
+						<AdminDeviceRow :device='item' :email='user.email' @refresh='update_device' />
 					</v-col>
 				</v-row>
 			</v-col>
@@ -145,14 +139,14 @@
 						{{ item.key }}
 					</v-col>
 					<v-col cols='3' class='ma-0 pa-0'>
-						{{ secondsToDays(item.ttl*1000) }}
+						{{ secondsToDays(item.ttl * 1000) }}
 					</v-col>
 					<v-col cols='3' class='ma-0 pa-0'>
-						{{ new Date(item.timestamp*1000).toLocaleString() }}
+						{{ new Date(item.timestamp * 1000).toLocaleString() }}
 						<v-icon color='pi' :icon='mdiCloseCircle' size='small' @click='session_delete(item.key)' />
 					</v-col>
 				</v-row>
-				<v-divider class='' v-if='(index!== sessions.length -1)'/>
+				<v-divider class='' v-if='(index !== sessions.length - 1)' />
 			</v-col>
 		</v-row>
 	</v-expand-transition>
@@ -181,7 +175,7 @@ const active = ref(false);
 
 onMounted(() => {
 	active.value = props.user.active;
-	watch(() => props.user.active, async (_) => {
+	watch(() => props.user.active, (_) => {
 		active.value = props.user.active;
 	});
 });
@@ -202,10 +196,7 @@ const click_active = async (): Promise<void> => {
 const bool_icon = (x: boolean): string => x ? mdiCheck : mdiClose;
 const bool_color = (x: boolean): string => x ? 'primary' : 'pi';
 
-const user_level_class = computed((): string =>{
-	return props.user.user_level === UserLevel.ADMIN ? 'text-pi font-weight-bold' : props.user.user_level === UserLevel.PRO ? 'text-primary' : '';
-
-});
+const user_level_class = computed(() => props.user.user_level === UserLevel.ADMIN ? 'text-pi font-weight-bold' : props.user.user_level === UserLevel.PRO ? 'text-primary' : '');
 
 const update_device = async (): Promise<void> => {
 	loadingModule().set_loading(true);
@@ -227,7 +218,6 @@ watch(show_devices, (i) => {
 		show_devices_interval.value = setInterval(async () => {
 			await update_device();
 		}, 10000);
-		
 	} else {
 		clearInterval(show_devices_interval.value);
 	}
@@ -259,12 +249,8 @@ const click_attempt = async (): Promise<void> => {
 };
 
 const show_session = ref(false);
-const session_icon = computed((): string => {
-	return show_session.value ? mdiChevronUp : mdiChevronDown;
-});
-const session_color = computed((): string => {
-	return show_session.value ? 'pi' : 'primary';
-});
+const session_icon = computed(() => show_session.value ? mdiChevronUp : mdiChevronDown);
+const session_color = computed(() => show_session.value ? 'pi' : 'primary');
 
 const session_delete = async (key: string): Promise<void> => {
 	await axios_admin.session_delete(key);
@@ -277,42 +263,39 @@ const monthly_bandwidth = (x: TAdminUser): string => {
 };
 
 /// Make a "fake" device, just so can reuse the bandwidth table
-const fake_device = computed((): TDeviceInfo => {
-	return {
-		name_of_device: '',
-		api_key: '',
-		creation_date: '',
-		client_password_required: false,
-		device_password_required: false,
-		paused: false,
-		structured_data: false,
-		ip: '',
-		timestamp_online: '',
-		timestamp_offline: '',
-		max_clients: 0,
+const fake_device = computed((): TDeviceInfo => ({
+	name_of_device: '',
+	api_key: '',
+	creation_date: '',
+	client_password_required: false,
+	device_password_required: false,
+	paused: false,
+	structured_data: false,
+	ip: '',
+	timestamp_online: '',
+	timestamp_offline: '',
+	max_clients: 0,
 
-		pi_bytes_day_in: props.user.pi_bytes_day_in,
-		pi_bytes_day_out: props.user.pi_bytes_day_out,
-		pi_bytes_month_in: props.user.pi_bytes_month_in,
-		pi_bytes_month_out: props.user.pi_bytes_month_out,
-		pi_bytes_total_in: props.user.pi_bytes_total_in,
-		pi_bytes_total_out: props.user.pi_bytes_total_out,
+	pi_bytes_day_in: props.user.pi_bytes_day_in,
+	pi_bytes_day_out: props.user.pi_bytes_day_out,
+	pi_bytes_month_in: props.user.pi_bytes_month_in,
+	pi_bytes_month_out: props.user.pi_bytes_month_out,
+	pi_bytes_total_in: props.user.pi_bytes_total_in,
+	pi_bytes_total_out: props.user.pi_bytes_total_out,
 
-		client_bytes_day_in: props.user.client_bytes_day_in,
-		client_bytes_day_out: props.user.client_bytes_day_out,
-		client_bytes_month_in: props.user.client_bytes_month_in,
-		client_bytes_month_out: props.user.client_bytes_month_out,
-		client_bytes_total_in: props.user.client_bytes_total_in,
-		client_bytes_total_out: props.user.client_bytes_total_out
-	};
+	client_bytes_day_in: props.user.client_bytes_day_in,
+	client_bytes_day_out: props.user.client_bytes_day_out,
+	client_bytes_month_in: props.user.client_bytes_month_in,
+	client_bytes_month_out: props.user.client_bytes_month_out,
+	client_bytes_total_in: props.user.client_bytes_total_in,
+	client_bytes_total_out: props.user.client_bytes_total_out
+}));
 
-});
-
-const emit = defineEmits([ 'update' ]);
+const emit = defineEmits(['update']);
 
 const props = defineProps<{
 	user: TAdminUser;
-	sessions: Array<TAdminSession>; 
+	sessions: Array<TAdminSession>;
 }>();
 
 watch(() => props.sessions.length, (i) => {
@@ -342,14 +325,13 @@ const deleteUser = async (): Promise<void> => {
 		twoFABackup: true,
 		twoFARequired: true
 	});
-
 };
 
 const deleteUser_confirm = async (authentication: TAuthObject): Promise<void> => {
 	loading.value = true;
 	await axios_admin.user_delete({
 		email: props.user.email,
-		...authentication 
+		...authentication
 	});
 	loading.value = false;
 	emit('update');

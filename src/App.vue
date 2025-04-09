@@ -33,7 +33,6 @@ if ('serviceWorker' in navigator) {
 	registerSW({
 		onNeedRefresh () {
 			appUpdate();
-
 		}
 	});
 }
@@ -47,7 +46,6 @@ const appUpdate = (): void => {
 		icon: '' 
 	});
 	window.setTimeout(() => updateServiceWorker(), 4000);
-	
 };
 
 watch(platform, (i) => {
@@ -84,7 +82,6 @@ onBeforeMount(() => {
 		e.preventDefault();
 	});
 	pageReady.value = true;
-
 });
 
 const pageReady = ref(false);

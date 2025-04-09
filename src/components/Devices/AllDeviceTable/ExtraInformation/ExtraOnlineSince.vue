@@ -1,10 +1,10 @@
 <template>
-	<v-row class='ma-0 pa-0 no gutters' >
+	<v-row class='ma-0 pa-0 no gutters'>
 
 		<v-col cols='12' class='ma-0 pa-0'>
 			<v-row justify='space-between' align='center' class='ma-0 pa-0'>
 				<v-col v-if='smAndDown' cols='auto' class='ma-0 pa-0'>
-					<span  class='font-weight-bold'>online since: </span>
+					<span class='font-weight-bold'>online since: </span>
 				</v-col>
 				<v-col cols='auto' class='ma-0 pa-0'>
 					{{ text }}
@@ -25,19 +25,14 @@ import { useDisplay } from 'vuetify';
 const { smAndDown } = useDisplay();
 
 /// Don't show tooltips when on android or ios if also on mobile view!
-const show_tooltip = computed((): boolean => {
-	return !(browserModule().android_ios && useDisplay().mobile.value);
-});
+const show_tooltip = computed(() => !(browserModule().android_ios && useDisplay().mobile.value));
 
 onBeforeUnmount(() => {
 	clear();
 });
-	
-const text = computed((): string=> {
-	if (!props.timestamp) return '';
-	return new Date(props.timestamp).toLocaleString();
-});
-	
+
+const text = computed(() => !props.timestamp ? '' : new Date(props.timestamp).toLocaleString());
+
 const isIntersecting = ref(false);
 const tooltipText = ref('');
 const tooltipTimeout = ref(0);
@@ -54,7 +49,7 @@ const updateTooltip = (): void => {
 	if (!props.timestamp) return;
 	tooltipText.value = secondsToDays(new Date().getTime() - new Date(props.timestamp).getTime(), false);
 };
-	
+
 const props = defineProps<{ timestamp?: string }>();
 
 watch(isIntersecting, (i: boolean): void => {

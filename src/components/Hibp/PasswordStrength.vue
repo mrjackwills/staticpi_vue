@@ -1,11 +1,7 @@
 <template>
 	<v-row class='pa-0 ma-0' justify='center' align='center' dense no-gutters>
-		<v-col cols='12' class='px-1 mb-3' :class='{"mt-n4": errorMessage.length === 0}'>
-			<v-progress-linear
-				:color='passStrengthColor'
-				:model-value='passStrength'
-				rounded
-			/>
+		<v-col cols='12' class='px-1 mb-3' :class='{ "mt-n4": errorMessage.length === 0 }'>
+			<v-progress-linear :color='passStrengthColor' :model-value='passStrength' rounded />
 		</v-col>
 	</v-row>
 </template>
@@ -27,9 +23,7 @@ const passStrength = computed({
 	}
 });
 
-const passStrengthColor = computed((): string => {
-	return props.errorMessage || passStrength.value < 35 ? 'error' : passStrength.value < 80 ? 'blue' : 'primary';
-});
+const passStrengthColor = computed(() => props.errorMessage || passStrength.value < 35 ? 'error' : passStrength.value < 80 ? 'blue' : 'primary');
 
 const calc_strength = (): number => {
 	if (!props.password) return 1;

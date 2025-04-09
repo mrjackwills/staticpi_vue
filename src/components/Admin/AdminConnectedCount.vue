@@ -46,23 +46,21 @@
 <script setup lang="ts">
 import type { TAdminConnectedCount } from '@/types';
 
-const data = computed(() => {
-	return [
-		{
-			name: 'pi',
-			data: props.connectedCount.pi
-		},
-		{
-			name: 'clients',
-			data: props.connectedCount.client
-		},
+const data = computed(() => [
+	{
+		name: 'pi',
+		data: props.connectedCount.pi
+	},
+	{
+		name: 'clients',
+		data: props.connectedCount.client
+	},
 
-		{
-			name: 'total',
-			data: props.connectedCount.client + props.connectedCount.pi
-		}
-	];
-});
+	{
+		name: 'total',
+		data: props.connectedCount.client + props.connectedCount.pi
+	}
+]);
 
 const props = defineProps<{ connectedCount: TAdminConnectedCount }>();
 

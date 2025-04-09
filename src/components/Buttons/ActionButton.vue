@@ -63,32 +63,12 @@ import { useDisplay } from 'vuetify';
 
 const { mdAndUp, smAndDown } = useDisplay();
 
-const buttonSize = computed(() => {
-	if (mdAndUp.value && !props.small) {
-		return 'large';
-	}
-	if (smAndDown.value || props.small) {
-		return 'small';
-	}
-	return 'default';
-
-});
-
-const iconClass = computed((): string => {
-	return props.iconFirst ? 'mr-1' : 'ml-1';
-});
-const iconOrder = computed((): string => {
-	return props.iconFirst ? '1' : '2';
-});
-const flipx = computed((): string => {
-	return props.text === 'logout' ? 'flipx' : '';
-});
-const online = computed((): boolean => {
-	return browserModule().online;
-});
-const textOrder = computed((): string => {
-	return props.iconFirst ? '2' : '1';
-});
+const buttonSize = computed(() => mdAndUp.value && !props.small ? 'large' : smAndDown.value || props.small  ? 'small' : 'default');
+const iconClass = computed(() => props.iconFirst ? 'mr-1' : 'ml-1');
+const iconOrder = computed(() => props.iconFirst ? '1' : '2');
+const flipx = computed(() => props.text === 'logout' ? 'flipx' : '');
+const online = computed(() => browserModule().online);
+const textOrder = computed(() => props.iconFirst ? '2' : '1');
 
 const localDisabled = ref(false);
 
@@ -105,7 +85,6 @@ const mouseover = (): void => {
 
 onMounted(() => {
 	localDisabled.value = props.disabled;
-
 });
 
 const props = withDefaults(defineProps<{

@@ -28,7 +28,6 @@
 </template>
 
 <script setup lang='ts'>
-import type { TDeviceInfo } from '@/types';
 
 const deviceStore = deviceModule();
 
@@ -40,9 +39,7 @@ onMounted(() => {
 	startRefreshInterval();
 });
 
-const tableData = computed((): Array<TDeviceInfo> => {
-	return deviceStore.all;
-});
+const tableData = computed(() => deviceStore.all);
 
 const refreshInterval = ref(0);
 

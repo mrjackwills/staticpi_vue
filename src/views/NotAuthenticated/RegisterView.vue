@@ -131,50 +131,47 @@ onMounted(() => {
 	browserModule().set_title(pageTitle);
 });
 
-const disabled = computed((): boolean => {
-	return v$.value.$invalid || passwordCompromised.value || errorMessages.value.password || complete.value || localLoading.value || !user.value.age || !user.value.agree ? true : false;
-});
+const disabled = computed(() => v$.value.$invalid || passwordCompromised.value || errorMessages.value.password || complete.value || localLoading.value || !user.value.age || !user.value.agree ? 
+	true : false);
 
-const textFieldRows = computed((): Array<TRegisterTextField> => {
-	return [
-		{
-			appendIcon: '',
-			autocomplete: '',
-			clearable: true,
-			icon: mdiAccountOutline,
-			label: 'full name',
-			model: 'full_name' as const,
-			type: 'text'
-		},
-		{
-			appendIcon: '',
-			autocomplete: '',
-			clearable: true,
-			icon: mdiEmail,
-			label: 'email address',
-			model: 'email' as const,
-			type: 'email'
-		},
-		{
-			appendIcon: user.value.password ? passwordVisible.value ? mdiEyeOff : mdiEye : '',
-			autocomplete: 'password',
-			clearable: false,
-			icon: mdiLock,
-			label: 'password',
-			model: 'password' as const,
-			type: passwordVisible.value ? 'text' : 'password'
-		},
-		{
-			appendIcon: '',
-			autocomplete: '',
-			clearable: true,
-			icon: mdiHelpCircleOutline,
-			label: 'invite code',
-			model: 'invite' as const,
-			type: 'text'
-		}
-	];
-});
+const textFieldRows = computed((): Array<TRegisterTextField> =>  [
+	{
+		appendIcon: '',
+		autocomplete: '',
+		clearable: true,
+		icon: mdiAccountOutline,
+		label: 'full name',
+		model: 'full_name' as const,
+		type: 'text'
+	},
+	{
+		appendIcon: '',
+		autocomplete: '',
+		clearable: true,
+		icon: mdiEmail,
+		label: 'email address',
+		model: 'email' as const,
+		type: 'email'
+	},
+	{
+		appendIcon: user.value.password ? passwordVisible.value ? mdiEyeOff : mdiEye : '',
+		autocomplete: 'password',
+		clearable: false,
+		icon: mdiLock,
+		label: 'password',
+		model: 'password' as const,
+		type: passwordVisible.value ? 'text' : 'password'
+	},
+	{
+		appendIcon: '',
+		autocomplete: '',
+		clearable: true,
+		icon: mdiHelpCircleOutline,
+		label: 'invite code',
+		model: 'invite' as const,
+		type: 'text'
+	}
+]);
 
 const complete = ref(false);
 const errorMessages = ref({
@@ -267,7 +264,6 @@ watch(() => user.value.full_name, (_) => {
 	}
 	if (!v$.value.full_name.$dirty) return;
 	if (!v$.value.full_name.required) errorMessages.value.full_name = 'name required';
-
 });
 
 watch(() => user.value.invite, (_) => {
@@ -278,7 +274,6 @@ watch(() => user.value.invite, (_) => {
 	}
 	if (!v$.value.invite.$dirty) return;
 	if (!v$.value.invite.required) errorMessages.value.invite = 'invite required';
-
 });
 
 watch(() => user.value.password, (_) => {
@@ -306,7 +301,6 @@ watch(() => user.value.password, (_) => {
 		errorMessages.value.password = `${minPassLength} characters minimum`;
 		return;
 	}
-
 });
 
 </script>

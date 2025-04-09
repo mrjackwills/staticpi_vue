@@ -1,16 +1,11 @@
 <template>
-	<v-row align='center' justify='center' class='ma-0 pa-0 no-gutters' :class='my' >
-		<v-col cols='12' :sm='sm' :lg='lg' :xl='xl' class='' >
-			<v-card :disabled='disabled' :class='[padding, border]' class='elevation-0' >
-				<v-progress-linear
-					:active='loading'
-					:indeterminate='loading'
-					color='primary'
-					width='100%'
-					absolute
-				/>
+	<v-row align='center' justify='center' class='ma-0 pa-0 no-gutters' :class='my'>
+		<v-col cols='12' :sm='sm' :lg='lg' :xl='xl' class=''>
+			<v-card :disabled='disabled' :class='[padding, border]' class='elevation-0'>
+				<v-progress-linear :active='loading' :indeterminate='loading' color='primary' width='100%' absolute />
 
-				<CardHeading v-if='heading' :heading='heading' :class='heading_class' :justify='heading_justify' :size='heading_size' class='' />
+				<CardHeading v-if='heading' :heading='heading' :class='heading_class' :justify='heading_justify'
+					:size='heading_size' class='' />
 				<v-row justify='center' align='center' class='ma-0 pa-0'>
 					<v-col cols='12' :sm='sm' :lg='lg' class='ma-0 pa-0'>
 						<slot name='start'></slot>
@@ -22,7 +17,7 @@
 						<slot name='body'></slot>
 					</v-col>
 				</v-row>
-				
+
 				<v-card-actions class='pa-0 ma-0 ' v-if='hasButton'>
 					<v-row align='center' class='ma-0 pa-0' justify='center' :class='padding'>
 						<v-col cols='12' class='ma-0 pa-0'>
@@ -46,13 +41,9 @@ import { useDisplay } from 'vuetify';
 
 const { smAndDown } = useDisplay();
 
-const padding = computed((): string => {
-	return smAndDown.value && props.pad ? 'px-4' : '';
-});
+const padding = computed(() => smAndDown.value && props.pad ? 'px-4' : '');
 
-const border = computed((): string => {
-	return props.outlined ? 'card_border' : '';
-});
+const border = computed(() => props.outlined ? 'card_border' : '');
 
 const props = withDefaults(defineProps<{
 	disabled?: boolean;
@@ -88,7 +79,7 @@ const props = withDefaults(defineProps<{
 </script>
 
 <style>
-.card_border{
-	border: 1px solid rgba(0,0,0,.2);
+.card_border {
+	border: 1px solid rgba(0, 0, 0, .2);
 }
 </style>
