@@ -18,7 +18,7 @@
     "@vueuse/head": "^2.0.0",
     "axios": "^1.8.4",
     "hibp": "^15.0.1",
-    "pinia": "^3.0.1",
+    "pinia": "^3.0.2",
     "pinia-plugin-persistedstate": "^4.2.0",
     "prismjs": "^1.30.0",
     "qrcode.vue": "^3.6.0",
