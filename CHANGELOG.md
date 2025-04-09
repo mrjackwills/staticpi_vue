@@ -1,5 +1,5 @@
 ### Chores
-+ dependencies updated, [d535d91019b6cd1acb792bf484dc11766c1b32a9]
++ dependencies updated, [d535d91019b6cd1acb792bf484dc11766c1b32a9], [6eab85f93d7a41b0ead6e1e8c9b6f20917961440]
 
 ### Features
 + remove other sessions option when changing password, [9b9831c1be5f219c364d2a676e4f092742881496]
