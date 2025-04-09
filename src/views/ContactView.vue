@@ -161,7 +161,6 @@ watch(() => message_data.value.email, (_) => {
 });
 
 watch(() => message_data.value.message, (i) => {
-	// TODO trim message
 	if (!v$.value?.message?.$invalid) {
 		errorMessages.value.message = '';
 		return;
