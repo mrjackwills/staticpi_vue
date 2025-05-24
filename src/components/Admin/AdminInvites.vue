@@ -13,7 +13,7 @@
 		<template v-slot:body>
 			<v-row align='center' justify='center' class='no-gutters py-2' :class='text_class' >
 				<v-col cols='12' >
-					<v-row align='center' class='font-weight-bold' justify='space-between'>
+					<v-row align='center' class='font-weight-bold text-caption' justify='space-between'>
 						<v-col cols='6' class=''>
 							<span class=''>
 								invite code
@@ -60,7 +60,7 @@
 							</v-row>
 							<v-divider class='' v-if='(index!== inviteCodes.length -1)'/>
 						</v-col>
-						<v-col cols='auto' v-if='inviteCodes.length === 0' class='text-pi'>
+						<v-col cols='auto' v-if='inviteCodes.length === 0' class='text-pi text-caption font-weight-bold'>
 							No invite codes
 						</v-col>
 					</v-row>

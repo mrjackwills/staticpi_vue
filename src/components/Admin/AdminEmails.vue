@@ -21,9 +21,9 @@
 							md='auto'
 							class='ma-0 pa-0 my-1'
 						>
-							<v-row align='center' justify='space-between' class='ma-0 pa-0'>
+							<v-row align='center' justify='space-between' class='ma-0 pa-0 text-caption'>
 								<v-col cols='auto' class='ma-0 pa-0'>
-									<span class='text-pi mr-2'>
+									<span class='text-pi mr-2 font-weight-bold'>
 										{{ item.name }} :
 									</span>
 								</v-col>

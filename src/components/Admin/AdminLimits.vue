@@ -13,11 +13,10 @@
 		<template v-slot:body>
 			<v-row align='center' justify='center' class='no-gutters py-2' :class='text_class' >
 				<v-col cols='12' >
-					<v-row align='center' class='font-weight-bold' justify='space-between'>
+					<v-row align='center' class='font-weight-bold text-caption' justify='space-between'>
 						<v-col cols='5' class=''>
 							<span class=''>
 								key
-
 							</span>
 						</v-col>
 						<v-col cols='2' class='text-right'>

@@ -1,5 +1,5 @@
 <template>
-	<v-row align='center' justify='space-between' class='ma-0 pa-0 no-gutters'>
+	<v-row align='center' justify='space-between' class='ma-0 pa-0 no-gutters text-caption'>
 
 		<v-col cols='1' class='text-left ma-0 pa-0'>
 

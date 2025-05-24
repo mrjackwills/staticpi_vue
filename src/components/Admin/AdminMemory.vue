@@ -23,12 +23,12 @@
 						>
 							<v-row align='center' justify='space-between' class='ma-0 pa-0'>
 								<v-col cols='auto' class='ma-0 pa-0'>
-									<span class='text-pi mr-2'>
+									<span class='text-pi mr-2 text-caption font-weight-bold'>
 										{{ item.name }} :
 
 									</span>
 								</v-col>
-								<v-col cols='auto' class='ma-0 pa-0'>
+								<v-col cols='auto' class='ma-0 pa-0 text-caption'>
 									<span class=''>
 										{{ item.data }}
 									</span>

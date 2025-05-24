@@ -13,7 +13,7 @@
 		<template v-slot:body>
 			<v-row align='center' justify='center' class='no-gutters py-2'>
 				<v-col cols='11' class=''>
-					<v-row align='center' justify='space-around' class='no-gutters' >
+					<v-row align='center' justify='space-around' class='no-gutters text-caption' >
 						<v-col
 							v-for='(item,index) in data'
 							:key='index'
@@ -21,11 +21,10 @@
 							md='auto'
 							class='ma-0 pa-0 my-1'
 						>
-							<v-row align='center' justify='space-between' class='ma-0 pa-0'>
+							<v-row align='center' justify='space-evenly' class='ma-0 pa-0'>
 								<v-col cols='auto' class='ma-0 pa-0'>
-									<span class='text-pi mr-2'>
+									<span class='text-pi mr-2 font-weight-bold'>
 										{{ item.name }} :
-
 									</span>
 								</v-col>
 								<v-col cols='auto' class='ma-0 pa-0'>

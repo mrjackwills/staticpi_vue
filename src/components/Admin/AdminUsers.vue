@@ -13,12 +13,13 @@
 		<template v-slot:body>
 			<v-row align='center' justify='space-around' class='no-gutters ma-0 pa-0' >
 				<v-col cols='12' class='ma-0 pa-0'>
-					total bandwidth: {{ total_monthly_bandwidth }}
+					total bandwidth: <span class='font-weight-bold'>{{ total_monthly_bandwidth }}</span>
 				</v-col>
 				<v-col cols='12' class='ma-0 pa-0' >
 					<v-row align='center' class='font-weight-bold ma-0 pa-0 no-gutters' justify='space-between'>
 
-						<v-col :cols='item==="email"? "2":"1"' class='ma-0 pa-0 unselectable' v-for='(item, index) in headers' :key='index' :class='index===0?"text-left":"text-right"'>
+						<v-col :cols='item==="email"? "2":"1"' class='ma-0 pa-0 font-weight-bold unselectable text-caption'
+							v-for='(item, index) in headers' :key='index' :class='index===0?"text-left":"text-right"'>
 							{{ item }}
 						</v-col>
 					</v-row>
