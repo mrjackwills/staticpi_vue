@@ -3,14 +3,14 @@
 		<AppBar :order='mdAndDown?"2":"1"'/>
 		<AppNavDrawer :order='mdAndDown?"1":"2"' />
 		<v-main>
-		
+
 			<router-view v-if='pageReady' />
 			<AppDialog />
 			<AppSnackBar />
 			<AppUpArrow />
 
 		</v-main>
-	
+
 		<AppFooter v-if='(!authenticated && !mdAndDown)' />
 	</v-app>
 </template>
@@ -43,7 +43,7 @@ const appUpdate = (): void => {
 		loading: true,
 		timeout: 4500,
 		closable: false,
-		icon: '' 
+		icon: ''
 	});
 	window.setTimeout(() => updateServiceWorker(), 4000);
 };
@@ -111,10 +111,12 @@ useHead({
 			}
 		}
 	],
-	link: () => [ {
-		rel: 'canonical',
-		href: `${env.domain_www}${route?.path}` 
-	} ]
+	link: () => [
+		{
+			rel: 'canonical',
+			href: `${env.domain_www}${route?.path}`
+		}
+	]
 });
 
 </script>

@@ -30,21 +30,21 @@
 								<v-col cols='1' class='ma-0 pa-0'>
 									<span class='small-text' :class='text_color(item.registered_user_id)'>
 										{{ item.email }}
-								
+
 									</span>
 								</v-col>
 
 								<v-col cols='1' class='ma-0 pa-0'>
 									<span class='small-text' :class='text_color(item.registered_user_id)'>
 										{{ item.timestamp }}
-								
+
 									</span>
 								</v-col>
-								
+
 								<v-col cols='8' class='ma-0 pa-0 small-text' style='max-width: 950px;' :class='text_color(item.registered_user_id)'>
 									{{ item.message }}
 								</v-col>
-								
+
 								<v-col cols='1' class='ma-0 pa-0 text-right'>
 									<span class='text-pi cl'>
 										<v-icon :icon='mdiCloseCircle' @click='delete_message(item.contact_message_id)'/>
@@ -65,7 +65,7 @@ import { axios_admin } from '@/services/axios';
 import { mdiAccountCircle, mdiCloseCircle } from '@mdi/js';
 import type { TAdminContactMessage } from '@/types';
 
-const emit = defineEmits([ 'update' ]);
+const emit = defineEmits(['update']);
 
 const text_color = (x: number | null): string => x ? 'text-primary' : 'text-pi';
 

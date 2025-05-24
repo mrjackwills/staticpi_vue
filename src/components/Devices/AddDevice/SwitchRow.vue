@@ -13,7 +13,7 @@
 						<template v-slot:label>
 							<span class='font-weight-black' :class='switched? "text-primary":"text-pi"'>{{ heading }}</span>
 						</template>
-			
+
 					</v-switch>
 				</v-col>
 				<v-spacer />
@@ -42,13 +42,13 @@ import MaxClients from '@/components/Devices/AddDevice/MaxClients.vue';
 
 const switched = ref(false);
 
-const emit = defineEmits([ 'switched', 'input', 'client_passwordInput', 'device_passwordInput' ]);
+const emit = defineEmits(['switched', 'input', 'client_passwordInput', 'device_passwordInput']);
 
 watch(switched, (i) => {
 	emit('switched', i);
 });
 
-const isComponent = computed(() =>  props.component === 'DevicePassword' ? DevicePassword : props.component === 'MaxClients' ? MaxClients : null);
+const isComponent = computed(() => props.component === 'DevicePassword' ? DevicePassword : props.component === 'MaxClients' ? MaxClients : null);
 
 const props = defineProps<{
 	description: string;

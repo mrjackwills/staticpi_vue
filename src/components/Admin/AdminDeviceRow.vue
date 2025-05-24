@@ -1,5 +1,5 @@
 <template>
-	<v-row align='center' justify='space-between' class='ma-0 pa-0'>
+	<v-row align='center' justify='space-between' class='ma-0 pa-0 text-caption'>
 		<v-col cols='4' class='ma-0 pa-0 text-left'>
 			<v-icon v-if='(device.connections.length > 0)' :icon='connections_icon' @click='click_connections'
 				:color='connections_color' />
@@ -85,7 +85,7 @@ const click_connections = (): void => {
 	show_connections.value = !show_connections.value;
 };
 
-/// Don't show tooltips when on android or ios if also on mobile view!
+// Don't show tooltips when on android or ios if also on mobile view!
 const show_tooltip = computed(() => !(browserModule().android_ios && useDisplay().mobile.value));
 
 const loading = computed({

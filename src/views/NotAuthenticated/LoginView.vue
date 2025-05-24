@@ -154,18 +154,19 @@ const user = ref({
 });
 
 /**
-** Set the password visible
-**/
+ ** Set the password visible
+ *
+ */
 const appendClick = (): void => {
 	if (localLoading.value) return;
 	passwordVisible.value = !passwordVisible.value;
 };
 
 /**
-** set the this.focus to the currently in focus text field
-** If the in focus field ISN't the password field, then set passwordVisible to false
-* @param {String} model - current model/textfield name
-*/
+ ** set the this.focus to the currently in focus text field
+ ** If the in focus field ISN't the password field, then set passwordVisible to false
+ * @param {String} model - current model/textfield name
+ */
 const focusMethod = (model: TLoginModel): void => {
 	focus.value = model;
 	if (model !== 'password') passwordVisible.value = false;

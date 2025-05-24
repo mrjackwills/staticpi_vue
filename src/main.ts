@@ -1,4 +1,4 @@
-/* eslint-disable @stylistic/ts/object-curly-newline */
+/* eslint-disable @stylistic/object-curly-newline */
 /* eslint-disable @typescript-eslint/consistent-type-definitions */
 // Components
 import App from './App.vue';
@@ -33,9 +33,9 @@ pinia.router = (): Router => router;
 
 pinia.use(piniaPluginPersistedstate);
 
-app
-	.use(head)
-	.use(router)
-	.use(pinia)
-	.use(vuetify)
-	.mount('#staticpi_app');
+app.
+	use(head).
+	use(router).
+	use(pinia).
+	use(vuetify).
+	mount('#staticpi_app');

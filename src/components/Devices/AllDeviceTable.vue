@@ -43,7 +43,7 @@ const tableData = computed(() => deviceStore.all);
 
 const refreshInterval = ref(0);
 
-const emit = defineEmits([ 'refresh' ]);
+const emit = defineEmits(['refresh']);
 
 const refresh = (): void => {
 	emit('refresh');

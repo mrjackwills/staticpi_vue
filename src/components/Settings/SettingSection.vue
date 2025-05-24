@@ -17,7 +17,7 @@
 				</v-col>
 				<v-spacer />
 				<ProUserChip v-if='proOnly' />
-				
+
 			</v-row>
 			<v-row align='center' justify='center' class='ma-0 pa-0'>
 				<v-col cols='12' class='pa-0 ma-0 text-body-1'>
@@ -50,7 +50,7 @@
 			</v-row>
 		</template>
 	</AppCard>
-		
+
 </template>
 
 <script setup lang='ts'>
@@ -62,9 +62,9 @@ const title = computed(() => smAndDown.value ? 'text-h7' : 'text-h6');
 
 withDefaults(defineProps<{
 	disabled?: boolean;
-	proOnly?: boolean; 
+	proOnly?: boolean;
 }>(), {
 	disabled: false,
-	proOnly: false 
+	proOnly: false
 });
 </script>

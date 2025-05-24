@@ -11,7 +11,7 @@ const snacker = (data: TSnack): void => {
 	snackbar_store.set_loading(!!data.loading);
 	snackbar_store.set_position({
 		x: data.x ? data.x : 'right',
-		y: data.y ? data.y : 'bottom' 
+		y: data.y ? data.y : 'bottom'
 	});
 	snackbar_store.set_timeout(data.timeout ?? 0);
 	snackbar_store.set_visible(true);
@@ -26,7 +26,7 @@ export const snackSuccess = ({ message = 'Success', icon = mdiCheckCircleOutline
 		y,
 		type,
 		closable,
-		loading 
+		loading
 	});
 };
 
@@ -38,6 +38,6 @@ export const snackError = ({ message = 'error', icon = mdiAlertCircle, timeout =
 		x,
 		y,
 		type,
-		closable 
+		closable
 	});
 };

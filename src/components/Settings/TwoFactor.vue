@@ -146,9 +146,4 @@ const removeTwoFA = (): void => {
 	});
 };
 
-// watch(setupProcessStarted, (i: boolean): void => {
-// 	if (!i) browserModule().set_stopScroll(true);
-// 	else scrollIntoView();
-// });
-
 </script>

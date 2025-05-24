@@ -48,7 +48,7 @@
 							/>
 							<section v-if='item.label === "password"' :key='`hibp_${index}`'>
 								<v-expand-transition >
-									
+
 									<PasswordStrength
 										v-if='!passwordCompromised && user.password'
 										v-model:password='user.password'
@@ -95,7 +95,7 @@
 
 						</v-col>
 						<v-col cols='6' class='ma-0 pa-0'>
-							
+
 							<ActionButton
 								@click='register'
 								v-if='!complete'
@@ -131,10 +131,10 @@ onMounted(() => {
 	browserModule().set_title(pageTitle);
 });
 
-const disabled = computed(() => v$.value.$invalid || passwordCompromised.value || errorMessages.value.password || complete.value || localLoading.value || !user.value.age || !user.value.agree ? 
-	true : false);
+const disabled = computed(() => v$.value.$invalid || passwordCompromised.value || errorMessages.value.password || complete.value || localLoading.value || !user.value.age || !user.value.agree
+	? true : false);
 
-const textFieldRows = computed((): Array<TRegisterTextField> =>  [
+const textFieldRows = computed((): Array<TRegisterTextField> => [
 	{
 		appendIcon: '',
 		autocomplete: '',
@@ -195,8 +195,9 @@ const user = ref({
 });
 
 /**
-** Set the password visible
-* */
+ ** Set the password visible
+ *
+ */
 const appendClick = (): void => {
 	if (localLoading.value) return;
 	passwordVisible.value = !passwordVisible.value;
@@ -204,11 +205,11 @@ const appendClick = (): void => {
 
 /**
  ** Run hibp check, and set passwordCompromised if breach found
-* @param {String} model - current model/textfield name
-*/
+ * @param {String} model - current model/textfield name
+ */
 const hibpCheck = async (model: TRegisterModels): Promise<void> => {
 	if (model !== 'password' || !user.value.password || passwordCompromised.value || v$?.value.password?.$invalid) return;
-	 
+
 	passwordCompromised.value = await passwordCheck(user.value.password);
 	if (passwordCompromised.value) errorMessages.value.password = 'unsafe password';
 };
@@ -225,7 +226,7 @@ const register = async (): Promise<void> => {
 			message: registerResponse,
 			timeout: 20000,
 			closable: false,
-			type: 'success' 
+			type: 'success'
 		});
 		v$.value.$reset();
 	}

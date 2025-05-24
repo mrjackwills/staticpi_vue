@@ -112,7 +112,7 @@ import { useDisplay } from 'vuetify';
 
 const { lgAndUp, mdAndUp, smAndDown } = useDisplay();
 
-const [ dialogStore, twoFAStore ] = [ dialogModule(), twoFAModule() ];
+const [dialogStore, twoFAStore] = [dialogModule(), twoFAModule()];
 onBeforeUnmount(() => {
 	clearTimeouts();
 });
@@ -127,15 +127,14 @@ const confirmMethod = computed(() => dialogStore.confirmMethod);
 
 const confirmButton = computed(() => dialogStore.confirmButton ?? 'confirm');
 
-const disabled = computed(() => loading.value
-	|| timeout.value
-	|| tokenError.value
-	|| passwordRequired.value && !user.value.password
-	|| passwordRequired.value && twoFA_always_required.value && !user.value.token
-	|| twoFA_always_required.value && passwordRequired.value && tokenLength.value < 6
-	? true : false
-);
-const icon = computed(() =>dialogStore.icon);
+const disabled = computed(() => loading.value ||
+  timeout.value ||
+  tokenError.value ||
+  passwordRequired.value && !user.value.password ||
+  passwordRequired.value && twoFA_always_required.value && !user.value.token ||
+  twoFA_always_required.value && passwordRequired.value && tokenLength.value < 6
+	? true : false);
+const icon = computed(() => dialogStore.icon);
 
 const logout = computed(() => title.value.toLowerCase() === 'logout');
 const maxWidth = computed(() => lgAndUp.value ? '40vw' : '80vw');
@@ -162,16 +161,14 @@ const timeout = computed({
 		dialogStore.set_timeout(n);
 	}
 });
-const timeout_text = computed(() =>
-	timeout.value ? `${String(timeout.value).padStart(2, '0')}` : passwordRequired.value && !user.value.password
-		? 'password required ' : passwordRequired.value && twoFA_always_required.value && !user.value.token
-			|| passwordRequired.value && twoFA_always_required.value && tokenError.value
-			? 'token required' : confirmButton.value);
-const timeout_icon = computed(() =>
-	timeout.value ? mdiTimerOutline : passwordRequired.value && !user.value.password
-		? mdiLock : passwordRequired.value && twoFA_always_required.value && !user.value.token
-			|| passwordRequired.value && twoFA_always_required.value && tokenError.value ? mdiCellphoneInformation : icon.value
-				? icon.value : mdiCheck);
+const timeout_text = computed(() => timeout.value ? `${String(timeout.value).padStart(2, '0')}` : passwordRequired.value && !user.value.password
+	? 'password required ' : passwordRequired.value && twoFA_always_required.value && !user.value.token ||
+	  passwordRequired.value && twoFA_always_required.value && tokenError.value
+		? 'token required' : confirmButton.value);
+const timeout_icon = computed(() => timeout.value ? mdiTimerOutline : passwordRequired.value && !user.value.password
+	? mdiLock : passwordRequired.value && twoFA_always_required.value && !user.value.token ||
+	  passwordRequired.value && twoFA_always_required.value && tokenError.value ? mdiCellphoneInformation : icon.value
+			? icon.value : mdiCheck);
 
 const title = computed(() => dialogStore.title ?? 'warning');
 const titleSize = computed(() => mdAndUp.value ? 'text-h4' : 'text-h6');
@@ -229,10 +226,10 @@ const click = async (): Promise<void> => {
 };
 
 /**
-** set the this.focus to the currently in focus text field
-** If the in focus field ISN't the password field, then set passwordVisible to false
-* @param {String} model - current model/textfield name
-*/
+ ** set the this.focus to the currently in focus text field
+ ** If the in focus field ISN't the password field, then set passwordVisible to false
+ * @param {String} model - current model/textfield name
+ */
 const focusMethod = (model: string): void => {
 	if (model !== 'password') passwordVisible.value = false;
 };

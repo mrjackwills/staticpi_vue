@@ -15,17 +15,17 @@ export const settingSectionModule = defineStore(ModuleName.SETTINGS_SECTION, {
 		},
 
 		set_current_section (value: TSettingSection | undefined) {
-		
+
 			const router = getActivePinia()?.router();
 			const route = router?.currentRoute;
 			const pathIncludesSection = route?.value.fullPath.toLowerCase().includes(`?section=${value}`);
 			if (value && !pathIncludesSection) router?.replace({
 				path: route?.value.path,
-				query: { section: value } 
+				query: { section: value }
 			});
 			else if (this.current_section && !pathIncludesSection) router?.replace({
 				path: route?.value.path,
-				query: { section: value } 
+				query: { section: value }
 			});
 			this.current_section = value;
 		}

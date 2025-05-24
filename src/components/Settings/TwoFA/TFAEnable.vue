@@ -13,7 +13,7 @@ import { axios_authenticatedUser } from '@/services/axios';
 import { mdiShieldPlus } from '@mdi/js';
 
 const start2FASetup = async (): Promise<void> => {
-	const [ loadingStore, settingsectionStore, twofaStore ] = [ loadingModule(), settingSectionModule(), twoFAModule() ];
+	const [loadingStore, settingsectionStore, twofaStore] = [loadingModule(), settingSectionModule(), twoFAModule()];
 	loadingStore.set_loading(true);
 	const setupValid = await axios_authenticatedUser.setupTwoFA_get();
 	if (setupValid) {

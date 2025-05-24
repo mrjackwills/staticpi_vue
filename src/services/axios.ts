@@ -73,10 +73,10 @@ const AllowedUsers = <T> (allowedUsers: Array<UserLevel>) => {
 };
 
 const wrap = <T>() => function (_target: AxiosClasses, propertyKey: string, descriptor: PropertyDescriptor): void {
-		
+
 	const original = descriptor.value;
 	descriptor.value = async function (args: T): Promise<unknown> {
-		const [ browser_store, user_store ] = [ browserModule(), userModule() ];
+		const [browser_store, user_store] = [browserModule(), userModule()];
 		try {
 			const result = await original.call(this, args);
 			if (result && propertyKey !== 'manifest_online') browser_store.set_online(true);
@@ -89,11 +89,13 @@ const wrap = <T>() => function (_target: AxiosClasses, propertyKey: string, desc
 					snackError({ message: 'Server offline' });
 					browser_store.set_online(false);
 				}
-			// eslint-disable-next-line @stylistic/ts/brace-style
+			// eslint-disable-next-line @stylistic/brace-style
 			}
 
-			// This is a branch for the server status checker, maybe change name from online to serverStatus
-			// the api propertyKey is online_get, so this has different effect from the ws and site online method
+			/*
+			 * This is a branch for the server status checker, maybe change name from online to serverStatus
+			 * the api propertyKey is online_get, so this has different effect from the ws and site online method
+			 */
 			else if (propertyKey === 'online') return false;
 			else if (e.response?.status === HttpCode.FORBIDDEN) {
 				const p = e.response as ErrorData;
@@ -140,10 +142,12 @@ class BaseAxios {
 
 class Incognito extends BaseAxios {
 
-	// constructor (url: string) {
-	// 	super(url);
-	// }
-	
+	/*
+	 * constructor (url: string) {
+	 * 	super(url);
+	 * }
+	 */
+
 	@wrap<string>()
 	@isNotAuthenticated()
 	async forgot_post (email: string): Promise<string | undefined> {
@@ -152,7 +156,7 @@ class Incognito extends BaseAxios {
 	}
 
 	@wrap()
-	/// 1000ms timeout for this call - good idea?
+	// / 1000ms timeout for this call - good idea?
 	async online_get (): Promise<types.TOnlineResponse> {
 		const response = await this.baseAxios.get(`/online`, { timeout: 1000 });
 		const browser_store = browserModule();
@@ -166,7 +170,7 @@ class Incognito extends BaseAxios {
 		const response = await this.baseAxios.get(`/bandwidth`);
 		return response?.data?.response;
 	}
-	
+
 	@wrap<types.TRegisterUser>()
 	@isNotAuthenticated<types.TRegisterUser>()
 	async register_post (registerObject: types.TRegisterUser): Promise<string> {
@@ -186,7 +190,7 @@ class Incognito extends BaseAxios {
 	async reset_patch ({ resetId, password, token }: types.TPasswordPatch): Promise<boolean> {
 		await this.baseAxios.patch(`/reset/${resetId}`, {
 			password,
-			token 
+			token
 		});
 		return true;
 	}
@@ -206,7 +210,7 @@ class Incognito extends BaseAxios {
 		await this.baseAxios.get(`/verify/${verifyId}`);
 		return true;
 	}
-	
+
 	@wrap()
 	async contact_post (data: types.TContact): Promise<boolean> {
 		await this.baseAxios.post(`/contact`, data);
@@ -216,10 +220,12 @@ class Incognito extends BaseAxios {
 
 class AdminUser extends BaseAxios {
 
-	// constructor (url: string) {
-	// 	super(url);
-	// }
-	
+	/*
+	 * constructor (url: string) {
+	 * 	super(url);
+	 * }
+	 */
+
 	@wrap()
 	@isAuthenticated()
 	async admin_get (): Promise<boolean> {
@@ -246,7 +252,7 @@ class AdminUser extends BaseAxios {
 	async limit_delete (key: string): Promise<void> {
 		await this.baseAxios.delete(`/limit`, { data: { key } });
 	}
-	
+
 	@wrap()
 	@isAdmin()
 	async contact_get (): Promise<Array<types.TAdminContactMessage>> {
@@ -259,7 +265,7 @@ class AdminUser extends BaseAxios {
 	async contact_delete (contact_message_id: number): Promise<void> {
 		await this.baseAxios.delete(`/contact`, { data: { contact_message_id } });
 	}
-	
+
 	@wrap()
 	@isAdmin()
 	async connections_get (): Promise<types.TAdminConnectedCount> {
@@ -321,7 +327,7 @@ class AdminUser extends BaseAxios {
 		const response = await this.baseAxios.get(`/user/${email}/devices`);
 		return response.data.response;
 	}
-	
+
 	@wrap()
 	@isAdmin()
 	async attempt_delete (email: string): Promise<void> {
@@ -341,8 +347,8 @@ class AdminUser extends BaseAxios {
 		await this.baseAxios.delete(`/user/${data.email}`, {
 			data: {
 				password: data.password,
-				token: data.token 
-			} 
+				token: data.token
+			}
 		});
 		return true;
 	}
@@ -353,8 +359,8 @@ class AdminUser extends BaseAxios {
 		await this.baseAxios.delete(`/user/${data.email}/device/${data.device_name}`, {
 			data: {
 				password: data.password,
-				token: data.token 
-			} 
+				token: data.token
+			}
 		});
 		return true;
 	}
@@ -364,7 +370,7 @@ class AdminUser extends BaseAxios {
 	async device_pause_patch (data: types.TAdminEmailDevice): Promise<boolean> {
 		await this.baseAxios.patch(`/user/${data.email}/device/${data.device_name}`, {
 			password: data.password,
-			token: data.token 
+			token: data.token
 		});
 		return true;
 	}
@@ -372,10 +378,12 @@ class AdminUser extends BaseAxios {
 
 class AuthenticatedUser extends BaseAxios {
 
-	// constructor (url: string) {
-	// 	super(url);
-	// }
-	
+	/*
+	 * constructor (url: string) {
+	 * 	super(url);
+	 * }
+	 */
+
 	@wrap()
 	async signout_post (): Promise<void> {
 		const user_store = userModule();
@@ -400,7 +408,7 @@ class AuthenticatedUser extends BaseAxios {
 	@wrap()
 	async user_get (): Promise<boolean> {
 		const response = await this.baseAxios.get('');
-		const [ twoFA_store, user_store ] = [ twoFAModule(), userModule() ];
+		const [twoFA_store, user_store] = [twoFAModule(), userModule()];
 		user_store.set_email(response.data.response.email);
 		user_store.set_full_name(response.data.response.full_name);
 		user_store.set_maxBandwidth(response.data.response.max_bandwidth);
@@ -430,7 +438,7 @@ class AuthenticatedUser extends BaseAxios {
 		await this.user_get();
 		return true;
 	}
-	
+
 	@wrap()
 	@isAuthenticated<types.TAuthObject>()
 	async twoFA_delete (authentication: types.TAuthObject): Promise<boolean> {
@@ -482,7 +490,7 @@ class AuthenticatedUser extends BaseAxios {
 		twoFA_store.set_secret(response?.data?.response?.secret);
 		return true;
 	}
-	
+
 	@wrap()
 	@isAuthenticated()
 	async setupTwoFA_delete (): Promise<void> {
@@ -530,7 +538,7 @@ class Device extends BaseAxios {
 	@wrap<types.TAddDevice>()
 	@isAuthenticated<types.TAddDevice>()
 	async deviceAdd_post (newDevice: types.TAddDevice): Promise<string> {
-		const [ device_store, user_store ] = [ deviceModule(), userModule() ];
+		const [device_store, user_store] = [deviceModule(), userModule()];
 		if (device_store.numberOfDevices === user_store.maxDevices) throw Error('Max device limit reached');
 		if (newDevice.device_password && !newDevice.client_password) {
 			newDevice.client_password = newDevice.device_password;
@@ -546,8 +554,8 @@ class Device extends BaseAxios {
 		await this.baseAxios.delete(`/${data.name}`, {
 			data: {
 				password: data.authentication.password,
-				token: data.authentication.token 
-			} 
+				token: data.authentication.token
+			}
 		});
 		return true;
 	}
@@ -562,7 +570,7 @@ class Device extends BaseAxios {
 
 	@wrap<types.TDevicePatchMaxClients>()
 	@isAuthenticated<types.TDevicePatchMaxClients>()
-	@AllowedUsers<types.TDevicePatchMaxClients>([ UserLevel.PRO, UserLevel.ADMIN ])
+	@AllowedUsers<types.TDevicePatchMaxClients>([UserLevel.PRO, UserLevel.ADMIN])
 	async maxClients_patch (input: types.TDevicePatchMaxClients): Promise<boolean> {
 		if (!input.maxClients || isNaN(Number(input.maxClients))) throw Error('Max clients invalid');
 		await this.baseAxios.patch(`/${input.name}/max_clients`, { max_clients: Number(input.maxClients) });
@@ -571,7 +579,7 @@ class Device extends BaseAxios {
 
 	@wrap<types.TDeviceStructuredData>()
 	@isAuthenticated<types.TDeviceStructuredData>()
-	@AllowedUsers<types.TDeviceStructuredData>([ UserLevel.PRO, UserLevel.ADMIN ])
+	@AllowedUsers<types.TDeviceStructuredData>([UserLevel.PRO, UserLevel.ADMIN])
 	async structuredData_patch (input: types.TDeviceStructuredData): Promise<boolean> {
 		await this.baseAxios.patch(`/${input.name}/structured_data`, { structured_data: input.structured_data });
 		return true;
@@ -579,16 +587,16 @@ class Device extends BaseAxios {
 
 	@wrap<types.TDevicePatchRename>()
 	@isAuthenticated<types.TDevicePatchRename>()
-	@AllowedUsers<types.TDevicePatchRename>([ UserLevel.PRO, UserLevel.ADMIN ])
+	@AllowedUsers<types.TDevicePatchRename>([UserLevel.PRO, UserLevel.ADMIN])
 	async rename_patch (input: types.TDevicePatchRename): Promise<boolean> {
 		if (!input.name || !input.new_name) throw Error('device name invalid');
 		await this.baseAxios.patch(`/${input.name}/rename`, { new_name: input.new_name });
 		return true;
 	}
-	
+
 	@wrap<types.TDevicePatchRename>()
 	@isAuthenticated<types.TDevicePatchRename>()
-	@AllowedUsers<types.TDevicePatchRename>([ UserLevel.PRO, UserLevel.ADMIN ])
+	@AllowedUsers<types.TDevicePatchRename>([UserLevel.PRO, UserLevel.ADMIN])
 	async password_delete (input: types.TDeviceDeletePassword): Promise<boolean> {
 		if (!input.name) throw Error('device name invalid');
 		await this.baseAxios.delete(`/${input.name}/password`, { data: { ...input.authentication } });
@@ -597,12 +605,12 @@ class Device extends BaseAxios {
 
 	@wrap<types.TDevicePasswordPatch>()
 	@isAuthenticated<types.TDevicePasswordPatch>()
-	@AllowedUsers<types.TDevicePasswordPatch>([ UserLevel.PRO, UserLevel.ADMIN ])
+	@AllowedUsers<types.TDevicePasswordPatch>([UserLevel.PRO, UserLevel.ADMIN])
 	async password_patch (input: types.TDevicePasswordPatch): Promise<boolean> {
 		if (!input.name) throw Error('device name invalid');
 		await this.baseAxios.patch(`/${input.name}/password`, {
 			device_password: input.device_password,
-			client_password: input.client_password 
+			client_password: input.client_password
 		});
 		return true;
 	}
@@ -635,7 +643,7 @@ class Device extends BaseAxios {
 		const response = await this.baseAxios.get(`/${name}/cache`);
 		return response?.data?.response.cache;
 	}
-	
+
 }
 
 class AxiosWs {
@@ -664,13 +672,13 @@ class AxiosWs {
 		const response = await this.axios_ws_token.get(`/online`);
 		return response.data?.response;
 	}
-	
+
 	@isAuthenticated<types.TWsAuth>()
 	async auth ({ key, password }: types.TWsAuth): Promise<string | null> {
 		try {
 			const response = await this.axios_ws_token.post(`/client`, {
 				key,
-				password 
+				password
 			});
 			return response.data?.response;
 		} catch {
@@ -698,7 +706,7 @@ class SiteStatus {
 			(config) => Promise.resolve(config),
 			(error) => !error.response ? Promise.reject(new Error('offline')) : Promise.reject(error)
 		);
-		
+
 	}
 
 	async manifest_online (): Promise<string> {
