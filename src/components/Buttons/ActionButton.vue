@@ -51,7 +51,7 @@
 							</v-col>
 						</v-row>
 					</v-col>
-			
+
 				</v-row>
 			</v-btn>
 		</v-col>
@@ -63,7 +63,7 @@ import { useDisplay } from 'vuetify';
 
 const { mdAndUp, smAndDown } = useDisplay();
 
-const buttonSize = computed(() => mdAndUp.value && !props.small ? 'large' : smAndDown.value || props.small  ? 'small' : 'default');
+const buttonSize = computed(() => mdAndUp.value && !props.small ? 'large' : smAndDown.value || props.small ? 'small' : 'default');
 const iconClass = computed(() => props.iconFirst ? 'mr-1' : 'ml-1');
 const iconOrder = computed(() => props.iconFirst ? '1' : '2');
 const flipx = computed(() => props.text === 'logout' ? 'flipx' : '');
@@ -72,7 +72,7 @@ const textOrder = computed(() => props.iconFirst ? '2' : '1');
 
 const localDisabled = ref(false);
 
-const emit = defineEmits([ 'click', 'mouseleave', 'mouseover' ]);
+const emit = defineEmits(['click', 'mouseleave', 'mouseover']);
 const click = (): void => {
 	if (!props.routerLink) emit('click');
 };

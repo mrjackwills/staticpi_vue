@@ -51,8 +51,8 @@
 					</v-row>
 				</template>
 			</AppCard>
-		</template>template>
-		
+		</template>
+
 	</ThePage>
 </template>
 

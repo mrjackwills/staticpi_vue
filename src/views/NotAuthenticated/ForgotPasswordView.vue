@@ -85,7 +85,7 @@ const user = ref({ email: '' });
 const rules = {
 	email: {
 		email,
-		required 
+		required
 	}
 };
 const v$ = useVuelidate(rules, user);
@@ -96,8 +96,8 @@ onMounted(() => {
 });
 
 /**
-** ALWAYS sends a forgotten password axios request, and snack success
-*/
+ ** ALWAYS sends a forgotten password axios request, and snack success
+ */
 const forgot = async (): Promise<void> => {
 	if (disabled.value) return;
 	localLoading.value = true;

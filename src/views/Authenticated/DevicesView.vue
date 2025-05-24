@@ -116,17 +116,17 @@ const getData = async (): Promise<void> => {
 };
 
 /**
-** Show add device component
-*/
+ ** Show add device component
+ */
 const showAddNewDevice = (): void => {
 	if (disabled.value) return;
 	showAdd.value = !showAdd.value;
 };
 
 /**
-** Show a tooltip saying max devices.
-** Uses disabled boolean which also disable the add new device button itself, base upon device numbers
-*/
+ ** Show a tooltip saying max devices.
+ ** Uses disabled boolean which also disable the add new device button itself, base upon device numbers
+ */
 const tooltip = (b: boolean): void => {
 	if (!disabled.value) return;
 	tooltip_add.value = b;

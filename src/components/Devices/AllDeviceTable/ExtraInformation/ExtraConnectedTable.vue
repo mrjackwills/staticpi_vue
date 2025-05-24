@@ -64,7 +64,7 @@ import type { VRow } from 'vuetify/components/VGrid';
 
 const { mdAndUp, mobile, smAndDown } = useDisplay();
 
-const heading = computed(()=> props.is_device ? 'pi connection' : `client connection${props.tableRows.length > 1 ? `s: ${props.tableRows.length}` : ''}`);
+const heading = computed(() => props.is_device ? 'pi connection' : `client connection${props.tableRows.length > 1 ? `s: ${props.tableRows.length}` : ''}`);
 const icon = computed(() => props.is_device ? props.online ? mdiAccessPointNetwork : mdiAccessPointNetworkOff : props.online ? mdiPlaylistCheck : mdiPlaylistRemove);
 const iconColor = computed(() => props.online ? 'primary' : 'pi');
 const justify = computed(() => smAndDown.value ? 'space-between' : 'center');
@@ -74,27 +74,42 @@ const hidden = ref(false);
 const isIntersecting = ref(false);
 
 const onIntersect = (is_i: boolean, _entries: Array<IntersectionObserverEntry>, _observer: IntersectionObserver): void => {
+
 	isIntersecting.value = is_i;
+
 };
 
 const emit = defineEmits(['hidden']);
 const toggleHidden = (): void => {
+
 	hidden.value = !hidden.value;
-	emit('hidden', hidden.value);
+	emit(
+		'hidden',
+		hidden.value
+	);
+
 };
 
-const props = withDefaults(defineProps<{
-	is_device: boolean;
-	online: boolean;
-	tableRows: Array<TExtraTableRow>;
-}>(), {
-	is_device: true,
-	online: true
-});
+const props = withDefaults(
+	defineProps<{
+		is_device: boolean;
+		online: boolean;
+		tableRows: Array<TExtraTableRow>;
+	}>(),
+	{
+		is_device: true,
+		online: true
+	}
+);
 
-watch(isIntersecting, (i: boolean): void => {
-	if (!i) hidden.value = false;
-});
+watch(
+	isIntersecting,
+	(i: boolean): void => {
+
+		if (!i) hidden.value = false;
+
+	}
+);
 </script>
 
 <style scoped>

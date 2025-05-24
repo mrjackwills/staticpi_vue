@@ -33,7 +33,7 @@
 				</v-row>
 			</v-expand-transition>
 		</template>
-		
+
 	</SettingSection>
 </template>
 

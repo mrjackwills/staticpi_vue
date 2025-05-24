@@ -97,7 +97,7 @@ onBeforeUnmount(() => {
 });
 const { mobile } = useDisplay();
 
-/// Don't show tooltips when on android or ios if also on mobile view!
+// Don't show tooltips when on android or ios if also on mobile view!
 const show_tooltip = computed(() => !(browserModule().android_ios && mobile.value));
 const twoFAStore = twoFAModule();
 const backup = computed(() => twoFAStore.count > 0);
@@ -170,9 +170,7 @@ const downloadCodes = (): void => {
 	document.body.removeChild(downloadCodes);
 };
 
-/**
-** Generate button - dialog warning overwrite if backups already exist, else just generate
-*/
+// Generate button - dialog warning overwrite if backups already exist, else just generate
 const generateBackups = async (): Promise<void> => {
 	if (backup.value) {
 		dialoger({

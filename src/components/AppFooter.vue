@@ -10,7 +10,7 @@
 		<v-row justify='center' align='center' class='no-gutters ma-0 pa-0'>
 			<FooterText />
 		</v-row>
-		
+
 	</v-footer>
 </template>
 

@@ -18,12 +18,12 @@ import type { TDeviceInfo } from '@/types';
 
 const { mdAndUp, smAndDown } = useDisplay();
 
-/// Don't show tooltips when on android or ios if also on mobile view!
+// Don't show tooltips when on android or ios if also on mobile view!
 const show_tooltip = computed(() => !(browserModule().android_ios && useDisplay().mobile.value));
 
-const tooltipText = computed(() => timestamp_online.value && !timestamp_offline.value ?
-	`online since ${timestamp_online.value.toLocaleString()}` : timestamp_online.value && timestamp_offline.value ?
-		`offline since ${timestamp_offline.value.toLocaleString()}` : 'never connected');
+const tooltipText = computed(() => timestamp_online.value && !timestamp_offline.value
+	? `online since ${timestamp_online.value.toLocaleString()}` : timestamp_online.value && timestamp_offline.value
+		? `offline since ${timestamp_offline.value.toLocaleString()}` : 'never connected');
 const online = computed(() => timestamp_online.value && !timestamp_offline.value ? true : false);
 const color = computed(() => online.value ? 'primary' : 'pi');
 const icon = computed(() => online.value ? mdiWifi : mdiWifiOff);

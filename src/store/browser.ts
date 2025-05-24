@@ -35,7 +35,7 @@ export const browserModule = defineStore(ModuleName.BROWSER, {
 		},
 
 		set_history (): void {
-			this.history ++;
+			this.history++;
 		},
 
 		set_init (x: boolean): void {
@@ -61,6 +61,6 @@ export const browserModule = defineStore(ModuleName.BROWSER, {
 		set_title (x: string): void {
 			this.title = x;
 		}
-		
+
 	}
 });

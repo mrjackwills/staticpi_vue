@@ -36,7 +36,7 @@ onBeforeMount(() => {
 	new_value.value = current_value.value;
 });
 
-/// Don't show tooltips when on android or ios if also on mobile view!
+// Don't show tooltips when on android or ios if also on mobile view!
 const show_tooltip = computed(() => !(browserModule().android_ios && mobile.value));
 
 const button = computed((): TSwitchButton => ({

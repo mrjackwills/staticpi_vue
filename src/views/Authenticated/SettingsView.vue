@@ -15,7 +15,7 @@
 			<DeleteAccount />
 
 		</template>
-		
+
 	</ThePage>
 </template>
 
@@ -37,7 +37,7 @@ const route = useRoute();
 onBeforeMount(async () => {
 	if (route.query.section) {
 		const query = String(route.query.section).toLowerCase();
-		if ([ '2fa', 'changepassword', 'userlevel', 'changefullname' ].includes(query)) {
+		if (['2fa', 'changepassword', 'userlevel', 'changefullname'].includes(query)) {
 			settingSectionModule().set_current_section(query as TSettingSection);
 			settingSectionModule().set_beforemount_open(true);
 		}
@@ -45,7 +45,7 @@ onBeforeMount(async () => {
 	await getData();
 });
 
-const current_section = computed((): u<TSettingSection> =>  settingSectionModule().current_section);
+const current_section = computed((): u<TSettingSection> => settingSectionModule().current_section);
 const force_refresh = computed({
 	get (): boolean {
 		return browserModule().force_refresh;
@@ -59,8 +59,8 @@ const pageTitle = ref('User Settings');
 const pageReady = ref(false);
 
 /**
-** make axios calls, and load into store, data about 2fa and userEmailAlerts
-*/
+ ** make axios calls, and load into store, data about 2fa and userEmailAlerts
+ */
 const getData = async (): Promise<void> => {
 	loadingModule().set_loading(true);
 	const isAuthenticated = await axios_authenticatedUser.user_get();

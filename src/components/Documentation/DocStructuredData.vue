@@ -200,8 +200,7 @@ const code_structured_data_parse = computed(() => `websocket_connection.addEvent
 	}
 });`);
 
-const code_structured_data_unique_client = computed(() =>
-	`const api_key = '${props.apiKey}';
+const code_structured_data_unique_client = computed(() => `const api_key = '${props.apiKey}';
 const token_request = await fetch('${props.address_token}/client', {
 	method: 'POST',
 	headers: {

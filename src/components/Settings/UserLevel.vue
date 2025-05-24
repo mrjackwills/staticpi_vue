@@ -88,7 +88,7 @@ const birthday = computed((): boolean => {
 });
 
 const text_size = computed(() => smAndDown.value ? 'small-text' : '');
-const timestamp = computed(()=> userStore.timestamp ? new Date(userStore.timestamp.substring(0, 10)) : new Date());
+const timestamp = computed(() => userStore.timestamp ? new Date(userStore.timestamp.substring(0, 10)) : new Date());
 const userLevel = computed(() => userStore.userLevel);
 const disabled = computed(() => settingSectionStore.current_section && settingSectionStore.current_section !== 'userlevel' ? true : false);
 

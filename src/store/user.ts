@@ -74,7 +74,8 @@ export const userModule = defineStore(ModuleName.USER, {
 			this.$reset();
 			deviceModule().$reset();
 			dialogModule().$reset();
-			getActivePinia()?.router().push(FrontEndRoutes.BASE);
+			getActivePinia()?.router().
+				push(FrontEndRoutes.BASE);
 			navDrawerModule().$reset();
 			passwordStrengthModule().$reset();
 			snackbarModule().$reset();
@@ -86,6 +87,6 @@ export const userModule = defineStore(ModuleName.USER, {
 
 	persist: {
 		storage: localStorage,
-		pick: [ 'authenticated' ]
+		pick: ['authenticated']
 	}
 });

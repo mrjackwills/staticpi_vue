@@ -14,7 +14,7 @@
 		<v-col cols='auto' class='ma-0 pa-0' order='1'>
 			<CopyButton color='primary' :toCopy='ip' tooltipMessage='IP address copied!' hoverMessage='click to copy IP address' density='compact' small/>
 		</v-col>
-		
+
 	</v-row>
 </template>
 

@@ -6,7 +6,7 @@ import { pwnedPassword } from 'hibp';
  * @return {Promise <Boolean>} If seen true, else false
  */
 export const passwordCheck = async (password: string): Promise<boolean> => {
-	//Maybe throw here
+	// Maybe throw here
 	if (!password) return false;
 	const numberSeen = await pwnedPassword(password);
 	return numberSeen > 0 ? true : false;

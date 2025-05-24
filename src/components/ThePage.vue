@@ -18,7 +18,7 @@
 			class='ma-0 pa-0 no-gutters'
 			id='the_page'
 		>
-		
+
 			<v-container fluid class='ma-0 pa-0' :class='{"fill-height":fillHeight}' >
 				<v-row class='ma-0 pa-0' dense justify='center' align='center'>
 					<v-col cols='12' class='pa-0 ma-0 mt-1'>
@@ -28,7 +28,7 @@
 							:justify='justify'
 							:margin='margin'
 							class='ml-2'
-							
+
 						/>
 						<slot name='body' />
 					</v-col>
