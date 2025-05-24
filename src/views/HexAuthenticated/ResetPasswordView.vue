@@ -114,16 +114,17 @@ const user = ref({
 });
 
 /**
-** Set the password visible
-* */
+ ** Set the password visible
+ *
+ */
 const appendClick = (): void => {
 	passwordVisible.value = !passwordVisible.value;
 };
 
 /**
-** Run hibp check, and set passwordCompromised if breach found
-* @param {String} model - current model/textfield name
-*/
+ ** Run hibp check, and set passwordCompromised if breach found
+ * @param {String} model - current model/textfield name
+ */
 const hibpCheck = async (): Promise<boolean | null> => {
 	if (!user.value.password || passwordCompromised.value || v$.value.password.$invalid) return null;
 	passwordCompromised.value = await passwordCheck(user.value.password);

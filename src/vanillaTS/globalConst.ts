@@ -1,7 +1,7 @@
 
 /**
  ** password length minimum
-*/
+ */
 export const minPassLength: Readonly<number> = 12;
 
 /**

@@ -36,7 +36,7 @@ onBeforeUnmount(() => {
 
 const authenticated = computed(() => userModule().authenticated);
 const messageSize = computed(() => mdAndUp.value ? 'text-h6' : 'text-subtitle-1');
-const spacerClass = computed(()=> navDrawerModule().mini ? 'nav-spacer-mini' : 'nav-spacer');
+const spacerClass = computed(() => navDrawerModule().mini ? 'nav-spacer-mini' : 'nav-spacer');
 
 const reconnectInterval = ref(0);
 
@@ -44,7 +44,7 @@ const reconnect = async (): Promise<void> => {
 	await axios_incognito.online_get();
 	await axios_authenticatedUser.user_get();
 };
-	
+
 onMounted(() => {
 	reconnectInterval.value = setInterval(reconnect, 10000);
 });

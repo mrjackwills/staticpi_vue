@@ -82,9 +82,9 @@ onBeforeMount(() => {
 	}
 });
 
-const disabled = computed(() => v$.value.$invalid
-	|| errorMessages.value.full_name
-	|| loading.value ? true : false);
+const disabled = computed(() => v$.value.$invalid ||
+  errorMessages.value.full_name ||
+  loading.value ? true : false);
 
 const componentDisabled = computed(() => settingSectionStore.current_section && settingSectionStore.current_section !== 'changefullname' ? true : false);
 
@@ -102,12 +102,14 @@ const loading = computed({
 const errorMessages = ref({ full_name: '' });
 
 const showTextFields = ref(false);
-const textField = [{
-	autocomplete: 'password',
-	icon: mdiAccountOutline,
-	label: 'full name',
-	model: 'full_name' as const
-}];
+const textField = [
+	{
+		autocomplete: 'password',
+		icon: mdiAccountOutline,
+		label: 'full name',
+		model: 'full_name' as const
+	}
+];
 const user = ref({ full_name: '' });
 
 const cancel = (): void => {

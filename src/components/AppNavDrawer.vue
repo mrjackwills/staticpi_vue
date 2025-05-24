@@ -22,7 +22,7 @@
 						<span class=''>close</span>
 					</template>
 				</v-list-item>
-			
+
 				<v-divider color='white' class='divider' />
 			</section>
 
@@ -59,7 +59,7 @@
 					</v-list-item>
 				</section>
 			</v-expand-transition>
-					
+
 			<section v-if='authenticated'>
 				<v-list-item v-if='lgAndUp' @click='minimize' class='cl' title='minimize'>
 					<template v-slot:prepend>
@@ -84,7 +84,7 @@
 				<FooterText class='mt-2' />
 			</section>
 		</v-list>
-		
+
 	</v-navigation-drawer>
 </template>
 
@@ -103,7 +103,7 @@ const authenticated = computed(() => userModule().authenticated);
 
 const isAdmin = computed(() => userModule().isAdminUser);
 
-const links = computed(() =>authenticated.value ? authenticatedLinks : notAuthenticatedLinks);
+const links = computed(() => authenticated.value ? authenticatedLinks : notAuthenticatedLinks);
 
 const mini = computed({
 	get (): boolean {

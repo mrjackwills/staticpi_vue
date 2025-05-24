@@ -25,7 +25,7 @@
 								<v-col cols='auto' class='ma-0 pa-0'>
 									<span class='text-pi mr-2'>
 										{{ item.name }} :
-								
+
 									</span>
 								</v-col>
 								<v-col cols='auto' class='ma-0 pa-0'>

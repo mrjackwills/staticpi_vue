@@ -26,14 +26,14 @@
 					<v-col class='ma-0 pa-0' cols='auto' @click='buildInfo'>
 						2020 -
 					</v-col>
-				
+
 				</v-row>
 			</v-col>
 		</v-row>
-				
+
 		<v-row justify='center' align='center' class='no-gutters unselectable ma-0 pa-0'>
 			<v-col cols='12' class='ma-0 pa-0'>
-		
+
 				<v-expand-transition>
 
 					<v-row justify='center' align='center' class='no-gutters ma-0 pa-0' v-if='showBuild && authed'>
@@ -57,7 +57,7 @@
 						</v-col>
 					</v-row>
 				</v-expand-transition>
-				
+
 			</v-col>
 		</v-row>
 	</section>
@@ -75,7 +75,7 @@ onBeforeUnmount(() => {
 	clearTimeout(buildTimeout.value);
 });
 
-/// Don't show tooltips when on android or ios if also on mobile view!
+// Don't show tooltips when on android or ios if also on mobile view!
 const show_tooltip = computed(() => !(browserModule().android_ios && useDisplay().mobile.value));
 
 const api_version = computed(() => browserModule().api_version);

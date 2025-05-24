@@ -167,7 +167,7 @@ const { mobile } = useDisplay();
 
 const disabled = computed(() => props.user.email === userModule().email);
 
-/// Don't show tooltips when on android or ios if also on mobile view!
+// Don't show tooltips when on android or ios if also on mobile view!
 const show_tooltip = computed(() => !(browserModule().android_ios && mobile.value));
 const all_devices: Ref<Array<AdminDeviceAndConnections>> = ref([]);
 
@@ -262,7 +262,7 @@ const monthly_bandwidth = (x: TAdminUser): string => {
 	return `${b.total} ${b.unit}`;
 };
 
-/// Make a "fake" device, just so can reuse the bandwidth table
+// Make a "fake" device, just so can reuse the bandwidth table
 const fake_device = computed((): TDeviceInfo => ({
 	name_of_device: '',
 	api_key: '',

@@ -81,7 +81,7 @@ import type { TDeviceInfo, TExtraBandwidthDetailed } from '@/types';
 
 const { mobile } = useDisplay();
 
-/// Don't show tooltips when on android or ios if also on mobile view!
+// Don't show tooltips when on android or ios if also on mobile view!
 const show_tooltip = computed(() => !(browserModule().android_ios && mobile.value));
 
 const tableData = computed((): Array<TExtraBandwidthDetailed> => [
@@ -125,8 +125,8 @@ const tableData = computed((): Array<TExtraBandwidthDetailed> => [
 				bytes: `${Number(props.device.pi_bytes_day_out) + Number(props.device.client_bytes_day_out)}`
 			},
 			total: {
-				...convert_bytes(Number(props.device.pi_bytes_day_in)
-					+ Number(props.device.client_bytes_day_in) + Number(props.device.pi_bytes_day_out) + Number(props.device.client_bytes_day_out)),
+				...convert_bytes(Number(props.device.pi_bytes_day_in) +
+				  Number(props.device.client_bytes_day_in) + Number(props.device.pi_bytes_day_out) + Number(props.device.client_bytes_day_out)),
 				bytes: `${Number(props.device.pi_bytes_day_in) + Number(props.device.client_bytes_day_in) + Number(props.device.pi_bytes_day_out) + Number(props.device.client_bytes_day_out)}`
 			}
 		}
@@ -171,10 +171,10 @@ const tableData = computed((): Array<TExtraBandwidthDetailed> => [
 				bytes: `${Number(props.device.pi_bytes_month_out) + Number(props.device.client_bytes_month_out)}`
 			},
 			total: {
-				...convert_bytes(Number(props.device.pi_bytes_month_in)
-					+ Number(props.device.client_bytes_month_in) + Number(props.device.pi_bytes_month_out) + Number(props.device.client_bytes_month_out)),
-				bytes: `${Number(props.device.pi_bytes_month_in)
-					+ Number(props.device.client_bytes_month_in) + Number(props.device.pi_bytes_month_out) + Number(props.device.client_bytes_month_out)}`
+				...convert_bytes(Number(props.device.pi_bytes_month_in) +
+				  Number(props.device.client_bytes_month_in) + Number(props.device.pi_bytes_month_out) + Number(props.device.client_bytes_month_out)),
+				bytes: `${Number(props.device.pi_bytes_month_in) +
+				Number(props.device.client_bytes_month_in) + Number(props.device.pi_bytes_month_out) + Number(props.device.client_bytes_month_out)}`
 			}
 		}
 	},
@@ -218,10 +218,10 @@ const tableData = computed((): Array<TExtraBandwidthDetailed> => [
 				bytes: `${Number(props.device.pi_bytes_total_out) + Number(props.device.client_bytes_total_out)}`
 			},
 			total: {
-				...convert_bytes(Number(props.device.pi_bytes_total_in)
-					+ Number(props.device.client_bytes_total_in) + Number(props.device.pi_bytes_total_out) + Number(props.device.client_bytes_total_out)),
-				bytes: `${Number(props.device.pi_bytes_total_in)
-					+ Number(props.device.client_bytes_total_in) + Number(props.device.pi_bytes_total_out) + Number(props.device.client_bytes_total_out)}`
+				...convert_bytes(Number(props.device.pi_bytes_total_in) +
+				  Number(props.device.client_bytes_total_in) + Number(props.device.pi_bytes_total_out) + Number(props.device.client_bytes_total_out)),
+				bytes: `${Number(props.device.pi_bytes_total_in) +
+				Number(props.device.client_bytes_total_in) + Number(props.device.pi_bytes_total_out) + Number(props.device.client_bytes_total_out)}`
 			}
 		}
 	}

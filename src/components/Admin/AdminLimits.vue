@@ -17,7 +17,7 @@
 						<v-col cols='5' class=''>
 							<span class=''>
 								key
-								
+
 							</span>
 						</v-col>
 						<v-col cols='2' class='text-right'>
@@ -89,7 +89,7 @@ const { mdAndDown } = useDisplay();
 
 const text_class = computed(() => mdAndDown.value ? 'small-text' : '');
 
-const emit = defineEmits([ 'update' ]);
+const emit = defineEmits(['update']);
 
 const remove_key = async (key: string): Promise<void> => {
 	await axios_admin.limit_delete(key);

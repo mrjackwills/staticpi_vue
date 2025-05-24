@@ -15,7 +15,7 @@ import { dialoger } from '@/services/dialog';
 import { mdiDelete } from '@mdi/js';
 import type { TAuthObject } from '@/types';
 
-const emit = defineEmits([ 'refresh' ]);
+const emit = defineEmits(['refresh']);
 const deleteAll_confirm = async (authentication: TAuthObject): Promise<void> => {
 	const loading_store = loadingModule();
 	loading_store.set_loading(true);

@@ -34,7 +34,7 @@ export const deviceModule = defineStore(ModuleName.DEVICES, {
 				return device ? device.ttl : 0;
 			};
 		},
-		
+
 		numberOfDevices (): number {
 			return this.all.length;
 		},

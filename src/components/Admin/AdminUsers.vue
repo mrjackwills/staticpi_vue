@@ -67,7 +67,7 @@ const headers = [
 	'# session'
 ];
 
-const emit = defineEmits([ 'update' ]);
+const emit = defineEmits(['update']);
 const props = defineProps<{ users: Array<TAdminUserAndSessions> }>();
 
 </script>

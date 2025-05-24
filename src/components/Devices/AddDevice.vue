@@ -82,16 +82,16 @@ import type { TAddDevice } from '@/types';
 const { smAndDown, mobile } = useDisplay();
 const [deviceStore, userStore] = [deviceModule(), userModule()];
 
-/// Don't show tooltips when on android or ios if also on mobile view!
+// Don't show tooltips when on android or ios if also on mobile view!
 const show_tooltip = computed(() => !(browserModule().android_ios && mobile.value));
 
-const disabled = computed(() => localLoading.value
-	|| !deviceSettings.value.max_clients
-	|| deviceError.value
-	|| deviceClientError.value
-	|| switchStatus.value.max_clients && isNaN(deviceSettings.value.max_clients)
-	|| switchStatus.value.device_password && !deviceSettings.value.device_password
-	|| deviceSettings.value.max_clients > max_clients.value
+const disabled = computed(() => localLoading.value ||
+  !deviceSettings.value.max_clients ||
+  deviceError.value ||
+  deviceClientError.value ||
+  switchStatus.value.max_clients && isNaN(deviceSettings.value.max_clients) ||
+  switchStatus.value.device_password && !deviceSettings.value.device_password ||
+  deviceSettings.value.max_clients > max_clients.value
 	? true : false);
 const isFreeUser = computed(() => userStore.isFreeUser);
 const loading = computed({
@@ -103,11 +103,11 @@ const loading = computed({
 	}
 });
 const label = computed(() => isFreeUser.value ? 'device name will be randomly assigned' : 'device name (optional)');
-const max_clientsDescription = computed(() => isFreeUser.value ? 'Free users are only allowed 1 connected client per device' :
-	`Limit the number of simultaneous client connections to the device. The maximum allowed is ${max_clients.value}`);
-const passwordDescription = computed(() => isFreeUser.value ?
-	'Device password authentication is not available for free user' :
-	'Device passwords are optional, when enabled they require a request to be made to our authentication api in order for the websocket connection to be established');
+const max_clientsDescription = computed(() => isFreeUser.value ? 'Free users are only allowed 1 connected client per device'
+	: `Limit the number of simultaneous client connections to the device. The maximum allowed is ${max_clients.value}`);
+const passwordDescription = computed(() => isFreeUser.value
+	? 'Device password authentication is not available for free user'
+	: 'Device passwords are optional, when enabled they require a request to be made to our authentication api in order for the websocket connection to be established');
 const structuredDescription = computed(() => isFreeUser.value ? 'Structured data and message caching is not available to free user' : 'Enable structured data and message caching');
 const max_clients = computed(() => userStore.maxClients);
 

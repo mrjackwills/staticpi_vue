@@ -127,13 +127,13 @@ onBeforeMount(() => {
 	}
 });
 
-const disabled = computed(() => v$.value.$invalid
-	|| errorMessages.value.new_password
-	|| errorMessages.value.current_password
-	|| passwordCompromised.value
-	|| loading.value
-	|| twoFA_always_required.value && !user.value.token
-	|| twoFA_always_required.value && user.value.token.length < 6 ? true : false);
+const disabled = computed(() => v$.value.$invalid ||
+  errorMessages.value.new_password ||
+  errorMessages.value.current_password ||
+  passwordCompromised.value ||
+  loading.value ||
+  twoFA_always_required.value && !user.value.token ||
+  twoFA_always_required.value && user.value.token.length < 6 ? true : false);
 
 const componentDisabled = computed(() => settingSectionStore.current_section && settingSectionStore.current_section !== 'changepassword' ? true : false);
 
@@ -193,16 +193,17 @@ const user = ref({
 });
 
 /**
-** Set the password field visible
-**/
+ ** Set the password field visible
+ *
+ */
 const appendClick = (model: string): void => {
 	if (model === 'current_password') passwordVisible.value = !passwordVisible.value;
 	else if (model === 'new_password') new_passwordVisible.value = !new_passwordVisible.value;
 };
 
 /**
-** Reset data, clear form
-*/
+ ** Reset data, clear form
+ */
 const cancel = (): void => {
 	errorMessages.value.current_password = '';
 	errorMessages.value.new_password = '';
@@ -217,10 +218,10 @@ const cancel = (): void => {
 };
 
 /**
-** set the this.focus to the currently in focus text field
-** If the in focus field ISN't the password field, then set passwordVisible to false
-* @param {String} model - current model/textfield name
-*/
+ ** set the this.focus to the currently in focus text field
+ ** If the in focus field ISN't the password field, then set passwordVisible to false
+ * @param {String} model - current model/textfield name
+ */
 const focusMethod = (model: string): void => {
 	if (model === 'new_password') new_passwordVisible.value = false;
 	if (model === 'current_password') passwordVisible.value = false;
@@ -281,7 +282,7 @@ const watch_password_common = (): void => {
 	}
 
 	if (email.value && i?.toLowerCase().includes(email.value.toLowerCase().trim()) ||
-		email.value && i?.toLowerCase().includes(email.value.toLowerCase().trim())) {
+	  email.value && i?.toLowerCase().includes(email.value.toLowerCase().trim())) {
 		errorMessages.value.new_password = 'password cannot contain email';
 		return;
 	}

@@ -39,7 +39,7 @@ const calc_strength = (): number => {
 		symbolsScore: props.password.match(symbols) ? 1.6 : 1,
 		upperScore: props.password.match(upper) ? 1.55 : 1
 	};
-	return scores.lowerScore * scores.upperScore * scores.symbolsScore * scores.numbersScore * (length * .75);
+	return scores.lowerScore * scores.upperScore * scores.symbolsScore * scores.numbersScore * (length * 0.75);
 };
 
 const props = defineProps<{

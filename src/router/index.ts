@@ -78,7 +78,7 @@ const hexRoutes: Array<RouteRecordRaw> = [
 		name: FrontEndNames.USER_RESET_ID,
 		component: EmptyComponent,
 		beforeEnter: async (to, _from, next): Promise<void> => {
-			const [ browser_store, loading_store, resetPassword_store, user_store ] = [ browserModule(), loadingModule(), resetPasswordModule(), userModule() ];
+			const [browser_store, loading_store, resetPassword_store, user_store] = [browserModule(), loadingModule(), resetPasswordModule(), userModule()];
 			browser_store.set_history();
 			const isAuthenticated = user_store.authenticated;
 			const id = String(to.params.id);
@@ -107,13 +107,13 @@ const hexRoutes: Array<RouteRecordRaw> = [
 		name: FrontEndNames.USER_RESET,
 		component: () => import('@/views/HexAuthenticated/ResetPasswordView.vue'),
 		beforeEnter: (_to, _from, next): void => {
-			const [ browser_store, resetPassword_store, user_store ] = [ browserModule(), resetPasswordModule(), userModule() ];
+			const [browser_store, resetPassword_store, user_store] = [browserModule(), resetPasswordModule(), userModule()];
 			browser_store.set_history();
 			const isAuthenticated = user_store.authenticated;
 			const resetId = resetPassword_store.id;
 			if (isAuthenticated || !resetId) next(FrontEndRoutes.ERROR);
 			else next();
-			
+
 		}
 	},
 	{
@@ -123,7 +123,7 @@ const hexRoutes: Array<RouteRecordRaw> = [
 		name: FrontEndNames.USER_VERIFY_param_ID,
 		component: EmptyComponent,
 		beforeEnter: async (to, _from, next): Promise<void> => {
-			const [ browser_store, user_store ] = [ browserModule(), userModule() ];
+			const [browser_store, user_store] = [browserModule(), userModule()];
 			browser_store.set_history();
 			const isAuthenticated = user_store.authenticated;
 			if (isAuthenticated) next(FrontEndRoutes.BASE);
@@ -136,7 +136,7 @@ const hexRoutes: Array<RouteRecordRaw> = [
 						next(FrontEndRoutes.LOGIN);
 						snackSuccess({
 							message: 'Verified, please sign in to continue',
-							timeout: 15000 
+							timeout: 15000
 						});
 						loadingModule().set_loading(false);
 						return;
@@ -182,7 +182,7 @@ for (const route of notAuthenticatedRoutes) {
 			next(FrontEndRoutes.BASE);
 		} else {
 			next();
-		} 
+		}
 	};
 }
 
@@ -241,7 +241,7 @@ for (const route of baseRoutes) {
 		next();
 	};
 }
-const allRoutes = [ ...baseRoutes, ...adminRoutes, ...authenticatedRoutes, ...hexRoutes, ...notAuthenticatedRoutes ];
+const allRoutes = [...baseRoutes, ...adminRoutes, ...authenticatedRoutes, ...hexRoutes, ...notAuthenticatedRoutes];
 
 const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
@@ -256,7 +256,7 @@ const router = createRouter({
 				// this is to counter the height of the app bar, if on mobile!
 				top: 76
 			};
-		/// Settings page amends url, so need to skip scrolling if both to & from are in the same page!
+		// / Settings page amends url, so need to skip scrolling if both to & from are in the same page!
 		} else if (to.name?.toString() !== from.name?.toString()) {
 			return { top: 0 };
 		}

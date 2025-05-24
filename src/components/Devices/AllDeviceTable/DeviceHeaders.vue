@@ -146,8 +146,8 @@ const sortByName = (): void => {
 const sortByBandwidth = (): void => {
 	sortedBy.value.name = 'bandwidth';
 	const tmp = tableData.value.sort((a, b) => {
-		return Number(a.pi_bytes_month_out ?? 0) + Number(a.client_bytes_month_out ?? 0) >= Number(b.pi_bytes_day_out ?? 0) + Number(b.client_bytes_month_out ?? 0) ?
-			sortedBy.value.largestFirst
+		return Number(a.pi_bytes_month_out ?? 0) + Number(a.client_bytes_month_out ?? 0) >= Number(b.pi_bytes_day_out ?? 0) + Number(b.client_bytes_month_out ?? 0)
+			? sortedBy.value.largestFirst
 				? -1 : 1 : sortedBy.value.largestFirst
 				? 1 : -1;
 	});

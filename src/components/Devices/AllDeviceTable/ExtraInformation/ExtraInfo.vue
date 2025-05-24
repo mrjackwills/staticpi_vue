@@ -146,8 +146,7 @@ watch(isIntersecting, async (i) => {
 		updateExtraInfo();
 		refreshInterval.value = setInterval(() => updateExtraInfo(), 10000);
 	} else clear();
-}
-);
+});
 watch(paused, (i: boolean): void => {
 	if (i) emit('emitClose');
 });

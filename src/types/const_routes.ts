@@ -1,45 +1,45 @@
 import type { ConstT } from '@/types';
 
 export const FrontEndRoutes = {
-	ADMIN: '/admin' as const,
-	BASE: '/' as const,
-	CATCH_ALL: '/:pathMatch(.*)*' as const,
-	CONTACT: '/contact' as const,
-	DOCUMENTATION: '/documentation' as const,
-	ERROR: '/error' as const,
-	FORGOTPASSWORD: '/forgot-password' as const,
-	LOGIN: '/login' as const,
-	PLANS: '/plans' as const,
-	PRIVACY: '/privacy' as const,
-	REGISTER: '/register' as const,
-	RESETPASSWORD_param_ID: '/user/reset/:id' as const,
-	STATUS: '/status' as const,
-	TERMS: '/terms' as const,
-	USER_DEVICES: '/user/devices' as const,
-	USER_RESET: '/user/reset' as const,
-	USER_SETTINGS: '/user/settings' as const,
-	VERIFY_param_ID: '/user/verify/:id' as const
-};
+	ADMIN: '/admin',
+	BASE: '/',
+	CATCH_ALL: '/:pathMatch(.*)*',
+	CONTACT: '/contact',
+	DOCUMENTATION: '/documentation',
+	ERROR: '/error',
+	FORGOTPASSWORD: '/forgot-password',
+	LOGIN: '/login',
+	PLANS: '/plans',
+	PRIVACY: '/privacy',
+	REGISTER: '/register',
+	RESETPASSWORD_param_ID: '/user/reset/:id',
+	STATUS: '/status',
+	TERMS: '/terms',
+	USER_DEVICES: '/user/devices',
+	USER_RESET: '/user/reset',
+	USER_SETTINGS: '/user/settings',
+	VERIFY_param_ID: '/user/verify/:id'
+} as const;
 export type FrontendRoutes = ConstT<typeof FrontEndRoutes>;
 
-export const FrontEndNames =  {
-	ADMIN: 'admin' as const,
-	CONTACT: 'contact' as const,
-	DOCUMENTATION: 'documentation' as const,
-	ERROR: 'error' as const,
-	FORGOTPASSWORD: 'forgot-password' as const,
-	HOME: 'home' as const,
-	LOGIN: 'login' as const,
-	PLANS: 'plans' as const,
-	PRIVACY: 'privacy' as const,
-	REGISTER: 'register' as const,
-	STATUS: 'status' as const,
-	TERMS: 'terms' as const,
-	USER_DEVICES: 'user_devices' as const,
-	USER_RESET: 'user_reset' as const,
-	USER_RESET_ID: 'user_reset_id' as const,
-	USER_SETTINGS: 'user_settings' as const,
-	USER_VERIFY_param_ID: 'user_verify_id' as const
-};
+export const FrontEndNames = {
+	ADMIN: 'admin',
+	CONTACT: 'contact',
+	DOCUMENTATION: 'documentation',
+	ERROR: 'error',
+	FORGOTPASSWORD: 'forgot-password',
+	HOME: 'home',
+	LOGIN: 'login',
+	PLANS: 'plans',
+	PRIVACY: 'privacy',
+	REGISTER: 'register',
+	STATUS: 'status',
+	TERMS: 'terms',
+	USER_DEVICES: 'user_devices',
+	USER_RESET: 'user_reset',
+	USER_RESET_ID: 'user_reset_id',
+	USER_SETTINGS: 'user_settings',
+	USER_VERIFY_param_ID: 'user_verify_id'
+} as const;
 
 export type FrontEndNames = ConstT<typeof FrontEndNames>;

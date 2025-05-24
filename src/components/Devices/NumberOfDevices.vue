@@ -24,14 +24,14 @@ import { useDisplay } from 'vuetify';
 const { smAndDown, mobile } = useDisplay();
 const [deviceStore, userStore] = [deviceModule(), userModule()];
 
-/// Don't show tooltips when on android or ios if also on mobile view!
+// Don't show tooltips when on android or ios if also on mobile view!
 const show_tooltip = computed(() => !(browserModule().android_ios && mobile.value));
 
 const bandwidthLimit_class = computed(() => Number(maxBandwidth.value) - Number(totalBandwidth.value) <= 0 ? 'text-pi font-weight-black' : '');
 const percentageClass = computed(() => Number(maxBandwidth.value) - Number(totalBandwidth.value) <= 0 ? 'text-pi font-weight-black' : 'text-secondary');
 const deviceNumber = computed(() => deviceStore.numberOfDevices);
-const used_percentage = computed(() => Number(totalBandwidth.value) > 0 ?
-	Number(totalBandwidth.value) > 0 ? (Number(totalBandwidth.value) / Number(maxBandwidth.value) * 100).toFixed(2) : '00.00' : '00.00');
+const used_percentage = computed(() => Number(totalBandwidth.value) > 0
+	? Number(totalBandwidth.value) > 0 ? (Number(totalBandwidth.value) / Number(maxBandwidth.value) * 100).toFixed(2) : '00.00' : '00.00');
 const deviceLimit_class = computed(() => deviceNumber.value >= maxDevices.value ? 'text-pi font-weight-black' : '');
 
 const maxBandwidth = computed(() => userStore.maxBandwidth);

@@ -24,11 +24,11 @@ class Env {
 	get domain_api (): string {
 		return this.#domain_api;
 	}
-	
+
 	get domain_auth (): string {
 		return this.#domain_auth;
 	}
-		
+
 	get domain_wss (): string {
 		return this.#domain_wss;
 	}

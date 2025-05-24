@@ -49,7 +49,7 @@
 											{{ item.invite }}
 										</v-col>
 									</v-row>
-								
+
 								</v-col>
 								<v-col cols='6' class='text-right'>
 									{{ item.count }}
@@ -147,9 +147,12 @@ const rules = {
 	}
 };
 
-const disabled = computed(() =>v$.value.$invalid);
+const disabled = computed(() => v$.value.$invalid);
 
-const v$ = useVuelidate(rules, model);
+const v$ = useVuelidate(
+	rules,
+	model
+);
 
 const addInvite = (): void => {
 	if (v$.value.$invalid) return;
@@ -165,14 +168,14 @@ const addInvite = (): void => {
 	});
 };
 
-const remove_invite = async (invite: string): Promise<void>=> {
+const remove_invite = async (invite: string): Promise<void> => {
 	loadingModule().loading = true;
 	await axios_admin.invite_delete(invite);
 	loadingModule().loading = false;
 	emit('update');
 };
 
-const emit = defineEmits([ 'update' ]);
+const emit = defineEmits(['update']);
 
 const addInvite_confirm = async (auth: TAuthObject): Promise<void> => {
 	if (v$.value.$invalid) return;
@@ -180,7 +183,7 @@ const addInvite_confirm = async (auth: TAuthObject): Promise<void> => {
 	await axios_admin.invite_post({
 		...auth,
 		count: Number(model.value.count),
-		invite: model.value.invite 
+		invite: model.value.invite
 	});
 	loadingModule().loading = false;
 	model.value.count = undefined;

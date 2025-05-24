@@ -25,7 +25,7 @@ export type TSnack = {
 
 export type TSnackPosition = {
 	x: TPositionX;
-	y: TPositionY; 
+	y: TPositionY;
 };
 export type TPositionX = 'left' | 'right';
 export type TPositionY = 'bottom' | 'top';
@@ -45,8 +45,8 @@ export type TRootState = {
 		_maxClients: number;
 		_maxMessageSize: number;
 		_maxDevices: number;
-		_userLevel: UserLevel; 
-	}; 
+		_userLevel: UserLevel;
+	};
 };
 
 // client_bytes_monthly_out
@@ -55,25 +55,25 @@ type TPiClientTime = `pi_bytes_${TBytesTime}` | `client_bytes_${TBytesTime}`;
 type TBandwidthInOut = `${TPiClientTime}_out` | `${TPiClientTime}_in`;
 
 export type TDeviceInfo = { max_clients: number }
-	& Record<'name_of_device' | 'api_key' | 'creation_date', string>
-	& Record<'client_password_required' | 'device_password_required' | 'paused' | 'structured_data', boolean>
-	& Record<'ip' | 'timestamp_online' | 'timestamp_offline', string | undefined>
-	& Record<TBandwidthInOut, string>;
+  & Record<'name_of_device' | 'api_key' | 'creation_date', string>
+  & Record<'client_password_required' | 'device_password_required' | 'paused' | 'structured_data', boolean>
+  & Record<'ip' | 'timestamp_online' | 'timestamp_offline', string | undefined>
+  & Record<TBandwidthInOut, string>;
 
 export type TLimits = {
 	name_of_device: string;
-	ttl: number; 
+	ttl: number;
 };
-	
+
 export type TShowMoreInfo = {
 	name_of_device: string;
-	value: boolean; 
+	value: boolean;
 };
 
 export type TSortableColumns = 'connection' | 'name' | 'bandwidth' | 'max clients' | 'structured data' | 'device password' | 'status';
 export type TSortedBy = {
 	name?: TSortableColumns;
-	largestFirst: boolean; 
+	largestFirst: boolean;
 };
 
 export type TSelectConnectedClient = {
@@ -113,14 +113,14 @@ type TBandwidth = TConvertBytes & {	bytes: string };
 type TExtraTime = 'all' | 'client' | 'device';
 
 export type TExtraBandwidthDetailed = { period:	'last 24 hours' | 'this month' | 'all time' }
-	& Record<TExtraTime, {
-		in: TBandwidth;
-		out: TBandwidth;
-		total: TBandwidth; 
-	}>;
+  & Record<TExtraTime, {
+  	in: TBandwidth;
+  	out: TBandwidth;
+  	total: TBandwidth;
+  }>;
 
 export type TExtraBandwidthSimple = { period: 'last 24 hours' | 'this month' | 'all time' } & TBandwidth;
-	
+
 /**
  * base text fields
  */
@@ -133,9 +133,9 @@ export type TWsAuth = Record<'key' | 'password', string>;
 
 export type TRegisterTextField = BaseTextFields & {
 	clearable: boolean;
-	model: TRegisterModels; 
+	model: TRegisterModels;
 };
-	
+
 export type TLoginModel = BaseFields | 'token';
 export type TLoginFields = BaseTextFields & { model: TLoginModel };
 export type TResetFields = BaseTextFields & { model: 'password' };
@@ -180,7 +180,7 @@ export type TRegisterUser = Record<'email' | 'full_name' | 'invite' | 'password'
 export type TPasswordPatch = Record<'resetId' | 'password', string> & { token: string | undefined };
 export type TSignin = TAuthObject & {
 	email: string;
-	remember: boolean; 
+	remember: boolean;
 };
 export type TPasswordChange = Record<'current_password' | 'new_password', string> & { token?: string } & { remove_sessions: boolean };
 
@@ -204,7 +204,7 @@ export type TDeviceNamedDelete = TDeviceNamedGet & TAuthentication;
 export type TDeviceNamedPatch = {
 	patch: DevicePatch;
 	name: string;
-	auth?: TAuthObject; 
+	auth?: TAuthObject;
 };
 
 export type TBaseDevicePatch = Partial<TAuthentication> & { name: string };
@@ -236,7 +236,7 @@ export type TServers = Record<'address' | 'updateTime', string> & Record<'status
 
 export type TComputedBandwidth = Record<'icon' | 'timespan', string> & Record<'in' | 'out', {
 	human_readable: TConvertBytes;
-	bytes: number; 
+	bytes: number;
 }>;
 
 export type TNavigationLink = Record<'icon' | 'message' | 'route', string>;
@@ -251,16 +251,16 @@ export type TAdminMemory = Record<'uptime' | 'uptime_app' | 'virt' | 'rss', numb
 // block?
 export type TAdminLimit = Record<'points' | 'max' | 'ttl', number> & {
 	key: string;
-	blocked: boolean; 
+	blocked: boolean;
 };
 
 export type TAdminUser =
-	Record<'full_name' | 'email' | 'timestamp' | 'user_level' | 'registered_user_id', string> &
-	Record<'login_attempt_number' | 'two_fa_backup_count' | 'device_count', number> &
-	Record<'password_reset' | 'two_fa_enabled' | 'active', boolean> & Record<TBandwidthInOut, string>;
+  Record<'full_name' | 'email' | 'timestamp' | 'user_level' | 'registered_user_id', string> &
+  Record<'login_attempt_number' | 'two_fa_backup_count' | 'device_count', number> &
+  Record<'password_reset' | 'two_fa_enabled' | 'active', boolean> & Record<TBandwidthInOut, string>;
 
 export type TAdminSession = { key: string } &
-	Record<'ttl' | 'timestamp', number>;
+  Record<'ttl' | 'timestamp', number>;
 
 export type TAdminUserAndSessions = {
 	user: TAdminUser;
@@ -268,8 +268,8 @@ export type TAdminUserAndSessions = {
 };
 
 export type AdminConnection = Record<'timestamp' | 'device_id', number> &
-		Record<'device_type' | 'ulid' | 'ip', string>;
-	
+  Record<'device_type' | 'ulid' | 'ip', string>;
+
 export type AdminDeviceAndConnections = {
 	device: TDeviceInfo;
 	connections: Array<AdminConnection>;
@@ -280,7 +280,7 @@ export type TAdminConnectedCount = Record<'pi' | 'client', number>;
 
 export type TAdminContactMessage = {
 	contact_message_id: number;
-	registered_user_id: number | null; 
+	registered_user_id: number | null;
 } & Record<'ip' | 'timestamp' | 'message' | 'user_agent' | 'email', string>;
 
 export type TAdminConnectionRemove = Record<'connection_ulid' | 'device_type', string> & { device_id: number };
@@ -289,7 +289,7 @@ export type TAdminEmailDevice = TAdminUserDelete & { device_name: string };
 export type TAdminUserDelete = { email: string } & TAuthObject;
 export type TAdminInvite = {
 	count: number;
-	invite: string; 
+	invite: string;
 };
 export type TAdminInvitePost = TAdminInvite & TAuthObject;
 export type TContact = Record<'email' | 'message', string>;

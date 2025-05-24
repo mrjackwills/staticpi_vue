@@ -12,7 +12,7 @@ export const snackbarModule = defineStore(ModuleName.SNACKBAR, {
 		message: '',
 		position: {
 			x: 'right',
-			y: 'bottom' 
+			y: 'bottom'
 		} as TSnackPosition,
 		timeout: 0,
 		visible: false

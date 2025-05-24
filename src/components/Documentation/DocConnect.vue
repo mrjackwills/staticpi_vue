@@ -118,27 +118,25 @@ websocket_connection.on('message', function message(data) {
 
 const authAddressRow = computed((): Array<TAddressRow> => {
 	const output = [];
-	for (const i of ['pi', 'client']) output.push(
-		{
-			name: `${i} token address:`,
-			address: i === 'client' ? `${props.address_token}/client` : `${props.address_token}/pi`,
-			toCopy: i === 'client' ? `${props.address_token}/client` : `${props.address_token}/pi`,
-			tooltipMessage: `${i} token address copied`,
-			hoverMessage: `copy ${i} token address`
-		});
+	for (const i of ['pi', 'client']) output.push({
+		name: `${i} token address:`,
+		address: i === 'client' ? `${props.address_token}/client` : `${props.address_token}/pi`,
+		toCopy: i === 'client' ? `${props.address_token}/client` : `${props.address_token}/pi`,
+		tooltipMessage: `${i} token address copied`,
+		hoverMessage: `copy ${i} token address`
+	});
 	return output;
 });
 
 const wssAddressRow = computed((): Array<TAddressRow> => {
 	const output = [];
-	for (const i of ['pi', 'client']) output.push(
-		{
-			name: `${i} websocket address:`,
-			address: i === 'client' ? props.address_wss_client : props.address_wss_pi,
-			toCopy: i === 'client' ? props.address_wss_client : props.address_wss_pi,
-			tooltipMessage: `${i} websocket address copied`,
-			hoverMessage: `copy ${i} websocket address`
-		});
+	for (const i of ['pi', 'client']) output.push({
+		name: `${i} websocket address:`,
+		address: i === 'client' ? props.address_wss_client : props.address_wss_pi,
+		toCopy: i === 'client' ? props.address_wss_client : props.address_wss_pi,
+		tooltipMessage: `${i} websocket address copied`,
+		hoverMessage: `copy ${i} websocket address`
+	});
 	return output;
 });
 
