@@ -54,11 +54,11 @@ type TBytesTime = 'month' | 'day' | 'total';
 type TPiClientTime = `pi_bytes_${TBytesTime}` | `client_bytes_${TBytesTime}`;
 type TBandwidthInOut = `${TPiClientTime}_out` | `${TPiClientTime}_in`;
 
-export type TDeviceInfo = { max_clients: number }
-  & Record<'name_of_device' | 'api_key' | 'creation_date', string>
-  & Record<'client_password_required' | 'device_password_required' | 'paused' | 'structured_data', boolean>
-  & Record<'ip' | 'timestamp_online' | 'timestamp_offline', string | undefined>
-  & Record<TBandwidthInOut, string>;
+export type TDeviceInfo = { max_clients: number } &
+  Record<'name_of_device' | 'api_key' | 'creation_date', string> &
+  Record<'client_password_required' | 'device_password_required' | 'paused' | 'structured_data', boolean> &
+  Record<'ip' | 'timestamp_online' | 'timestamp_offline', string | undefined> &
+  Record<TBandwidthInOut, string>;
 
 export type TLimits = {
 	name_of_device: string;
@@ -112,8 +112,8 @@ type TBandwidth = TConvertBytes & {	bytes: string };
 
 type TExtraTime = 'all' | 'client' | 'device';
 
-export type TExtraBandwidthDetailed = { period:	'last 24 hours' | 'this month' | 'all time' }
-  & Record<TExtraTime, {
+export type TExtraBandwidthDetailed = { period:	'last 24 hours' | 'this month' | 'all time' } &
+  Record<TExtraTime, {
   	in: TBandwidth;
   	out: TBandwidth;
   	total: TBandwidth;

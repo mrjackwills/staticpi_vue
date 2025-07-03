@@ -241,7 +241,7 @@ const rules = {
 	password: { required }
 };
 const v$ = useVuelidate(rules, user);
-watch(() => user.value.email, (_) => {
+watch(() => user.value.email, () => {
 	user.value.email = user.value.email ? user.value.email.trim().toLowerCase() : '';
 	errorMessages.value.email = !v$.value.email.email ? 'email invalid' : '';
 });

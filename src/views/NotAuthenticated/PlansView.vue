@@ -161,10 +161,8 @@ import { useDisplay } from 'vuetify';
 const { mdAndUp, smAndUp, smAndDown, mobile } = useDisplay();
 
 onMounted(() => {
-
 	browserModule().set_description(`staticPi plans page - view our current plan offerings`);
 	browserModule().set_title(pageTitle);
-
 });
 
 // / Don't show tooltips when on android or ios if also on mobile view!

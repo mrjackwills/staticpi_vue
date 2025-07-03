@@ -43,7 +43,6 @@ const textFields = computed((): Array<TChangeDevicePassword> => {
 			type: client_passwordVisible.value ? 'text' : 'password',
 			appendIcon: client_passwordVisible.value ? mdiEyeOff : mdiEye
 		});
-
 	}
 
 	return output;

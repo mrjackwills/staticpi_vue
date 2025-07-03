@@ -18,21 +18,35 @@ export const secondsToDays = (ms: number, short = true): string => {
 
 	return short
 		? `${day > 0
-			? `${zero_pad(day)}d` : ``}${day > 0
-			? ', ' : ''}${hour > 0
-			? `${zero_pad(hour)}h` : ``}${hour > 0
-			? ', ' : ''}${minute > 0 ? `${zero_pad(minute)}m` : ``}${minute > 0
-			? ', ' : ''}${zero_pad(second)}s`
+			? `${zero_pad(day)}d`
+			: ``}${day > 0
+			? ', '
+			: ''}${hour > 0
+			? `${zero_pad(hour)}h`
+			: ``}${hour > 0
+			? ', '
+			: ''}${minute > 0 ? `${zero_pad(minute)}m` : ``}${minute > 0
+			? ', '
+			: ''}${zero_pad(second)}s`
 		: `${day > 0
 			? `${day} day${day > 1
-				? 's' : ''}` : ``}${day > 0
-			? ', ' : ''}${hour > 0
+				? 's'
+				: ''}`
+			: ``}${day > 0
+			? ', '
+			: ''}${hour > 0
 			? `${zero_pad(hour)} hour${hour > 1
-				? 's' : ''}` : ``}${hour > 0 ? ', ' : ''}${minute > 0
+				? 's'
+				: ''}`
+			: ``}${hour > 0 ? ', ' : ''}${minute > 0
 			? `${minute} minute${minute > 1
-				? 's' : ''}` : ``}${minute > 0
-			? ', ' : ''}${second > 0
+				? 's'
+				: ''}`
+			: ``}${minute > 0
+			? ', '
+			: ''}${second > 0
 			? `${second} second${second > 1
-				? 's' : ''}` : ``}`;
-
+				? 's'
+				: ''}`
+			: ``}`;
 };

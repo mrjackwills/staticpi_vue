@@ -190,7 +190,6 @@ const click_active = async (): Promise<void> => {
 		emit('update');
 	} else {
 		active.value = props.user.active;
-
 	}
 };
 const bool_icon = (x: boolean): string => x ? mdiCheck : mdiClose;

@@ -92,7 +92,8 @@ const disabled = computed(() => localLoading.value ||
   switchStatus.value.max_clients && isNaN(deviceSettings.value.max_clients) ||
   switchStatus.value.device_password && !deviceSettings.value.device_password ||
   deviceSettings.value.max_clients > max_clients.value
-	? true : false);
+	? true
+	: false);
 const isFreeUser = computed(() => userStore.isFreeUser);
 const loading = computed({
 	get (): boolean {
@@ -103,7 +104,8 @@ const loading = computed({
 	}
 });
 const label = computed(() => isFreeUser.value ? 'device name will be randomly assigned' : 'device name (optional)');
-const max_clientsDescription = computed(() => isFreeUser.value ? 'Free users are only allowed 1 connected client per device'
+const max_clientsDescription = computed(() => isFreeUser.value
+	? 'Free users are only allowed 1 connected client per device'
 	: `Limit the number of simultaneous client connections to the device. The maximum allowed is ${max_clients.value}`);
 const passwordDescription = computed(() => isFreeUser.value
 	? 'Device password authentication is not available for free user'

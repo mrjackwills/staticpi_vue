@@ -109,7 +109,6 @@ onBeforeMount(async () => {
 	update_interval.value = setInterval(async () => {
 		await update();
 	}, 15_000);
-
 });
 
 </script>

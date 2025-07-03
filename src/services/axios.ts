@@ -73,7 +73,6 @@ const AllowedUsers = <T> (allowedUsers: Array<UserLevel>) => {
 };
 
 const wrap = <T>() => function (_target: AxiosClasses, propertyKey: string, descriptor: PropertyDescriptor): void {
-
 	const original = descriptor.value;
 	descriptor.value = async function (args: T): Promise<unknown> {
 		const [browser_store, user_store] = [browserModule(), userModule()];
@@ -133,21 +132,11 @@ class BaseAxios {
 			}
 		});
 
-		this.baseAxios.interceptors.response.use(
-			(config) => Promise.resolve(config),
-			(error) => !error.response ? Promise.reject(new Error('offline')) : Promise.reject(error)
-		);
+		this.baseAxios.interceptors.response.use((config) => Promise.resolve(config), (error) => !error.response ? Promise.reject(new Error('offline')) : Promise.reject(error));
 	}
 }
 
 class Incognito extends BaseAxios {
-
-	/*
-	 * constructor (url: string) {
-	 * 	super(url);
-	 * }
-	 */
-
 	@wrap<string>()
 	@isNotAuthenticated()
 	async forgot_post (email: string): Promise<string | undefined> {
@@ -219,13 +208,6 @@ class Incognito extends BaseAxios {
 }
 
 class AdminUser extends BaseAxios {
-
-	/*
-	 * constructor (url: string) {
-	 * 	super(url);
-	 * }
-	 */
-
 	@wrap()
 	@isAuthenticated()
 	async admin_get (): Promise<boolean> {
@@ -377,13 +359,6 @@ class AdminUser extends BaseAxios {
 }
 
 class AuthenticatedUser extends BaseAxios {
-
-	/*
-	 * constructor (url: string) {
-	 * 	super(url);
-	 * }
-	 */
-
 	@wrap()
 	async signout_post (): Promise<void> {
 		const user_store = userModule();
@@ -514,7 +489,6 @@ class AuthenticatedUser extends BaseAxios {
 }
 
 class Device extends BaseAxios {
-
 	@wrap<types.TAuthObject>()
 	@isAuthenticated<types.TAuthObject>()
 	async all_delete (authentication: types.TAuthObject): Promise<boolean> {
@@ -643,7 +617,6 @@ class Device extends BaseAxios {
 		const response = await this.baseAxios.get(`/${name}/cache`);
 		return response?.data?.response.cache;
 	}
-
 }
 
 class AxiosWs {
@@ -660,11 +633,7 @@ class AxiosWs {
 			}
 		});
 
-		this.axios_ws_token.interceptors.response.use(
-			(config) => Promise.resolve(config),
-			(error) => !error.response ? Promise.reject(new Error('offline')) : Promise.reject(error)
-		);
-
+		this.axios_ws_token.interceptors.response.use((config) => Promise.resolve(config), (error) => !error.response ? Promise.reject(new Error('offline')) : Promise.reject(error));
 	}
 
 	@wrap()
@@ -685,13 +654,11 @@ class AxiosWs {
 			return null;
 		}
 	}
-
 }
 class SiteStatus {
 	private axios_website!: AxiosInstance;
 
 	constructor (websiteUrl: string) {
-
 		this.axios_website = Axios.create({
 			baseURL: websiteUrl,
 			withCredentials: false,
@@ -702,22 +669,17 @@ class SiteStatus {
 			}
 		});
 
-		this.axios_website.interceptors.response.use(
-			(config) => Promise.resolve(config),
-			(error) => !error.response ? Promise.reject(new Error('offline')) : Promise.reject(error)
-		);
-
+		this.axios_website.interceptors.response.use((config) => Promise.resolve(config), (error) => !error.response ? Promise.reject(new Error('offline')) : Promise.reject(error));
 	}
 
 	async manifest_online (): Promise<string> {
 		try {
 			const response = await this.axios_website.get(`/manifest.webmanifest`);
 			return response.data.id;
-		} catch (_e) {
+		} catch {
 			return '';
 		}
 	}
-
 }
 
 export const axios_admin = new AdminUser('authenticated/admin');

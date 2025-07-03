@@ -132,7 +132,8 @@ onMounted(() => {
 });
 
 const disabled = computed(() => v$.value.$invalid || passwordCompromised.value || errorMessages.value.password || complete.value || localLoading.value || !user.value.age || !user.value.agree
-	? true : false);
+	? true
+	: false);
 
 const textFieldRows = computed((): Array<TRegisterTextField> => [
 	{
@@ -247,7 +248,7 @@ const rules = {
 
 const v$ = useVuelidate(rules, user);
 
-watch(() => user.value.email, (_) => {
+watch(() => user.value.email, () => {
 	user.value.email = user.value.email ? user.value.email.toLowerCase().trim() : '';
 	if (!v$.value?.email?.$invalid) {
 		errorMessages.value.email = '';
@@ -258,7 +259,7 @@ watch(() => user.value.email, (_) => {
 	errorMessages.value.email = 'email invalid';
 });
 
-watch(() => user.value.full_name, (_) => {
+watch(() => user.value.full_name, () => {
 	if (!v$.value?.full_name?.$invalid) {
 		errorMessages.value.full_name = '';
 		return;
@@ -267,7 +268,7 @@ watch(() => user.value.full_name, (_) => {
 	if (!v$.value.full_name.required) errorMessages.value.full_name = 'name required';
 });
 
-watch(() => user.value.invite, (_) => {
+watch(() => user.value.invite, () => {
 	user.value.invite = user.value.invite ? user.value.invite.trim() : '';
 	if (!v$.value?.invite?.$invalid) {
 		errorMessages.value.invite = '';
@@ -277,7 +278,7 @@ watch(() => user.value.invite, (_) => {
 	if (!v$.value.invite.required) errorMessages.value.invite = 'invite required';
 });
 
-watch(() => user.value.password, (_) => {
+watch(() => user.value.password, () => {
 	passwordCompromised.value = false;
 	errorMessages.value.password = '';
 	if (!user.value.password) passwordVisible.value = false;
