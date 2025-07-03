@@ -133,7 +133,8 @@ const disabled = computed(() => loading.value ||
   passwordRequired.value && !user.value.password ||
   passwordRequired.value && twoFA_always_required.value && !user.value.token ||
   twoFA_always_required.value && passwordRequired.value && tokenLength.value < 6
-	? true : false);
+	? true
+	: false);
 const icon = computed(() => dialogStore.icon);
 
 const logout = computed(() => title.value.toLowerCase() === 'logout');
@@ -161,14 +162,24 @@ const timeout = computed({
 		dialogStore.set_timeout(n);
 	}
 });
-const timeout_text = computed(() => timeout.value ? `${String(timeout.value).padStart(2, '0')}` : passwordRequired.value && !user.value.password
-	? 'password required ' : passwordRequired.value && twoFA_always_required.value && !user.value.token ||
-	  passwordRequired.value && twoFA_always_required.value && tokenError.value
-		? 'token required' : confirmButton.value);
-const timeout_icon = computed(() => timeout.value ? mdiTimerOutline : passwordRequired.value && !user.value.password
-	? mdiLock : passwordRequired.value && twoFA_always_required.value && !user.value.token ||
-	  passwordRequired.value && twoFA_always_required.value && tokenError.value ? mdiCellphoneInformation : icon.value
-			? icon.value : mdiCheck);
+const timeout_text = computed(() => timeout.value
+	? `${String(timeout.value).padStart(2, '0')}`
+	: passwordRequired.value && !user.value.password
+		? 'password required '
+		: passwordRequired.value && twoFA_always_required.value && !user.value.token ||
+		  passwordRequired.value && twoFA_always_required.value && tokenError.value
+			? 'token required'
+			: confirmButton.value);
+const timeout_icon = computed(() => timeout.value
+	? mdiTimerOutline
+	: passwordRequired.value && !user.value.password
+		? mdiLock
+		: passwordRequired.value && twoFA_always_required.value && !user.value.token ||
+		  passwordRequired.value && twoFA_always_required.value && tokenError.value
+			? mdiCellphoneInformation
+			: icon.value
+				? icon.value
+				: mdiCheck);
 
 const title = computed(() => dialogStore.title ?? 'warning');
 const titleSize = computed(() => mdAndUp.value ? 'text-h4' : 'text-h6');

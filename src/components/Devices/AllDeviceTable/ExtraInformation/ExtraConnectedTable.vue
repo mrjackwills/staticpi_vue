@@ -74,42 +74,27 @@ const hidden = ref(false);
 const isIntersecting = ref(false);
 
 const onIntersect = (is_i: boolean, _entries: Array<IntersectionObserverEntry>, _observer: IntersectionObserver): void => {
-
 	isIntersecting.value = is_i;
-
 };
 
 const emit = defineEmits(['hidden']);
 const toggleHidden = (): void => {
-
 	hidden.value = !hidden.value;
-	emit(
-		'hidden',
-		hidden.value
-	);
-
+	emit('hidden', hidden.value);
 };
 
-const props = withDefaults(
-	defineProps<{
-		is_device: boolean;
-		online: boolean;
-		tableRows: Array<TExtraTableRow>;
-	}>(),
-	{
-		is_device: true,
-		online: true
-	}
-);
+const props = withDefaults(defineProps<{
+	is_device: boolean;
+	online: boolean;
+	tableRows: Array<TExtraTableRow>;
+}>(), {
+	is_device: true,
+	online: true
+});
 
-watch(
-	isIntersecting,
-	(i: boolean): void => {
-
-		if (!i) hidden.value = false;
-
-	}
-);
+watch(isIntersecting, (i: boolean): void => {
+	if (!i) hidden.value = false;
+});
 </script>
 
 <style scoped>

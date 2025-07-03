@@ -180,7 +180,7 @@ watch(passwordCompromised, (i: boolean): void => {
 watch(() => user.value.token, (): void => {
 	errorMessages.value.token = '';
 });
-watch(() => user.value.password, (_) => {
+watch(() => user.value.password, () => {
 	passwordCompromised.value = false;
 	errorMessages.value.password = '';
 	if (user.value.password) passwordVisible.value = false;

@@ -113,7 +113,6 @@ const hexRoutes: Array<RouteRecordRaw> = [
 			const resetId = resetPassword_store.id;
 			if (isAuthenticated || !resetId) next(FrontEndRoutes.ERROR);
 			else next();
-
 		}
 	},
 	{

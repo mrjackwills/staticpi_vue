@@ -15,7 +15,6 @@ export const settingSectionModule = defineStore(ModuleName.SETTINGS_SECTION, {
 		},
 
 		set_current_section (value: TSettingSection | undefined) {
-
 			const router = getActivePinia()?.router();
 			const route = router?.currentRoute;
 			const pathIncludesSection = route?.value.fullPath.toLowerCase().includes(`?section=${value}`);

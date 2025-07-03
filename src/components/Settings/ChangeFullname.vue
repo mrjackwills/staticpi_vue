@@ -84,7 +84,9 @@ onBeforeMount(() => {
 
 const disabled = computed(() => v$.value.$invalid ||
   errorMessages.value.full_name ||
-  loading.value ? true : false);
+  loading.value
+	? true
+	: false);
 
 const componentDisabled = computed(() => settingSectionStore.current_section && settingSectionStore.current_section !== 'changefullname' ? true : false);
 

@@ -107,7 +107,7 @@ const forgot = async (): Promise<void> => {
 	complete.value = true;
 };
 
-watch(() => user.value.email, (_) => {
+watch(() => user.value.email, () => {
 	user.value.email = user.value.email ? user.value.email.toLowerCase().trim() : '';
 	if (!v$.value.email.$invalid) {
 		emailError.value = '';

@@ -367,10 +367,12 @@ const sendMessage = async (): Promise<void> => {
 	const data = message.value.startsWith('{') ? parser(message.value) : message.value;
 	if (!data) return snackError({ message: 'parsing error - invalid message' });
 	if (props.device.structured_data) {
-		const toSend = unique.value ? JSON.stringify({
-			data,
-			unique: true
-		}) : JSON.stringify({ data });
+		const toSend = unique.value
+			? JSON.stringify({
+				data,
+				unique: true
+			})
+			: JSON.stringify({ data });
 		if (!toSend) return snackError({ message: 'parsing error - invalid message' });
 		ws.value?.send(toSend);
 	} else ws.value?.send(message.value);

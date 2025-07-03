@@ -4,12 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "serve": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview",
     "check": "vue-tsc --noEmit",
-    "lint": "eslint ./src"
+    "dev": "vite",
+    "lint": "eslint ./src",
+    "preview": "vite preview",
+    "serve": "vite",
+    "tsc": "vue-tsc --noEmit"
   },
   "dependencies": {
     "@vuelidate/core": "^2.0.3",

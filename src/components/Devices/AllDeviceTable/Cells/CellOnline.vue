@@ -22,8 +22,10 @@ const { mdAndUp, smAndDown } = useDisplay();
 const show_tooltip = computed(() => !(browserModule().android_ios && useDisplay().mobile.value));
 
 const tooltipText = computed(() => timestamp_online.value && !timestamp_offline.value
-	? `online since ${timestamp_online.value.toLocaleString()}` : timestamp_online.value && timestamp_offline.value
-		? `offline since ${timestamp_offline.value.toLocaleString()}` : 'never connected');
+	? `online since ${timestamp_online.value.toLocaleString()}`
+	: timestamp_online.value && timestamp_offline.value
+		? `offline since ${timestamp_offline.value.toLocaleString()}`
+		: 'never connected');
 const online = computed(() => timestamp_online.value && !timestamp_offline.value ? true : false);
 const color = computed(() => online.value ? 'primary' : 'pi');
 const icon = computed(() => online.value ? mdiWifi : mdiWifiOff);

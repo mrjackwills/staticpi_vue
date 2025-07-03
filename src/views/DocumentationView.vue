@@ -122,7 +122,7 @@ const links = [
 const createLink = (section: 'connect' | 'connect-with-password' | 'rate-limits' | 'structured-data' | 'binary-data' | 'examples'): string => `${FrontEndRoutes.DOCUMENTATION}#${section}`;
 
 // Hacky way to re-compute the code boxes with a computed api key
-watch(deviceSelected, (_i: string): void => {
+watch(deviceSelected, (): void => {
 	componentKey.value++;
 });
 

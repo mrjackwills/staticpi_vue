@@ -149,10 +149,7 @@ const rules = {
 
 const disabled = computed(() => v$.value.$invalid);
 
-const v$ = useVuelidate(
-	rules,
-	model
-);
+const v$ = useVuelidate(rules, model);
 
 const addInvite = (): void => {
 	if (v$.value.$invalid) return;

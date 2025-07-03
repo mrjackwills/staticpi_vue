@@ -149,7 +149,7 @@ const rules = {
 
 const v$ = useVuelidate(rules, message_data);
 
-watch(() => message_data.value.email, (_) => {
+watch(() => message_data.value.email, () => {
 	message_data.value.email = message_data.value.email ? message_data.value.email.toLowerCase().trim() : '';
 	if (!v$.value?.email?.$invalid) {
 		errorMessages.value.email = '';

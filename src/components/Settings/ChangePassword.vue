@@ -133,7 +133,9 @@ const disabled = computed(() => v$.value.$invalid ||
   passwordCompromised.value ||
   loading.value ||
   twoFA_always_required.value && !user.value.token ||
-  twoFA_always_required.value && user.value.token.length < 6 ? true : false);
+  twoFA_always_required.value && user.value.token.length < 6
+	? true
+	: false);
 
 const componentDisabled = computed(() => settingSectionStore.current_section && settingSectionStore.current_section !== 'changepassword' ? true : false);
 

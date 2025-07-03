@@ -137,7 +137,8 @@ const sortByConnection = (): void => {
 
 const sortByName = (): void => {
 	sortedBy.value.name = 'name';
-	const tmp = sortedBy.value.largestFirst ? tableData.value.sort((a, b) => a.name_of_device.localeCompare(b.name_of_device))
+	const tmp = sortedBy.value.largestFirst
+		? tableData.value.sort((a, b) => a.name_of_device.localeCompare(b.name_of_device))
 		: tableData.value.sort((a, b) => b.name_of_device.localeCompare(a.name_of_device));
 	sortedBy.value.largestFirst = !sortedBy.value.largestFirst;
 	deviceStore.set_all_devices(tmp);
@@ -148,8 +149,11 @@ const sortByBandwidth = (): void => {
 	const tmp = tableData.value.sort((a, b) => {
 		return Number(a.pi_bytes_month_out ?? 0) + Number(a.client_bytes_month_out ?? 0) >= Number(b.pi_bytes_day_out ?? 0) + Number(b.client_bytes_month_out ?? 0)
 			? sortedBy.value.largestFirst
-				? -1 : 1 : sortedBy.value.largestFirst
-				? 1 : -1;
+				? -1
+				: 1
+			: sortedBy.value.largestFirst
+				? 1
+				: -1;
 	});
 	sortedBy.value.largestFirst = !sortedBy.value.largestFirst;
 	deviceStore.set_all_devices(tmp);
