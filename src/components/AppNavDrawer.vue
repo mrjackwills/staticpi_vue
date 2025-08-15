@@ -36,8 +36,9 @@
 				<template v-slot:prepend>
 					<v-icon :icon='item.icon' class='mr-2'/>
 				</template>
-				<template v-slot:title>
-					<span class=''>{{ item.message }}</span>
+				<template v-slot:title >
+					<!-- this is new -->
+					<span class='' v-if='!mini'>{{ item.message }}</span>
 				</template>
 			</v-list-item>
 
@@ -54,7 +55,7 @@
 							<v-icon :icon='item.icon' class='mr-2' />
 						</template>
 						<template v-slot:title>
-							<span class=''>{{ item.message }}</span>
+							<span class='' v-if='!mini'>{{ item.message }}</span>
 						</template>
 					</v-list-item>
 				</section>
@@ -66,7 +67,7 @@
 						<v-icon :icon='miniLogo' class='mr-2' />
 					</template>
 					<template v-slot:title>
-						<span class=''>minimize</span>
+						<span class='' v-if='!mini'>minimize</span>
 					</template>
 				</v-list-item>
 				<v-divider color='white' class='divider' />
@@ -75,13 +76,15 @@
 						<v-icon :icon='mdiLoginVariant' class='flipx mr-2' />
 					</template>
 					<template v-slot:title>
-						<span class=''>logout</span>
+						<span class='' v-if='!mini'>logout</span>
 					</template>
 				</v-list-item>
 			</section>
 			<section v-if='!mini' >
-				<v-divider color='white' class='divider' />
-				<FooterText class='mt-2' />
+				<v-list-item >
+					<v-divider color='white' class='divider' />
+					<FooterText class='mt-2' />
+				</v-list-item>
 			</section>
 		</v-list>
 
