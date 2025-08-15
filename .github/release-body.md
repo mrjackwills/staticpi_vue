@@ -1,9 +1,10 @@
-### 2025-07-03
+### 2025-08-16
 
 ### Chores
-+ create_release.sh updated, [ba0e51a3cc218a014c23b8c3dff4d97f27c10d19]
-+ linting, [7b90272746709b0ccad51773ac92f12451253090]
-+ dependencies updated, [64f172a98b8427472a781b6266250770b877e819], [08ffe3c39930a2c0b338f8d1e1185be79845b510]
++ type errors fixed, [48a1113848cc898c98111c70c9cd00252080cb35]
++ dependencies updated, [eaa3c053bc55f825d9d3543738647ca185ebbab5]
 
+### Fixes
++ nav drawer rail text issue, [efbd4d72fc772a906eb482f9766163a204acfe81]
 
 see <a href='https://github.com/mrjackwills/staticpi_vue/blob/main/CHANGELOG.md'>CHANGELOG.md</a> for more details
