@@ -23,10 +23,10 @@ export const snackSuccess = ({ message = 'Success', icon = mdiCheckCircleOutline
 		icon,
 		timeout,
 		x,
-		y,
 		type,
 		closable,
-		loading
+		loading,
+		...y ? { y } : {}
 	});
 };
 
@@ -36,8 +36,8 @@ export const snackError = ({ message = 'error', icon = mdiAlertCircle, timeout =
 		icon,
 		timeout,
 		x,
-		y,
 		type,
-		closable
+		closable,
+		...y ? { y } : {}
 	});
 };

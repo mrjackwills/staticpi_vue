@@ -1,5 +1,5 @@
 <template>
-	<v-snackbar v-model='visible' :class='[margin, { "mr-2": isDesktop }]' :location='snack_location'
+	<v-snackbar v-model='visible' :class='[margin, { "mr-2": isDesktop }]' :location='snack_location??"bottom center"'
 		:multi-line='isDesktop' :timeout='timeoutValue' :top='position.y === "top"' class='ma-0 pa-0'
 		content-class='tooltip_bottom'>
 		<v-row align='center' class='no-gutters ma-0 pa-0' justify='center' style='height:100%'>
@@ -43,7 +43,11 @@ const isDesktop = computed(() => mdAndUp.value);
 const loading = computed(() => snackbarStore.loading);
 
 // Not sure if this is correct, but satisfies the type checker
-const snack_location = computed((): VDialog['$props']['location'] => mdAndUp.value ? `${snackbarStore.position.x} ${snackbarStore.position.y}` : `bottom center`);
+const snack_location = computed((): VDialog['$props']['location'] => {
+	const x = snackbarStore.position.x ?? 'left';
+	const y = snackbarStore.position.y ?? 'bottom';
+	return mdAndUp.value ? `${y} ${x}` : `bottom center`;
+});
 const margin = computed(() => smAndDown.value || !authenticated.value ? '' : navDrawerModule().mini ? 'mini_margin' : 'margin');
 const message = computed({
 	get (): string {

@@ -1,5 +1,5 @@
 <template>
-	<v-row :justify='justify' align='center' class='ma-0 pa-0 no-gutters' :class='margin' no-gutters>
+	<v-row :justify='justify??"center"' align='center' class='ma-0 pa-0 no-gutters' :class='margin' no-gutters>
 		<v-col cols='auto' class='ma-0 pa-0'>
 			<div class='text-center text-pi font-weight-bold' :class='headingSize'>{{ heading }}</div>
 			<v-divider v-if='divider' />

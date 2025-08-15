@@ -47,7 +47,13 @@ const { mobile } = useDisplay();
 const smallText = computed(() => mobile.value ? 'small-text' : '');
 const vsColor = '#4b4453';
 
-const highlighted_code = computed(() => prism.highlight(props.code, prism.languages.js, 'js').trim());
+const highlighted_code = computed(() => {
+	if (prism.languages.js) {
+		return prism.highlight(props.code, prism.languages.js, 'js').trim();
+	} else {
+		return '';
+	}
+});
 
 const codeIcons = ['#ff5f56', '#ffbd2e', '#27c93f'];
 

@@ -253,7 +253,7 @@ const submit = async (): Promise<void> => {
 	}
 	const response = await axios_authenticatedUser.password_patch({
 		current_password: user.value.current_password,
-		token: user.value.token ? user.value.token : undefined,
+		token: user.value.token ?? null,
 		new_password: user.value.new_password,
 		remove_sessions: user.value.remove_sessions
 	});

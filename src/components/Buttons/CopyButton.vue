@@ -6,7 +6,7 @@
 					<span v-intersect='onIntersect'>{{ message }}</span>
 				</v-tooltip>
 				<v-btn @click='copyItem' @mouseenter='mouseenter' @mouseleave='mouseleave' :dark='disabled && dark'
-					:density='density' :disabled='disabled' :size='iconSize' class='fab-fix pa-0 ma-0' variant='text'
+					:density='density??"default"' :disabled='disabled' :size='iconSize' class='fab-fix pa-0 ma-0' variant='text'
 					icon>
 					<v-icon :color='color' :icon='mdiContentCopy' :size='iconSize' />
 				</v-btn>

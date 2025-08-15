@@ -202,8 +202,9 @@ const login = async (): Promise<void> => {
 	const authObject = {
 		email: user.value.email.toLowerCase(),
 		password: user.value.password,
-		token: user.value.token ? user.value.token.replace(/\s/g, '') : undefined,
-		remember: user.value.remember
+		remember: user.value.remember,
+		// TODO test me
+		...user.value.token ? { token: user.value.token.replace(/\s/g, '') } : {}
 	};
 	const loginRequest = await axios_incognito.signin_post(authObject);
 	localLoading.value = false;

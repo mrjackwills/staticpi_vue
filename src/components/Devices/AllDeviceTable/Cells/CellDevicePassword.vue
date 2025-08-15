@@ -18,7 +18,7 @@
 
 						<v-row align='center' justify='center' class='ma-0 pa-0'>
 							<v-col v-for='(item, index) in buttons' :key='index' cols='auto' class='ma-0 pa-0 mx-2'>
-								<v-btn @click='item.click' :class='item.class' :disabled='item.disabled' class='fab-fix'
+								<v-btn @click='item.click' :class='item.class' :disabled='item.disabled??false' class='fab-fix'
 									icon variant='text' size='x-small'>
 									<v-icon :color='item.color' :icon='item.icon' />
 								</v-btn>

@@ -1,3 +1,13 @@
+# <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.2.4'>v0.2.4</a>
+### 2025-08-16
+
+### Chores
++ type errors fixed, [48a11138](https://github.com/mrjackwills/staticpi_vue/commit/48a1113848cc898c98111c70c9cd00252080cb35)
++ dependencies updated, [eaa3c053](https://github.com/mrjackwills/staticpi_vue/commit/eaa3c053bc55f825d9d3543738647ca185ebbab5)
+
+### Fixes
++ nav drawer rail text issue, [efbd4d72](https://github.com/mrjackwills/staticpi_vue/commit/efbd4d72fc772a906eb482f9766163a204acfe81)
+
 # <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.2.3'>v0.2.3</a>
 ### 2025-07-03
 

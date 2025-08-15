@@ -87,7 +87,9 @@ const headings = [
 ] as const;
 
 const sortedBy: Ref<TSortedBy> = ref({
-	name: undefined,
+	// TODO
+
+	// name: null,
 	largestFirst: true
 });
 

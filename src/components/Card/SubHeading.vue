@@ -1,5 +1,5 @@
 <template>
-	<v-row :justify='justify' align='center' class='ma-0 pa-0' no-gutters>
+	<v-row :justify='justify??"center"' align='center' class='ma-0 pa-0' no-gutters>
 		<v-col cols='auto' class='ma-0 pa-0'>
 			<div class='text-center font-weight-bold' :class='[headingSize, headingColor]'>{{ heading }}</div>
 		</v-col>

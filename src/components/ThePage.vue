@@ -13,7 +13,7 @@
 		<v-row
 			v-if='pageReady'
 			:class='{"fill-height":fillHeight}'
-			:justify='justify'
+			:justify='justify??"center"'
 			align='center'
 			class='ma-0 pa-0 no-gutters'
 			id='the_page'
