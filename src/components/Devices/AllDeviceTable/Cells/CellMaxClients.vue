@@ -17,7 +17,7 @@
 			<v-row align='center' justify='center' class='ma-0 pa-0 no-gutters' v-if='inFocus'
 				v-intersect='onIntersect'>
 				<v-col v-for='(item, index) in buttons' :key='index' cols='auto' class='ma-0 pa-0 pb-2 px-2'>
-					<v-btn @click='item.click' :class='item.class' :disabled='item.disabled' class='fab-fix'
+					<v-btn @click='item.click' :class='item.class' :disabled='item.disabled??false' class='fab-fix'
 						size='x-small' variant='text' icon>
 						<v-icon :color='item.color' :icon='item.icon' />
 					</v-btn>
@@ -102,7 +102,7 @@ const update_maxClients_confirm = async (authentication?: TAuthObject): Promise<
 	const response = await axios_device.maxClients_patch({
 		maxClients: new_value.value,
 		name: name_of_device.value,
-		authentication
+		...authentication ? { authentication } : {}
 	});
 	loading.value = false;
 	if (response) snackSuccess({

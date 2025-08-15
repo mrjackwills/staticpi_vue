@@ -24,8 +24,8 @@ export type TSnack = {
 } & Partial<TSnackPosition>;
 
 export type TSnackPosition = {
-	x: TPositionX;
-	y: TPositionY;
+	x?: TPositionX;
+	y?: TPositionY;
 };
 export type TPositionX = 'left' | 'right';
 export type TPositionY = 'bottom' | 'top';

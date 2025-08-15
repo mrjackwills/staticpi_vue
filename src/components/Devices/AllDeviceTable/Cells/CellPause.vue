@@ -53,7 +53,7 @@ const pauseDevice_confirm = async (authentication?: TAuthObject): Promise<void> 
 	const response = await axios_device.paused_patch({
 		pause: !paused.value,
 		name: name_of_device.value,
-		authentication
+		...authentication ? { authentication } : {}
 	});
 	loading.value = false;
 	if (response) {

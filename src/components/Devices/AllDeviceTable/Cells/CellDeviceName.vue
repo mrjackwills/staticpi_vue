@@ -23,7 +23,7 @@
 			<v-row align='center' justify='center' class='ma-0 pa-0' v-if='inFocus && !paused'
 				v-intersect='onIntersect'>
 				<v-col v-for='(item, index) in buttons' :key='index' cols='auto' class='ma-0 pa-0 pb-2 px-2'>
-					<v-btn @click='item.click' :class='item.class' :disabled='item.disabled' class='fab-fix'
+					<v-btn @click='item.click' :class='item.class' :disabled='item.disabled??false' class='fab-fix'
 						variant='text' size='x-small' icon>
 						<v-icon :color='item.color' :icon='item.icon' />
 					</v-btn>
@@ -108,7 +108,7 @@ const renameDevice_confirm = async (authentication?: TAuthObject): Promise<void>
 	const response = await axios_device.rename_patch({
 		new_name: newName.value,
 		name: name_of_device.value,
-		authentication
+		...authentication ? { authentication } : {}
 	});
 	loading.value = false;
 	if (response) {

@@ -228,11 +228,10 @@ const click = async (): Promise<void> => {
 	if (passwordRequired.value && !user.value.password || timeout.value > 0 || disabled.value || !confirmMethod.value) return;
 	passwordVisible.value = false;
 	visible.value = false;
-	const data = {
+	await confirmMethod.value({
 		password: user.value.password,
-		token: user.value.token
-	};
-	await confirmMethod.value(data);
+		...user.value.token ? { token: user.value.token } : {}
+	});
 	dialogStore.$reset();
 };
 
