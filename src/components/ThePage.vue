@@ -42,13 +42,9 @@
 
 <script setup lang='ts'>
 import type { VRow } from 'vuetify/components/VGrid';
-import { useDisplay } from 'vuetify';
-
-const { lgAndUp } = useDisplay();
-
 const loading = computed(() => loadingModule().loading);
 
-const appbarHeight = computed(() => lgAndUp.value ? '76' : '56');
+const appbarHeight = computed(() => appBarModule().size);
 
 withDefaults(defineProps<{
 	fillHeight?: boolean;

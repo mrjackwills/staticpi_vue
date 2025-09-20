@@ -6,7 +6,7 @@ export const appBarModule = defineStore(ModuleName.APPBAR, {
 	state: () => ({ size: 0 }),
 
 	actions: {
-		set_loading (value: number) {
+		set_size (value: number) {
 			this.size = value;
 		}
 	}

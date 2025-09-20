@@ -24,7 +24,7 @@ import { useHead } from '@vueuse/head';
 import { useRegisterSW } from 'virtual:pwa-register/vue';
 import { useRoute } from 'vue-router';
 
-const { mdAndDown } = useDisplay();
+const { mdAndDown, lgAndUp } = useDisplay();
 const { updateServiceWorker } = useRegisterSW();
 const platform = useDisplay().platform;
 const route = useRoute();
@@ -37,6 +37,15 @@ if ('serviceWorker' in navigator) {
 	});
 }
 
+
+const set_appbar_height = (): void => {
+	if (lgAndUp.value) {
+		appBarModule().set_size(76);
+	} else {
+		appBarModule().set_size(56);
+	}
+};
+
 const appUpdate = (): void => {
 	snackSuccess({
 		message: 'Updating website',
@@ -48,6 +57,10 @@ const appUpdate = (): void => {
 	window.setTimeout(() => updateServiceWorker(), 4000);
 };
 
+watch(lgAndUp, () => {
+	set_appbar_height();
+});
+
 watch(platform, (i) => {
 	browserStore.set_android_ios(i.ios || i.android);
 });
@@ -55,6 +68,7 @@ watch(platform, (i) => {
 onMounted(() => {
 	const platform = useDisplay().platform.value;
 	browserStore.set_android_ios(platform.ios || platform.android);
+	set_appbar_height();
 });
 
 const browserStore = browserModule();
