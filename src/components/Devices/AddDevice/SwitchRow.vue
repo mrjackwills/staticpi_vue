@@ -5,7 +5,7 @@
 				<v-col cols='auto' class=''>
 					<v-switch
 						v-model='switched'
-						:disabled='disabled'
+						:disabled
 						:hide-details='true'
 						color='primary'
 						density='compact'

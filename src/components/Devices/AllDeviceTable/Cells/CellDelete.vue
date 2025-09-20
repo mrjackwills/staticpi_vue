@@ -1,7 +1,7 @@
 <template>
-	<v-row align='center' :justify='justify' class='no-gutters pa-0 ma-0'>
+	<v-row align='center' :justify class='no-gutters pa-0 ma-0'>
 
-		<FabTooltip @click='deleteDevice' :disabled='!online' :icon='mdiDeleteCircle' :tooltip_text='tooltip_text'
+		<FabTooltip @click='deleteDevice' :disabled='!online' :icon='mdiDeleteCircle' :tooltip_text
 			color='pi' />
 	</v-row>
 </template>

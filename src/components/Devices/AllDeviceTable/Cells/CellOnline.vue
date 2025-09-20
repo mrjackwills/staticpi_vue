@@ -1,12 +1,12 @@
 <template>
-	<v-row align='center' :justify='justify' no-gutters class=''>
+	<v-row align='center' :justify no-gutters class=''>
 		<v-col cols='auto' class='ma-0 pa-0'>
 
 			<v-tooltip v-if='show_tooltip' activator='parent' location='top center' content-class='tooltip'>
 				<span> {{ tooltipText }}</span>
 			</v-tooltip>
 
-			<v-icon :color='color' :disabled='paused' :icon='icon' :size='smAndDown ? "small" : "default"' />
+			<v-icon :color :disabled='paused' :icon :size='smAndDown ? "small" : "default"' />
 		</v-col>
 	</v-row>
 </template>

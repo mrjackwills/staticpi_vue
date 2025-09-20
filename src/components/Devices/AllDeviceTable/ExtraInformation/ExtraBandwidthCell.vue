@@ -7,7 +7,7 @@
 		</v-col>
 
 		<v-col class='ma-0 pa-0 text-right' cols='auto'>
-			<v-icon :color='color' :icon='icon' :size='mobile ? "x-small" : "small"' />
+			<v-icon :color :icon :size='mobile ? "x-small" : "small"' />
 		</v-col>
 
 	</v-row>

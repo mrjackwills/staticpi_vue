@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<v-row align='center' :justify='justify' no-gutters class='pt-1'>
+		<v-row align='center' :justify no-gutters class='pt-1'>
 			<v-col cols='6' class='pa-0 ma-0'>
 				<v-tooltip v-if='show_tooltip' :disabled='!freeUser' activator='parent' location='top center'
 					content-class='tooltip'>

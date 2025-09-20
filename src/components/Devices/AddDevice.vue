@@ -13,7 +13,7 @@
 							<v-col cols='12'>
 								<v-text-field v-model='deviceSettings.name' @keydown.enter='addNewDevice'
 									:prepend-inner-icon='mdiDevices' :density='smAndDown ? "compact" : "default"'
-									:disabled='localLoading || isFreeUser' :error-messages='deviceError' :label='label'
+									:disabled='localLoading || isFreeUser' :error-messages='deviceError' :label
 									autocomplete='new-password' maxlength='64' type='text' color='primary' clearable
 									counter variant='outlined' validate-on-blur />
 								<v-tooltip v-if='show_tooltip && isFreeUser' activator='parent' location='top center'

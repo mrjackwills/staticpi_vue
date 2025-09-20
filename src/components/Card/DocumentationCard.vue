@@ -13,7 +13,7 @@
 							<ProUserChip :class='proMargin' class='ma-1 ml-3' v-if='pro' />
 						</v-col>
 						<v-col cols='auto' class='ma-0 pa-0' order='1'>
-							<SubHeading :heading='heading' justify='start' :id='createId' />
+							<SubHeading :heading justify='start' :id='createId' />
 						</v-col>
 					</v-row>
 					<v-divider class='mb-1' />

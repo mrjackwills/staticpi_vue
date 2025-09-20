@@ -4,7 +4,7 @@
 			<v-col cols='12' md='8' class='ma-0 pa-0'>
 				<v-row class='ma-0 pa-0'>
 					<v-col cols='1' sm='auto' class='ma-0 pa-0' :class='mdAndUp ? "mr-2" : "mr-1"'>
-						<v-icon :color='iconColor' :size='smAndDown ? "small" : "default"' :icon='icon' />
+						<v-icon :color='iconColor' :size='smAndDown ? "small" : "default"' :icon />
 					</v-col>
 					<v-col cols='9' sm='auto' class='ma-0 pa-0'>
 						<span :class='[textColor, textSize]'>{{ text }}</span>

@@ -23,7 +23,7 @@
 		</v-row>
 		<v-row class='py-1' justify='center'>
 			<v-col cols='auto' class=' text-center py-1'>
-				<QrCode :value='qrCode' :size='size' level='H' render-as='svg' />
+				<QrCode :value='qrCode' :size level='H' render-as='svg' />
 				<v-row class='' justify='center'>
 					<v-col cols='auto' class='text-caption'>
 						secret: {{ secret }}

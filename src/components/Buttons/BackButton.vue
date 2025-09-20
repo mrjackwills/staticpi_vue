@@ -7,7 +7,7 @@
 		class='mr-2'
 		color='pi'
 		text='back'
-		:disabled='disabled'
+		:disabled
 	/>
 </template>
 

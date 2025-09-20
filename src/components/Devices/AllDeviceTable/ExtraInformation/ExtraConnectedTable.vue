@@ -2,12 +2,12 @@
 	<v-row align='center' justify='center' class='ma-0 pa-0 no-gutters' v-intersect='onIntersect'>
 		<v-col cols='12' class='ma-0 pa-0'>
 
-			<v-row align='center' :justify='justify' class='ma-0 pa-0 no-gutters cl' @click='toggleHidden'>
+			<v-row align='center' :justify class='ma-0 pa-0 no-gutters cl' @click='toggleHidden'>
 				<v-col cols='auto' class='ma-0 pa-0'>
-					<v-icon :color='iconColor' :icon='icon' />
+					<v-icon :color='iconColor' :icon />
 				</v-col>
 				<v-col cols='auto' class='mx-2 ma-0 pa-0 no-gutters'>
-					<SubHeading :heading='heading' :heading_size='"text-h7 unselectable"' justify='start'
+					<SubHeading :heading :heading_size='"text-h7 unselectable"' justify='start'
 						:color='iconColor' />
 				</v-col>
 				<v-col cols='auto' class='ma-0 pa-0'>

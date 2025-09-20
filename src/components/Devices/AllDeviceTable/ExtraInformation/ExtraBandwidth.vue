@@ -1,21 +1,21 @@
 <template>
 	<v-row align='center' justify='center' class='ma-0 pa-0 no-gutters unselectable' v-intersect='onIntersect'>
-		<v-col :cols='cols' class='ma-0 pa-0'>
+		<v-col :cols class='ma-0 pa-0'>
 
 			<v-row align='center' justify='center' class='ma-0 pa-0 no-gutters'>
 
 				<v-col cols='12' md='auto' class='ma-0 pa-0 cl' @click='toggleHidden'>
 
-					<v-row align='center' :justify='justify' class='ma-0 pa-0 no-gutters' v-if='show_calc'>
+					<v-row align='center' :justify class='ma-0 pa-0 no-gutters' v-if='show_calc'>
 						<v-col cols='auto' class='ma-0 pa-0'>
-							<v-icon :color='color' :icon='mdiSwapVerticalBold' />
+							<v-icon :color :icon='mdiSwapVerticalBold' />
 						</v-col>
 						<v-col cols='auto' class='mx-2 ma-0 pa-0'>
 							<SubHeading heading='bandwidth' :heading_size='"text-h7 unselectable"' justify='start'
-								:color='color' />
+								:color />
 						</v-col>
 						<v-col cols='auto' class='ma-0 pa-0'>
-							<v-icon :color='color' :class='{ "flipy": hidden }' :icon='mdiChevronDoubleUp' />
+							<v-icon :color :class='{ "flipy": hidden }' :icon='mdiChevronDoubleUp' />
 						</v-col>
 					</v-row>
 
@@ -55,7 +55,7 @@
 						</v-row>
 					</section>
 
-					<component :is='isComponent' :device='device' />
+					<component :is='isComponent' :device />
 
 					<v-divider />
 

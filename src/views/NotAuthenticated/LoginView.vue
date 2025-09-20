@@ -53,7 +53,7 @@
 						</v-col>
 						<v-col cols='6'>
 							<ActionButton @click='login' :block='true' :icon='mdiSend' text='login'
-								:disabled='disabled' />
+								:disabled />
 
 						</v-col>
 					</v-row>

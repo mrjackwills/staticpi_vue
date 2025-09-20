@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<v-row align='center' :justify='justify' no-gutters class='pt-1 mb-n2'>
+		<v-row align='center' :justify no-gutters class='pt-1 mb-n2'>
 			<v-col cols='auto' class='ma-0 pa-0 mb-n3'>
 				<v-switch v-model='new_value' :disabled='paused || freeUser' color='primary' density='compact'
 					:error-messages='notSaved' />

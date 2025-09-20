@@ -1,5 +1,5 @@
 <template>
-	<router-link :to='to' target='_blank'>
+	<router-link :to target='_blank'>
 		<v-icon :size='iconSize' color='primary' :icon='mdiLinkVariant' />
 		<v-tooltip v-if='show_tooltip' activator='parent' location='top center' content-class='tooltip'>
 			<span> open documentation</span>

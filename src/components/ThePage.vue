@@ -24,9 +24,9 @@
 					<v-col cols='12' class='pa-0 ma-0 mt-1'>
 						<CardHeading
 							v-if='heading'
-							:heading='heading'
-							:justify='justify'
-							:margin='margin'
+							:heading
+							:justify
+							:margin
 							class='ml-2'
 
 						/>

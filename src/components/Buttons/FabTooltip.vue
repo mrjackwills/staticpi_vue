@@ -1,7 +1,7 @@
 <template>
 	<v-col cols='auto' class='ma-0 pa-0'>
-		<v-btn @click='emit("click")' :disabled='disabled' class='fab-fix ma-0 pa-0' variant='text' icon>
-			<v-icon :color='color' :icon='icon' :size='iconSize' />
+		<v-btn @click='emit("click")' :disabled class='fab-fix ma-0 pa-0' variant='text' icon>
+			<v-icon :color :icon :size='iconSize' />
 			<v-tooltip v-if='show_tooltip && tooltip_text' activator='parent' location='top center'
 				content-class='tooltip'>
 				<span>{{ tooltip_text }}</span>

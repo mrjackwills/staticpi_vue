@@ -1,8 +1,8 @@
 
 <template>
 	<ThePage
-		:pageReady='pageReady'
 		:heading='pageTitle'
+		:pageReady
 		margin=''
 	>
 

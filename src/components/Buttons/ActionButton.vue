@@ -9,8 +9,8 @@
 		>
 			<v-btn
 				@click='click'
-				:block='block'
-				:color='color'
+				:block
+				:color
 				:disabled='disabled && !overrideDisabled || !online && !overrideDisabled'
 				:size='buttonSize'
 				:to='routerLink'
@@ -33,7 +33,7 @@
 					>
 						<v-icon
 							:class='flipx'
-							:icon='icon'
+							:icon
 						/>
 					</v-col>
 					<v-col

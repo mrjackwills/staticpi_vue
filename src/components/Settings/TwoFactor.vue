@@ -13,7 +13,7 @@
 			</v-expand-transition>
 			<v-expand-transition>
 				<section v-if='active && !backupProcess'>
-					<TFAStatusRow @click='removeTwoFA' :active='active' text='Two-Factor enabled' />
+					<TFAStatusRow @click='removeTwoFA' :active text='Two-Factor enabled' />
 					<v-row class='ma-0 pa-0' justify='center'>
 						<v-col cols='12' md='8' class='ma-0 pa-0'>
 							<v-divider />

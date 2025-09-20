@@ -1,5 +1,5 @@
 <template>
-	<v-row align='center' :justify='justify' class='no-gutters pa-0 ma-0'>
+	<v-row align='center' :justify class='no-gutters pa-0 ma-0'>
 
 		<v-col cols='12' md='8' class='ma-0 pa-0'>
 			<v-expand-transition>
@@ -38,16 +38,16 @@
 			<v-expand-transition>
 
 				<section v-if='!showTextField'>
-					<v-row :justify='justify'>
+					<v-row :justify>
 						<v-tooltip v-if='show_tooltip && freeUser' activator='parent' location='top center'
 							content-class='tooltip'>
 							<span>Password authentication is not available for free user</span>
 						</v-tooltip>
 						<v-col cols='auto'>
-							<FabTooltip v-if='device_password' @click='removePassword' :disabled='disabled'
+							<FabTooltip v-if='device_password' @click='removePassword' :disabled
 								:icon='mdiLockRemove' color='pi' tooltip_text='Remove password' />
 
-							<FabTooltip @click='showTextField = true' v-if='!device_password' :disabled='disabled'
+							<FabTooltip @click='showTextField = true' v-if='!device_password' :disabled
 								:icon='mdiLockPlus' :tooltip_text='`Add password to ${name_of_device}`'
 								color='primary' />
 						</v-col>

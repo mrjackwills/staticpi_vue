@@ -12,7 +12,7 @@
 
 			<v-row align='center' justify='center' class='ma-0 pa-0 no-gutters'>
 				<v-col cols='11' class='ma-0 pa-0 text-center ma-1'>
-					<ExtraCache :device='device' />
+					<ExtraCache :device />
 				</v-col>
 			</v-row>
 
@@ -32,7 +32,7 @@
 						</v-col>
 
 						<v-col cols='11' :md='singleRow ? "4" : "8"' class='ma-0 pa-0' :order='orderBandwidth'>
-							<ExtraBandwidth class='' :device='device' @hidden='handleHidden($event, 2)' />
+							<ExtraBandwidth class='' :device @hidden='handleHidden($event, 2)' />
 						</v-col>
 					</v-row>
 				</v-col>
@@ -50,7 +50,7 @@
 				<v-expand-transition>
 					<v-col cols='12' md='10' class='ma-0 pa-0' v-if='sendMessage'>
 						<ExtraSendMessage @cancel='sendMessage = false' @refresh='refresh'
-							@updateExtraInfo='updateExtraInfo' :device='device' :maxConnected='maxConnected' />
+							@updateExtraInfo='updateExtraInfo' :device :maxConnected />
 					</v-col>
 				</v-expand-transition>
 

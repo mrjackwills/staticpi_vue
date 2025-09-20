@@ -20,7 +20,7 @@
 			<v-expand-transition>
 				<v-row align='center' justify='center' class='ma-0 pa-0'>
 					<v-col cols='12' md='auto' class='ma-0 pa-0'>
-						<ActionButton @click='deleteAccount' :block='true' :disabled='disabled' :icon='mdiDelete' small
+						<ActionButton @click='deleteAccount' :block='true' :disabled :icon='mdiDelete' small
 							text='delete account' />
 					</v-col>
 				</v-row>

@@ -1,5 +1,5 @@
 <template>
-	<ThePage :heading='pageTitle' :pageReady='pageReady' :heading-justify='"start"'>
+	<ThePage :heading='pageTitle' :pageReady :heading-justify='"start"'>
 
 		<template v-slot:body>
 			<section>

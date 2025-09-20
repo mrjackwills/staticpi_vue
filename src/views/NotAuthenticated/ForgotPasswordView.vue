@@ -51,7 +51,7 @@
 							<ActionButton
 								@click='forgot'
 								:block='true'
-								:disabled='disabled'
+								:disabled
 								:icon='mdiSend'
 								text='send'
 							/>

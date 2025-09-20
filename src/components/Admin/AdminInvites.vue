@@ -89,7 +89,7 @@
 								<ActionButton
 									@click='addInvite'
 									:block='true'
-									:disabled='disabled'
+									:disabled
 									:icon='mdiPlus '
 									:small='true'
 									color='primary'

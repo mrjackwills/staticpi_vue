@@ -37,20 +37,16 @@
 				</template>
 			</AppCard>
 
-			<DocConnect :address_token='address_token' :address_wss_client='address_wss_client'
-				:address_wss_pi='address_wss_pi' :apiKey='apiKey' :componentKey='componentKey' :password='password' />
+			<DocConnect :address_token :address_wss_client :address_wss_pi :apiKey :componentKey :password />
 
-			<DocConnectWithPassword :address_token='address_token' :address_wss_client='address_wss_client'
-				:address_wss_pi='address_wss_pi' :apiKey='apiKey' :componentKey='componentKey' :password='password' />
+			<DocConnectWithPassword :address_token :address_wss_client :address_wss_pi :apiKey :componentKey
+				:password />
 
-			<DocRateLimits :address_token='address_token' :address_wss_client='address_wss_client'
-				:address_wss_pi='address_wss_pi' />
+			<DocRateLimits :address_token :address_wss_client :address_wss_pi />
 
-			<DocStructuredData :address_token='address_token' :address_wss_client='address_wss_client'
-				:address_wss_pi='address_wss_pi' :apiKey='apiKey' :componentKey='componentKey' :password='password' />
+			<DocStructuredData :address_token :address_wss_client :address_wss_pi :apiKey :componentKey :password />
 
-			<DocBinary :address_token='address_token' :address_wss_client='address_wss_client'
-				:address_wss_pi='address_wss_pi' :apiKey='apiKey' :componentKey='componentKey' :password='password' />
+			<DocBinary :address_token :address_wss_client :address_wss_pi :apiKey :componentKey :password />
 
 			<DocExamples />
 		</template>
