@@ -1,7 +1,7 @@
 <template>
 	<ThePage :fillHeight='true' justify='center'>
 		<template v-slot:body>
-			<AppCard :heading='pageTitle' v-model:loading='localLoading' heading_class='mb-3' :hasButton='true'>
+			<AppCard :heading='pageTitle' :loading='localLoading' heading_class='mb-3' :hasButton='true'>
 				<template v-slot:start>
 					<v-row align='center' justify='center' class='ma-0 pa-0 mb-4'>
 						<v-col cols='12' class='pa-0 ma-0 text-body-1'>
@@ -21,7 +21,7 @@
 							required />
 						<v-expand-transition>
 							<PasswordStrength v-if='!passwordCompromised && user.password'
-								v-model:password='user.password' v-model:errorMessage='errorMessages.password'
+								:password='user.password' v-model:errorMessage='errorMessages.password'
 								v-model:passwordCompromised='passwordCompromised' />
 						</v-expand-transition>
 						<v-expand-transition>
@@ -31,14 +31,14 @@
 						</v-expand-transition>
 						<section v-if='two_fa_enabled'>
 							<v-text-field v-for='item in tokenFields' v-model='user[item.model]'
-								v-on:keyup.enter='submit' :dense='smAndDown' v-model:disabled='localLoading'
+								v-on:keyup.enter='submit' :dense='smAndDown' :disabled='localLoading'
 								:error-messages='errorMessages[item.model]' :key='item.model' :label='item.label'
 								:prepend-inner-icon='item.icon' color='primary' variant='outlined' required />
 						</section>
 					</v-form>
 				</template>
 				<template v-slot:button>
-					<ActionButton @click='submit' :block='true' v-model:disabled='disabled' :icon='mdiSend' text='reset'
+					<ActionButton @click='submit' :block='true' :disabled :icon='mdiSend' text='reset'
 						class='mb-2' />
 				</template>
 			</AppCard>

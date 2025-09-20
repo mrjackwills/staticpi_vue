@@ -16,7 +16,7 @@
 			<v-row v-if='!backupArray' align='center' justify='center' class='ma-0 pa-0'>
 				<v-col cols='12' md='auto' class='ma-0 pa-0 my-2'>
 					<ActionButton v-if='!backupProcess' @click='generateBackups' :block='true'
-						:color='backupButtonColor' v-model:disabled='localLoading' :icon='backupButtonIcon' small
+						:color='backupButtonColor' :disabled='localLoading' :icon='backupButtonIcon' small
 						:text='backupButtonText' />
 				</v-col>
 			</v-row>

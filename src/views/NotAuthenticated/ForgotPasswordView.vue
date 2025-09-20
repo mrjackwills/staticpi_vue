@@ -8,7 +8,7 @@
 		<template v-slot:body>
 			<AppCard
 				:heading='pageTitle'
-				v-model:loading='localLoading'
+				:loading='localLoading'
 				heading_class='my-3'
 				:hasButton='true'
 			>

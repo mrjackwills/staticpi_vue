@@ -43,7 +43,7 @@
 									<section v-if='index === 1'>
 										<v-expand-transition>
 											<PasswordStrength v-if='!passwordCompromised && user.new_password'
-												v-model:password='user.new_password'
+												:password='user.new_password'
 												v-model:errorMessage='errorMessages.new_password'
 												v-model:passwordCompromised='passwordCompromised' />
 										</v-expand-transition>
@@ -80,11 +80,11 @@
 		</template>
 		<template v-slot:cancel_button v-if='showTextFields'>
 
-			<ActionButton @click='cancel' v-model:disabled='loading' :icon='mdiClose'
+			<ActionButton @click='cancel' :disabled='loading' :icon='mdiClose'
 				:iconFirst='true' :block='true' :small='true' color='pi' text='cancel' />
 		</template>
 		<template v-slot:save_button v-if='showTextFields'>
-			<ActionButton @click='submit' v-model:disabled='disabled' :icon='mdiSend' :block='true' :small='true'
+			<ActionButton @click='submit' :disabled :icon='mdiSend' :block='true' :small='true'
 				text='change' />
 		</template>
 	</SettingSection>

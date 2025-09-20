@@ -58,7 +58,7 @@
 						:iconFirst='true' :block='true' @click='cancel' />
 				</v-col>
 				<v-col cols='6' class=''>
-					<ActionButton v-model:disabled='disabled' color='primary' text='create' :block='true'
+					<ActionButton :disabled color='primary' text='create' :block='true'
 						:icon='mdiCheck' @click='addNewDevice' />
 				</v-col>
 

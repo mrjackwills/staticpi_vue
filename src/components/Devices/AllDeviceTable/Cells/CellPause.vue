@@ -1,7 +1,6 @@
 <template>
 	<v-row align='center' :justify no-gutters class=''>
-		<FabTooltip @click='pauseDevice' v-model:icon='icon' v-model:tooltip_text='tooltip_text' :color
-			:disabled='!online' />
+		<FabTooltip @click='pauseDevice' :icon :tooltip_text :color :disabled='!online' />
 	</v-row>
 </template>
 <script setup lang='ts'>

@@ -89,10 +89,10 @@
 									<ActionButton
 										@click='click'
 										:block='true'
-										v-model:disabled='disabled'
-										v-model:icon='timeout_icon'
+										:disabled
+										:icon='timeout_icon'
 										:overrideDisabled='logout'
-										v-model:text='timeout_text'
+										:text='timeout_text'
 										:monospace
 										color='primary'
 									/>
@@ -171,6 +171,7 @@ const timeout_text = computed(() => timeout.value
 		  passwordRequired.value && twoFA_always_required.value && tokenError.value
 			? 'token required'
 			: confirmButton.value);
+
 const timeout_icon = computed(() => timeout.value
 	? mdiTimerOutline
 	: passwordRequired.value && !user.value.password

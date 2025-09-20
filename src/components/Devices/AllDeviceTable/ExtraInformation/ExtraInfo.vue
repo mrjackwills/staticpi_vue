@@ -21,13 +21,13 @@
 					<v-row align='start' justify='center' class='ma-0 pa-0 no-gutters'>
 						<v-col cols='11' md='4' class='ma-0 pa-0' :order='orderDevice'>
 							<ExtraConnectedTable :class='{ "pr-6": !smAndDown }' :online='deviceOnline'
-								v-model:tableRows='connectedDevice' :is_device='true'
+								:tableRows='connectedDevice' :is_device='true'
 								@hidden='handleHidden($event, 0)' />
 						</v-col>
 
 						<v-col cols='11' md='4' class='ma-0 pa-0' :order='orderClient'>
 							<ExtraConnectedTable :class='{ "pl-6": !smAndDown }' :online='connectedClients.length > 0'
-								v-model:tableRows='connectedClients' :is_device='false'
+								:tableRows='connectedClients' :is_device='false'
 								@hidden='handleHidden($event, 1)' />
 						</v-col>
 

@@ -42,8 +42,13 @@
 
 <script setup lang='ts'>
 import type { VRow } from 'vuetify/components/VGrid';
+import { useDisplay } from 'vuetify';
+
+const { lgAndUp } = useDisplay();
 
 const loading = computed(() => loadingModule().loading);
+
+const appbarHeight = computed(() => lgAndUp.value ? '76' : '56');
 
 withDefaults(defineProps<{
 	fillHeight?: boolean;
@@ -84,8 +89,8 @@ withDefaults(defineProps<{
 	z-index: 100;
 }
 
-.sticky-loading{
-	position: fixed;
-	z-index: 101;
+.sticky-loading {
+  position: fixed;
+  top: v-bind(appbarHeight + 'px')!important;
 }
 </style>

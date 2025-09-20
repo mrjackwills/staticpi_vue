@@ -50,11 +50,11 @@
 			<v-col cols='12' md='8' lg='4' class='pa-0 ma-0'>
 				<v-row justify='space-around' class='pa-0 ma-0'>
 					<v-col cols='6' class='ma-0 pa-0'>
-						<ActionButton @click='cancel' v-model:disabled='loading' :icon='mdiClose' :block='true'
+						<ActionButton @click='cancel' :disabled='loading' :icon='mdiClose' :block='true'
 							:iconFirst='true' color='pi' text='cancel' :small='true' />
 					</v-col>
 					<v-col cols='6' id='verify-2fa-button' class='ma-0 pa-0'>
-						<ActionButton @click='verify' v-model:disabled='verifyValid' :block='true' :icon='mdiCheck'
+						<ActionButton @click='verify' :disabled='verifyValid' :block='true' :icon='mdiCheck'
 							:small='true' color='primary' text='verify' />
 					</v-col>
 				</v-row>
