@@ -31,7 +31,7 @@
 								</v-row>
 							</v-col>
 							<v-col cols='12' class='mb-n4'>
-								<SwitchRow @update:model-value='max_clientsInput' @switched='max_clientsSwitch'
+								<SwitchRow @input='max_clientsInput' @switched='max_clientsSwitch'
 									:description='max_clientsDescription' :disabled='localLoading || isFreeUser'
 									:error-messages='deviceClientError' heading='Max Clients' component='MaxClients' />
 							</v-col>
@@ -128,6 +128,7 @@ const switchStatus = ref({
 	max_clients: false,
 	structured_data: false
 });
+
 const localLoading = ref(false);
 
 const emit = defineEmits(['refresh', 'show-add-new-device']);
@@ -198,6 +199,7 @@ onMounted(() => {
 	if (!isFreeUser.value) deviceSettings.value.max_clients = Math.ceil(max_clients.value / 2);
 });
 
+
 watch(() => deviceSettings.value.name, (i): void => {
 	if (!i) {
 		deviceError.value = '';
@@ -213,6 +215,7 @@ watch(() => deviceSettings.value.name, (i): void => {
 		deviceError.value = 'device name already in use';
 		return;
 	}
+
 	deviceError.value = '';
 });
 
