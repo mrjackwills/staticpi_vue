@@ -85,7 +85,6 @@
 							</v-col>
 							<v-col cols='12' md='auto' class='px-0 mx-0' :order='smAndDown? "1" : "2"'>
 								<div class='text-center'>
-									<!-- TDOD test me -->
 									<ActionButton
 										@click='click'
 										:block='true'
