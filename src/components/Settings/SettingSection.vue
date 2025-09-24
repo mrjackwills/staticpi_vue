@@ -5,7 +5,7 @@
 		md='12'
 		lg='11'
 		xl='11'
-		:disabled='disabled'
+		:disabled
 	>
 		<template v-slot:body>
 			<v-row align='center' justify='start' class='ma-0 pa-0 no-gutters my-3'>

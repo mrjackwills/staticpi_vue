@@ -1,7 +1,7 @@
 <template>
-	<v-row align='center' :justify='justify' class='no-gutters pa-0 ma-0'>
+	<v-row align='center' :justify class='no-gutters pa-0 ma-0'>
 		<v-col cols='auto' class='ma-0 pa-0' :class='mdAndUp ? "mr-2" : "mr-4"'>
-			<CopyButton :name_of_device='name_of_device' :disabled='paused' color='primary'
+			<CopyButton :name_of_device :disabled='paused' color='primary'
 				hoverMessage='click to copy API key' tooltipMessage='API key copied!' :toCopy='device.api_key' small
 				density='comfortable' />
 		</v-col>

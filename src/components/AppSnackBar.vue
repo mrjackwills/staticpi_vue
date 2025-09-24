@@ -9,7 +9,7 @@
 						<v-progress-circular indeterminate :size='18' :width='3' color='primary' />
 					</v-col>
 					<v-col v-if='icon && isDesktop && !loading' cols='auto' class='pa-0 ma-0'>
-						<v-icon :color='color' class='mr-2' :icon='icon' />
+						<v-icon :color class='mr-2' :icon />
 					</v-col>
 					<v-col cols='auto' class='pa-0'>
 						<div class='text-center text-white'> {{ message }}</div>

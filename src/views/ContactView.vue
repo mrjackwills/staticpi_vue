@@ -1,7 +1,7 @@
 <template>
 	<ThePage :justify='"center"' :fillHeight='true'>
 		<template v-slot:body>
-			<AppCard :hasButton='true' :heading='pageTitle' v-model:loading='localLoading' heading_class='my-3'>
+			<AppCard :hasButton='true' :heading='pageTitle' :loading='localLoading' heading_class='my-3'>
 				<template v-slot:start>
 					<v-row justify='center' align='center' class='pa-0 ma-0 mb-3'>
 						<v-col cols='12' class='ma-0 pa-0'>
@@ -45,7 +45,7 @@
 						</v-col>
 						<v-col cols='6' class='ma-0 pa-0'>
 
-							<ActionButton v-model:disabled='disabled' @click='submit' :block='true'
+							<ActionButton :disabled @click='submit' :block='true'
 								:icon='mdiEmailFastOutline' :text='complete ? "sent" : "send"' />
 						</v-col>
 					</v-row>

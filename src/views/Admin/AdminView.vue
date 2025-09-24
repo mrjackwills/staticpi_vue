@@ -1,35 +1,35 @@
 <template>
-	<ThePage :heading='pageTitle' :pageReady='pageReady' :heading-justify='"start"'>
+	<ThePage :heading='pageTitle' :pageReady :heading-justify='"start"'>
 		<template v-slot:body>
 			<v-row align='center' justify='center'>
 				<v-col cols='12'>
 					<v-row align='center' justify='center' >
-						<AdminMemory v-if='memory' :memory='memory'/>
+						<AdminMemory v-if='memory' :memory/>
 
 					</v-row>
 
 					<v-row align='center' justify='center' >
-						<AdminConnectedCount v-if='connectedCount' :connectedCount='connectedCount'/>
+						<AdminConnectedCount v-if='connectedCount' :connectedCount/>
 					</v-row>
 
 					<v-row align='center' justify='center' >
-						<AdminInvites :inviteCodes='inviteCodes' @update='update'/>
+						<AdminInvites :inviteCodes @update='update'/>
 					</v-row>
 
 					<v-row align='center' justify='center' >
-						<AdminEmails v-if='emails' :emails='emails' @update='update'/>
+						<AdminEmails v-if='emails' :emails @update='update'/>
 					</v-row>
 
 					<v-row align='center' justify='center' >
-						<AdminLimits v-if='limits.length > 0' :limits='limits' @update='update'/>
+						<AdminLimits v-if='limits.length > 0' :limits @update='update'/>
 					</v-row>
 
 					<v-row align='center' justify='center' >
-						<AdminUsers v-if='users.length > 0' :users='users' @update='update'/>
+						<AdminUsers v-if='users.length > 0' :users @update='update'/>
 					</v-row>
 
 					<v-row align='center' justify='center' >
-						<AdminContact v-if='emails' :contact_messages='contact_messages' @update='update'/>
+						<AdminContact v-if='emails' :contact_messages @update='update'/>
 					</v-row>
 
 					<v-col cols='12' class='ma-0 pa-0 mt-4'>

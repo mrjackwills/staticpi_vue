@@ -1,5 +1,5 @@
 <template>
-	<SettingSection :disabled='disabled'>
+	<SettingSection :disabled >
 		<template v-slot:title>
 			<span>User Level</span>
 		</template>

@@ -1,5 +1,5 @@
 <template>
-	<v-row align='center' :justify='justify' no-gutters class='no-gutters pa-0 ma-0'>
+	<v-row align='center' :justify no-gutters class='no-gutters pa-0 ma-0'>
 		<v-col cols='auto' class=''>
 			<span class='text-caption' :class='[bandwidthLimit_class, { "disabled": paused }]'>
 				{{ converted_bandwidth.total }} {{ converted_bandwidth.unit }}

@@ -104,7 +104,7 @@ import { useDisplay } from 'vuetify';
 const { lgAndUp } = useDisplay();
 
 const alert_class = computed(() => !onDesktop.value ? 'alert-bottom' : 'alert-top');
-const appbarHeight = computed(() => onDesktop.value ? '76' : '56');
+const appbarHeight = computed(() => appBarModule().size);
 const authenticated = computed(() => userModule().authenticated);
 const email = computed(() => userModule().email);
 const logoMargin = computed(() => onDesktop.value ? 'mr-3' : 'mr-1');

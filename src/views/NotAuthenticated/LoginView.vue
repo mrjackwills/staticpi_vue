@@ -1,7 +1,7 @@
 <template>
 	<ThePage :justify='"center"' :fillHeight='true'>
 		<template v-slot:body>
-			<AppCard :hasButton='true' :heading='pageTitle' v-model:loading='localLoading' heading_class='my-3'>
+			<AppCard :hasButton='true' :heading='pageTitle' :loading='localLoading' heading_class='my-3'>
 				<template v-slot:body>
 					<v-form v-on:submit.prevent>
 						<v-expand-transition>
@@ -53,7 +53,7 @@
 						</v-col>
 						<v-col cols='6'>
 							<ActionButton @click='login' :block='true' :icon='mdiSend' text='login'
-								:disabled='disabled' />
+								:disabled />
 
 						</v-col>
 					</v-row>

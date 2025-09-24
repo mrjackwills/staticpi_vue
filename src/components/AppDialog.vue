@@ -33,7 +33,7 @@
 									@focus='focusMethod(item.model)'
 									:append-inner-icon='item.appendIcon'
 									:autocomplete='item.autocomplete'
-									:density='density'
+									:density
 									:disabled='loading'
 									:key='item.model'
 									:label='item.label'
@@ -52,7 +52,7 @@
 									@focus='focusMethod(item.model)'
 									:error-messages='tokenError'
 									v-on:keyup.enter='click'
-									:density='density'
+									:density
 									:key='item.model'
 									:label='item.label'
 									:prepend-inner-icon='item.icon'
@@ -88,11 +88,11 @@
 									<ActionButton
 										@click='click'
 										:block='true'
-										v-model:disabled='disabled'
-										v-model:icon='timeout_icon'
+										:disabled
+										:icon='timeout_icon'
 										:overrideDisabled='logout'
-										v-model:text='timeout_text'
-										:monospace='monospace'
+										:text='timeout_text'
+										:monospace
 										color='primary'
 									/>
 								</div>
@@ -170,6 +170,7 @@ const timeout_text = computed(() => timeout.value
 		  passwordRequired.value && twoFA_always_required.value && tokenError.value
 			? 'token required'
 			: confirmButton.value);
+
 const timeout_icon = computed(() => timeout.value
 	? mdiTimerOutline
 	: passwordRequired.value && !user.value.password

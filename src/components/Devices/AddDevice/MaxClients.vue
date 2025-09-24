@@ -22,6 +22,7 @@ const defaultClients = computed(() => String(Math.ceil(upperLimit.value / 2)));
 const errorMessage = ref('');
 const maxClients = ref(1);
 const passwordVisible = ref(false);
+
 const textField = ref({
 	autocomplete: 'one-time-code',
 	icon: mdiLanConnect,
@@ -34,9 +35,13 @@ const emit = defineEmits(['input']);
 
 const textField_method = (): void => {
 	const num = Number(maxClients.value);
-	if (!num || isNaN(num) || num <= 0 || !Number.isInteger(num)) errorMessage.value = 'Invalid number';
-	else if (num > upperLimit.value) errorMessage.value = 'Too many clients';
-	else errorMessage.value = '';
+	if (!num || isNaN(num) || num <= 0 || !Number.isInteger(num)) {
+		errorMessage.value = 'Invalid number';
+	} else if (num > upperLimit.value) {
+		errorMessage.value = 'Too many clients';
+	} else {
+		errorMessage.value = '';
+	}
 	emit('input', Number(maxClients.value));
 };
 

@@ -1,9 +1,9 @@
 <template>
-	<v-col cols='auto' class='unselectable ma-0 pa-0' :order='order'>
-		<v-chip :size='size' :ripple='false' label color='secondary' variant='flat'>
+	<v-col cols='auto' class='unselectable ma-0 pa-0' :order>
+		<v-chip :size :ripple='false' label color='secondary' variant='flat'>
 			<v-row align='center' justify='center' class='ma-0 pa-0 no-gutters'>
 				<v-col cols='auto' class='ma-0 pa-0 mr-1'>
-					<v-icon :size='size' :icon='mdiStarCircle' />
+					<v-icon :size :icon='mdiStarCircle' />
 				</v-col>
 				<v-col cols='auto' class='ma-0 pa-0'>pro user only</v-col>
 			</v-row>

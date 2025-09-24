@@ -18,7 +18,7 @@
 				justify='center'
 				class='ma-0 pa-0'
 			>
-				<DeviceRow :device='device' @refresh='refresh' />
+				<DeviceRow :device @refresh='refresh' />
 				<v-col cols='12' class='ma-0 pa-0 py-1' v-if='index!==tableData.length-1'>
 					<v-divider />
 				</v-col>

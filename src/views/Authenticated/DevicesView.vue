@@ -1,5 +1,5 @@
 <template>
-	<ThePage :heading='pageTitle' :pageReady='pageReady' :heading-justify='"start"'>
+	<ThePage :heading='pageTitle' :pageReady :heading-justify='"start"'>
 
 		<template v-slot:body>
 			<section>
@@ -8,7 +8,7 @@
 				</v-expand-transition>
 
 				<section v-if='devices.length > 0'>
-					<AllDeviceTable @refresh='getData' v-model:tableData='devices' class='ma-0 pa-0' />
+					<AllDeviceTable @refresh='getData' :tableData='devices' class='ma-0 pa-0' />
 
 					<v-col cols='auto' class='ma-0 pa-0 mb-2'>
 						<v-row align='center' justify='center' class='ma-0 pa-0'>
@@ -35,7 +35,7 @@
 							</v-tooltip>
 
 							<ActionButton @click='showAddNewDevice' @mouseover='tooltip(true)'
-								@mouseleave='tooltip(false)' :block='true' v-model:disabled='disabled' :icon='mdiPlus'
+								@mouseleave='tooltip(false)' :block='true' :disabled :icon='mdiPlus'
 								:iconFirst='false' :mouseOverEvents='true' text='add device' />
 						</v-col>
 					</v-row>

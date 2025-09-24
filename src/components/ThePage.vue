@@ -24,9 +24,9 @@
 					<v-col cols='12' class='pa-0 ma-0 mt-1'>
 						<CardHeading
 							v-if='heading'
-							:heading='heading'
-							:justify='justify'
-							:margin='margin'
+							:heading
+							:justify
+							:margin
 							class='ml-2'
 
 						/>
@@ -42,8 +42,9 @@
 
 <script setup lang='ts'>
 import type { VRow } from 'vuetify/components/VGrid';
-
 const loading = computed(() => loadingModule().loading);
+
+const appbarHeight = computed(() => appBarModule().size);
 
 withDefaults(defineProps<{
 	fillHeight?: boolean;
@@ -84,8 +85,8 @@ withDefaults(defineProps<{
 	z-index: 100;
 }
 
-.sticky-loading{
-	position: fixed;
-	z-index: 101;
+.sticky-loading {
+  position: fixed;
+  top: v-bind(appbarHeight + 'px')!important;
 }
 </style>

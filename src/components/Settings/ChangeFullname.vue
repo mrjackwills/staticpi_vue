@@ -49,11 +49,11 @@
 		</template>
 
 		<template v-slot:cancel_button v-if='showTextFields'>
-			<ActionButton @click='cancel' v-model:disabled='loading' :icon='mdiClose'
+			<ActionButton @click='cancel' :disabled='loading' :icon='mdiClose'
 				:iconFirst='true' :small='true' :block='true' color='pi' text='cancel' />
 		</template>
 		<template v-slot:save_button v-if='showTextFields'>
-			<ActionButton @click='submit' v-model:disabled='disabled' :icon='mdiSend' :block='true' :small='true'
+			<ActionButton @click='submit' :disabled :icon='mdiSend' :block='true' :small='true'
 				text='change' />
 		</template>
 	</SettingSection>

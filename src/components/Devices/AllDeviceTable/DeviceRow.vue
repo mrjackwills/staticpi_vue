@@ -11,7 +11,7 @@
 						{{ item.text }}:
 					</v-col>
 					<v-col :cols='smAndDown ? "7" : "12"' class='ma-0 pa-0'>
-						<component @refresh='refresh' :device='device' :is='item.component' />
+						<component @refresh='refresh' :device :is='item.component' />
 					</v-col>
 				</v-row>
 			</v-col>
@@ -38,7 +38,7 @@
 
 		<v-expand-transition>
 			<section v-if='show_extra'>
-				<ExtraInfo :device='device' @refresh='refresh' @emitClose='refresh_device' />
+				<ExtraInfo :device @refresh='refresh' @emitClose='refresh_device' />
 			</section>
 		</v-expand-transition>
 	</v-col>

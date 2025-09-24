@@ -6,7 +6,7 @@
 			<v-row align='center' justify='start' class='ma-0 pa-0 no-gutters'>
 
 				<v-col cols='auto' class='ma-0 pa-0'>
-					<v-switch v-model='active' @click='click_active' :disabled='disabled' :hide-details='true'
+					<v-switch v-model='active' @click='click_active' :disabled :hide-details='true'
 						class='ma-0 pa-0' color='primary' density='compact' label='' />
 					<v-tooltip v-if='show_tooltip && disabled' activator='parent' location='top center'
 						content-class='tooltip'>

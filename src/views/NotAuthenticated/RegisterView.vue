@@ -7,7 +7,7 @@
 			<AppCard
 				:hasButton='true'
 				:heading='pageTitle'
-				v-model:loading='localLoading'
+				:loading='localLoading'
 				heading_class='my-3'
 			>
 				<template v-slot:body>
@@ -51,7 +51,7 @@
 
 									<PasswordStrength
 										v-if='!passwordCompromised && user.password'
-										v-model:password='user.password'
+										:password='user.password'
 										v-model:errorMessage='errorMessages.password'
 										v-model:passwordCompromised='passwordCompromised'
 									/>
@@ -100,7 +100,7 @@
 								@click='register'
 								v-if='!complete'
 								:block='true'
-								v-model:disabled='disabled'
+								:disabled
 								:icon='mdiAccountCheck'
 							/>
 						</v-col>

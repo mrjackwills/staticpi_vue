@@ -1,19 +1,19 @@
 <template>
 	<v-row align='center' justify='center' class='ma-0 pa-0 no-gutters' :class='my'>
-		<v-col cols='12' :sm='sm' :lg='lg' :xl='xl' class=''>
-			<v-card :disabled='disabled' :class='[padding, border]' class='elevation-0'>
+		<v-col cols='12' :sm :lg :xl class=''>
+			<v-card :disabled :class='[padding, border]' class='elevation-0'>
 				<v-progress-linear :active='loading' :indeterminate='loading' color='primary' width='100%' absolute />
 
-				<CardHeading v-if='heading' :heading='heading' :class='heading_class' :justify='heading_justify'
+				<CardHeading v-if='heading' :heading :class='heading_class' :justify='heading_justify'
 					:size='heading_size' class='' />
 				<v-row justify='center' align='center' class='ma-0 pa-0'>
-					<v-col cols='12' :sm='sm' :lg='lg' class='ma-0 pa-0'>
+					<v-col cols='12' :sm :lg class='ma-0 pa-0'>
 						<slot name='start'></slot>
 					</v-col>
 				</v-row>
 
 				<v-row justify='center' align='center' class='ma-0 pa-0'>
-					<v-col cols='12' :sm='sm' :lg='lg' class='ma-0 pa-0'>
+					<v-col cols='12' :sm :lg class='ma-0 pa-0'>
 						<slot name='body'></slot>
 					</v-col>
 				</v-row>
@@ -26,7 +26,7 @@
 					</v-row>
 				</v-card-actions>
 				<v-row justify='center' align='center' class='ma-0 pa-0' :class='padding'>
-					<v-col cols='12' :sm='sm' :lg='lg' class='ma-0 pa-0'>
+					<v-col cols='12' :sm :lg class='ma-0 pa-0'>
 						<slot name='end'></slot>
 					</v-col>
 				</v-row>

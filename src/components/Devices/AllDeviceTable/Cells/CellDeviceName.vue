@@ -7,7 +7,7 @@
 				</v-col>
 			</v-row>
 		</v-expand-transition>
-		<v-row align='center' :justify='justify' no-gutters class='pt-1'>
+		<v-row align='center' :justify no-gutters class='pt-1'>
 			<v-col cols='12' class='ma-0 pa-0'>
 				<v-text-field class='mb-n2' v-model='newName' @focus='changeInFocus' @keydown.enter='renameDevice'
 					:append-inner-icon='isFreeUser ? `` : mdiPencilOutline' :counter='inFocus ? true : undefined'

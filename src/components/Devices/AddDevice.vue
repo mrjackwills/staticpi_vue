@@ -13,7 +13,7 @@
 							<v-col cols='12'>
 								<v-text-field v-model='deviceSettings.name' @keydown.enter='addNewDevice'
 									:prepend-inner-icon='mdiDevices' :density='smAndDown ? "compact" : "default"'
-									:disabled='localLoading || isFreeUser' :error-messages='deviceError' :label='label'
+									:disabled='localLoading || isFreeUser' :error-messages='deviceError' :label
 									autocomplete='new-password' maxlength='64' type='text' color='primary' clearable
 									counter variant='outlined' validate-on-blur />
 								<v-tooltip v-if='show_tooltip && isFreeUser' activator='parent' location='top center'
@@ -31,7 +31,7 @@
 								</v-row>
 							</v-col>
 							<v-col cols='12' class='mb-n4'>
-								<SwitchRow @update:model-value='max_clientsInput' @switched='max_clientsSwitch'
+								<SwitchRow @input='max_clientsInput' @switched='max_clientsSwitch'
 									:description='max_clientsDescription' :disabled='localLoading || isFreeUser'
 									:error-messages='deviceClientError' heading='Max Clients' component='MaxClients' />
 							</v-col>
@@ -58,7 +58,7 @@
 						:iconFirst='true' :block='true' @click='cancel' />
 				</v-col>
 				<v-col cols='6' class=''>
-					<ActionButton v-model:disabled='disabled' color='primary' text='create' :block='true'
+					<ActionButton :disabled color='primary' text='create' :block='true'
 						:icon='mdiCheck' @click='addNewDevice' />
 				</v-col>
 
@@ -128,6 +128,7 @@ const switchStatus = ref({
 	max_clients: false,
 	structured_data: false
 });
+
 const localLoading = ref(false);
 
 const emit = defineEmits(['refresh', 'show-add-new-device']);
@@ -198,6 +199,7 @@ onMounted(() => {
 	if (!isFreeUser.value) deviceSettings.value.max_clients = Math.ceil(max_clients.value / 2);
 });
 
+
 watch(() => deviceSettings.value.name, (i): void => {
 	if (!i) {
 		deviceError.value = '';
@@ -213,6 +215,7 @@ watch(() => deviceSettings.value.name, (i): void => {
 		deviceError.value = 'device name already in use';
 		return;
 	}
+
 	deviceError.value = '';
 });
 

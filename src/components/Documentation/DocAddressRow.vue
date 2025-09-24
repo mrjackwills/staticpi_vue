@@ -10,7 +10,7 @@
 					<span class='font-weight-bold'>{{ address }}</span>
 				</v-col>
 				<v-col cols='auto' class='ma-0 pa-0 ml-md-1'>
-					<CopyButton color='primary' :noHeight='true' :small='true' :toCopy='toCopy' :tooltipMessage='tooltipMessage' :hoverMessage='hoverMessage' :density='"comfortable"'/>
+					<CopyButton color='primary' :noHeight='true' :small='true' :toCopy :tooltipMessage :hoverMessage :density='"comfortable"'/>
 				</v-col>
 			</v-row>
 		</v-col>
