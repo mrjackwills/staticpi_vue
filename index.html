@@ -37,15 +37,30 @@
 	<div id="staticpi_app"></div>
 	<script type="module" src="/src/main.ts"></script>
 	<a class='mastodon' rel="me" href="https://hachyderm.io/@staticpi">@staticpi Mastodon</a>
-	<script type='application/ld+json'>
-		{
-			"@context": "https://schema.org",
-			"@type": "WebSite",
-			"description": "The simple pi communication service",
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Website",
+		"name": "staticPi",
+		"description": "The simple pi communication service",
+		"url": "https://www.staticpi.com",
+		"creator": {
+			"@type": "Person",
+			"name": "Jack Wills",
+			"url": "https://www.mrjackwills.com",
+			"image": "https://www.mrjackwills.com/img/icons/android-chrome-512x512.png",
+			"sameAs": [
+				"https://twitter.com/mrjackwills",
+				"https://github.com/mrjackwills",
+				"https://bsky.app/profile/mrjackwills.com"
+			]
+		},
+		"publisher": {
+			"@type": "Organization",
 			"name": "staticPi",
-			"url": "https://www.staticpi.com",
-			"sameAs": "https://www.twitter.com/static_Pi"
+			"logo": "https://www.staticpi.com/img/icons/android-chrome-512x512.png"
 		}
+	}
 	</script>
 </body>
 
