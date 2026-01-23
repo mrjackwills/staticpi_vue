@@ -1,88 +1,90 @@
 <template>
 	<v-navigation-drawer
+		id='nav_bar'
 		v-model='open'
-		:rail='mini'
-		:location='mdAndDown?"right":"left"'
+		app
 		class='unselectable'
 		color='pi'
-		id='nav_bar'
-		width='180'
-		app
 		dark
+		:location='mdAndDown?"right":"left"'
+		:rail='mini'
 		touchless
+		width='180'
 	>
 		<v-list class='pt-0' density='compact'>
 
 			<section v-if='mdAndDown'>
-				<v-list-item @click='(open=!open)' class='cl'>
-					<template v-slot:prepend>
-						<v-icon :icon='mdiClose' class='flipx mr-2' />
+				<v-list-item class='cl' @click='(open=!open)'>
+					<template #prepend>
+						<v-icon class='flipx mr-2' :icon='mdiClose' />
 					</template>
-					<template v-slot:title>
+					<template #title>
 						<span class=''>close</span>
 					</template>
 				</v-list-item>
 
-				<v-divider color='white' class='divider' />
+				<v-divider class='divider' color='white' />
 			</section>
 
-			<v-list-item v-for='item in links'
+			<v-list-item
+				v-for='item in links'
 				:key='item.route'
-				:to='item.route'
-				router
-				density='compact'
 				class='cl'
+				density='compact'
+				router
+				:to='item.route'
 			>
-				<template v-slot:prepend>
-					<v-icon :icon='item.icon' class='mr-2'/>
+				<template #prepend>
+					<v-icon class='mr-2' :icon='item.icon' />
 				</template>
-				<template v-slot:title >
+				<template #title>
 					<!-- this is new -->
-					<span class='' v-if='!mini'>{{ item.message }}</span>
+					<span v-if='!mini' class=''>{{ item.message }}</span>
 				</template>
 			</v-list-item>
 
 			<v-expand-transition>
 				<section v-if='isAdmin'>
-					<v-list-item v-for='item in adminLinks'
+					<v-list-item
+						v-for='item in adminLinks'
 						:key='item.route'
-						:to='item.route'
-						router
-						density='compact'
 						class='cl'
+						density='compact'
+						router
+						:to='item.route'
 					>
-						<template v-slot:prepend>
-							<v-icon :icon='item.icon' class='mr-2' />
+						<template #prepend>
+							<v-icon class='mr-2' :icon='item.icon' />
 						</template>
-						<template v-slot:title>
-							<span class='' v-if='!mini'>{{ item.message }}</span>
+						<template #title>
+							<span v-if='!mini' class=''>{{ item.message }}</span>
 						</template>
 					</v-list-item>
 				</section>
 			</v-expand-transition>
 
 			<section v-if='authenticated'>
-				<v-list-item v-if='lgAndUp' @click='minimize' class='cl' title='minimize'>
-					<template v-slot:prepend>
-						<v-icon :icon='miniLogo' class='mr-2' />
+				<v-list-item v-if='lgAndUp' class='cl' title='minimize' @click='minimize'>
+					<template #prepend>
+						<v-icon class='mr-2' :icon='miniLogo' />
 					</template>
-					<template v-slot:title>
-						<span class='' v-if='!mini'>minimize</span>
+					<template #title>
+						<span v-if='!mini' class=''>minimize</span>
 					</template>
 				</v-list-item>
-				<v-divider color='white' class='divider' />
-				<v-list-item @click='logout' class='cl' title='minimize'>
-					<template v-slot:prepend>
-						<v-icon :icon='mdiLoginVariant' class='flipx mr-2' />
+				<v-divider class='divider' color='white' />
+				<v-list-item class='cl' title='minimize' @click='logout'>
+					<template #prepend>
+						<v-icon class='flipx mr-2' :icon='mdiLoginVariant' />
 					</template>
-					<template v-slot:title>
-						<span class='' v-if='!mini'>logout</span>
+					<template #title>
+						<span v-if='!mini' class=''>logout</span>
 					</template>
 				</v-list-item>
 			</section>
-			<section v-if='!mini' >
-				<v-list-item >
-					<v-divider color='white' class='divider' />
+			<section v-if='!mini'>
+				<v-list-item>
+					<v-divider class='divider' color='white' />
 					<FooterText class='mt-2' />
 				</v-list-item>
 			</section>
@@ -92,53 +94,45 @@
 </template>
 
 <script setup lang='ts'>
-import { adminLinks, authenticatedLinks, notAuthenticatedLinks } from '@/vanillaTS/NavigationLinks';
-import { axios_authenticatedUser } from '@/services/axios';
-import { dialoger } from '@/services/dialog';
-import { useDisplay } from 'vuetify';
-import { mdiChevronDoubleLeft, mdiChevronDoubleRight, mdiClose, mdiLoginVariant } from '@mdi/js';
+import { mdiChevronDoubleLeft, mdiChevronDoubleRight, mdiClose, mdiLoginVariant } from '@mdi/js'
+import { useDisplay } from 'vuetify'
+import { axios_authenticatedUser } from '@/services/axios'
+import { dialoger } from '@/services/dialog'
+import { adminLinks, authenticatedLinks, notAuthenticatedLinks } from '@/vanillaTS/NavigationLinks'
 
-const { mdAndUp, mdAndDown, lgAndUp } = useDisplay();
+const { mdAndUp, mdAndDown, lgAndUp } = useDisplay()
 
-const navDrawerStore = navDrawerModule();
+const navDrawerStore = navDrawerModule()
 
-const authenticated = computed(() => userModule().authenticated);
+const authenticated = computed(() => userModule().authenticated)
 
-const isAdmin = computed(() => userModule().isAdminUser);
+const isAdmin = computed(() => userModule().isAdminUser)
 
-const links = computed(() => authenticated.value ? authenticatedLinks : notAuthenticatedLinks);
+const links = computed(() => authenticated.value ? authenticatedLinks : notAuthenticatedLinks)
 
 const mini = computed({
 	get (): boolean {
-		if (mdAndUp.value) {
-			return navDrawerStore.mini;
-		} else {
-			return false;
-		}
+		return mdAndUp.value ? navDrawerStore.mini : false
 	},
 	set (b: boolean): void {
-		navDrawerStore.set_mini(b);
-	}
-});
-const miniLogo = computed(() => mini.value ? mdiChevronDoubleRight : mdiChevronDoubleLeft);
+		navDrawerStore.set_mini(b)
+	},
+})
+const miniLogo = computed(() => mini.value ? mdiChevronDoubleRight : mdiChevronDoubleLeft)
 
 const open = computed({
 	get (): boolean {
-		if (lgAndUp.value) {
-			return authenticated.value;
-		} else {
-			return navDrawerStore.open;
-		}
+		return lgAndUp.value ? authenticated.value : navDrawerStore.open
 	},
 	set (b: boolean): void {
-		navDrawerStore.set_open(b);
-	}
-});
+		navDrawerStore.set_open(b)
+	},
+})
 
-const logout_confirm = async (): Promise<void> => {
-	await axios_authenticatedUser.signout_post();
-};
-const logout = (): void => {
+async function logout_confirm (): Promise<void> {
+	await axios_authenticatedUser.signout_post()
+}
+function logout (): void {
 	dialoger({
 		message: 'Are you sure you want to logout?',
 		title: 'Logout',
@@ -147,13 +141,13 @@ const logout = (): void => {
 		icon: mdiLoginVariant,
 		passwordrequired: false,
 		twoFABackup: false,
-		twoFARequired: false
-	});
-};
+		twoFARequired: false,
+	})
+}
 
-const minimize = (): void => {
-	mini.value = !mini.value;
-};
+function minimize (): void {
+	mini.value = !mini.value
+}
 
 </script>
 

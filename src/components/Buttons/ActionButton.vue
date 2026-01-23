@@ -1,22 +1,22 @@
 <template>
-	<v-row class='ma-0 pa-0' align='center' justify='center' no-gutters>
+	<v-row align='center' class='ma-0 pa-0' justify='center' no-gutters>
 		<v-col
-			@mouseover='mouseover'
-			@mouseleave='mouseleave'
 			class='ma-0 pa-0'
 			cols='11'
 			md='auto'
+			@mouseleave='mouseleave'
+			@mouseover='mouseover'
 		>
 			<v-btn
-				@click='click'
 				:block
+				class='elevation-0'
 				:color
 				:disabled='disabled && !overrideDisabled || !online && !overrideDisabled'
+				rounded
 				:size='buttonSize'
 				:to='routerLink'
 				:variant='disabled?"outlined":"flat"'
-				class='elevation-0'
-				rounded
+				@click='click'
 			>
 				<v-row
 					align='center'
@@ -25,11 +25,11 @@
 				>
 					<v-col
 						v-if='icon'
-						:class='iconClass'
-						:order='iconOrder'
 						align-self='center'
 						class='ma-0 pa-0'
+						:class='iconClass'
 						cols='auto'
+						:order='iconOrder'
 					>
 						<v-icon
 							:class='flipx'
@@ -37,14 +37,19 @@
 						/>
 					</v-col>
 					<v-col
-						:order='textOrder'
 						align-self='center'
 						class='ma-0 pa-0'
 						cols='auto'
-
+						:order='textOrder'
 					>
-						<v-row justify='center' align='center' class='ma-0 pa-0' no-gutters dense >
-							<v-col cols='auto' class='ma-0 pa-0'>
+						<v-row
+							align='center'
+							class='ma-0 pa-0'
+							dense
+							justify='center'
+							no-gutters
+						>
+							<v-col class='ma-0 pa-0' cols='auto'>
 								<div class='text-body-1' :color='disabled?"text-grey":"text-cardColor"'>
 									<span :class='{"countdown" : monospace}'>{{ text }}</span>
 								</div>
@@ -59,46 +64,46 @@
 </template>
 
 <script setup lang='ts'>
-import { useDisplay } from 'vuetify';
+import { useDisplay } from 'vuetify'
 
-const { mdAndUp, smAndDown } = useDisplay();
+const { mdAndUp, smAndDown } = useDisplay()
 
-const buttonSize = computed(() => mdAndUp.value && !props.small ? 'large' : smAndDown.value || props.small ? 'small' : 'default');
-const iconClass = computed(() => props.iconFirst ? 'mr-1' : 'ml-1');
-const iconOrder = computed(() => props.iconFirst ? '1' : '2');
-const flipx = computed(() => props.text === 'logout' ? 'flipx' : '');
-const online = computed(() => browserModule().online);
-const textOrder = computed(() => props.iconFirst ? '2' : '1');
+const buttonSize = computed(() => mdAndUp.value && !props.small ? 'large' : (smAndDown.value || props.small ? 'small' : 'default'))
+const iconClass = computed(() => props.iconFirst ? 'mr-1' : 'ml-1')
+const iconOrder = computed(() => props.iconFirst ? '1' : '2')
+const flipx = computed(() => props.text === 'logout' ? 'flipx' : '')
+const online = computed(() => browserModule().online)
+const textOrder = computed(() => props.iconFirst ? '2' : '1')
 
-const localDisabled = ref(false);
+const localDisabled = ref(false)
 
-const emit = defineEmits(['click', 'mouseleave', 'mouseover']);
-const click = (): void => {
-	if (!props.routerLink) emit('click');
-};
-const mouseleave = (): void => {
-	if (props.mouseOverEvents) emit('mouseleave');
-};
-const mouseover = (): void => {
-	if (props.mouseOverEvents) emit('mouseover');
-};
+const emit = defineEmits(['click', 'mouseleave', 'mouseover'])
+function click (): void {
+	if (!props.routerLink) emit('click')
+}
+function mouseleave (): void {
+	if (props.mouseOverEvents) emit('mouseleave')
+}
+function mouseover (): void {
+	if (props.mouseOverEvents) emit('mouseover')
+}
 
 onMounted(() => {
-	localDisabled.value = props.disabled;
-});
+	localDisabled.value = props.disabled
+})
 
 const props = withDefaults(defineProps<{
-	block?: boolean;
-	color?: string;
-	disabled?: boolean;
-	icon?: string;
-	iconFirst?: boolean;
-	monospace?: boolean;
-	mouseOverEvents?: boolean;
-	overrideDisabled?: boolean;
-	routerLink?: string;
-	small?: boolean;
-	text?: string;
+	block?: boolean
+	color?: string
+	disabled?: boolean
+	icon?: string
+	iconFirst?: boolean
+	monospace?: boolean
+	mouseOverEvents?: boolean
+	overrideDisabled?: boolean
+	routerLink?: string
+	small?: boolean
+	text?: string
 }>(), {
 	block: false,
 	color: 'primary',
@@ -108,12 +113,12 @@ const props = withDefaults(defineProps<{
 	mouseOverEvents: false,
 	overrideDisabled: false,
 	small: false,
-	text: 'submit'
-});
+	text: 'submit',
+})
 
-watch(() => props.disabled, (i) => {
-	localDisabled.value = i;
-});
+watch(() => props.disabled, i => {
+	localDisabled.value = i
+})
 
 </script>
 

@@ -1,99 +1,99 @@
 <template>
 	<v-dialog
 		v-model='visible'
+		eager
 		:max-width='maxWidth'
+		persistent
 		scroll-strategy='none'
 		width='100%'
-		eager
-		persistent
 	>
 		<v-card v-intersect='onIntersect'>
 			<v-progress-linear
-				:active='loading'
-				:indeterminate='loading'
-				color='primary'
-				width='100%'
 				absolute
+				:active='loading'
+				color='primary'
+				:indeterminate='loading'
+				width='100%'
 			/>
 			<v-card-title class='pa-0 ma-0 px-4 py-2 text-pi' :class='titleSize'>{{ title }}</v-card-title>
 			<v-card-text class='px-4 py-2' :class='messageSize'>{{ message }}</v-card-text>
 			<section v-if='passwordRequired || twoFA_always_required'>
-				<v-row align='center' justify='center' class='ma-0 pa-0 mt-2'>
-					<v-col cols='11' md='9'  class='ma-0 pa-0'>
+				<v-row align='center' class='ma-0 pa-0 mt-2' justify='center'>
+					<v-col class='ma-0 pa-0' cols='11' md='9'>
 						<v-form
-							v-on:submit.prevent
 							autocomplete='off'
+							@submit.prevent
 						>
 							<template v-if='passwordRequired'>
 								<v-text-field
 									v-for='item in textFields'
+									:key='item.model'
 									v-model='user[item.model]'
-									@click:append-inner='passwordVisible = !passwordVisible'
-									@keydown.enter='click'
-									@focus='focusMethod(item.model)'
 									:append-inner-icon='item.appendIcon'
 									:autocomplete='item.autocomplete'
-									:density
-									:disabled='loading'
-									:key='item.model'
-									:label='item.label'
-									:prepend-inner-icon='item.icon'
-									:type='item.type'
 									class='mb-n3'
 									color='primary'
-									variant='outlined'
+									:density
+									:disabled='loading'
+									:label='item.label'
+									:prepend-inner-icon='item.icon'
 									required
+									:type='item.type'
+									variant='outlined'
+									@click:append-inner='passwordVisible = !passwordVisible'
+									@focus='focusMethod(item.model)'
+									@keydown.enter='click'
 								/>
 							</template>
 							<template v-if='passwordRequired && twoFA_always_required'>
 								<v-text-field
 									v-for='item in tokenFields'
-									v-model='user[item.model]'
-									@focus='focusMethod(item.model)'
-									:error-messages='tokenError'
-									v-on:keyup.enter='click'
-									:density
 									:key='item.model'
+									v-model='user[item.model]'
+									color='primary'
+									:density
+									:error-messages='tokenError'
 									:label='item.label'
 									:prepend-inner-icon='item.icon'
-									color='primary'
-									variant='outlined'
 									required
+									variant='outlined'
+									@focus='focusMethod(item.model)'
+									@keyup.enter='click'
 								/>
 							</template>
 						</v-form>
 					</v-col>
 				</v-row>
 			</section>
-			<v-card-actions class='ma-0 pa-0 py-3' v-if='message'>
-				<v-row align='center' justify='center' class='ma-0 pa-0 mt-2'>
-					<v-col cols='11' md='9' lg='6' class='ma-0 pa-0'>
-						<v-row justify='space-between' class='px-0 mx-0' >
-							<v-col cols='12' md='auto' class='px-0 mx-0' :order='smAndDown? "2" : "1"'>
+			<v-card-actions v-if='message' class='ma-0 pa-0 py-3'>
+				<v-row align='center' class='ma-0 pa-0 mt-2' justify='center'>
+					<v-col class='ma-0 pa-0' cols='11' lg='6' md='9'>
+						<v-row class='px-0 mx-0' justify='space-between'>
+							<v-col class='px-0 mx-0' cols='12' md='auto' :order='smAndDown? "2" : "1"'>
 								<div class='text-center'>
 									<ActionButton
-										@click='cancel'
 										:block='true'
+										color='pi'
 										:disabled='loading'
 										:icon='mdiClose'
-										:iconFirst='true'
-										:overrideDisabled='true'
-										color='pi'
+										:icon-first='true'
+										:override-disabled='true'
 										text='cancel'
+										@click='cancel'
 									/>
 								</div>
 							</v-col>
-							<v-col cols='12' md='auto' class='px-0 mx-0' :order='smAndDown? "1" : "2"'>
+							<v-col class='px-0 mx-0' cols='12' md='auto' :order='smAndDown? "1" : "2"'>
 								<div class='text-center'>
 									<ActionButton
-										@click='click'
 										:block='true'
+										color='primary'
 										:disabled
 										:icon='timeout_icon'
-										:overrideDisabled='logout'
-										:text='timeout_text'
 										:monospace
-										color='primary'
+										:override-disabled='logout'
+										:text='timeout_text'
+										@click='click'
 									/>
 								</div>
 							</v-col>
@@ -106,43 +106,43 @@
 </template>
 
 <script setup lang='ts'>
-import { mdiCellphoneInformation, mdiCheck, mdiClose, mdiEyeOff, mdiEye, mdiLock, mdiTimerOutline } from '@mdi/js';
-import { token_regex } from '@/vanillaTS/globalConst';
-import { useDisplay } from 'vuetify';
+import { mdiCellphoneInformation, mdiCheck, mdiClose, mdiEye, mdiEyeOff, mdiLock, mdiTimerOutline } from '@mdi/js'
+import { useDisplay } from 'vuetify'
+import { token_regex } from '@/vanillaTS/globalConst'
 
-const { lgAndUp, mdAndUp, smAndDown } = useDisplay();
+const { lgAndUp, mdAndUp, smAndDown } = useDisplay()
 
-const [dialogStore, twoFAStore] = [dialogModule(), twoFAModule()];
+const [dialogStore, twoFAStore] = [dialogModule(), twoFAModule()]
 onBeforeUnmount(() => {
-	clearTimeouts();
-});
+	clearTimeouts()
+})
 
 onMounted(() => {
-	mountedTimeout();
-});
+	mountedTimeout()
+})
 
-const density = computed(() => smAndDown.value ? 'compact' : 'default');
+const density = computed(() => smAndDown.value ? 'compact' : 'default')
 
-const confirmMethod = computed(() => dialogStore.confirmMethod);
+const confirmMethod = computed(() => dialogStore.confirmMethod)
 
-const confirmButton = computed(() => dialogStore.confirmButton ?? 'confirm');
+const confirmButton = computed(() => dialogStore.confirmButton ?? 'confirm')
 
-const disabled = computed(() => loading.value ||
-  timeout.value ||
-  tokenError.value ||
-  passwordRequired.value && !user.value.password ||
-  passwordRequired.value && twoFA_always_required.value && !user.value.token ||
-  twoFA_always_required.value && passwordRequired.value && tokenLength.value < 6
+const disabled = computed(() => loading.value
+  || timeout.value
+  || tokenError.value
+  || (passwordRequired.value && !user.value.password)
+  || (passwordRequired.value && twoFA_always_required.value && !user.value.token)
+  || (twoFA_always_required.value && passwordRequired.value && tokenLength.value < 6)
 	? true
-	: false);
-const icon = computed(() => dialogStore.icon);
+	: false)
+const icon = computed(() => dialogStore.icon)
 
-const logout = computed(() => title.value.toLowerCase() === 'logout');
-const maxWidth = computed(() => lgAndUp.value ? '40vw' : '80vw');
-const message = computed(() => dialogStore.message);
-const messageSize = computed(() => mdAndUp.value ? 'text-h5' : 'text-subtitle-1');
-const monospace = computed(() => timeout.value > 0 ? true : false);
-const passwordRequired = computed(() => dialogStore.passwordRequired);
+const logout = computed(() => title.value.toLowerCase() === 'logout')
+const maxWidth = computed(() => lgAndUp.value ? '40vw' : '80vw')
+const message = computed(() => dialogStore.message)
+const messageSize = computed(() => mdAndUp.value ? 'text-h5' : 'text-subtitle-1')
+const monospace = computed(() => timeout.value > 0 ? true : false)
+const passwordRequired = computed(() => dialogStore.passwordRequired)
 const textFields = computed(() => [
 	{
 		appendIcon: passwordVisible.value ? mdiEyeOff : mdiEye,
@@ -150,137 +150,143 @@ const textFields = computed(() => [
 		icon: mdiLock,
 		label: 'user password',
 		model: 'password' as const,
-		type: passwordVisible.value ? 'text' : 'password'
-	}
-]);
+		type: passwordVisible.value ? 'text' : 'password',
+	},
+])
 
 const timeout = computed({
 	get (): number {
-		return dialogStore.timeout;
+		return dialogStore.timeout
 	},
 	set (n: number): void {
-		dialogStore.set_timeout(n);
+		dialogStore.set_timeout(n)
+	},
+})
+
+const timeout_text = computed(() => {
+	if (timeout.value) return `${String(timeout.value).padStart(2, '0')}`
+	if (passwordRequired.value && !user.value.password) {
+		return 'password required'
 	}
-});
-const timeout_text = computed(() => timeout.value
-	? `${String(timeout.value).padStart(2, '0')}`
-	: passwordRequired.value && !user.value.password
-		? 'password required '
-		: passwordRequired.value && twoFA_always_required.value && !user.value.token ||
-		  passwordRequired.value && twoFA_always_required.value && tokenError.value
-			? 'token required'
-			: confirmButton.value);
+	if ((passwordRequired.value && twoFA_always_required.value && !user.value.token) || (passwordRequired.value && twoFA_always_required.value && tokenError.value)) {
+		return 'token required'
+	}
+	return confirmButton.value
+})
 
-const timeout_icon = computed(() => timeout.value
-	? mdiTimerOutline
-	: passwordRequired.value && !user.value.password
-		? mdiLock
-		: passwordRequired.value && twoFA_always_required.value && !user.value.token ||
-		  passwordRequired.value && twoFA_always_required.value && tokenError.value
-			? mdiCellphoneInformation
-			: icon.value
-				? icon.value
-				: mdiCheck);
+const timeout_icon = computed(() => {
+	if (timeout.value) return mdiTimerOutline
+	if ((passwordRequired.value && !user.value.password)) {
+		return mdiLock
+	}
+	if ((passwordRequired.value && twoFA_always_required.value && !user.value.token) || (passwordRequired.value && twoFA_always_required.value && tokenError.value)) {
+		return mdiCellphoneInformation
+	}
+	if (icon.value) {
+		return icon.value
+	}
+	return mdiCheck
+})
 
-const title = computed(() => dialogStore.title ?? 'warning');
-const titleSize = computed(() => mdAndUp.value ? 'text-h4' : 'text-h6');
-const tokenLength = computed(() => user.value.token ? user.value.token.length : 0);
-const twoFA_always_required = computed(() => twoFAStore.always_required || dialogStore.twoFARequired && twoFAStore.active);
+const title = computed(() => dialogStore.title ?? 'warning')
+const titleSize = computed(() => mdAndUp.value ? 'text-h4' : 'text-h6')
+const tokenLength = computed(() => user.value.token ? user.value.token.length : 0)
+const twoFA_always_required = computed(() => twoFAStore.always_required || (dialogStore.twoFARequired && twoFAStore.active))
 
 const visible = computed({
 	get (): boolean {
-		return dialogStore.visible;
+		return dialogStore.visible
 	},
 	set (b: boolean): void {
-		dialogStore.set_visible(b);
-	}
-});
+		dialogStore.set_visible(b)
+	},
+})
 
-const isIntersecting = ref(false);
-const loading = ref(false);
-const localDisabled = ref(false);
-const passwordVisible = ref(false);
-const timeoutInterval = ref(0);
-const tokenError = ref('');
+const isIntersecting = ref(false)
+const loading = ref(false)
+const localDisabled = ref(false)
+const passwordVisible = ref(false)
+const timeoutInterval = ref(0)
+const tokenError = ref('')
 const tokenFields = [
 	{
 		clearable: true,
 		icon: mdiCellphoneInformation,
 		label: '2FA code',
-		model: 'token' as const
-	}
-];
+		model: 'token' as const,
+	},
+]
 const user = ref({
 	password: '',
-	token: undefined as string | undefined
-});
+	token: undefined as string | undefined,
+})
 
-const cancel = (): void => {
-	visible.value = false;
-};
+function cancel (): void {
+	visible.value = false
+}
 
-const clearTimeouts = (): void => {
-	clearInterval(timeoutInterval.value);
-	localDisabled.value = false;
-	timeout.value = 0;
-};
+function clearTimeouts (): void {
+	clearInterval(timeoutInterval.value)
+	localDisabled.value = false
+	timeout.value = 0
+}
 
-const click = async (): Promise<void> => {
-	if (passwordRequired.value && !user.value.password || timeout.value > 0 || disabled.value || !confirmMethod.value) return;
-	passwordVisible.value = false;
-	visible.value = false;
+async function click (): Promise<void> {
+	if ((passwordRequired.value && !user.value.password) || timeout.value > 0 || disabled.value || !confirmMethod.value) return
+	passwordVisible.value = false
+	visible.value = false
 	await confirmMethod.value({
 		password: user.value.password,
-		...user.value.token ? { token: user.value.token } : {}
-	});
-	dialogStore.$reset();
-};
+		...user.value.token ? { token: user.value.token } : {},
+	})
+	dialogStore.$reset()
+}
 
 /**
  ** set the this.focus to the currently in focus text field
  ** If the in focus field ISN't the password field, then set passwordVisible to false
  * @param {String} model - current model/textfield name
  */
-const focusMethod = (model: string): void => {
-	if (model !== 'password') passwordVisible.value = false;
-};
+function focusMethod (model: string): void {
+	if (model !== 'password') passwordVisible.value = false
+}
 
 /**
  ** When visible, set a timeout for the button, if params are met
  */
-const mountedTimeout = (): void => {
-	if (!isIntersecting.value) return;
-	if (!timeout.value) return;
+function mountedTimeout (): void {
+	if (!isIntersecting.value) return
+	if (!timeout.value) return
 	timeoutInterval.value = window.setInterval(() => {
-		timeout.value = timeout.value > 0 ? timeout.value -= 1 : timeout.value;
-		if (timeout.value < 1) clearInterval(timeoutInterval.value);
-	}, 1000);
-};
+		timeout.value = timeout.value > 0 ? timeout.value -= 1 : timeout.value
+		if (timeout.value < 1) clearInterval(timeoutInterval.value)
+	}, 1000)
+}
 
 /**
  ** update isIntersecting when visible & not
  */
-const onIntersect = (is_i: boolean, _entries: Array<IntersectionObserverEntry>, _observer: IntersectionObserver): void => {
-	isIntersecting.value = is_i;
-};
+function onIntersect (is_i: boolean, _entries: Array<IntersectionObserverEntry>, _observer: IntersectionObserver): void {
+	isIntersecting.value = is_i
+}
 
 watch(isIntersecting, (i: boolean): void => {
-	if (i) return mountedTimeout();
-	user.value.password = '';
-	user.value.token = undefined;
-	tokenError.value = '';
-	clearTimeouts();
-	dialogStore.$reset();
-});
+	if (i) return mountedTimeout()
+	user.value.password = ''
+	user.value.token = undefined
+	tokenError.value = ''
+	clearTimeouts()
+	dialogStore.$reset()
+})
 
-watch(() => user.value.token, (i) => {
+watch(() => user.value.token, i => {
 	if (i) {
-		if (!token_regex.test(i.replace(/\s/g, ''))) {
-			tokenError.value = 'invalid token';
-			return;
+		if (token_regex.test(i.replace(/\s/g, ''))) {
+			tokenError.value = ''
 		} else {
-			tokenError.value = '';
+			tokenError.value = 'invalid token'
+			return
 		}
 	}
-});
+})
 </script>

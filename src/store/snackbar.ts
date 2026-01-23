@@ -1,6 +1,6 @@
-import { defineStore } from 'pinia';
-import { ModuleName } from '@/types/const_module';
-import type { TSnackPosition } from '@/types';
+import type { TSnackPosition } from '@/types'
+import { defineStore } from 'pinia'
+import { ModuleName } from '@/types/const_module'
 
 export const snackbarModule = defineStore(ModuleName.SNACKBAR, {
 
@@ -12,44 +12,44 @@ export const snackbarModule = defineStore(ModuleName.SNACKBAR, {
 		message: '',
 		position: {
 			x: 'right',
-			y: 'bottom'
+			y: 'bottom',
 		} as TSnackPosition,
 		timeout: 0,
-		visible: false
+		visible: false,
 
 	}),
 
 	actions: {
 		set_closable (x: boolean): void {
-			this.closable = x;
+			this.closable = x
 		},
 
 		set_color (x: string): void {
-			this.color = x;
+			this.color = x
 		},
 
 		set_icon (x: string): void {
-			this.icon = x;
+			this.icon = x
 		},
 
 		set_loading (x: boolean): void {
-			this.loading = x;
+			this.loading = x
 		},
 
 		set_message (x: string): void {
-			this.message = x;
+			this.message = x
 		},
 
 		set_position (x: TSnackPosition): void {
-			this.position = x;
+			this.position = x
 		},
 
 		set_timeout (x: number): void {
-			this.timeout = x;
+			this.timeout = x
 		},
 
 		set_visible (x: boolean): void {
-			this.visible = x;
-		}
-	}
-});
+			this.visible = x
+		},
+	},
+})

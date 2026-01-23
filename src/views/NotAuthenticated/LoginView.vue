@@ -1,41 +1,74 @@
 <template>
-	<ThePage :justify='"center"' :fillHeight='true'>
-		<template v-slot:body>
-			<AppCard :hasButton='true' :heading='pageTitle' :loading='localLoading' heading_class='my-3'>
-				<template v-slot:body>
-					<v-form v-on:submit.prevent>
+	<ThePage :fill-height='true' :justify='"center"'>
+		<template #body>
+			<AppCard :has-button='true' :heading='pageTitle' heading-class='my-3' :loading='localLoading'>
+				<template #body>
+					<v-form @submit.prevent>
 						<v-expand-transition>
 							<section v-if='!twoFATokenRequired'>
-								<v-text-field v-for='(item, index) in textFields' v-model='user[item.model]'
-									@click:append-inner='appendClick()' @focus='focusMethod(item.model)'
-									v-on:keyup.enter='login' :append-inner-icon='item.appendIcon'
-									:autocomplete='item.autocomplete' :dense='smAndDown' :disabled='localLoading'
-									:error-messages='errorMessages[item.model]' :key='index' :label='item.label'
-									:prepend-inner-icon='item.icon' :type='item.type' color='primary' variant='outlined'
-									required />
+								<v-text-field
+									v-for='(item, index) in textFields'
+									:key='index'
+									v-model='user[item.model]'
+									:append-inner-icon='item.appendIcon'
+									:autocomplete='item.autocomplete'
+									color='primary'
+									:dense='smAndDown'
+									:disabled='localLoading'
+									:error-messages='errorMessages[item.model]'
+									:label='item.label'
+									:prepend-inner-icon='item.icon'
+									required
+									:type='item.type'
+									variant='outlined'
+									@click:append-inner='appendClick()'
+									@focus='focusMethod(item.model)'
+									@keyup.enter='login'
+								/>
 							</section>
 						</v-expand-transition>
 						<v-expand-transition>
 							<template v-if='twoFATokenRequired'>
 
 								<!-- 2FA text input  -->
-								<v-text-field v-for='(item, index) in tokenFields' v-model='user[item.model]'
-									@focus='focusMethod(item.model)' v-on:keyup.enter='login' :autofocus='true'
-									:dense='smAndDown' :disabled='localLoading'
-									:error-messages='errorMessages[item.model]' :key='index' :label='item.label'
-									:prepend-inner-icon='item.icon' autocomplete='one-time-code' color='primary'
-									variant='outlined' required />
+								<v-text-field
+									v-for='(item, index) in tokenFields'
+									:key='index'
+									v-model='user[item.model]'
+									autocomplete='one-time-code'
+									:autofocus='true'
+									color='primary'
+									:dense='smAndDown'
+									:disabled='localLoading'
+									:error-messages='errorMessages[item.model]'
+									:label='item.label'
+									:prepend-inner-icon='item.icon'
+									required
+									variant='outlined'
+									@focus='focusMethod(item.model)'
+									@keyup.enter='login'
+								/>
 							</template>
 						</v-expand-transition>
 
 					</v-form>
-					<v-row justify='center' align='center' wrap class='pa-0 ma-0'>
-						<v-col :order='mdAndUp ? 1 : 2' cols='12' md='auto' class='pa-0 ma-0'>
-							<v-row justify='center' align='center' dense no-gutters class='pa-0 ma-0'>
-								<v-col cols='auto' class='ma-0 pa-0 mb-n6' v-if='!twoFATokenRequired'>
-									<v-checkbox v-model='user.remember' :disabled='localLoading' class='ma-0 pa-0 mt-n4'
-										color='primary'>
-										<template v-slot:label>
+					<v-row align='center' class='pa-0 ma-0' justify='center' wrap>
+						<v-col class='pa-0 ma-0' cols='12' md='auto' :order='mdAndUp ? 1 : 2'>
+							<v-row
+								align='center'
+								class='pa-0 ma-0'
+								dense
+								justify='center'
+								no-gutters
+							>
+								<v-col v-if='!twoFATokenRequired' class='ma-0 pa-0 mb-n6' cols='auto'>
+									<v-checkbox
+										v-model='user.remember'
+										class='ma-0 pa-0 mt-n4'
+										color='primary'
+										:disabled='localLoading'
+									>
+										<template #label>
 											<span class='ml-0'>remember me</span>
 										</template>
 									</v-checkbox>
@@ -44,28 +77,40 @@
 						</v-col>
 					</v-row>
 				</template>
-				<template v-slot:button>
-					<v-row align='center' :justify='twoFATokenRequired ? "space-around" : "center"' class='mb-3'>
-						<v-col cols='6' v-if='twoFATokenRequired'>
-							<ActionButton @click='cancel' :block='true' :icon='mdiClose' :disabled='localLoading'
-								:iconFirst='true' color='pi' text='cancel' />
+				<template #button>
+					<v-row align='center' class='mb-3' :justify='twoFATokenRequired ? "space-around" : "center"'>
+						<v-col v-if='twoFATokenRequired' cols='6'>
+							<ActionButton
+								:block='true'
+								color='pi'
+								:disabled='localLoading'
+								:icon='mdiClose'
+								:icon-first='true'
+								text='cancel'
+								@click='cancel'
+							/>
 
 						</v-col>
 						<v-col cols='6'>
-							<ActionButton @click='login' :block='true' :icon='mdiSend' text='login'
-								:disabled />
+							<ActionButton
+								:block='true'
+								:disabled
+								:icon='mdiSend'
+								text='login'
+								@click='login'
+							/>
 
 						</v-col>
 					</v-row>
 
 				</template>
-				<template v-slot:end>
+				<template #end>
 
-					<v-row align='center' justify='space-between' class='my-2 ma-0 pa-0' v-if='!twoFATokenRequired'>
-						<v-col cols='auto' class='ma-0 pa-0'>
+					<v-row v-if='!twoFATokenRequired' align='center' class='my-2 ma-0 pa-0' justify='space-between'>
+						<v-col class='ma-0 pa-0' cols='auto'>
 							<router-link class='text-primary' :to='FrontEndRoutes.REGISTER'>create account</router-link>
 						</v-col>
-						<v-col cols='auto' class='ma-0 pa-0'>
+						<v-col class='ma-0 pa-0' cols='auto'>
 							<router-link class='text-primary' :to='FrontEndRoutes.FORGOTPASSWORD'>forgotten
 								password?</router-link>
 						</v-col>
@@ -77,36 +122,36 @@
 </template>
 
 <script setup lang='ts'>
-import { axios_authenticatedUser, axios_incognito } from '@/services/axios';
-import { FrontEndRoutes } from '@/types/const_routes';
-import { mdiCellphoneInformation, mdiClose, mdiEmail, mdiEye, mdiEyeOff, mdiLock, mdiSend } from '@mdi/js';
-import { required, email } from '@vuelidate/validators';
-import { RouterLink } from 'vue-router';
-import { token_regex } from '@/vanillaTS/globalConst';
-import { useDisplay } from 'vuetify';
-import type { TLoginModel, TLoginFields } from '@/types';
-import useVuelidate from '@vuelidate/core';
+import type { TLoginFields, TLoginModel } from '@/types'
+import { mdiCellphoneInformation, mdiClose, mdiEmail, mdiEye, mdiEyeOff, mdiLock, mdiSend } from '@mdi/js'
+import useVuelidate from '@vuelidate/core'
+import { email, required } from '@vuelidate/validators'
+import { RouterLink } from 'vue-router'
+import { useDisplay } from 'vuetify'
+import { axios_authenticatedUser, axios_incognito } from '@/services/axios'
+import { FrontEndRoutes } from '@/types/const_routes'
+import { token_regex } from '@/vanillaTS/globalConst'
 
-const { mdAndUp, smAndDown } = useDisplay();
+const { mdAndUp, smAndDown } = useDisplay()
 
 onMounted(() => {
-	browserModule().set_description(`staticPi login page - log in to staticPi`);
-	browserModule().set_title(pageTitle);
-});
+	browserModule().set_description(`staticPi login page - log in to staticPi`)
+	browserModule().set_title(pageTitle)
+})
 
 onBeforeUnmount(() => {
-	cancel();
-});
+	cancel()
+})
 
-const disabled = computed(() => localLoading.value || v$.value.$invalid || twoFATokenRequired.value && !!errorMessages.value.token || twoFATokenRequired.value && !user.value.token);
+const disabled = computed(() => localLoading.value || v$.value.$invalid || (twoFATokenRequired.value && !!errorMessages.value.token) || (twoFATokenRequired.value && !user.value.token))
 const redirect = computed({
 	get (): string {
-		return browserModule().redirect;
+		return browserModule().redirect
 	},
 	set (s: string): void {
-		browserModule().set_redirect(s);
-	}
-});
+		browserModule().set_redirect(s)
+	},
+})
 const textFields = computed((): Array<TLoginFields> => [
 	{
 		appendIcon: '',
@@ -114,150 +159,153 @@ const textFields = computed((): Array<TLoginFields> => [
 		icon: mdiEmail,
 		label: 'email address',
 		model: 'email' as const,
-		type: 'email'
+		type: 'email',
 	},
 	{
-		appendIcon: user.value.password ? passwordVisible.value ? mdiEyeOff : mdiEye : '',
+		appendIcon: user.value.password ? (passwordVisible.value ? mdiEyeOff : mdiEye) : '',
 		autocomplete: 'password',
 		icon: mdiLock,
 		label: 'password',
 		model: 'password' as const,
-		type: passwordVisible.value ? 'text' : 'password'
-	}
-]);
+		type: passwordVisible.value ? 'text' : 'password',
+	},
+])
 
-const authed = ref(false);
+const authed = ref(false)
 const errorMessages = ref({
 	email: '',
 	password: '',
-	token: ''
-});
-const focus = ref('');
-const localLoading = ref(false);
-const pageTitle = 'login';
-const passwordVisible = ref(false);
+	token: '',
+})
+const focus = ref('')
+const localLoading = ref(false)
+const pageTitle = 'login'
+const passwordVisible = ref(false)
 const tokenFields = [
 	{
 		clearable: true,
 		icon: mdiCellphoneInformation,
 		label: '2FA code',
-		model: 'token' as const
-	}
-];
-const twoFATokenRequired = ref(false);
-const twoFABackupEnabled = ref(false);
+		model: 'token' as const,
+	},
+]
+const twoFATokenRequired = ref(false)
+const twoFABackupEnabled = ref(false)
 const user = ref({
 	password: '',
 	email: '',
 	remember: false,
-	token: ''
-});
+	token: '',
+})
 
 /**
  ** Set the password visible
  *
  */
-const appendClick = (): void => {
-	if (localLoading.value) return;
-	passwordVisible.value = !passwordVisible.value;
-};
+function appendClick (): void {
+	if (localLoading.value) return
+	passwordVisible.value = !passwordVisible.value
+}
 
 /**
  ** set the this.focus to the currently in focus text field
  ** If the in focus field ISN't the password field, then set passwordVisible to false
  * @param {String} model - current model/textfield name
  */
-const focusMethod = (model: TLoginModel): void => {
-	focus.value = model;
-	if (model !== 'password') passwordVisible.value = false;
-};
+function focusMethod (model: TLoginModel): void {
+	focus.value = model
+	if (model !== 'password') passwordVisible.value = false
+}
 
-const cancel = (): void => {
+function cancel (): void {
 	user.value = {
 		password: '',
 		email: '',
 		remember: false,
-		token: ''
-	};
-	twoFATokenRequired.value = false;
-	twoFABackupEnabled.value = false;
-	passwordVisible.value = false;
-};
+		token: '',
+	}
+	twoFATokenRequired.value = false
+	twoFABackupEnabled.value = false
+	passwordVisible.value = false
+}
 
-const clearErrorMessages = (): void => {
+function clearErrorMessages (): void {
 	errorMessages.value = {
 		email: '',
 		password: '',
-		token: ''
-	};
-};
+		token: '',
+	}
+}
 
-const router = useRouter();
+const router = useRouter()
 
-const login = async (): Promise<void> => {
-	if (v$.value.$invalid) return;
-	clearErrorMessages();
-	localLoading.value = true;
-	passwordVisible.value = false;
+async function login (): Promise<void> {
+	if (v$.value.$invalid) return
+	clearErrorMessages()
+	localLoading.value = true
+	passwordVisible.value = false
 	const authObject = {
 		email: user.value.email.toLowerCase(),
 		password: user.value.password,
 		remember: user.value.remember,
 		// TODO test me
-		...user.value.token ? { token: user.value.token.replace(/\s/g, '') } : {}
-	};
-	const loginRequest = await axios_incognito.signin_post(authObject);
-	localLoading.value = false;
+		...user.value.token ? { token: user.value.token.replace(/\s/g, '') } : {},
+	}
+	const loginRequest = await axios_incognito.signin_post(authObject)
+	localLoading.value = false
 
 	if (loginRequest?.status === 200) {
-		authed.value = true;
-		clearErrorMessages();
-		userModule().set_email(user.value.email);
-		userModule().set_authenticated(true);
-		user.value.email = '';
-		user.value.password = '';
-		user.value.token = '';
-		await axios_authenticatedUser.user_get();
-		snackbarModule().$reset();
-		const destination = redirect.value ? redirect.value : FrontEndRoutes.USER_DEVICES;
-		router.push(destination);
-		redirect.value = '';
+		authed.value = true
+		clearErrorMessages()
+		userModule().set_email(user.value.email)
+		userModule().set_authenticated(true)
+		user.value.email = ''
+		user.value.password = ''
+		user.value.token = ''
+		await axios_authenticatedUser.user_get()
+		snackbarModule().$reset()
+		if (redirect.value) {
+			router.push(redirect.value)
+		} else {
+			router.push(FrontEndRoutes.USER_DEVICES)
+		}
+		redirect.value = ''
 	} else if (loginRequest?.status === 202) {
-		snackbarModule().$reset();
-		twoFATokenRequired.value = true;
-		twoFABackupEnabled.value = loginRequest.response.two_fa_backup;
+		snackbarModule().$reset()
+		twoFATokenRequired.value = true
+		twoFABackupEnabled.value = loginRequest.response.two_fa_backup
 	} else if (twoFATokenRequired.value) {
-		errorMessages.value.token = 'invalid token';
+		errorMessages.value.token = 'invalid token'
 	} else {
-		errorMessages.value.email = 'invalid email and/or password';
-		errorMessages.value.password = 'invalid email and/or password';
+		errorMessages.value.email = 'invalid email and/or password'
+		errorMessages.value.password = 'invalid email and/or password'
 	}
-};
+}
 
 const rules = {
 	email: {
 		email,
-		required
+		required,
 	},
-	password: { required }
-};
-const v$ = useVuelidate(rules, user);
+	password: { required },
+}
+const v$ = useVuelidate(rules, user)
 watch(() => user.value.email, () => {
-	user.value.email = user.value.email ? user.value.email.trim().toLowerCase() : '';
-	errorMessages.value.email = !v$.value.email.email ? 'email invalid' : '';
-});
+	user.value.email = user.value.email ? user.value.email.trim().toLowerCase() : ''
+	errorMessages.value.email = v$.value.email.email ? '' : 'email invalid'
+})
 
-watch(() => user.value.token, (i) => {
+watch(() => user.value.token, i => {
 	if (i) {
-		if (!token_regex.test(i.replace(/\s/g, ''))) {
-			errorMessages.value.token = 'invalid token';
-			return;
+		if (token_regex.test(i.replace(/\s/g, ''))) {
+			errorMessages.value.token = ''
 		} else {
-			errorMessages.value.token = '';
+			errorMessages.value.token = 'invalid token'
+			return
 		}
 	} else {
-		errorMessages.value.token = '';
+		errorMessages.value.token = ''
 	}
-});
+})
 
 </script>

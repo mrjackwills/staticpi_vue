@@ -1,99 +1,99 @@
 <template>
 	<AppCard
-		sm='12'
-		md='12'
-		lg='11'
-		xl='11'
 		heading='invites'
-		heading_justify='start'
-		heading_class='ml-2'
-		heading_size='text-h6'
+		heading-class='ml-2'
+		heading-justify='start'
+		heading-size='text-h6'
+		lg='11'
+		md='12'
 		my=''
+		sm='12'
+		xl='11'
 	>
-		<template v-slot:body>
-			<v-row align='center' justify='center' class='no-gutters py-2' :class='text_class' >
-				<v-col cols='12' >
+		<template #body>
+			<v-row align='center' class='no-gutters py-2' :class='text_class' justify='center'>
+				<v-col cols='12'>
 					<v-row align='center' class='font-weight-bold text-caption' justify='space-between'>
-						<v-col cols='6' class=''>
+						<v-col class='' cols='6'>
 							<span class=''>
 								invite code
 							</span>
 						</v-col>
-						<v-col cols='6' class='text-right'>
+						<v-col class='text-right' cols='6'>
 							<span class=''>
 								count
 							</span>
 						</v-col>
 					</v-row>
 					<v-divider />
-					<v-row align='center' justify='center' class='no-gutters ma-0 pa-0' >
+					<v-row align='center' class='no-gutters ma-0 pa-0' justify='center'>
 						<v-col
 							v-for='(item,index) in inviteCodes'
 							:key='index'
-							cols='12'
 							class=' ma-0 pa-0 my-1'
+							cols='12'
 						>
 							<v-row align='center' justify='space-between'>
-								<v-col cols='6' class='text-primary'>
+								<v-col class='text-primary' cols='6'>
 									<v-row align='center' justify='start'>
 										<v-col cols='auto'>
 											<CopyButton
-												:hoverMessage='`copy invite`'
-												:toCopy='`${item.invite}`'
-												:tooltipMessage='"invite copied!"'
 												color='secondary'
+												:hover-message='`copy invite`'
 												:small='true'
+												:to-copy='`${item.invite}`'
+												:tooltip-message='"invite copied!"'
 											/>
 										</v-col>
-										<v-col cols='auto' class='unselectable'>
+										<v-col class='unselectable' cols='auto'>
 											{{ item.invite }}
 										</v-col>
 									</v-row>
 
 								</v-col>
-								<v-col cols='6' class='text-right'>
+								<v-col class='text-right' cols='6'>
 									{{ item.count }}
 									<span class='ml-3'>
-										<v-icon @click='remove_invite(item.invite)' color='pi' :icon='mdiCloseCircle' size='small' />
+										<v-icon color='pi' :icon='mdiCloseCircle' size='small' @click='remove_invite(item.invite)' />
 									</span>
 								</v-col>
 							</v-row>
-							<v-divider class='' v-if='(index!== inviteCodes.length -1)'/>
+							<v-divider v-if='(index!== inviteCodes.length -1)' class='' />
 						</v-col>
-						<v-col cols='auto' v-if='inviteCodes.length === 0' class='text-pi text-caption font-weight-bold'>
+						<v-col v-if='inviteCodes.length === 0' class='text-pi text-caption font-weight-bold' cols='auto'>
 							No invite codes
 						</v-col>
 					</v-row>
 				</v-col>
 			</v-row>
 			<v-divider />
-			<v-row align='center' justify='space-around' class='my-3'>
+			<v-row align='center' class='my-3' justify='space-around'>
 				<v-col cols='12'>
 
-					<v-form v-on:submit.prevent>
+					<v-form @submit.prevent>
 						<v-row align='center' justify='center'>
 
-							<v-col cols='3' class='ma-0 pa-0 mr-3'  v-for='(item, index) in textFieldRows' :key='index'>
+							<v-col v-for='(item, index) in textFieldRows' :key='index' class='ma-0 pa-0 mr-3' cols='3'>
 								<v-text-field
 									v-model='model[item.model]'
-									:error='item.invalid'
-									:label='item.label'
+									clearable
 									color='primary'
 									density='compact'
-									variant='outlined'
-									clearable
+									:error='item.invalid'
+									:label='item.label'
 									require
+									variant='outlined'
 								/>
 							</v-col>
-							<v-col cols='auto' class='ma-0 pa-0 mt-n5'>
+							<v-col class='ma-0 pa-0 mt-n5' cols='auto'>
 								<ActionButton
-									@click='addInvite'
 									:block='true'
+									color='primary'
 									:disabled
 									:icon='mdiPlus '
 									:small='true'
-									color='primary'
 									text='create'
+									@click='addInvite'
 								/>
 							</v-col>
 						</v-row>
@@ -105,54 +105,54 @@
 </template>
 
 <script setup lang="ts">
-import { axios_admin } from '@/services/axios';
-import { dialoger } from '@/services/dialog';
-import { integer, minLength, minValue, required } from '@vuelidate/validators';
-import { mdiCloseCircle, mdiPlus } from '@mdi/js';
-import { useDisplay } from 'vuetify';
-import type { TAdminInvite, TAuthObject } from '@/types';
-import useVuelidate from '@vuelidate/core';
+import type { TAdminInvite, TAuthObject } from '@/types'
+import { mdiCloseCircle, mdiPlus } from '@mdi/js'
+import useVuelidate from '@vuelidate/core'
+import { integer, minLength, minValue, required } from '@vuelidate/validators'
+import { useDisplay } from 'vuetify'
+import { axios_admin } from '@/services/axios'
+import { dialoger } from '@/services/dialog'
 
-const { mdAndDown } = useDisplay();
+const { mdAndDown } = useDisplay()
 
-const text_class = computed(() => mdAndDown.value ? 'small-text' : '');
+const text_class = computed(() => mdAndDown.value ? 'small-text' : '')
 
 const model = ref({
 	invite: '',
-	count: undefined as undefined | number
-});
+	count: undefined as undefined | number,
+})
 
 const textFieldRows = computed(() => [
 	{
 		model: 'invite' as const,
 		label: 'invite',
-		invalid: v$.value.invite.$invalid && model.value.invite?.length > 0
+		invalid: v$.value.invite.$invalid && model.value.invite?.length > 0,
 	},
 	{
 		model: 'count' as const,
 		label: 'count',
-		invalid: v$.value.count.$invalid && !!model.value.count
-	}
-]);
+		invalid: v$.value.count.$invalid && !!model.value.count,
+	},
+])
 
 const rules = {
 	invite: {
 		required,
-		minLength: minLength(12)
+		minLength: minLength(12),
 	},
 	count: {
 		required,
 		integer,
-		minValue: minValue(1)
-	}
-};
+		minValue: minValue(1),
+	},
+}
 
-const disabled = computed(() => v$.value.$invalid);
+const disabled = computed(() => v$.value.$invalid)
 
-const v$ = useVuelidate(rules, model);
+const v$ = useVuelidate(rules, model)
 
-const addInvite = (): void => {
-	if (v$.value.$invalid) return;
+function addInvite (): void {
+	if (v$.value.$invalid) return
 	dialoger({
 		message: `Authentication required to add new invite`,
 		icon: mdiPlus,
@@ -161,33 +161,33 @@ const addInvite = (): void => {
 		confirmMethod: addInvite_confirm,
 		passwordrequired: true,
 		twoFABackup: false,
-		twoFARequired: false
-	});
-};
+		twoFARequired: false,
+	})
+}
 
-const remove_invite = async (invite: string): Promise<void> => {
-	loadingModule().loading = true;
-	await axios_admin.invite_delete(invite);
-	loadingModule().loading = false;
-	emit('update');
-};
+async function remove_invite (invite: string): Promise<void> {
+	loadingModule().loading = true
+	await axios_admin.invite_delete(invite)
+	loadingModule().loading = false
+	emit('update')
+}
 
-const emit = defineEmits(['update']);
+const emit = defineEmits(['update'])
 
-const addInvite_confirm = async (auth: TAuthObject): Promise<void> => {
-	if (v$.value.$invalid) return;
-	loadingModule().loading = true;
+async function addInvite_confirm (auth: TAuthObject): Promise<void> {
+	if (v$.value.$invalid) return
+	loadingModule().loading = true
 	await axios_admin.invite_post({
 		...auth,
 		count: Number(model.value.count),
-		invite: model.value.invite
-	});
-	loadingModule().loading = false;
-	model.value.count = undefined;
-	model.value.invite = '';
-	emit('update');
-};
+		invite: model.value.invite,
+	})
+	loadingModule().loading = false
+	model.value.count = undefined
+	model.value.invite = ''
+	emit('update')
+}
 
-defineProps<{ inviteCodes: Array<TAdminInvite> }>();
+defineProps<{ inviteCodes: Array<TAdminInvite> }>()
 
 </script>

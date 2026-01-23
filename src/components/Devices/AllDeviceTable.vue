@@ -1,25 +1,25 @@
 <template>
 	<AppCard
-		:hasButton='false'
+		:has-button='false'
+		lg='12'
 		sm='12'
 		xl='12'
-		lg='12'
 	>
-		<template v-slot:start >
+		<template #start>
 			<DeviceHeaders />
 
 		</template>
-		<template v-slot:body >
+		<template #body>
 
 			<v-row
 				v-for='(device, index) in tableData'
 				:key='device.name_of_device'
 				align='center'
-				justify='center'
 				class='ma-0 pa-0'
+				justify='center'
 			>
 				<DeviceRow :device @refresh='refresh' />
-				<v-col cols='12' class='ma-0 pa-0 py-1' v-if='index!==tableData.length-1'>
+				<v-col v-if='index!==tableData.length-1' class='ma-0 pa-0 py-1' cols='12'>
 					<v-divider />
 				</v-col>
 			</v-row>
@@ -29,31 +29,31 @@
 
 <script setup lang='ts'>
 
-const deviceStore = deviceModule();
+const deviceStore = deviceModule()
 
 onBeforeUnmount(() => {
-	clearInterval(refreshInterval.value);
-});
+	clearInterval(refreshInterval.value)
+})
 
 onMounted(() => {
-	startRefreshInterval();
-});
+	startRefreshInterval()
+})
 
-const tableData = computed(() => deviceStore.all);
+const tableData = computed(() => deviceStore.all)
 
-const refreshInterval = ref(0);
+const refreshInterval = ref(0)
 
-const emit = defineEmits(['refresh']);
+const emit = defineEmits(['refresh'])
 
-const refresh = (): void => {
-	emit('refresh');
-	clearInterval(refreshInterval.value);
-	startRefreshInterval();
-};
+function refresh (): void {
+	emit('refresh')
+	clearInterval(refreshInterval.value)
+	startRefreshInterval()
+}
 
-const startRefreshInterval = (): void => {
-	refreshInterval.value = setInterval(() => emit('refresh'), 15000);
-};
+function startRefreshInterval (): void {
+	refreshInterval.value = setInterval(() => emit('refresh'), 15_000)
+}
 
 </script>
 

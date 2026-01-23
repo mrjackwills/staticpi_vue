@@ -6,15 +6,13 @@ permissions:
 on:
   push:
     tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+'
+       - 'v[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
-  build:
-    name: Create Release
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v5
       - name: Release
         uses: softprops/action-gh-release@v2
         with:

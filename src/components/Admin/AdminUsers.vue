@@ -1,40 +1,45 @@
 <template>
 	<AppCard
-		sm='12'
-		md='12'
-		lg='11'
-		xl='11'
 		heading='users'
-		heading_justify='start'
-		heading_class='ml-2'
-		heading_size='text-h6'
+		heading-class='ml-2'
+		heading-justify='start'
+		heading-size='text-h6'
+		lg='11'
+		md='12'
 		my=''
+		sm='12'
+		xl='11'
 	>
-		<template v-slot:body>
-			<v-row align='center' justify='space-around' class='no-gutters ma-0 pa-0' >
-				<v-col cols='12' class='ma-0 pa-0'>
+		<template #body>
+			<v-row align='center' class='no-gutters ma-0 pa-0' justify='space-around'>
+				<v-col class='ma-0 pa-0' cols='12'>
 					total bandwidth: <span class='font-weight-bold'>{{ total_monthly_bandwidth }}</span>
 				</v-col>
-				<v-col cols='12' class='ma-0 pa-0' >
+				<v-col class='ma-0 pa-0' cols='12'>
 					<v-row align='center' class='font-weight-bold ma-0 pa-0 no-gutters' justify='space-between'>
 
-						<v-col :cols='item==="email"? "2":"1"' class='ma-0 pa-0 font-weight-bold unselectable text-caption'
-							v-for='(item, index) in headers' :key='index' :class='index===0?"text-left":"text-right"'>
+						<v-col
+							v-for='(item, index) in headers'
+							:key='index'
+							class='ma-0 pa-0 font-weight-bold unselectable text-caption'
+							:class='index===0?"text-left":"text-right"'
+							:cols='item==="email"? "2":"1"'
+						>
 							{{ item }}
 						</v-col>
 					</v-row>
 				</v-col>
 			</v-row>
 			<v-divider />
-			<v-row align='center' justify='center' class='ma-0 pa-0 mb-2' >
+			<v-row align='center' class='ma-0 pa-0 mb-2' justify='center'>
 				<v-col
 					v-for='(item,index) in users'
 					:key='index'
-					cols='12'
 					class='ma-0 pa-0'
+					cols='12'
 				>
-					<AdminUserRow :user='item.user' :sessions='item.sessions' @update='emit("update")' />
-					<v-divider class='' v-if='(index!== users.length -1)'/>
+					<AdminUserRow :sessions='item.sessions' :user='item.user' @update='emit("update")' />
+					<v-divider v-if='(index!== users.length -1)' class='' />
 				</v-col>
 			</v-row>
 		</template>
@@ -42,17 +47,17 @@
 </template>
 
 <script setup lang="ts">
-import { convert_bytes } from '@/vanillaTS/convert_bytes';
-import type { TAdminUserAndSessions } from '@/types';
+import type { TAdminUserAndSessions } from '@/types'
+import { convert_bytes } from '@/vanillaTS/convert_bytes'
 
 const total_monthly_bandwidth = computed((): string => {
-	let bw = 0;
+	let bw = 0
 	for (const i of props.users) {
-		bw += Number(i.user.client_bytes_month_out) + Number(i.user.pi_bytes_month_out);
+		bw += Number(i.user.client_bytes_month_out) + Number(i.user.pi_bytes_month_out)
 	}
-	const total = convert_bytes(bw);
-	return `${total.total} ${total.unit}`;
-});
+	const total = convert_bytes(bw)
+	return `${total.total} ${total.unit}`
+})
 
 const headers = [
 	'active',
@@ -65,10 +70,10 @@ const headers = [
 	'two_factor',
 	'password_reset',
 	'# attempts',
-	'# session'
-];
+	'# session',
+]
 
-const emit = defineEmits(['update']);
-const props = defineProps<{ users: Array<TAdminUserAndSessions> }>();
+const emit = defineEmits(['update'])
+const props = defineProps<{ users: Array<TAdminUserAndSessions> }>()
 
 </script>

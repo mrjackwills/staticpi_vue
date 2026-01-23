@@ -1,31 +1,37 @@
 <template>
-	<v-row align='center' justify='center' class='ma-0 pa-0 no-gutters unselectable' v-intersect='onIntersect'>
-		<v-col :cols class='ma-0 pa-0'>
+	<v-row v-intersect='onIntersect' align='center' class='ma-0 pa-0 no-gutters unselectable' justify='center'>
+		<v-col class='ma-0 pa-0' :cols>
 
-			<v-row align='center' justify='center' class='ma-0 pa-0 no-gutters'>
+			<v-row align='center' class='ma-0 pa-0 no-gutters' justify='center'>
 
-				<v-col cols='12' md='auto' class='ma-0 pa-0 cl' @click='toggleHidden'>
+				<v-col class='ma-0 pa-0 cl' cols='12' md='auto' @click='toggleHidden'>
 
-					<v-row align='center' :justify class='ma-0 pa-0 no-gutters' v-if='show_calc'>
-						<v-col cols='auto' class='ma-0 pa-0'>
+					<v-row v-if='showCalc' align='center' class='ma-0 pa-0 no-gutters' :justify>
+						<v-col class='ma-0 pa-0' cols='auto'>
 							<v-icon :color :icon='mdiSwapVerticalBold' />
 						</v-col>
-						<v-col cols='auto' class='mx-2 ma-0 pa-0'>
-							<SubHeading heading='bandwidth' :heading_size='"text-h7 unselectable"' justify='start'
-								:color />
+						<v-col class='mx-2 ma-0 pa-0' cols='auto'>
+							<SubHeading
+								:color
+								heading='bandwidth'
+								heading-size='text-h7 unselectable'
+								justify='start'
+							/>
 						</v-col>
-						<v-col cols='auto' class='ma-0 pa-0'>
-							<v-icon :color :class='{ "flipy": hidden }' :icon='mdiChevronDoubleUp' />
+						<v-col class='ma-0 pa-0' cols='auto'>
+							<v-icon :class='{ "flipy": hidden }' :color :icon='mdiChevronDoubleUp' />
 						</v-col>
 					</v-row>
 
 				</v-col>
 
-				<v-col cols='12' md='auto' class='ma-0 pa-0 ml-2' v-if='showDetailSwitch'>
-					<v-switch v-model='switchDetailed' :hide-details='true' color='primary' density='compact'>
-						<template v-slot:label>
-							<span class='font-weight-black text-caption'
-								:class='{ "text-primary": switchDetailed }'>detailed</span>
+				<v-col v-if='showDetailSwitch' class='ma-0 pa-0 ml-2' cols='12' md='auto'>
+					<v-switch v-model='switchDetailed' color='primary' density='compact' :hide-details='true'>
+						<template #label>
+							<span
+								class='font-weight-black text-caption'
+								:class='{ "text-primary": switchDetailed }'
+							>detailed</span>
 						</template>
 					</v-switch>
 				</v-col>
@@ -37,18 +43,23 @@
 					<v-divider class='mt-1' />
 
 					<section v-if='switchDetailed'>
-						<v-row class='ma-0 pa-0' justify='space-between' align='center'>
+						<v-row align='center' class='ma-0 pa-0' justify='space-between'>
 							<v-col cols='2' />
 
-							<v-col class='ma-0 pa-0 text-right' :class='{ "border-right": index !== 2 && !mobile }'
-								cols='3' v-for='(item, index) in headers' :key='index'>
+							<v-col
+								v-for='(item, index) in headers'
+								:key='index'
+								class='ma-0 pa-0 text-right'
+								:class='{ "border-right": index !== 2 && !mobile }'
+								cols='3'
+							>
 								<span class='font-weight-bold mr-1' :class='{ "small-text": mobile }'>
 									{{ item }}
 								</span>
 							</v-col>
 						</v-row>
 
-						<v-row class='ma-0 pa-0' justify='start' align='center'>
+						<v-row align='center' class='ma-0 pa-0' justify='start'>
 							<v-col class='ma-0 pa-0 text-right' cols='12'>
 								<v-divider />
 							</v-col>
@@ -59,9 +70,13 @@
 
 					<v-divider />
 
-					<v-row v-if='(switchDetailed && show_calc)' class='ma-0 pa-0 no-gutters' align='center'
-						justify='center'>
-						<v-col cols='auto ma-0 pa-0' class='text-center small-text font-italic unselectable'>
+					<v-row
+						v-if='(switchDetailed && showCalc)'
+						align='center'
+						class='ma-0 pa-0 no-gutters'
+						justify='center'
+					>
+						<v-col class='text-center small-text font-italic unselectable' cols='auto ma-0 pa-0'>
 							Only the sum of the received amount from both all clients and device is counted against your
 							monthly
 							bandwidth allowance
@@ -78,48 +93,48 @@
 </template>
 
 <script setup lang="ts">
-import { mdiChevronDoubleUp, mdiSwapVerticalBold } from '@mdi/js';
-import ExtraBandwidthDetailed from '@/components/Devices/AllDeviceTable/ExtraInformation/ExtraBandwidthDetailed.vue';
-import ExtraBandwidthSimple from '@/components/Devices/AllDeviceTable/ExtraInformation/ExtraBandwidthSimple.vue';
-import { useDisplay } from 'vuetify';
-import type { TDeviceInfo } from '@/types';
-import type { VRow } from 'vuetify/components/VGrid';
+import type { VRow } from 'vuetify/components/VGrid'
+import type { TDeviceInfo } from '@/types'
+import { mdiChevronDoubleUp, mdiSwapVerticalBold } from '@mdi/js'
+import { useDisplay } from 'vuetify'
+import ExtraBandwidthDetailed from '@/components/Devices/AllDeviceTable/ExtraInformation/ExtraBandwidthDetailed.vue'
+import ExtraBandwidthSimple from '@/components/Devices/AllDeviceTable/ExtraInformation/ExtraBandwidthSimple.vue'
 
-const { mobile } = useDisplay();
+const { mobile } = useDisplay()
 
-const color = 'primary';
+const color = 'primary'
 
-const cols = computed(() => mobile.value || switchDetailed.value ? '12' : '4');
-const justify = computed(() => mobile.value ? 'space-between' : 'center');
-const showDetailSwitch = computed(() => !hidden.value);
-const isComponent = computed(() => switchDetailed.value ? ExtraBandwidthDetailed : ExtraBandwidthSimple);
+const cols = computed(() => mobile.value || switchDetailed.value ? '12' : '4')
+const justify = computed(() => mobile.value ? 'space-between' : 'center')
+const showDetailSwitch = computed(() => !hidden.value)
+const isComponent = computed(() => switchDetailed.value ? ExtraBandwidthDetailed : ExtraBandwidthSimple)
 
-const headers = ['device', 'clients', 'all'];
-const hidden = ref(false);
-const isIntersecting = ref(false);
-const switchDetailed = ref(false);
+const headers = ['device', 'clients', 'all']
+const hidden = ref(false)
+const isIntersecting = ref(false)
+const switchDetailed = ref(false)
 
-const onIntersect = (is_i: boolean, _entries: Array<IntersectionObserverEntry>, _observer: IntersectionObserver): void => {
-	isIntersecting.value = is_i;
-};
-const emit = defineEmits(['hidden']);
+function onIntersect (is_i: boolean, _entries: Array<IntersectionObserverEntry>, _observer: IntersectionObserver): void {
+	isIntersecting.value = is_i
+}
+const emit = defineEmits(['hidden'])
 
-const toggleHidden = (): void => {
-	hidden.value = !hidden.value;
-	emit('hidden', hidden.value);
-};
+function toggleHidden (): void {
+	hidden.value = !hidden.value
+	emit('hidden', hidden.value)
+}
 
 withDefaults(defineProps<{
-	device: TDeviceInfo;
-	show_calc?: boolean;
-}>(), { show_calc: true });
+	device: TDeviceInfo
+	showCalc?: boolean
+}>(), { showCalc: true })
 
 watch(isIntersecting, (i: boolean): void => {
 	if (!i) {
-		hidden.value = false;
-		switchDetailed.value = false;
+		hidden.value = false
+		switchDetailed.value = false
 	}
-});
+})
 </script>
 
 <style>

@@ -1,28 +1,32 @@
 <template>
-	<v-row :justify='justify??"center"' align='center' class='ma-0 pa-0' no-gutters>
-		<v-col cols='auto' class='ma-0 pa-0'>
+	<v-row align='center' class='ma-0 pa-0' :justify='justify??"center"' no-gutters>
+		<v-col class='ma-0 pa-0' cols='auto'>
 			<div class='text-center font-weight-bold' :class='[headingSize, headingColor]'>{{ heading }}</div>
 		</v-col>
 	</v-row>
 </template>
 
 <script setup lang='ts'>
-import { useDisplay } from 'vuetify';
-import type { VRow } from 'vuetify/components/VGrid';
+import type { VRow } from 'vuetify/components/VGrid'
+import { useDisplay } from 'vuetify'
 
-const { mdAndUp } = useDisplay();
+const { mdAndUp } = useDisplay()
 
-const headingSize = computed(() => props.heading_size ? props.heading_size : mdAndUp.value ? 'text-h6' : 'text-h7');
-const headingColor = computed(() => `text-${props.color}`);
+const headingSize = computed(() => {
+	if (props.headingSize) return props.headingSize
+	if (mdAndUp.value) return 'text-h6'
+	return 'text-h7'
+})
+const headingColor = computed(() => `text-${props.color}`)
 
 const props = withDefaults(defineProps<{
-	color?: string;
-	heading: string;
-	heading_size?: string;
-	justify?: VRow['$props']['justify'];
+	color?: string
+	heading: string
+	headingSize?: string
+	justify?: VRow['$props']['justify']
 }>(), {
 	color: 'pi',
-	justify: 'center'
-});
+	justify: 'center',
+})
 
 </script>

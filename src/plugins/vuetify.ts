@@ -1,14 +1,14 @@
-import 'vuetify/styles';
-import '@/scss/variables.scss';
+import { createVuetify } from 'vuetify'
+import { aliases, mdi } from 'vuetify/iconsets/mdi-svg'
 
-import { aliases, mdi } from 'vuetify/iconsets/mdi-svg';
-import { createVuetify } from 'vuetify';
+import 'vuetify/styles'
+import '@/scss/variables.scss'
 
 export default createVuetify({
 	icons: {
 		defaultSet: 'mdi',
 		aliases,
-		sets: { mdi }
+		sets: { mdi },
 	},
 
 	theme: {
@@ -25,9 +25,9 @@ export default createVuetify({
 					app: '#D4B56A',
 					backgroundColor: '#f5f4f2',
 					cardColor: '#fafafa',
-					rowHover: '#dededf'
-				}
-			}
-		}
-	}
-});
+					rowHover: '#dededf',
+				},
+			},
+		},
+	},
+})

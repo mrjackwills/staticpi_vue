@@ -1,29 +1,40 @@
 <template>
-	<v-card :color='vsColor' class='no-gutters ma-0 pa-0'>
+	<v-card class='no-gutters ma-0 pa-0' :color='vsColor'>
 
-		<v-row class='ma-0 pa-0 no-gutters' align='center' justify='center'>
+		<v-row align='center' class='ma-0 pa-0 no-gutters' justify='center'>
 
-			<v-col cols='12' class='ma-0 pa-0'>
+			<v-col class='ma-0 pa-0' cols='12'>
 
-				<v-row no-gutters class='ma-0 pa-0 text-white' align='center' justify='start' v-if='titleBar'>
+				<v-row
+					v-if='titleBar'
+					align='center'
+					class='ma-0 pa-0 text-white'
+					justify='start'
+					no-gutters
+				>
 
-					<v-col cols='auto' v-for='(item, index) in codeIcons' :key='index' class='ml-2'>
-						<v-icon size='x-small' :color='item' :icon='mdiCheckboxBlankCircle' />
+					<v-col v-for='(item, index) in codeIcons' :key='index' class='ml-2' cols='auto'>
+						<v-icon :color='item' :icon='mdiCheckboxBlankCircle' size='x-small' />
 					</v-col>
 
-					<v-col cols='auto' class='font-italic ml-12 unselectable mx-2 text-cardColor' :class='smallText'>
+					<v-col class='font-italic ml-12 unselectable mx-2 text-cardColor' :class='smallText' cols='auto'>
 						{{ filename }}
 					</v-col>
 
-					<v-col cols='auto' class='font-italic unselectable cl'>
-						<CopyButton :hoverMessage='`click to copy "${filename}"`' :small='true' :toCopy='code'
-							:tooltipMessage='"code copied!"' color='cardColor' />
+					<v-col class='font-italic unselectable cl' cols='auto'>
+						<CopyButton
+							color='cardColor'
+							:hover-message='`click to copy "${filename}"`'
+							:small='true'
+							:to-copy='code'
+							:tooltip-message='"code copied!"'
+						/>
 					</v-col>
 
 				</v-row>
 
-				<v-row align='center' justify='center' class='ma-0 pa-0 text-white'>
-					<v-col cols='12' class='ma-0 pa-0'>
+				<v-row align='center' class='ma-0 pa-0 text-white' justify='center'>
+					<v-col class='ma-0 pa-0' cols='12'>
 
 						<pre class='language-js' v-html='highlighted_code' />
 					</v-col>
@@ -37,33 +48,29 @@
 </template>
 
 <script setup lang="ts">
-import '@/scss/vscode.css';
-import { mdiCheckboxBlankCircle } from '@mdi/js';
-import { useDisplay } from 'vuetify';
-import prism from 'prismjs';
+import { mdiCheckboxBlankCircle } from '@mdi/js'
+import prism from 'prismjs'
+import { useDisplay } from 'vuetify'
+import '@/scss/vscode.css'
 
-const { mobile } = useDisplay();
+const { mobile } = useDisplay()
 
-const smallText = computed(() => mobile.value ? 'small-text' : '');
-const vsColor = '#4b4453';
+const smallText = computed(() => mobile.value ? 'small-text' : '')
+const vsColor = '#4b4453'
 
 const highlighted_code = computed(() => {
-	if (prism.languages.js) {
-		return prism.highlight(props.code, prism.languages.js, 'js').trim();
-	} else {
-		return '';
-	}
-});
+	return prism.languages.js ? prism.highlight(props.code, prism.languages.js, 'js').trim() : ''
+})
 
-const codeIcons = ['#ff5f56', '#ffbd2e', '#27c93f'];
+const codeIcons = ['#ff5f56', '#ffbd2e', '#27c93f']
 
 const props = withDefaults(defineProps<{
-	code: string;
-	filename?: string;
-	titleBar?: boolean;
+	code: string
+	filename?: string
+	titleBar?: boolean
 }>(), {
 	filename: '',
-	titleBar: true
-});
+	titleBar: true,
+})
 
 </script>

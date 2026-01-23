@@ -1,48 +1,47 @@
-
 <template>
 	<v-app-bar
-		:extended='!online'
-		:height='appbarHeight'
-		extension-height='40'
-		color='pi'
 		app
 		clipped-left
+		color='pi'
 		dark
+		:extended='!online'
+		extension-height='40'
 		flat
+		:height='appbarHeight'
 	>
 		<v-toolbar-title
-			@click='goHome'
 			class='cl pa-0'
+			@click='goHome'
 		>
-			<v-row align='center' justify='start' no-gutters class='pa-0 ma-0'>
+			<v-row align='center' class='pa-0 ma-0' justify='start' no-gutters>
 				<v-col
-					:class='logoMargin'
 					class=''
+					:class='logoMargin'
 					cols='auto'
 				>
 					<v-img
-						src='@/assets/svg/app_bar_logo.svg'
 						:eager='true'
-						:width='logoSize'
 						:height='logoSize'
+						src='@/assets/svg/app_bar_logo.svg'
+						:width='logoSize'
 					/>
 				</v-col>
-				<v-col cols='auto' class='unselectable text-h4' align-self='center'>
-					<StaticPi color=''/>
+				<v-col align-self='center' class='unselectable text-h4' cols='auto'>
+					<StaticPi color='' />
 				</v-col>
 			</v-row>
 		</v-toolbar-title>
 
 		<v-toolbar-items>
-			<template v-if='authenticated && email && onDesktop' >
-				<v-row align='center'  class='mr-2'>
-					<v-col cols='auto' class='mr-3' @click='goSettings'>
+			<template v-if='authenticated && email && onDesktop'>
+				<v-row align='center' class='mr-2'>
+					<v-col class='mr-3' cols='auto' @click='goSettings'>
 						<v-chip color='primary cl text-subtitle-1' variant='flat'>
-							<v-row align='center' justify='space-between' class='ma-0 pa-0 no-gutters'>
-								<v-col cols='auto' class='ma-0 pa-0 mr-1'>
+							<v-row align='center' class='ma-0 pa-0 no-gutters' justify='space-between'>
+								<v-col class='ma-0 pa-0 mr-1' cols='auto'>
 									<v-icon :icon='mdiAccountCircle' />
 								</v-col>
-								<v-col cols='auto' class='ma-0 pa-0'>
+								<v-col class='ma-0 pa-0' cols='auto'>
 									<span class='unselectable'>{{ email }}</span>
 								</v-col>
 							</v-row>
@@ -53,9 +52,9 @@
 			<template v-if='!authenticated && onDesktop'>
 				<v-btn
 					v-for='item in notAuthenticatedLinks'
-					:to='item.route'
-					class='elevation-0'
 					:key='item.route'
+					class='elevation-0'
+					:to='item.route'
 				>
 					<v-icon class='mr-2' :icon='item.icon' />
 					{{ item.message }}
@@ -64,31 +63,31 @@
 		</v-toolbar-items>
 		<v-btn
 			v-if='!onDesktop'
-			@click='navDrawer'
 			class='cl mr-2'
 			dark
 			icon
 			variant='text'
+			@click='navDrawer'
 		>
 			<v-icon
-				:icon='mdiMenu'
 				class=''
+				:icon='mdiMenu'
 				size='large'
 			/>
 
 		</v-btn>
 
-		<template v-slot:extension v-if='!online'>
+		<template v-if='!online' #extension>
 			<v-row
 				app
-				:class='alert_class'
 				class='ma-0 pa-0'
-				justify='end'
+				:class='alert_class'
 				density='compact'
+				justify='end'
 				no-gutters
 			>
-				<v-col cols='12' class='ma-0 pa-0'>
-					<OfflineAlert  />
+				<v-col class='ma-0 pa-0' cols='12'>
+					<OfflineAlert />
 				</v-col>
 			</v-row>
 		</template>
@@ -96,44 +95,44 @@
 </template>
 
 <script setup lang='ts'>
-import { FrontEndNames, FrontEndRoutes } from '@/types/const_routes';
-import { mdiAccountCircle, mdiMenu } from '@mdi/js';
-import { notAuthenticatedLinks } from '@/vanillaTS/NavigationLinks';
-import { useDisplay } from 'vuetify';
+import { mdiAccountCircle, mdiMenu } from '@mdi/js'
+import { useDisplay } from 'vuetify'
+import { FrontEndNames, FrontEndRoutes } from '@/types/const_routes'
+import { notAuthenticatedLinks } from '@/vanillaTS/NavigationLinks'
 
-const { lgAndUp } = useDisplay();
+const { lgAndUp } = useDisplay()
 
-const alert_class = computed(() => !onDesktop.value ? 'alert-bottom' : 'alert-top');
-const appbarHeight = computed(() => appBarModule().size);
-const authenticated = computed(() => userModule().authenticated);
-const email = computed(() => userModule().email);
-const logoMargin = computed(() => onDesktop.value ? 'mr-3' : 'mr-1');
-const logoSize = computed(() => onDesktop.value ? '46px' : '36px');
-const onDesktop = computed(() => lgAndUp.value);
-const online = computed(() => browserModule().online);
+const alert_class = computed(() => onDesktop.value ? 'alert-top' : 'alert-bottom')
+const appbarHeight = computed(() => appBarModule().size)
+const authenticated = computed(() => userModule().authenticated)
+const email = computed(() => userModule().email)
+const logoMargin = computed(() => onDesktop.value ? 'mr-3' : 'mr-1')
+const logoSize = computed(() => onDesktop.value ? '46px' : '36px')
+const onDesktop = computed(() => lgAndUp.value)
+const online = computed(() => browserModule().online)
 
 const open = computed({
 	get (): boolean {
-		return navDrawerModule().open;
+		return navDrawerModule().open
 	},
 	set (b: boolean): void {
-		navDrawerModule().set_open(b);
-	}
-});
-const router = useRouter();
-const route = useRoute();
+		navDrawerModule().set_open(b)
+	},
+})
+const router = useRouter()
+const route = useRoute()
 
-const goHome = (): void => {
-	if (authenticated.value && route.name !== FrontEndNames.USER_DEVICES) router.push(FrontEndRoutes.USER_DEVICES);
-	if (!authenticated.value && route.name !== FrontEndNames.HOME) router.push(FrontEndRoutes.BASE);
-};
-const goSettings = (): void => {
-	if (route.name !== FrontEndNames.USER_SETTINGS) router.push(FrontEndRoutes.USER_SETTINGS);
-};
-const navDrawer = (): void => {
-	if (onDesktop.value) return;
-	open.value = !open.value;
-};
+function goHome (): void {
+	if (authenticated.value && route.name !== FrontEndNames.USER_DEVICES) router.push(FrontEndRoutes.USER_DEVICES)
+	if (!authenticated.value && route.name !== FrontEndNames.HOME) router.push(FrontEndRoutes.BASE)
+}
+function goSettings (): void {
+	if (route.name !== FrontEndNames.USER_SETTINGS) router.push(FrontEndRoutes.USER_SETTINGS)
+}
+function navDrawer (): void {
+	if (onDesktop.value) return
+	open.value = !open.value
+}
 </script>
 
 <style>

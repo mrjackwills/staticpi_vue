@@ -1,17 +1,21 @@
 <template>
-	<v-row align='center' justify='center' class='ma-0 pa-0 no-gutters' v-intersect='onIntersect'>
-		<v-col cols='12' class='ma-0 pa-0'>
+	<v-row v-intersect='onIntersect' align='center' class='ma-0 pa-0 no-gutters' justify='center'>
+		<v-col class='ma-0 pa-0' cols='12'>
 
-			<v-row align='center' :justify class='ma-0 pa-0 no-gutters cl' @click='toggleHidden'>
-				<v-col cols='auto' class='ma-0 pa-0'>
+			<v-row align='center' class='ma-0 pa-0 no-gutters cl' :justify @click='toggleHidden'>
+				<v-col class='ma-0 pa-0' cols='auto'>
 					<v-icon :color='iconColor' :icon />
 				</v-col>
-				<v-col cols='auto' class='mx-2 ma-0 pa-0 no-gutters'>
-					<SubHeading :heading :heading_size='"text-h7 unselectable"' justify='start'
-						:color='iconColor' />
+				<v-col class='mx-2 ma-0 pa-0 no-gutters' cols='auto'>
+					<SubHeading
+						:color='iconColor'
+						:heading
+						heading-size='text-h7 unselectable'
+						justify='start'
+					/>
 				</v-col>
-				<v-col cols='auto' class='ma-0 pa-0'>
-					<v-icon :color='iconColor' :class='{ "flipy": hidden }' :icon='mdiChevronDoubleUp' />
+				<v-col class='ma-0 pa-0' cols='auto'>
+					<v-icon :class='{ "flipy": hidden }' :color='iconColor' :icon='mdiChevronDoubleUp' />
 				</v-col>
 			</v-row>
 
@@ -19,24 +23,33 @@
 				<section v-show='!hidden'>
 					<v-divider class='' />
 					<v-expand-transition>
-						<v-fade-transition group tag='v-row' v-if='online && tableRows.length > 0'>
+						<v-fade-transition v-if='online && tableRows.length > 0' group tag='v-row'>
 
-							<v-list-item v-for='(item, index) in tableRows' :key='index' density='compact'
-								class='ma-0 pa-0 no-gutters' :class='{ "mt-n2": mdAndUp }'>
-								<v-row :class='{ "hover-row": mdAndUp }' align='center' justify='space-between'
-									class='ma-0 pa-0 no-gutters'>
-									<v-col cols='12' md='auto' class='ma-0 pa-0'>
-										<span :class='{ "small-text": mobile }' class='ma-0 pa-0'>
+							<v-list-item
+								v-for='(item, index) in tableRows'
+								:key='index'
+								class='ma-0 pa-0 no-gutters'
+								:class='{ "mt-n2": mdAndUp }'
+								density='compact'
+							>
+								<v-row
+									align='center'
+									class='ma-0 pa-0 no-gutters'
+									:class='{ "hover-row": mdAndUp }'
+									justify='space-between'
+								>
+									<v-col class='ma-0 pa-0' cols='12' md='auto'>
+										<span class='ma-0 pa-0' :class='{ "small-text": mobile }'>
 											<ExtraOnlineSince :timestamp='item.timestamp_online' />
 										</span>
 									</v-col>
 									<v-spacer />
-									<v-col cols='12' md='auto' class='ma-0 pa-0 cl'>
-										<span :class='{ "small-text": mobile }' class='ma-0 pa-0'>
+									<v-col class='ma-0 pa-0 cl' cols='12' md='auto'>
+										<span class='ma-0 pa-0' :class='{ "small-text": mobile }'>
 											<ExtraIp v-if='item.ip' :ip='item.ip' />
 										</span>
 									</v-col>
-									<v-col cols='12' class='ma-0 pa-0' v-if='index + 1 !== tableRows.length'>
+									<v-col v-if='index + 1 !== tableRows.length' class='ma-0 pa-0' cols='12'>
 										<v-divider class='ma-0 pa-0' />
 									</v-col>
 								</v-row>
@@ -44,7 +57,7 @@
 
 						</v-fade-transition>
 						<template v-else>
-							<v-col cols='auto' class='font-weight-bold text-uppercase small-text text-center ma-0 pa-0'>
+							<v-col class='font-weight-bold text-uppercase small-text text-center ma-0 pa-0' cols='auto'>
 								{{ offlineMessage }} offline
 							</v-col>
 						</template>
@@ -57,44 +70,44 @@
 </template>
 
 <script setup lang="ts">
-import { mdiAccessPointNetwork, mdiAccessPointNetworkOff, mdiChevronDoubleUp, mdiPlaylistCheck, mdiPlaylistRemove } from '@mdi/js';
-import { useDisplay } from 'vuetify';
-import type { TExtraTableRow } from '@/types';
-import type { VRow } from 'vuetify/components/VGrid';
+import type { VRow } from 'vuetify/components/VGrid'
+import type { TExtraTableRow } from '@/types'
+import { mdiAccessPointNetwork, mdiAccessPointNetworkOff, mdiChevronDoubleUp, mdiPlaylistCheck, mdiPlaylistRemove } from '@mdi/js'
+import { useDisplay } from 'vuetify'
 
-const { mdAndUp, mobile, smAndDown } = useDisplay();
+const { mdAndUp, mobile, smAndDown } = useDisplay()
 
-const heading = computed(() => props.is_device ? 'pi connection' : `client connection${props.tableRows.length > 1 ? `s: ${props.tableRows.length}` : ''}`);
-const icon = computed(() => props.is_device ? props.online ? mdiAccessPointNetwork : mdiAccessPointNetworkOff : props.online ? mdiPlaylistCheck : mdiPlaylistRemove);
-const iconColor = computed(() => props.online ? 'primary' : 'pi');
-const justify = computed(() => smAndDown.value ? 'space-between' : 'center');
-const offlineMessage = computed(() => props.is_device ? 'device' : 'all clients');
+const heading = computed(() => props.isDevice ? 'pi connection' : `client connection${props.tableRows.length > 1 ? `s: ${props.tableRows.length}` : ''}`)
+const icon = computed(() => props.isDevice ? (props.online ? mdiAccessPointNetwork : mdiAccessPointNetworkOff) : (props.online ? mdiPlaylistCheck : mdiPlaylistRemove))
+const iconColor = computed(() => props.online ? 'primary' : 'pi')
+const justify = computed(() => smAndDown.value ? 'space-between' : 'center')
+const offlineMessage = computed(() => props.isDevice ? 'device' : 'all clients')
 
-const hidden = ref(false);
-const isIntersecting = ref(false);
+const hidden = ref(false)
+const isIntersecting = ref(false)
 
-const onIntersect = (is_i: boolean, _entries: Array<IntersectionObserverEntry>, _observer: IntersectionObserver): void => {
-	isIntersecting.value = is_i;
-};
+function onIntersect (is_i: boolean, _entries: Array<IntersectionObserverEntry>, _observer: IntersectionObserver): void {
+	isIntersecting.value = is_i
+}
 
-const emit = defineEmits(['hidden']);
-const toggleHidden = (): void => {
-	hidden.value = !hidden.value;
-	emit('hidden', hidden.value);
-};
+const emit = defineEmits(['hidden'])
+function toggleHidden (): void {
+	hidden.value = !hidden.value
+	emit('hidden', hidden.value)
+}
 
 const props = withDefaults(defineProps<{
-	is_device: boolean;
-	online: boolean;
-	tableRows: Array<TExtraTableRow>;
+	isDevice?: boolean
+	online?: boolean
+	tableRows: Array<TExtraTableRow>
 }>(), {
-	is_device: true,
-	online: true
-});
+	isDevice: true,
+	online: true,
+})
 
 watch(isIntersecting, (i: boolean): void => {
-	if (!i) hidden.value = false;
-});
+	if (!i) hidden.value = false
+})
 </script>
 
 <style scoped>

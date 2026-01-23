@@ -3,14 +3,14 @@
 		All passwords need to be 12 characters minimum, and cannot contain your current password nor your email address.
 		Your password should be unique to <StaticPi />, and ideally contain random letters, numbers, and symbols.
 		Passwords are securely checked (using k-anonymity) against a database of known passwords, by utilizing the
-		<a href='https://haveibeenpwned.com/Passwords' target='_blank' rel='noopener noreferrer' class='text-black'>
+		<a class='text-black' href='https://haveibeenpwned.com/Passwords' rel='noopener noreferrer' target='_blank'>
 			hibp
-			<v-icon size='x-small' color='black' style='vertical-align: middle;' :icon='mdiOpenInNew' />
+			<v-icon color='black' :icon='mdiOpenInNew' size='x-small' style='vertical-align: middle;' />
 		</a>
 		service.
 	</section>
 </template>
 
 <script setup lang='ts'>
-import { mdiOpenInNew } from '@mdi/js';
+import { mdiOpenInNew } from '@mdi/js'
 </script>

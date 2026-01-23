@@ -1,28 +1,43 @@
 <template>
-	<ThePage :fillHeight='true' justify='center'>
-		<template v-slot:body>
-			<AppCard :heading='pageTitle' :loading='localLoading' heading_class='mb-3' :hasButton='true'>
-				<template v-slot:start>
-					<v-row align='center' justify='center' class='ma-0 pa-0 mb-4'>
-						<v-col cols='12' class='pa-0 ma-0 text-body-1'>
+	<ThePage :fill-height='true' justify='center'>
+		<template #body>
+			<AppCard :has-button='true' :heading='pageTitle' heading-class='mb-3' :loading='localLoading'>
+				<template #start>
+					<v-row align='center' class='ma-0 pa-0 mb-4' justify='center'>
+						<v-col class='pa-0 ma-0 text-body-1' cols='12'>
 							<PasswordDescription />
 						</v-col>
 					</v-row>
 				</template>
-				<template v-slot:body>
-					<v-form v-on:submit.prevent>
-						<v-text-field v-for='(item, index) in textFields' v-model='user[item.model]'
-							@click:append-inner='appendClick' @update:model-value='v$[item.model]?.$touch()'
-							@keydown.enter='submit' :append-inner-icon='item.appendIcon'
-							:autocomplete='item.autocomplete' :class='{ "mb-n6": passwordCompromised }'
-							:disabled='localLoading' :density='smAndDown ? "compact" : "default"'
-							:error-messages='errorMessages[item.model]' :key='index' :label='item.label'
-							:prepend-inner-icon='item.icon' :type='item.type' color='primary' variant='outlined'
-							required />
+				<template #body>
+					<v-form @submit.prevent>
+						<v-text-field
+							v-for='(item, index) in textFields'
+							:key='index'
+							v-model='user[item.model]'
+							:append-inner-icon='item.appendIcon'
+							:autocomplete='item.autocomplete'
+							:class='{ "mb-n6": passwordCompromised }'
+							color='primary'
+							:density='smAndDown ? "compact" : "default"'
+							:disabled='localLoading'
+							:error-messages='errorMessages[item.model]'
+							:label='item.label'
+							:prepend-inner-icon='item.icon'
+							required
+							:type='item.type'
+							variant='outlined'
+							@click:append-inner='appendClick'
+							@keydown.enter='submit'
+							@update:model-value='v$[item.model]?.$touch()'
+						/>
 						<v-expand-transition>
-							<PasswordStrength v-if='!passwordCompromised && user.password'
-								:password='user.password' v-model:errorMessage='errorMessages.password'
-								v-model:passwordCompromised='passwordCompromised' />
+							<PasswordStrength
+								v-if='!passwordCompromised && user.password'
+								v-model:error-message='errorMessages.password'
+								v-model:password-compromised='passwordCompromised'
+								:password='user.password'
+							/>
 						</v-expand-transition>
 						<v-expand-transition>
 							<v-expand-transition>
@@ -30,16 +45,32 @@
 							</v-expand-transition>
 						</v-expand-transition>
 						<section v-if='two_fa_enabled'>
-							<v-text-field v-for='item in tokenFields' v-model='user[item.model]'
-								v-on:keyup.enter='submit' :dense='smAndDown' :disabled='localLoading'
-								:error-messages='errorMessages[item.model]' :key='item.model' :label='item.label'
-								:prepend-inner-icon='item.icon' color='primary' variant='outlined' required />
+							<v-text-field
+								v-for='item in tokenFields'
+								:key='item.model'
+								v-model='user[item.model]'
+								color='primary'
+								:dense='smAndDown'
+								:disabled='localLoading'
+								:error-messages='errorMessages[item.model]'
+								:label='item.label'
+								:prepend-inner-icon='item.icon'
+								required
+								variant='outlined'
+								@keyup.enter='submit'
+							/>
 						</section>
 					</v-form>
 				</template>
-				<template v-slot:button>
-					<ActionButton @click='submit' :block='true' :disabled :icon='mdiSend' text='reset'
-						class='mb-2' />
+				<template #button>
+					<ActionButton
+						:block='true'
+						class='mb-2'
+						:disabled
+						:icon='mdiSend'
+						text='reset'
+						@click='submit'
+					/>
 				</template>
 			</AppCard>
 		</template>
@@ -47,38 +78,38 @@
 </template>
 
 <script setup lang='ts'>
-import { axios_incognito } from '@/services/axios';
-import { FrontEndRoutes } from '@/types/const_routes';
-import { mdiCellphoneInformation, mdiEye, mdiEyeOff, mdiLock, mdiSend } from '@mdi/js';
-import { minPassLength } from '@/vanillaTS/globalConst';
-import { passwordCheck } from '@/vanillaTS/hibp';
-import { required, minLength } from '@vuelidate/validators';
-import { snackSuccess } from '@/services/snack';
-import { useDisplay } from 'vuetify';
-import { useVuelidate } from '@vuelidate/core';
-import type { TResetFields } from '@/types';
+import type { TResetFields } from '@/types'
+import { mdiCellphoneInformation, mdiEye, mdiEyeOff, mdiLock, mdiSend } from '@mdi/js'
+import { useVuelidate } from '@vuelidate/core'
+import { minLength, required } from '@vuelidate/validators'
+import { useDisplay } from 'vuetify'
+import { axios_incognito } from '@/services/axios'
+import { snackSuccess } from '@/services/snack'
+import { FrontEndRoutes } from '@/types/const_routes'
+import { minPassLength } from '@/vanillaTS/globalConst'
+import { passwordCheck } from '@/vanillaTS/hibp'
 
-const { smAndDown } = useDisplay();
+const { smAndDown } = useDisplay()
 
 onBeforeUnmount(() => {
-	resetId.value = '';
-});
+	resetId.value = ''
+})
 
 onMounted(() => {
-	browserModule().set_description(`staticPi reset password page - reset the password for your staticPi user account`);
-	browserModule().set_title(pageTitle);
-});
+	browserModule().set_description(`staticPi reset password page - reset the password for your staticPi user account`)
+	browserModule().set_title(pageTitle)
+})
 
-const disabled = computed(() => v$.value.$invalid || errorMessages.value.password || passwordCompromised.value || tokenDisabled.value || localLoading.value ? true : false);
-const tokenDisabled = computed(() => two_fa_enabled.value ? two_fa_enabled.value && !user.value.token : false);
+const disabled = computed(() => v$.value.$invalid || errorMessages.value.password || passwordCompromised.value || tokenDisabled.value || localLoading.value ? true : false)
+const tokenDisabled = computed(() => two_fa_enabled.value ? two_fa_enabled.value && !user.value.token : false)
 const resetId = computed({
 	get (): string {
-		return resetPasswordModule().id;
+		return resetPasswordModule().id
 	},
 	set (i: string): void {
-		resetPasswordModule().set_id(i);
-	}
-});
+		resetPasswordModule().set_id(i)
+	},
+})
 const textFields = computed((): Array<TResetFields> => [
 	{
 		autocomplete: 'new-password',
@@ -86,121 +117,121 @@ const textFields = computed((): Array<TResetFields> => [
 		label: 'password',
 		model: 'password' as const,
 		type: passwordVisible.value ? 'text' : 'password',
-		appendIcon: user.value.password ? passwordVisible.value ? mdiEyeOff : mdiEye : ''
-	}
-]);
-const two_fa_enabled = computed(() => resetPasswordModule().two_fa_enabled);
+		appendIcon: user.value.password ? (passwordVisible.value ? mdiEyeOff : mdiEye) : '',
+	},
+])
+const two_fa_enabled = computed(() => resetPasswordModule().two_fa_enabled)
 
-const pageTitle = 'reset password';
+const pageTitle = 'reset password'
 
 const errorMessages = ref({
 	password: '',
-	token: ''
-});
-const localLoading = ref(false);
-const passwordCompromised = ref(false);
-const passwordVisible = ref(false);
+	token: '',
+})
+const localLoading = ref(false)
+const passwordCompromised = ref(false)
+const passwordVisible = ref(false)
 const tokenFields = [
 	{
 		clearable: true,
 		icon: mdiCellphoneInformation,
 		label: '2FA code',
-		model: 'token' as const
-	}
-];
+		model: 'token' as const,
+	},
+]
 const user = ref({
 	password: '',
-	token: undefined
-});
+	token: undefined,
+})
 
 /**
  ** Set the password visible
  *
  */
-const appendClick = (): void => {
-	passwordVisible.value = !passwordVisible.value;
-};
+function appendClick (): void {
+	passwordVisible.value = !passwordVisible.value
+}
 
 /**
  ** Run hibp check, and set passwordCompromised if breach found
  * @param {String} model - current model/textfield name
  */
-const hibpCheck = async (): Promise<boolean | null> => {
-	if (!user.value.password || passwordCompromised.value || v$.value.password.$invalid) return null;
-	passwordCompromised.value = await passwordCheck(user.value.password);
-	if (passwordCompromised.value) errorMessages.value.password = 'unsafe password';
-	return passwordCompromised.value ? true : false;
-};
+async function hibpCheck (): Promise<boolean | null> {
+	if (!user.value.password || passwordCompromised.value || v$.value.password.$invalid) return null
+	passwordCompromised.value = await passwordCheck(user.value.password)
+	if (passwordCompromised.value) errorMessages.value.password = 'unsafe password'
+	return passwordCompromised.value ? true : false
+}
 
-const router = useRouter();
+const router = useRouter()
 
-const submit = async (): Promise<void> => {
-	if (v$.value.$invalid || !resetId.value || tokenDisabled.value) return;
-	localLoading.value = true;
-	passwordVisible.value = false;
-	const compromisedPassword = await hibpCheck();
+async function submit (): Promise<void> {
+	if (v$.value.$invalid || !resetId.value || tokenDisabled.value) return
+	localLoading.value = true
+	passwordVisible.value = false
+	const compromisedPassword = await hibpCheck()
 	if (compromisedPassword) {
-		localLoading.value = false;
-		return;
+		localLoading.value = false
+		return
 	}
 	const response = await axios_incognito.reset_patch({
 		resetId: resetId.value,
 		password: user.value.password,
-		token: user.value.token ? user.value.token : undefined
-	});
-	localLoading.value = false;
+		token: user.value.token ?? undefined,
+	})
+	localLoading.value = false
 	if (response) {
-		router.push(FrontEndRoutes.BASE);
+		router.push(FrontEndRoutes.BASE)
 		snackSuccess({
 			message: 'Password changed - please log in to continue',
-			timeout: 20000
-		});
+			timeout: 20_000,
+		})
 	} else {
 		if (two_fa_enabled.value) {
-			const m = 'Invalid password or token';
-			errorMessages.value.token = m;
-			errorMessages.value.password = m;
+			const m = 'Invalid password or token'
+			errorMessages.value.token = m
+			errorMessages.value.password = m
 		} else {
-			errorMessages.value.password = 'Invalid password';
+			errorMessages.value.password = 'Invalid password'
 		}
 	}
-};
+}
 
 const rules = {
 	password: {
 		required,
-		min: minLength(minPassLength)
-	}
-};
-const v$ = useVuelidate(rules, user);
+		min: minLength(minPassLength),
+	},
+}
+const v$ = useVuelidate(rules, user)
 
 watch(passwordCompromised, (i: boolean): void => {
-	if (i) errorMessages.value.password = '';
-});
+	if (i) errorMessages.value.password = ''
+})
 watch(() => user.value.token, (): void => {
-	errorMessages.value.token = '';
-});
+	errorMessages.value.token = ''
+})
 watch(() => user.value.password, () => {
-	passwordCompromised.value = false;
-	errorMessages.value.password = '';
-	if (user.value.password) passwordVisible.value = false;
+	passwordCompromised.value = false
+	errorMessages.value.password = ''
+	if (user.value.password) passwordVisible.value = false
 	if (!v$.value.$invalid && !passwordCompromised.value) {
-		errorMessages.value.password = '';
-		return;
+		errorMessages.value.password = ''
+		return
 	}
-	if (!v$.value.$dirty) return;
+	if (!v$.value.$dirty) return
 	if (!v$.value.$invalid) {
-		errorMessages.value.password = 'invalid password';
-		return;
+		errorMessages.value.password = 'invalid password'
+		return
 	}
 
 	if (!v$.value.minLen) {
-		errorMessages.value.password = `${minPassLength} characters minimum`;
-		return;
+		errorMessages.value.password = `${minPassLength} characters minimum`
+		return
 	}
 	if (!v$.value.required) {
-		errorMessages.value.password = 'a password is required';
-		return;
+		errorMessages.value.password = 'a password is required'
+		return
 	}
-});
+})
 </script>

@@ -1,66 +1,63 @@
-
 <template>
 
-	<v-container fluid class='ma-0 pa-0 no-gutters' :class='{"fill-height":fillHeight}'>
+	<v-container class='ma-0 pa-0 no-gutters' :class='{"fill-height":fillHeight}' fluid>
 		<v-progress-linear
 			:active='true'
-			:indeterminate='loading'
 			bg-opacity='0'
 			class='mb-n2 sticky-loading'
 			color='primary'
+			:indeterminate='loading'
 		/>
 
 		<v-row
 			v-if='pageReady'
-			:class='{"fill-height":fillHeight}'
-			:justify='justify??"center"'
+			id='the_page'
 			align='center'
 			class='ma-0 pa-0 no-gutters'
-			id='the_page'
+			:class='{"fill-height":fillHeight}'
+			:justify='justify??"center"'
 		>
 
-			<v-container fluid class='ma-0 pa-0' :class='{"fill-height":fillHeight}' >
-				<v-row class='ma-0 pa-0' dense justify='center' align='center'>
-					<v-col cols='12' class='pa-0 ma-0 mt-1'>
+			<v-container class='ma-0 pa-0' :class='{"fill-height":fillHeight}' fluid>
+				<v-row align='center' class='ma-0 pa-0' dense justify='center'>
+					<v-col class='pa-0 ma-0 mt-1' cols='12'>
 						<CardHeading
 							v-if='heading'
+							class='ml-2'
 							:heading
 							:justify
 							:margin
-							class='ml-2'
-
 						/>
 						<slot name='body' />
 					</v-col>
 				</v-row>
 			</v-container>
 		</v-row>
-		<div class='' id='goto_page_bottom' >
-		</div>
+		<div id='goto_page_bottom' class='' />
 	</v-container>
 </template>
 
 <script setup lang='ts'>
-import type { VRow } from 'vuetify/components/VGrid';
-const loading = computed(() => loadingModule().loading);
+import type { VRow } from 'vuetify/components/VGrid'
+const loading = computed(() => loadingModule().loading)
 
-const appbarHeight = computed(() => appBarModule().size);
+const appbarHeight = computed(() => appBarModule().size)
 
 withDefaults(defineProps<{
-	fillHeight?: boolean;
-	heading?: string;
-	headingJustify?: VRow['$props']['justify'];
-	justify?: VRow['$props']['justify'];
-	margin?: string;
-	pageReady?: boolean;
+	fillHeight?: boolean
+	heading?: string
+	headingJustify?: VRow['$props']['justify']
+	justify?: VRow['$props']['justify']
+	margin?: string
+	pageReady?: boolean
 }>(), {
 	fillHeight: false,
 	heading: '',
 	headingJustify: 'center',
 	justify: 'center',
 	margin: '',
-	pageReady: true
-});
+	pageReady: true,
+})
 
 </script>
 

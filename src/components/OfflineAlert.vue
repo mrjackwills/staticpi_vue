@@ -1,19 +1,26 @@
 <template>
-	<v-alert color='secondary' tile class='ma-0 pa-0 no-gutters' id='offline_alert' width='100%' height='40px'>
-		<v-row align='center' justify='center' class='no-gutters ma-0 pa-0'>
-			<v-col cols='auto' class='ma-0 pa-0' v-if='!mobile && authenticated' >
-				<div :class='spacerClass'></div>
+	<v-alert
+		id='offline_alert'
+		class='ma-0 pa-0 no-gutters'
+		color='secondary'
+		height='40px'
+		tile
+		width='100%'
+	>
+		<v-row align='center' class='no-gutters ma-0 pa-0' justify='center'>
+			<v-col v-if='!mobile && authenticated' class='ma-0 pa-0' cols='auto'>
+				<div :class='spacerClass' />
 			</v-col>
-			<v-col cols='auto' class='ma-0 pa-0' >
-				<v-row justify='center' align='center' class='ma-0 pa-0 pulse'>
-					<v-col cols='auto' class='ma-0 pa-0 mr-2 '  >
+			<v-col class='ma-0 pa-0' cols='auto'>
+				<v-row align='center' class='ma-0 pa-0 pulse' justify='center'>
+					<v-col class='ma-0 pa-0 mr-2 ' cols='auto'>
 						<v-icon
 							color='backgroundColor'
-							size='small'
 							:icon='mdiWifiOff'
+							size='small'
 						/>
 					</v-col>
-					<v-col cols='auto' class='ma-0 pa-0 cl'>
+					<v-col class='ma-0 pa-0 cl' cols='auto'>
 						<div class='text-backgroundColor text-center' :class='messageSize'>offline</div>
 					</v-col>
 				</v-row>
@@ -23,31 +30,31 @@
 </template>
 
 <script setup lang='ts'>
-import { axios_authenticatedUser, axios_incognito } from '@/services/axios';
-import { mdiWifiOff } from '@mdi/js';
-import { useDisplay } from 'vuetify';
+import { mdiWifiOff } from '@mdi/js'
+import { useDisplay } from 'vuetify'
+import { axios_authenticatedUser, axios_incognito } from '@/services/axios'
 
-const { mdAndUp, mobile } = useDisplay();
+const { mdAndUp, mobile } = useDisplay()
 
 onBeforeUnmount(() => {
-	clearInterval(reconnectInterval.value);
-	browserModule().set_force_refresh(true);
-});
+	clearInterval(reconnectInterval.value)
+	browserModule().set_force_refresh(true)
+})
 
-const authenticated = computed(() => userModule().authenticated);
-const messageSize = computed(() => mdAndUp.value ? 'text-h6' : 'text-subtitle-1');
-const spacerClass = computed(() => navDrawerModule().mini ? 'nav-spacer-mini' : 'nav-spacer');
+const authenticated = computed(() => userModule().authenticated)
+const messageSize = computed(() => mdAndUp.value ? 'text-h6' : 'text-subtitle-1')
+const spacerClass = computed(() => navDrawerModule().mini ? 'nav-spacer-mini' : 'nav-spacer')
 
-const reconnectInterval = ref(0);
+const reconnectInterval = ref(0)
 
-const reconnect = async (): Promise<void> => {
-	await axios_incognito.online_get();
-	await axios_authenticatedUser.user_get();
-};
+async function reconnect (): Promise<void> {
+	await axios_incognito.online_get()
+	await axios_authenticatedUser.user_get()
+}
 
 onMounted(() => {
-	reconnectInterval.value = setInterval(reconnect, 10000);
-});
+	reconnectInterval.value = setInterval(reconnect, 10_000)
+})
 </script>
 
 <style>

@@ -1,29 +1,52 @@
 <template>
-	<AppCard xl='12' sm='12' md='11' lg='11' my='' :hasButton='true' :buttonJustify='"center"' :loading='localLoading'
-		:pad='false'>
+	<AppCard
+		:button-justify='"center"'
+		:has-button='true'
+		lg='11'
+		:loading='localLoading'
+		md='11'
+		my=''
+		:pad='false'
+		sm='12'
+		xl='12'
+	>
 
-		<template v-slot:body>
+		<template #body>
 
-			<v-row class='ma-0 pa-0' align='center' :class='{ "small-text": mobile }' justify='center'
-				v-intersect='onIntersect'>
+			<v-row
+				v-intersect='onIntersect'
+				align='center'
+				class='ma-0 pa-0'
+				:class='{ "small-text": mobile }'
+				justify='center'
+			>
 
-				<v-col cols='11' lg='9' class='ma-0 pa-0 my-2 black-box py-3'>
+				<v-col class='ma-0 pa-0 my-2 black-box py-3' cols='11' lg='9'>
 
-					<v-row class='ma-0 pa-0 no gutters' align='center' justify='center'>
+					<v-row align='center' class='ma-0 pa-0 no gutters' justify='center'>
 
-						<v-col cols='11' class='ma-0 pa-0'>
+						<v-col class='ma-0 pa-0' cols='11'>
 
-							<v-row class='ma-0 pa-0 no gutters' align='center' justify='center'>
-								<v-col cols='auto' class='ma-0 pa-0'>
-									<v-icon :size='mobile ? "x-small" : "small"' :color='connectedColor'
-										:class='{ "spin": localLoading }' :icon='connectedIcon' />
-									<span class='ml-2 unselectable font-weight-bold'
-										:class='`text-${connectedColor}`'>{{ connectedText }}</span>
+							<v-row align='center' class='ma-0 pa-0 no gutters' justify='center'>
+								<v-col class='ma-0 pa-0' cols='auto'>
+									<v-icon
+										:class='{ "spin": localLoading }'
+										:color='connectedColor'
+										:icon='connectedIcon'
+										:size='mobile ? "x-small" : "small"'
+									/>
+									<span
+										class='ml-2 unselectable font-weight-bold'
+										:class='`text-${connectedColor}`'
+									>{{ connectedText }}</span>
 								</v-col>
 								<v-spacer />
 								<template v-if='isConnected'>
-									<v-col cols='auto' class='ma-0 pa-0 text-white unselectable text-caption'
-										:class='{ "small-text": mobile }'>
+									<v-col
+										class='ma-0 pa-0 text-white unselectable text-caption'
+										:class='{ "small-text": mobile }'
+										cols='auto'
+									>
 										send JSON as: <span class='font-weight-black'>{ "key" : "value" }</span>
 									</v-col>
 								</template>
@@ -34,66 +57,85 @@
 
 					<v-expand-transition>
 
-						<v-row class='ma-0 pa-0 mb-4 no-gutters' align='center' justify='center' v-if='isConnected'>
+						<v-row v-if='isConnected' align='center' class='ma-0 pa-0 mb-4 no-gutters' justify='center'>
 
-							<v-col cols='11' class='ma-0 pa-0'>
+							<v-col class='ma-0 pa-0' cols='11'>
 
-								<v-row class='ma-0 pa-0 no-gutters unselectable' align='center' justify='space-between'>
+								<v-row align='center' class='ma-0 pa-0 no-gutters unselectable' justify='space-between'>
 
-									<v-col cols='auto' class='ma-0 pa-0' v-for='(item, index) in latencyRow'
-										:key='index'>
-										<v-icon size='small' class='mr-2' :color='item.color' :icon='item.icon' />
+									<v-col
+										v-for='(item, index) in latencyRow'
+										:key='index'
+										class='ma-0 pa-0'
+										cols='auto'
+									>
+										<v-icon class='mr-2' :color='item.color' :icon='item.icon' size='small' />
 										<span class='text-white m-3'>{{ item.text }}: </span>
-										<span :class='`text-${item.color}`' class='font-weight-bold'
-											v-if='item.value'>{{ item.value
-											}}</span>
+										<span
+											v-if='item.value'
+											class='font-weight-bold'
+											:class='`text-${item.color}`'
+										>{{ item.value
+										}}</span>
 									</v-col>
 								</v-row>
 
-								<v-col cols='12' class='ma-0 pa-0 divider' />
+								<v-col class='ma-0 pa-0 divider' cols='12' />
 
-								<v-row class='ma-0 pa-0 no-gutters messagebox' align='start' justify='start'>
+								<v-row align='start' class='ma-0 pa-0 no-gutters messagebox' justify='start'>
 
-									<v-col cols='2' class='ma-0 pa-0'>
-										<v-row align='start' justify='start' class='ma-0 pa-0 text-white unselectable'>
-											<v-col cols='auto' class=' ma-0 pa-0'>
-												<CopyButton :dark='true' :density='"compact"' :disabled='!message'
-													:hoverMessage='`click to copy sent message`' :small='true'
-													:toCopy='copySentMessage' :tooltipMessage='"sent message copied!"'
-													color='pi' />
+									<v-col class='ma-0 pa-0' cols='2'>
+										<v-row align='start' class='ma-0 pa-0 text-white unselectable' justify='start'>
+											<v-col class=' ma-0 pa-0' cols='auto'>
+												<CopyButton
+													color='pi'
+													:dark='true'
+													:density='"compact"'
+													:disabled='!message'
+													:hover-message='`click to copy sent message`'
+													:small='true'
+													:to-copy='copySentMessage'
+													:tooltip-message='"sent message copied!"'
+												/>
 											</v-col>
-											<v-col cols='auto' class=' pl-2 ma-0 pa-0'>
+											<v-col class=' pl-2 ma-0 pa-0' cols='auto'>
 												sent:
 											</v-col>
 
 										</v-row>
 									</v-col>
-									<v-col cols='10' class=' text-pi ma-0 pa-0 font-weight-bold'>
+									<v-col class=' text-pi ma-0 pa-0 font-weight-bold' cols='10'>
 										<span v-if='device.structured_data'>{ "data" : {{ formatMessage(message) }}
 											<span v-if='unique'>, "unique": true </span> }
 										</span>
 										<span v-else> {{ message }}</span>
 									</v-col>
 
-									<v-col cols='12' class='ma-0 pa-0 divider' />
+									<v-col class='ma-0 pa-0 divider' cols='12' />
 
-									<v-col cols='2' class='ma-0 pa-0'>
-										<v-row align='start' justify='start' class='ma-0 pa-0 text-white unselectable'>
-											<v-col cols='auto' class='ma-0 pa-0'>
-												<CopyButton :dark='true' :density='"compact"' :disabled='!response'
-													:hoverMessage='`click to copy response message`' :small='true'
-													:toCopy='response' :tooltipMessage='"response message copied!"'
-													color='primary' />
+									<v-col class='ma-0 pa-0' cols='2'>
+										<v-row align='start' class='ma-0 pa-0 text-white unselectable' justify='start'>
+											<v-col class='ma-0 pa-0' cols='auto'>
+												<CopyButton
+													color='primary'
+													:dark='true'
+													:density='"compact"'
+													:disabled='!response'
+													:hover-message='`click to copy response message`'
+													:small='true'
+													:to-copy='response'
+													:tooltip-message='"response message copied!"'
+												/>
 											</v-col>
-											<v-col cols='auto' class='pl-2 ma-0 pa-0'>
+											<v-col class='pl-2 ma-0 pa-0' cols='auto'>
 												response:
 											</v-col>
 										</v-row>
 									</v-col>
-									<v-col cols='10' class='ma-0 pa-0' v-if='response'>
+									<v-col v-if='response' class='ma-0 pa-0' cols='10'>
 
-										<v-row class='ma-0 pa-0 no-gutters' align='start' justify='space-around'>
-											<v-col cols='12' class='ma-0 pa-0 text-primary font-weight-bold'>
+										<v-row align='start' class='ma-0 pa-0 no-gutters' justify='space-around'>
+											<v-col class='ma-0 pa-0 text-primary font-weight-bold' cols='12'>
 												{{ response }}
 											</v-col>
 										</v-row>
@@ -105,39 +147,69 @@
 					</v-expand-transition>
 				</v-col>
 			</v-row>
-			<v-row class='ma-0 pa-0' align='center' :class='{ "small-text": mobile }' justify='center'>
-				<v-row class='ma-0 pa-0 no gutters' align='center' justify='center'>
-					<v-col cols='11' lg='9' class='ma-0 pa-0' v-if='device.device_password_required && !ws'>
+			<v-row align='center' class='ma-0 pa-0' :class='{ "small-text": mobile }' justify='center'>
+				<v-row align='center' class='ma-0 pa-0 no gutters' justify='center'>
+					<v-col v-if='device.device_password_required && !ws' class='ma-0 pa-0' cols='11' lg='9'>
 
-						<v-form v-on:submit.prevent autocomplete='off'>
-							<v-text-field v-for='item in textFields' v-model='password'
-								@click:append-inner='passwordVisible = !passwordVisible' @keydown.enter='openWs'
-								:append-inner-icon='item.appendIcon' :autocomplete='item.autocomplete'
-								:class='errorMessage.length > 0 ? "mb-n3" : "mb-n7"' :disabled='localLoading'
-								:error='errorMessage.length > 0' :error-messages='errorMessage' :key='item.model'
-								:label='item.label' :prepend-inner-icon='item.icon' :type='item.type' color='primary'
-								density='compact' variant='outlined' required />
+						<v-form autocomplete='off' @submit.prevent>
+							<v-text-field
+								v-for='item in textFields'
+								:key='item.model'
+								v-model='password'
+								:append-inner-icon='item.appendIcon'
+								:autocomplete='item.autocomplete'
+								:class='errorMessage.length > 0 ? "mb-n3" : "mb-n7"'
+								color='primary'
+								density='compact'
+								:disabled='localLoading'
+								:error='errorMessage.length > 0'
+								:error-messages='errorMessage'
+								:label='item.label'
+								:prepend-inner-icon='item.icon'
+								required
+								:type='item.type'
+								variant='outlined'
+								@click:append-inner='passwordVisible = !passwordVisible'
+								@keydown.enter='openWs'
+							/>
 						</v-form>
 					</v-col>
-					<v-col cols='11' lg='9' class='ma-0 pa-0' v-if='isConnected'>
-						<v-row class='ma-0 pa-0 no gutters' align='center' justify='space-between'>
-							<v-col cols='12' class='ma-0 pa-0'>
-								<v-text-field v-model='message' @update:model-value='clearResponse'
-									@keydown.enter='sendMessage' :density='mobile ? "compact" : "default"'
-									:disabled='localLoading' :error='errorMessage.length > 0'
-									:class='errorMessage.length > 0 ? "mb-n3" : "mb-n7"' :error-messages='errorMessage'
-									:prepend-inner-icon='mdiMessageReplyText' color='primary' label='message'
-									type='text' variant='outlined' clearable required />
+					<v-col v-if='isConnected' class='ma-0 pa-0' cols='11' lg='9'>
+						<v-row align='center' class='ma-0 pa-0 no gutters' justify='space-between'>
+							<v-col class='ma-0 pa-0' cols='12'>
+								<v-text-field
+									v-model='message'
+									:class='errorMessage.length > 0 ? "mb-n3" : "mb-n7"'
+									clearable
+									color='primary'
+									:density='mobile ? "compact" : "default"'
+									:disabled='localLoading'
+									:error='errorMessage.length > 0'
+									:error-messages='errorMessage'
+									label='message'
+									:prepend-inner-icon='mdiMessageReplyText'
+									required
+									type='text'
+									variant='outlined'
+									@keydown.enter='sendMessage'
+									@update:model-value='clearResponse'
+								/>
 							</v-col>
 						</v-row>
 
-						<v-row class='no-gutters ma-0 pa-0 mb-n8' align='center' justify='end'
-							v-if='device.structured_data'>
-							<v-col cols='auto' class='ma-0 pa-0'>
-								<v-switch v-model='unique' color='primary' :hide-details='true' density='compact'>
-									<template v-slot:label>
-										<span class='font-weight-black text-caption'
-											:class='{ "text-primary": unique }'>unique</span>
+						<v-row
+							v-if='device.structured_data'
+							align='center'
+							class='no-gutters ma-0 pa-0 mb-n8'
+							justify='end'
+						>
+							<v-col class='ma-0 pa-0' cols='auto'>
+								<v-switch v-model='unique' color='primary' density='compact' :hide-details='true'>
+									<template #label>
+										<span
+											class='font-weight-black text-caption'
+											:class='{ "text-primary": unique }'
+										>unique</span>
 									</template>
 								</v-switch>
 							</v-col>
@@ -147,23 +219,44 @@
 			</v-row>
 		</template>
 
-		<template v-slot:button>
-			<v-row class='ma-0 pa-0 no gutters' align='center' justify='center'>
+		<template #button>
+			<v-row align='center' class='ma-0 pa-0 no gutters' justify='center'>
 				<v-col class='ma-0 pa-0' cols='11' lg='5'>
-					<v-row class='ma-0 pa-0' align='center' justify='space-around'>
-						<v-col cols='6' class='ma-0 pa-0'>
+					<v-row align='center' class='ma-0 pa-0' justify='space-around'>
+						<v-col class='ma-0 pa-0' cols='6'>
 
-							<ActionButton @click='closeWs' :block='true' :disabled='localLoading' :icon='mdiClose'
-								:iconFirst='true' color='pi' text='close' :small='true' />
+							<ActionButton
+								:block='true'
+								color='pi'
+								:disabled='localLoading'
+								:icon='mdiClose'
+								:icon-first='true'
+								:small='true'
+								text='close'
+								@click='closeWs'
+							/>
 						</v-col>
-						<v-col cols='6' class='ma-0 pa-0' v-if='!isConnected'>
-							<ActionButton @click='openWs' :block='true' :disabled='connectDisabled || localLoading'
-								:icon='mdiKey' color='primary' text='connect' :small='true' />
+						<v-col v-if='!isConnected' class='ma-0 pa-0' cols='6'>
+							<ActionButton
+								:block='true'
+								color='primary'
+								:disabled='connectDisabled || localLoading'
+								:icon='mdiKey'
+								:small='true'
+								text='connect'
+								@click='openWs'
+							/>
 						</v-col>
-						<v-col cols='6' class='ma-0 pa-0' v-else>
-							<ActionButton @click='sendMessage' :block='true'
+						<v-col v-else class='ma-0 pa-0' cols='6'>
+							<ActionButton
+								:block='true'
+								color='primary'
 								:disabled='localLoading || errorMessage.length > 0 || !message || sendDisabled'
-								:icon='mdiSend' color='primary' text='send' :small='true' />
+								:icon='mdiSend'
+								:small='true'
+								text='send'
+								@click='sendMessage'
+							/>
 						</v-col>
 					</v-row>
 				</v-col>
@@ -173,75 +266,75 @@
 </template>
 
 <script setup lang='ts'>
-import { axios_ws } from '@/services/axios';
-import { convert_bytes } from '@/vanillaTS/convert_bytes';
-import { env } from '@/vanillaTS/env';
-import { parse } from 'secure-json-parse';
-import { snackError } from '@/services/snack';
-import { useDisplay } from 'vuetify';
-import type { TDeviceInfo, TDialogFields } from '@/types';
+import type { TDeviceInfo, TDialogFields } from '@/types'
 import {
 	mdiArrowDownBold, mdiArrowUpBold, mdiCheckboxBlankCircleOutline, mdiCheckCircle, mdiCircleHalfFull,
-	mdiClose, mdiEye, mdiEyeOff, mdiKey, mdiLock, mdiMessageReplyText, mdiSend, mdiTimerOutline
-} from '@mdi/js';
+	mdiClose, mdiEye, mdiEyeOff, mdiKey, mdiLock, mdiMessageReplyText, mdiSend, mdiTimerOutline,
+} from '@mdi/js'
+import { parse } from 'secure-json-parse'
+import { useDisplay } from 'vuetify'
+import { axios_ws } from '@/services/axios'
+import { snackError } from '@/services/snack'
+import { convert_bytes } from '@/vanillaTS/convert_bytes'
+import { env } from '@/vanillaTS/env'
 
-const { mobile } = useDisplay();
+const { mobile } = useDisplay()
 
 onBeforeUnmount(() => {
-	closeWs();
-	updateExtra();
-});
+	closeWs()
+	updateExtra()
+})
 
-const byteSize_sent = computed(() => new Blob([message.value]).size);
-const byteSize_response = computed(() => new Blob([response.value]).size);
-const connectDisabled = computed(() => props.device.device_password_required && !password.value);
-const connectedColor = computed(() => isConnected.value ? 'primary' : localLoading.value ? 'secondary' : 'pi');
-const connectedIcon = computed(() => isConnected.value ? mdiCheckCircle : localLoading.value ? mdiCircleHalfFull : mdiCheckboxBlankCircleOutline);
-const connectedText = computed(() => isConnected.value ? 'connected' : localLoading.value ? 'connecting...' : `not connected${props.device.device_password_required ? ' - password required' : ''}`);
+const byteSize_sent = computed(() => new Blob([message.value]).size)
+const byteSize_response = computed(() => new Blob([response.value]).size)
+const connectDisabled = computed(() => props.device.device_password_required && !password.value)
+const connectedColor = computed(() => isConnected.value ? 'primary' : (localLoading.value ? 'secondary' : 'pi'))
+const connectedIcon = computed(() => isConnected.value ? mdiCheckCircle : (localLoading.value ? mdiCircleHalfFull : mdiCheckboxBlankCircleOutline))
+const connectedText = computed(() => isConnected.value ? 'connected' : (localLoading.value ? 'connecting...' : `not connected${props.device.device_password_required ? ' - password required' : ''}`))
 const copySentMessage = computed((): string => {
-	if (!props.device.structured_data) return message.value;
-	let output = `{ "data" : ${formatMessage(message.value)} }`;
-	if (unique.value) output += `, "unique": true }`;
-	return output;
-});
+	if (!props.device.structured_data) return message.value
+	let output = `{ "data" : ${formatMessage(message.value)} }`
+	if (unique.value) output += `, "unique": true }`
+	return output
+})
 
-const isConnected = computed(() => connected.value);
+const isConnected = computed(() => connected.value)
 
 const latencyRow = computed((): Array<{
-	text: string;
-	value: string;
-	color: string;
-	icon: string;
+	text: string
+	value: string
+	color: string
+	icon: string
 }> => [
 	{
 		text: 'latency',
 		value: latency.value ? `${latency.value} ms` : '',
 		color: 'secondary',
-		icon: mdiTimerOutline
+		icon: mdiTimerOutline,
 	},
 	{
 		text: 'size sent',
 		value: size_sent.value,
 		color: 'pi',
-		icon: mdiArrowUpBold
+		icon: mdiArrowUpBold,
 	},
 	{
 		text: 'size response',
 		value: size_response.value,
 		color: 'primary',
-		icon: mdiArrowDownBold
-	}
-]);
-const sendDisabled = computed(() => byteSize_sent.value >= userModule().maxMessageSize && userModule().isFreeUser);
+		icon: mdiArrowDownBold,
+	},
+])
+const sendDisabled = computed(() => byteSize_sent.value >= userModule().maxMessageSize && userModule().isFreeUser)
 
 const size_sent = computed((): string => {
-	const output = convert_bytes(byteSize_sent.value);
-	return byteSize_sent.value === 0 ? '' : output.total === '0' ? `${byteSize_sent.value}B` : `${output.total}${output.unit}`;
-});
+	const output = convert_bytes(byteSize_sent.value)
+	return byteSize_sent.value === 0 ? '' : (output.total === '0' ? `${byteSize_sent.value}B` : `${output.total}${output.unit}`)
+})
 const size_response = computed((): string => {
-	const output = convert_bytes(byteSize_response.value);
-	return byteSize_response.value === 0 ? '' : output.total === '0' ? `${byteSize_response.value}B` : `${output.total}${output.unit}`;
-});
+	const output = convert_bytes(byteSize_response.value)
+	return byteSize_response.value === 0 ? '' : (output.total === '0' ? `${byteSize_response.value}B` : `${output.total}${output.unit}`)
+})
 const textFields = computed((): Array<TDialogFields> => [
 	{
 		appendIcon: passwordVisible.value ? mdiEyeOff : mdiEye,
@@ -249,163 +342,159 @@ const textFields = computed((): Array<TDialogFields> => [
 		icon: mdiLock,
 		label: 'device password',
 		model: 'password' as const,
-		type: passwordVisible.value ? 'text' : 'password'
-	}
-]);
-const ttl = computed(() => deviceModule().get_ttl(props.device.name_of_device) > 0);
+		type: passwordVisible.value ? 'text' : 'password',
+	},
+])
+const ttl = computed(() => deviceModule().get_ttl(props.device.name_of_device) > 0)
 
-const authToken = ref('');
-const connected = ref(false);
-const errorMessage = ref('');
-const isIntersecting = ref(false);
-const latency = ref(0);
-const localLoading = ref(false);
-const message = ref('');
-const password = ref('');
-const passwordVisible = ref(false);
-const response = ref('');
-const sentTime = ref(0);
-const unique = ref(false);
-const ws: Ref<WebSocket | undefined> = ref(undefined);
+const authToken = ref('')
+const connected = ref(false)
+const errorMessage = ref('')
+const isIntersecting = ref(false)
+const latency = ref(0)
+const localLoading = ref(false)
+const message = ref('')
+const password = ref('')
+const passwordVisible = ref(false)
+const response = ref('')
+const sentTime = ref(0)
+const unique = ref(false)
+const ws: Ref<WebSocket | undefined> = ref(undefined)
 
-const clearResponse = (): void => {
-	response.value = '';
-	sentTime.value = 0;
-	latency.value = 0;
-	errorMessage.value = '';
-};
-const emit = defineEmits(['cancel', 'updateExtraInfo', 'refresh']);
+function clearResponse (): void {
+	response.value = ''
+	sentTime.value = 0
+	latency.value = 0
+	errorMessage.value = ''
+}
+const emit = defineEmits(['cancel', 'update-extra-info', 'refresh'])
 
-const closeWs = (): void => {
-	ws.value?.close();
-	ws.value = undefined;
-	response.value = '';
-	message.value = '';
-	connected.value = false;
-	latency.value = 0;
-	sentTime.value = 0;
-	emit('cancel');
-};
+function closeWs (): void {
+	ws.value?.close()
+	ws.value = undefined
+	response.value = ''
+	message.value = ''
+	connected.value = false
+	latency.value = 0
+	sentTime.value = 0
+	emit('cancel')
+}
 
-const formatMessage = (data: string): string => {
-	if (!props.device.structured_data) return data;
-	return data.startsWith('{') ? data : `"${data}"`;
-};
+function formatMessage (data: string): string {
+	if (!props.device.structured_data) return data
+	return data.startsWith('{') ? data : `"${data}"`
+}
 
-const getAuthToken = async (): Promise<void> => {
-	errorMessage.value = '';
+async function getAuthToken (): Promise<void> {
+	errorMessage.value = ''
 	const token = await axios_ws.auth({
 		key: props.device.api_key,
-		password: password.value
-	});
-	password.value = '';
-	if (token) authToken.value = token;
+		password: password.value,
+	})
+	password.value = ''
+	if (token) authToken.value = token
 	else {
-		localLoading.value = false;
-		errorMessage.value = 'unable to generate access token';
-		snackError({ message: 'unable to generate access token' });
+		localLoading.value = false
+		errorMessage.value = 'unable to generate access token'
+		snackError({ message: 'unable to generate access token' })
 	}
-};
+}
 
-const onIntersect = (is_i: boolean, _entries: Array<IntersectionObserverEntry>, _observer: IntersectionObserver): void => {
-	isIntersecting.value = is_i;
-};
+function onIntersect (is_i: boolean, _entries: Array<IntersectionObserverEntry>, _observer: IntersectionObserver): void {
+	isIntersecting.value = is_i
+}
 
-const openWs = async (): Promise<void> => {
-	if (passwordVisible.value) passwordVisible.value = false;
-	localLoading.value = true;
-	await getAuthToken();
-	if (!authToken.value) return;
-	const url = `${env.domain_wss}/client/${authToken.value}`;
-	authToken.value = '';
-	ws.value = new WebSocket(url);
+async function openWs (): Promise<void> {
+	if (passwordVisible.value) passwordVisible.value = false
+	localLoading.value = true
+	await getAuthToken()
+	if (!authToken.value) return
+	const url = `${env.domain_wss}/client/${authToken.value}`
+	authToken.value = ''
+	ws.value = new WebSocket(url)
 
-	ws.value.addEventListener('open', (_event) => {
-		connected.value = true;
-		localLoading.value = false;
-		updateExtra();
-	});
+	ws.value.addEventListener('open', _event => {
+		connected.value = true
+		localLoading.value = false
+		updateExtra()
+	})
 
-	ws.value.addEventListener('close', (_event) => {
-		closeWs();
-	});
+	ws.value.addEventListener('close', _event => {
+		closeWs()
+	})
 
-	ws.value.addEventListener('error', (_event) => {
-		closeWs();
-		snackError({ message: 'websocket connection error' });
-		localLoading.value = false;
-	});
-	ws.value.addEventListener('message', async (event) => {
-		if (sentTime.value) latency.value = Date.now() - sentTime.value;
-		sentTime.value = 0;
+	ws.value.addEventListener('error', _event => {
+		closeWs()
+		snackError({ message: 'websocket connection error' })
+		localLoading.value = false
+	})
+	ws.value.addEventListener('message', async event => {
+		if (sentTime.value) latency.value = Date.now() - sentTime.value
+		sentTime.value = 0
 
 		// If the response is an object, aka a buffer, attempt to convert the buffer back into text
-		if (typeof event.data === 'object') {
-			response.value = await event.data.text();
-		} else {
-			response.value = String(event.data);
-		}
-	});
-};
+		response.value = typeof event.data === 'object' ? (await event.data.text()) : String(event.data)
+	})
+}
 
-const parser = (input: string): unknown | never => {
+function parser (input: string): unknown | never {
 	try {
 		const output = parse(input, undefined, {
 			protoAction: 'remove',
-			constructorAction: 'remove'
-		});
-		if (Object.keys(output).length === 0) throw Error('Empty object');
-		return output;
-	} catch (_e) {
-		errorMessage.value = 'invalid message';
-		return;
+			constructorAction: 'remove',
+		})
+		if (Object.keys(output).length === 0) throw new Error('Empty object')
+		return output
+	} catch {
+		errorMessage.value = 'invalid message'
+		return
 	}
-};
+}
 
-const sendMessage = async (): Promise<void> => {
-	sentTime.value = Date.now();
-	const data = message.value.startsWith('{') ? parser(message.value) : message.value;
-	if (!data) return snackError({ message: 'parsing error - invalid message' });
+async function sendMessage (): Promise<void> {
+	sentTime.value = Date.now()
+	const data = message.value.startsWith('{') ? parser(message.value) : message.value
+	if (!data) return snackError({ message: 'parsing error - invalid message' })
 	if (props.device.structured_data) {
 		const toSend = unique.value
 			? JSON.stringify({
 				data,
-				unique: true
+				unique: true,
 			})
-			: JSON.stringify({ data });
-		if (!toSend) return snackError({ message: 'parsing error - invalid message' });
-		ws.value?.send(toSend);
-	} else ws.value?.send(message.value);
-	updateExtra();
-};
+			: JSON.stringify({ data })
+		if (!toSend) return snackError({ message: 'parsing error - invalid message' })
+		ws.value?.send(toSend)
+	} else ws.value?.send(message.value)
+	updateExtra()
+}
 
-const updateExtra = (): void => {
-	emit('updateExtraInfo');
-	emit('refresh');
-};
+function updateExtra (): void {
+	emit('update-extra-info')
+	emit('refresh')
+}
 
 const props = defineProps<{
-	device: TDeviceInfo;
-	maxConnected: boolean;
-}>();
+	device: TDeviceInfo
+	maxConnected: boolean
+}>()
 
 watch(isIntersecting, (i: boolean): void => {
-	if (i && !props.device.device_password_required) openWs();
-});
+	if (i && !props.device.device_password_required) openWs()
+})
 watch(isConnected, (_i: boolean): void => {
-	updateExtra();
-});
+	updateExtra()
+})
 watch(() => props.maxConnected, (i: boolean): void => {
-	if (i && !isConnected.value) emit('cancel');
-});
+	if (i && !isConnected.value) emit('cancel')
+})
 watch(message, (i: string): void => {
-	if (!i) message.value = '';
-});
+	if (!i) message.value = ''
+})
 watch(ttl, (i: boolean): void => {
 	if (i) {
-		closeWs();
+		closeWs()
 	}
-});
+})
 </script>
 
 <style scoped>

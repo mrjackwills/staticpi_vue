@@ -1,50 +1,50 @@
 <template>
 	<AppCard
+		:disabled
+		lg='11'
+		md='12'
 		my='my-2'
 		sm='12'
-		md='12'
-		lg='11'
 		xl='11'
-		:disabled
 	>
-		<template v-slot:body>
-			<v-row align='center' justify='start' class='ma-0 pa-0 no-gutters my-3'>
-				<v-col cols='auto' class='ma-a pa-0'>
+		<template #body>
+			<v-row align='center' class='ma-0 pa-0 no-gutters my-3' justify='start'>
+				<v-col class='ma-a pa-0' cols='auto'>
 					<slot name='titleIcon' />
 				</v-col>
-				<v-col cols='auto' class='ma-0 pa-0 font-weight-bold text-pi' :class='title'>
+				<v-col class='ma-0 pa-0 font-weight-bold text-pi' :class='title' cols='auto'>
 					<slot name='title' />
 				</v-col>
 				<v-spacer />
 				<ProUserChip v-if='proOnly' />
 
 			</v-row>
-			<v-row align='center' justify='center' class='ma-0 pa-0'>
-				<v-col cols='12' class='pa-0 ma-0 text-body-1'>
+			<v-row align='center' class='ma-0 pa-0' justify='center'>
+				<v-col class='pa-0 ma-0 text-body-1' cols='12'>
 					<slot name='text_description' />
 				</v-col>
 			</v-row>
-			<v-row align='center' justify='center' class='ma-0 pa-0'>
-				<v-col cols='12' class='pa-0 ma-0'>
+			<v-row align='center' class='ma-0 pa-0' justify='center'>
+				<v-col class='pa-0 ma-0' cols='12'>
 					<slot name='body' />
 				</v-col>
 			</v-row>
 
-			<v-row justify='center' class='pa-0 ma-0'>
-				<v-col cols='12' md='8' lg='4' class='pa-0 ma-0'>
-					<v-row justify='space-around' class='pa-0 ma-0'>
-						<v-col cols='6' md='auto' class='pa-0 ma-0' >
+			<v-row class='pa-0 ma-0' justify='center'>
+				<v-col class='pa-0 ma-0' cols='12' lg='4' md='8'>
+					<v-row class='pa-0 ma-0' justify='space-around'>
+						<v-col class='pa-0 ma-0' cols='6' md='auto'>
 							<slot name='cancel_button' />
 						</v-col>
-						<v-col cols='6' md='auto' class='pa-0 ma-0' >
+						<v-col class='pa-0 ma-0' cols='6' md='auto'>
 							<slot name='save_button' />
 						</v-col>
 					</v-row>
 				</v-col>
 			</v-row>
 
-			<v-row align='center' justify='center' class='ma-0 pa-0 my-3'>
-				<v-col cols='12' class='ma-0 pa-0'>
+			<v-row align='center' class='ma-0 pa-0 my-3' justify='center'>
+				<v-col class='ma-0 pa-0' cols='12'>
 					<slot name='action_button' />
 				</v-col>
 			</v-row>
@@ -54,17 +54,17 @@
 </template>
 
 <script setup lang='ts'>
-import { useDisplay } from 'vuetify';
+import { useDisplay } from 'vuetify'
 
-const { smAndDown } = useDisplay();
+const { smAndDown } = useDisplay()
 
-const title = computed(() => smAndDown.value ? 'text-h7' : 'text-h6');
+const title = computed(() => smAndDown.value ? 'text-h7' : 'text-h6')
 
 withDefaults(defineProps<{
-	disabled?: boolean;
-	proOnly?: boolean;
+	disabled?: boolean
+	proOnly?: boolean
 }>(), {
 	disabled: false,
-	proOnly: false
-});
+	proOnly: false,
+})
 </script>

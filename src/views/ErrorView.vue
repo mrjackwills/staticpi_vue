@@ -1,30 +1,39 @@
 <template>
-	<ThePage :fillHeight='true' justify='center'>
-		<template v-slot:body>
-			<v-row justify='center' align='center' class='ma-0 pa-0' no-gutters>
-				<v-col cols='11' class='ma-0 pa-0'>
+	<ThePage :fill-height='true' justify='center'>
+		<template #body>
+			<v-row align='center' class='ma-0 pa-0' justify='center' no-gutters>
+				<v-col class='ma-0 pa-0' cols='11'>
 					<v-row align='center' justify='center'>
-						<v-img :eager='true' :height='"50vh"' :max-width='mdAndUp ? "55vw" : "95vw"'
-							src='@/assets/svg/404.svg' contain />
+						<v-img
+							contain
+							:eager='true'
+							:height='"50vh"'
+							:max-width='mdAndUp ? "55vw" : "95vw"'
+							src='@/assets/svg/404.svg'
+						/>
 					</v-row>
-					<section @click='goHome' class='cl'>
-						<v-row align='center' justify='center' no-gutters class='mt-6 ma-0 pa-0'>
-							<v-col cols='auto' class='pa-0 ma-0'>
+					<section class='cl' @click='goHome'>
+						<v-row align='center' class='mt-6 ma-0 pa-0' justify='center' no-gutters>
+							<v-col class='pa-0 ma-0' cols='auto'>
 								<span class='text-pi text-h3'>
 									static<span class='font-weight-black'>Pi</span>
 								</span>
 							</v-col>
 						</v-row>
-						<v-row align='center' justify='center' no-gutters class='ma-0 pa-0'>
-							<v-col cols='auto' class='pa-0 ma-0'>
+						<v-row align='center' class='ma-0 pa-0' justify='center' no-gutters>
+							<v-col class='pa-0 ma-0' cols='auto'>
 								<span class='text-black text-h5'>return to home page</span>
 							</v-col>
 						</v-row>
-						<v-row justify='center' align='center' class='mt-2 ma-0 pa-0'>
-							<v-col cols='auto' class='pa-0 ma-0'>
-								<v-btn :size='buttonSize' class='align-self-end elevation-0 cl fab-fix' color='primary'
-									icon>
-									<v-icon color='white' :size='iconSize' :icon='mdiHome' />
+						<v-row align='center' class='mt-2 ma-0 pa-0' justify='center'>
+							<v-col class='pa-0 ma-0' cols='auto'>
+								<v-btn
+									class='align-self-end elevation-0 cl fab-fix'
+									color='primary'
+									icon
+									:size='buttonSize'
+								>
+									<v-icon color='white' :icon='mdiHome' :size='iconSize' />
 								</v-btn>
 							</v-col>
 						</v-row>
@@ -37,31 +46,31 @@
 
 <script setup lang='ts'>
 
-import { FrontEndNames, FrontEndRoutes } from '@/types/const_routes';
-import { mdiHome } from '@mdi/js';
-import { useDisplay } from 'vuetify';
+import { mdiHome } from '@mdi/js'
+import { useDisplay } from 'vuetify'
+import { FrontEndNames, FrontEndRoutes } from '@/types/const_routes'
 
-const { mdAndUp, smAndDown } = useDisplay();
+const { mdAndUp, smAndDown } = useDisplay()
 
-const authenticated = computed(() => userModule().authenticated);
+const authenticated = computed(() => userModule().authenticated)
 
-const iconSize = computed(() => mdAndUp.value ? 'large' : 'default');
+const iconSize = computed(() => mdAndUp.value ? 'large' : 'default')
 
-const buttonSize = computed(() => smAndDown.value ? 'small' : 'default');
+const buttonSize = computed(() => smAndDown.value ? 'small' : 'default')
 
-const pageTitle = 'page not found';
+const pageTitle = 'page not found'
 
 onMounted(() => {
-	const browserStore = browserModule();
-	browserStore.set_title(pageTitle);
-	browserStore.set_description('staticPi error page - the content was not found');
-});
+	const browserStore = browserModule()
+	browserStore.set_title(pageTitle)
+	browserStore.set_description('staticPi error page - the content was not found')
+})
 
-const router = useRouter();
-const route = useRoute();
+const router = useRouter()
+const route = useRoute()
 
-const goHome = (): void => {
-	if (authenticated.value && route.name !== FrontEndNames.USER_DEVICES) router.push(FrontEndRoutes.USER_DEVICES);
-	if (!authenticated.value && route.name !== FrontEndNames.HOME) router.push(FrontEndRoutes.BASE);
-};
+function goHome (): void {
+	if (authenticated.value && route.name !== FrontEndNames.USER_DEVICES) router.push(FrontEndRoutes.USER_DEVICES)
+	if (!authenticated.value && route.name !== FrontEndNames.HOME) router.push(FrontEndRoutes.BASE)
+}
 </script>

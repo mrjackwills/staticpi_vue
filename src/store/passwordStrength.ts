@@ -1,5 +1,5 @@
-import { defineStore } from 'pinia';
-import { ModuleName } from '@/types/const_module';
+import { defineStore } from 'pinia'
+import { ModuleName } from '@/types/const_module'
 
 export const passwordStrengthModule = defineStore(ModuleName.PASSWORD_STRENGTH, {
 
@@ -7,7 +7,7 @@ export const passwordStrengthModule = defineStore(ModuleName.PASSWORD_STRENGTH, 
 
 	actions: {
 		set_strength (value: number) {
-			this.strength = value;
-		}
-	}
-});
+			this.strength = value
+		},
+	},
+})

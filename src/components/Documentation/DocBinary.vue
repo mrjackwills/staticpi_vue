@@ -1,30 +1,32 @@
 <template>
 
 	<DocumentationCard heading='Binary Data'>
-		<template v-slot:doc-body>
-			If a device does not have <router-link :to='structured_link()'
-				class='font-weight-bold text-primary'>structured data</router-link> enabled,
+		<template #doc-body>
+			If a device does not have <router-link
+				class='font-weight-bold text-primary'
+				:to='structured_link()'
+			>structured data</router-link> enabled,
 			binary messages will be sent and received as normal.
 			<br>
 			If it is enabled, binary data sent will result in a invalid message returned to the sender
-			<v-row justify='center' class='ma-0 pa-0 my-2'>
-				<v-col cols='12' class='ma-0 pa-0'>
-					<CodeBlock :titleBar='false' :code='json_structured_invalid' />
+			<v-row class='ma-0 pa-0 my-2' justify='center'>
+				<v-col class='ma-0 pa-0' cols='12'>
+					<CodeBlock :code='json_structured_invalid' :title-bar='false' />
 				</v-col>
 			</v-row>
 			Sending a message in this scenario requires converting the binary data to Base 64, which will result in an
 			increase of approximately 30% in the size of the data to be sent.
-			<v-row justify='center' class='ma-0 pa-0 mt-2'>
-				<v-col cols='12' class='ma-0 pa-0'>
-					<CodeBlock filename='pi_base64_image_encode.js' :code='code_structured_data_json' />
+			<v-row class='ma-0 pa-0 mt-2' justify='center'>
+				<v-col class='ma-0 pa-0' cols='12'>
+					<CodeBlock :code='code_structured_data_json' filename='pi_base64_image_encode.js' />
 				</v-col>
 			</v-row>
 
 			This could then be displayed in a browser as follows
 
-			<v-row justify='center' class='ma-0 pa-0 mt-2'>
-				<v-col cols='12' class='ma-0 pa-0'>
-					<CodeBlock filename='client_base64_image_decode.js' :code='b64_received' />
+			<v-row class='ma-0 pa-0 mt-2' justify='center'>
+				<v-col class='ma-0 pa-0' cols='12'>
+					<CodeBlock :code='b64_received' filename='client_base64_image_decode.js' />
 				</v-col>
 			</v-row>
 		</template>
@@ -34,16 +36,16 @@
 </template>
 
 <script setup lang='ts'>
-import { FrontEndRoutes } from '@/types/const_routes';
+import { FrontEndRoutes } from '@/types/const_routes'
 
-const json_structured_invalid = `{ "error": { "message" : "received data is invalid structure", "code": 400 } }`;
+const json_structured_invalid = `{ "error": { "message" : "received data is invalid structure", "code": 400 } }`
 
-const structured_link = (): string => `${FrontEndRoutes.DOCUMENTATION}#structured-data`;
+const structured_link = (): string => `${FrontEndRoutes.DOCUMENTATION}#structured-data`
 
 const code_structured_data_json = computed(() => `import { readFile } from 'fs/promises'
 
 const api_key = '${props.apiKey}';
-const token_request = await fetch('${props.address_token}/pi', {
+const token_request = await fetch('${props.addressToken}/pi', {
 	method: 'POST',
 	headers: {
 		'Content-Type': 'application/json',
@@ -51,12 +53,12 @@ const token_request = await fetch('${props.address_token}/pi', {
 	body: JSON.stringify(token_body)
 });
 const { response } = await token_request.json();
-const websocket_connection = new WebSocket(\`${props.address_wss_pi}/\${response}\` );
+const websocket_connection = new WebSocket(\`${props.addressWssPi}/\${response}\` );
 
 const photo_as_b64 = await readFile('./keyboard_cat.jpg', { encoding: 'base64'} );
 const binary_structured_message = JSON.stringify( { data : { name: "cat_photo", photo: photo_as_b64 } } );
 websocket_connection.send(binary_structured_message);
-`);
+`)
 
 const b64_received = computed(() => `websocket_connection.addEventListener('message', (event) => {
 	const message = JSON.parse(event.data);
@@ -64,15 +66,15 @@ const b64_received = computed(() => `websocket_connection.addEventListener('mess
 		document.getElementById("cat_photo").src = \`data:image/jpeg;base64,\${message.data.photo}\`
 	}
 });
-`);
+`)
 
 const props = defineProps<{
-	address_token: string;
-	address_wss_client: string;
-	address_wss_pi: string;
-	apiKey: string;
-	componentKey: number;
-	password: string;
-}>();
+	addressToken: string
+	addressWssClient: string
+	addressWssPi: string
+	apiKey: string
+	componentKey: number
+	password: string
+}>()
 
 </script>

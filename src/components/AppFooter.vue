@@ -1,13 +1,12 @@
-
 <template>
 	<v-footer
+		id='footer'
+		absolute
+		app
 		class='abc ma-0 pa-0'
 		color='transparent'
-		id='footer'
-		app
-		absolute
 	>
-		<v-row justify='center' align='center' class='no-gutters ma-0 pa-0'>
+		<v-row align='center' class='no-gutters ma-0 pa-0' justify='center'>
 			<FooterText />
 		</v-row>
 
