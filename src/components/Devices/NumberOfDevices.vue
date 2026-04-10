@@ -1,5 +1,5 @@
 <template>
-	<v-row align='center' class='ma-0 pa-0 no-gutters' justify='center'>
+	<v-row class='align-center ma-0 pa-0  justify-center' density='compact'>
 		<v-col class='ma-0 pa-0' :cols='computedCols'>
 			<span class='font-weight-bold' :class='text_size'>number of devices: </span> <span
 				:class='[deviceLimit_class, text_size]'

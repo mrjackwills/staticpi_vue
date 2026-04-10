@@ -3,7 +3,7 @@
 		heading='invites'
 		heading-class='ml-2'
 		heading-justify='start'
-		heading-size='text-h6'
+		heading-size='text-headline-small'
 		lg='11'
 		md='12'
 		my=''
@@ -11,9 +11,9 @@
 		xl='11'
 	>
 		<template #body>
-			<v-row align='center' class='no-gutters py-2' :class='text_class' justify='center'>
+			<v-row class='py-2 align-center justify-center' :class='text_class' density='compact'>
 				<v-col cols='12'>
-					<v-row align='center' class='font-weight-bold text-caption' justify='space-between'>
+					<v-row class='align-center font-weight-bold text-body-small justify-space-between'>
 						<v-col class='' cols='6'>
 							<span class=''>
 								invite code
@@ -26,16 +26,16 @@
 						</v-col>
 					</v-row>
 					<v-divider />
-					<v-row align='center' class='no-gutters ma-0 pa-0' justify='center'>
+					<v-row class='ma-0 pa-0 align-center justify-center' density='compact'>
 						<v-col
 							v-for='(item,index) in inviteCodes'
 							:key='index'
 							class=' ma-0 pa-0 my-1'
 							cols='12'
 						>
-							<v-row align='center' justify='space-between'>
+							<v-row class='align-center justify-space-between'>
 								<v-col class='text-primary' cols='6'>
-									<v-row align='center' justify='start'>
+									<v-row class='align-center justify-start'>
 										<v-col cols='auto'>
 											<CopyButton
 												color='secondary'
@@ -60,18 +60,18 @@
 							</v-row>
 							<v-divider v-if='(index!== inviteCodes.length -1)' class='' />
 						</v-col>
-						<v-col v-if='inviteCodes.length === 0' class='text-pi text-caption font-weight-bold' cols='auto'>
+						<v-col v-if='inviteCodes.length === 0' class='text-pi text-body-small font-weight-bold' cols='auto'>
 							No invite codes
 						</v-col>
 					</v-row>
 				</v-col>
 			</v-row>
 			<v-divider />
-			<v-row align='center' class='my-3' justify='space-around'>
+			<v-row class='align-center my-3 justify-space-around'>
 				<v-col cols='12'>
 
 					<v-form @submit.prevent>
-						<v-row align='center' justify='center'>
+						<v-row class='align-center justify-center'>
 
 							<v-col v-for='(item, index) in textFieldRows' :key='index' class='ma-0 pa-0 mr-3' cols='3'>
 								<v-text-field

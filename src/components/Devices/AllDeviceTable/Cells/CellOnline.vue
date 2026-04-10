@@ -1,5 +1,5 @@
 <template>
-	<v-row align='center' class='' :justify no-gutters>
+	<v-row class='align-center ' :class='justify' density='compact'>
 		<v-col class='ma-0 pa-0' cols='auto'>
 
 			<v-tooltip v-if='show_tooltip' activator='parent' content-class='tooltip' location='top center'>
@@ -29,7 +29,7 @@ const tooltipText = computed(() => timestamp_online.value && !timestamp_offline.
 const online = computed(() => timestamp_online.value && !timestamp_offline.value ? true : false)
 const color = computed(() => online.value ? 'primary' : 'pi')
 const icon = computed(() => online.value ? mdiWifi : mdiWifiOff)
-const justify = computed(() => mdAndUp.value ? 'center' : 'end')
+const justify = computed(() => mdAndUp.value ? 'justify-center' : 'justify-end')
 const timestamp_online = computed(() => props.device.timestamp_online ? new Date(props.device.timestamp_online) : null)
 const timestamp_offline = computed(() => props.device.timestamp_offline ? new Date(props.device.timestamp_offline) : null)
 const paused = computed(() => props.device.paused)

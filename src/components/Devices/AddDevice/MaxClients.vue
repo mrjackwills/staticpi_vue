@@ -1,5 +1,5 @@
 <template>
-	<v-row align='center' class='ma-0 pa-0' justify='center'>
+	<v-row class='align-center ma-0 pa-0 justify-center'>
 		<v-col class='ma-0 pa-0' cols='12' md='6'>
 			<v-text-field
 				:key='textField.model'

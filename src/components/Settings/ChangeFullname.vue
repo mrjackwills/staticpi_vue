@@ -18,7 +18,7 @@
 
 		<template #action_button>
 			<v-expand-transition>
-				<v-row v-if='!showTextFields' align='center' class='ma-0 pa-0' justify='center'>
+				<v-row v-if='!showTextFields' class='align-center ma-0 pa-0 justify-center'>
 					<v-col class='ma-0 pa-0' cols='12' md='auto'>
 						<ActionButton
 							:block='true'
@@ -35,7 +35,7 @@
 		<template #body>
 			<v-expand-transition>
 				<section v-if='showTextFields'>
-					<v-row align='center' class='ma-0 pa-0 mt-3' justify='center'>
+					<v-row class='align-center ma-0 pa-0 mt-3 justify-center'>
 						<v-col class='ma-0 pa-0' cols='12' md='8'>
 							<v-form @submit.prevent>
 								<section v-for='(item, index) in textField' :key='index'>

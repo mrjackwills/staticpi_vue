@@ -1,7 +1,7 @@
 <template>
 	<section class=''>
 		<section class=''>
-			<v-row align='center' class='ma-0 pa-0' justify='start'>
+			<v-row class='align-center ma-0 pa-0 justify-start'>
 				<v-col class='' cols='auto'>
 					<v-switch
 						v-model='switched'

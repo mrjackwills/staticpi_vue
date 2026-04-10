@@ -1,7 +1,7 @@
 <template>
 	<SettingSection :disabled='componentDisabled'>
 		<template #titleIcon>
-			<v-icon class='mr-2' color='pi' :icon='mdiAccountArrowDown ' :size='smAndDown?"small":"default"' />
+			<v-icon class='mr-2' color='pi' :icon='mdiAccountArrowDown' :size='smAndDown ? "small" : "default"' />
 		</template>
 
 		<template #title>
@@ -9,22 +9,19 @@
 		</template>
 
 		<template #text_description>
-			If you wish to access and download all the information associated with their account, simply click the 'download data' button and follow the prompts to receive your information.
+			If you wish to access and download all the information associated with their account, simply click the
+			'download data' button and follow the prompts to receive your information.
 			<br>
 			Please note, that this is limited to once per 24-hours.
 		</template>
 
 		<template #action_button>
 			<v-expand-transition>
-				<v-row
-					align='center'
-					class='ma-0 pa-0'
-					justify='center'
-				>
+				<v-row class='ma-0 pa-0 align-center justify-center'>
 					<v-col class='ma-0 pa-0' cols='12' md='auto'>
 						<ActionButton
 							:block='true'
-							:icon='mdiDownload '
+							:icon='mdiDownload'
 							small
 							text='download data'
 							@click='downloadData'

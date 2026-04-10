@@ -22,12 +22,12 @@
 				is reserved exclusively for use by the servers of staticPi.
 
 				<v-divider class='my-2' color='secondary' thickness='2' />
-				<span :id='structured_key_id("data")' class='text-h6 font-weight-bold text-pi'>
+				<span :id='structured_key_id("data")' class='text-headline-small font-weight-bold text-pi'>
 					data
 				</span>
 				<br>
 				The data property contains the message to be sent.
-				<v-row class='ma-0 pa-0 my-2' justify='center'>
+				<v-row class='ma-0 pa-0 my-2 justify-center'>
 					<v-col class='ma-0 pa-0' cols='12'>
 						<CodeBlock
 							:key='`e_${componentKey}`'
@@ -37,7 +37,7 @@
 					</v-col>
 				</v-row>
 				When structure datad is enabled, the message received needs to be parsed into JSON
-				<v-row class='ma-0 pa-0 my-2' justify='center'>
+				<v-row class='ma-0 pa-0 my-2 justify-center'>
 					<v-col class='ma-0 pa-0' cols='12'>
 						<CodeBlock
 							:key='`f_${componentKey}`'
@@ -52,7 +52,7 @@
 				<router-link class='text-primary' :to='structured_id("error")'>as seen here</router-link>
 
 				<v-divider class='my-2' color='secondary' thickness='2' />
-				<span :id='structured_key_id("cache")' class='text-h6 font-weight-bold text-pi'>
+				<span :id='structured_key_id("cache")' class='text-headline-small font-weight-bold text-pi'>
 					cache
 				</span>
 				<br>
@@ -63,7 +63,7 @@
 				To set a message in cache, the pi simply needs to send a structured message with <span
 					class='font-weight-bold'
 				>"cache: true" </span>
-				<v-row class='ma-0 pa-0 my-2' justify='center'>
+				<v-row class='ma-0 pa-0 my-2 justify-center'>
 					<v-col class='ma-0 pa-0' cols='12'>
 						<CodeBlock
 							code='{ "data": { "any": "message allowed here" } }, "cache": true }'
@@ -74,7 +74,7 @@
 				To remove the cache, the pi simply needs to send a structured message with <span
 					class='font-weight-bold'
 				>"cache: false" </span>
-				<v-row class='ma-0 pa-0 my-2' justify='center'>
+				<v-row class='ma-0 pa-0 my-2 justify-center'>
 					<v-col class='ma-0 pa-0' cols='12'>
 						<CodeBlock
 							code='{ "data": { "any": "message allowed here" } }, "cache": false }'
@@ -83,7 +83,7 @@
 					</v-col>
 				</v-row>
 
-				<v-row class='ma-0 pa-0 my-2' justify='center'>
+				<v-row class='ma-0 pa-0 my-2 justify-center'>
 					<v-col class='ma-0 pa-0' cols='12'>
 						<CodeBlock
 							:key='`g_${componentKey}`'
@@ -94,7 +94,7 @@
 				</v-row>
 				If the pi is offline, and a cache is set, clients structured data will include a cache key
 
-				<v-row class='ma-0 pa-0' justify='center'>
+				<v-row class='ma-0 pa-0 justify-center'>
 					<v-col class='ma-0 pa-0' cols='12'>
 						<CodeBlock :code='json_structured_cache' :title-bar='false' />
 					</v-col>
@@ -104,7 +104,7 @@
 
 				<v-divider class='my-2' color='secondary' thickness='2' />
 
-				<span :id='structured_key_id("unique")' class='text-h6 font-weight-bold text-pi'>
+				<span :id='structured_key_id("unique")' class='text-headline-small font-weight-bold text-pi'>
 					unique
 				</span>
 				<br>
@@ -141,7 +141,7 @@
 				On receipt of a unique message, the <span class='font-weight-bold'>client</span> structured message will
 				contain a <span class='font-weight-bold'>unique: true</span> value.
 
-				<v-row class='ma-0 pa-0 my-2' justify='center'>
+				<v-row class='ma-0 pa-0 my-2 justify-center'>
 					<v-col class='ma-0 pa-0' cols='12'>
 						<CodeBlock
 							:key='`h_${componentKey}`'
@@ -151,7 +151,7 @@
 					</v-col>
 				</v-row>
 
-				<v-row class='ma-0 pa-0 my-2' justify='center'>
+				<v-row class='ma-0 pa-0 my-2 justify-center'>
 					<v-col class='ma-0 pa-0' cols='12'>
 						<CodeBlock
 							:key='`i_${componentKey}`'
@@ -163,7 +163,7 @@
 
 				<v-divider class='my-2' color='secondary' thickness='2' />
 
-				<span :id='structured_key_id("error")' class='text-h6 font-weight-bold text-pi'>
+				<span :id='structured_key_id("error")' class='text-headline-small font-weight-bold text-pi'>
 					error
 				</span>
 				<br>
@@ -174,21 +174,21 @@
 				<br>
 				If a device has structured data enabled, and an invalid formatted message is sent, the sender of the
 				invalid message will receive the following error message
-				<v-row class='ma-0 pa-0 my-2' justify='center'>
+				<v-row class='ma-0 pa-0 my-2 justify-center'>
 					<v-col class='ma-0 pa-0' cols='12'>
 						<CodeBlock :key='`j_${componentKey}`' :code='json_structured_invalid' :title-bar='false' />
 					</v-col>
 				</v-row>
 				Upon reaching the rate limit, an error websocket message will be received, indicating the duration of
 				the block, in seconds, and code 429.
-				<v-row class='ma-0 pa-0 my-2' justify='center'>
+				<v-row class='ma-0 pa-0 my-2 justify-center'>
 					<v-col class='ma-0 pa-0' cols='12'>
 						<CodeBlock :key='`k_${componentKey}`' :code='json_structured_rate_limited' :title-bar='false' />
 					</v-col>
 				</v-row>
 
 				If a message is sent that is too large, an error with code 413 will be received
-				<v-row class='ma-0 pa-0 my-2' justify='center'>
+				<v-row class='ma-0 pa-0 my-2 justify-center'>
 					<v-col class='ma-0 pa-0' cols='12'>
 						<CodeBlock :key='`l_${componentKey}`' :code='json_structured_size' :title-bar='false' />
 					</v-col>

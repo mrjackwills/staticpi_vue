@@ -1,10 +1,7 @@
 <template>
 	<v-row
-		align='center'
-		class='pa-0 ma-0'
-		dense
-		justify='center'
-		no-gutters
+		class='pa-0 ma-0 align-center justify-center'
+		density='compact'
 	>
 		<v-col class='px-1 mb-3' :class='{ "mt-n4": errorMessage.length === 0 }' cols='12'>
 			<v-progress-linear :color='passStrengthColor' :model-value='passStrength' rounded />

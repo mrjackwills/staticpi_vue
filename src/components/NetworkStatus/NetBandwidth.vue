@@ -9,7 +9,7 @@
 				</td>
 				<td class='text-right text-secondary'>
 					<template v-if='init'>
-						<v-row align='center' class='ma-0 pa-0' justify='end'>
+						<v-row class='align-center ma-0 pa-0 justify-end'>
 
 							<v-col class='ma-0 pa-0' :class='mobileClass' cols='auto'>
 								<div class='text-right'>
@@ -34,7 +34,7 @@
 				</td>
 				<td class='text-right text-primary'>
 					<template v-if='init'>
-						<v-row align='center' class='ma-0 pa-0' justify='end'>
+						<v-row class='align-center ma-0 pa-0 justify-end'>
 
 							<v-col class='ma-0 pa-0' :class='mobileClass' cols='auto'>
 								<div class='text-right'>

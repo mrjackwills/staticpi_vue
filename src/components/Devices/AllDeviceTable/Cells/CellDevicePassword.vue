@@ -1,11 +1,11 @@
 <template>
-	<v-row align='center' class='no-gutters pa-0 ma-0' :justify>
+	<v-row class='pa-0 ma-0 align-center' :class='justify' density='compact'>
 
 		<v-col class='ma-0 pa-0' cols='12' md='8'>
 			<v-expand-transition>
 				<section v-if='showTextField'>
 					<v-form autocomplete='off' @submit.prevent>
-						<v-row align='center' class='pt-1 mb-n3 ma-0 pa-0' justify='center' no-gutters>
+						<v-row class='align-center pt-1 mb-n3 ma-0 pa-0 justify-center' density='compact'>
 							<v-col class='ma-0 pa-0 pa-1' cols='12'>
 								<v-text-field
 									v-for='(item, index) in textFields'
@@ -27,7 +27,7 @@
 							</v-col>
 						</v-row>
 
-						<v-row align='center' class='ma-0 pa-0' justify='center'>
+						<v-row class='align-center ma-0 pa-0 justify-center'>
 							<v-col v-for='(item, index) in buttons' :key='index' class='ma-0 pa-0 mx-2' cols='auto'>
 								<v-btn
 									class='fab-fix'
@@ -43,7 +43,7 @@
 							</v-col>
 						</v-row>
 
-						<v-row align='center' class='ma-0 pa-0' justify='center'>
+						<v-row class='align-center ma-0 pa-0 justify-center'>
 							<v-col class='ma-0 pa-0' cols='auto'>
 								<v-switch
 									v-model='password_synced'
@@ -62,7 +62,7 @@
 			<v-expand-transition>
 
 				<section v-if='!showTextField'>
-					<v-row :justify>
+					<v-row :class='justify'>
 						<v-tooltip
 							v-if='show_tooltip && freeUser'
 							activator='parent'
@@ -128,7 +128,7 @@ const buttons = computed((): Array<TDeviceTableFields> => [
 ])
 const disabled = computed(() => freeUser.value || paused.value || localLoading.value)
 
-const justify = computed(() => mdAndUp.value ? 'center' : 'end')
+const justify = computed(() => mdAndUp.value ? 'justify-center' : 'justify-end')
 
 const loading = computed({
 	get (): boolean {

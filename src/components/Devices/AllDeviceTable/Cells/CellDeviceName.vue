@@ -1,13 +1,13 @@
 <template>
 	<section>
 		<v-expand-transition>
-			<v-row v-if='local_ttl > 0' align='center' class='ma-0 pa-0 mb-n3 bg-pi' justify='center'>
-				<v-col class='px-3 error ma-0 pa-0 text-white font-weight-medium text-center text-caption' cols='12'>
+			<v-row v-if='local_ttl > 0' class='align-center ma-0 pa-0 mb-n3 bg-pi justify-center'>
+				<v-col class='px-3 error ma-0 pa-0 text-white font-weight-medium text-center text-body-small' cols='12'>
 					rate-limited for {{ secondsToDays(local_ttl * 1000) }}
 				</v-col>
 			</v-row>
 		</v-expand-transition>
-		<v-row align='center' class='pt-1' :justify no-gutters>
+		<v-row class='align-center pt-1' :class='justify' density='compact'>
 			<v-col class='ma-0 pa-0' cols='12'>
 				<v-text-field
 					v-model='newName'
@@ -39,9 +39,7 @@
 			<v-row
 				v-if='inFocus && !paused'
 				v-intersect='onIntersect'
-				align='center'
-				class='ma-0 pa-0'
-				justify='center'
+				class='ma-0 pa-0 align-center justify-center'
 			>
 				<v-col v-for='(item, index) in buttons' :key='index' class='ma-0 pa-0 pb-2 px-2' cols='auto'>
 					<v-btn
@@ -91,7 +89,7 @@ const buttons = computed((): Array<TDeviceTableFields> => [
 
 const disabled = computed(() => !newName.value || errorMessage.value != 'new name not saved' || loading.value || newName.value === name_of_device.value)
 const isFreeUser = computed(() => userModule().isFreeUser)
-const justify = computed(() => mdAndUp.value ? 'center' : 'end')
+const justify = computed(() => mdAndUp.value ? 'justify-center' : 'justify-end')
 const loading = computed({
 	get (): boolean {
 		return loadingModule().loading

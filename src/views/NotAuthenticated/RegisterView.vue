@@ -17,11 +17,8 @@
 						density='compact'
 					>
 						<v-row
-							align='center'
-							class='ma-0 pa-0'
-							dense
-							justify='center'
-							no-gutters
+							class='ma-0 pa-0 align-center justify-center'
+							density='compact'
 						>
 							<v-col class='pa-0 ma-0 text-center' cols='auto'>
 								<v-icon v-if='smAndUp' color='cardColor' :icon='mdiAlertCircleOutline' :size='smAndDown?"x-small":"small"' />
@@ -33,11 +30,11 @@
 						<template v-for='(item, index) in textFieldRows' :key='index'>
 							<v-text-field
 								v-model='user[item.model]'
+								::density='smAndDown?"compact":"default"'
 								:append-inner-icon='item.appendIcon'
 								:autocomplete='item.autocomplete'
 								:clearable='item.clearable'
 								color='primary'
-								:dense='smAndDown'
 								:disabled='complete|| localLoading'
 								:error-messages='errorMessages[item.model]'
 								:hide-details='item.label === "password" && passwordCompromised'
@@ -72,12 +69,12 @@
 								</v-expand-transition>
 							</section>
 						</template>
-						<v-row align='center' class='ma-0 pa-0 mt-n4' justify='center'>
+						<v-row class='align-center ma-0 pa-0 mt-n4 justify-center'>
 							<v-col class='ma-0 pa-0 my-n4' cols='12'>
 								<v-checkbox v-model='user.age' class='ma-0 pa-0' color='primary' label='I am aged 18 years or older' />
 							</v-col>
 							<v-spacer />
-							<v-col class='ma-0 pa-0 mt-n4' cols='12'>
+							<v-col class='ma-0 pa-0 mt-n10' cols='12'>
 								<v-checkbox v-model='user.agree' class='ma-0 pa-0' color='primary'>
 									<template #label>
 										<v-row class='ma-0 pa-0'>
@@ -95,7 +92,7 @@
 					</v-form>
 				</template>
 				<template #button>
-					<v-row align='center' class='ma-0 pa-0 mb-2' justify='space-around'>
+					<v-row class='align-center ma-0 pa-0 mb-2 justify-space-around'>
 						<v-col class='ma-0 pa-0' cols='6'>
 							<BackButton />
 

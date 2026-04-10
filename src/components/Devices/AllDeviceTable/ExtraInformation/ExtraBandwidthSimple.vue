@@ -4,12 +4,12 @@
 		<v-row
 			v-for='(item, index) in tableData'
 			:key='index'
-			align='center'
-			class='ma-0 pa-0 no-gutters hover-row unselectable'
-			justify='space-between'
+			class='ma-0 pa-0 align-center justify-space-between unselectable'
+			density='compact'
+			hover-row
 		>
 			<v-col class='ma-0 pa-0' cols='12'>
-				<v-row align='center' class='ma-0 pa-0' justify='space-between'>
+				<v-row class='align-center ma-0 pa-0 justify-space-between'>
 					<v-col class='ma-0 pa-0 text-left' cols='6'>
 						<span class='font-weight-bold' :class='{ "small-text": mobile }'>
 							{{ item.period }}
@@ -17,7 +17,7 @@
 					</v-col>
 
 					<v-col class='ma-0 pa-0 text-right' cols='auto'>
-						<v-row align='center' class='ma-0 pa-0 no-gutters' justify='end'>
+						<v-row class='align-center ma-0 pa-0 justify-end' density='compact'>
 							<v-col class='ma-0 pa-0' cols='12' md='auto'>
 								<ExtraBandwidthCell
 									:border-right='false'

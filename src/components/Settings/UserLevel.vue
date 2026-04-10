@@ -9,16 +9,16 @@
 
 		<template #body>
 
-			<v-row align='center' class='no-gutters ma-0 pa-0' justify='center'>
+			<v-row class='ma-0 pa-0 align-center justify-center' density='compact'>
 
-				<v-col class='pa-0 ma-0 text-body-1' cols='12' md='6'>
+				<v-col class='pa-0 ma-0 text-body-large' cols='12' md='6'>
 					<span class='font-weight-bold' :class='text_size'>current user level: </span>
 					<span class='text-primary font-weight-black' :class='text_size'> {{ userLevel }}</span>
 				</v-col>
 
 				<v-col class='ma-0 pa-0' cols='12' md='6'>
-					<v-row align='center' class='ma-0 pa-0 no-gutters'>
-						<v-col v-if='timestamp' class='pa-0 ma-0 text-body-1' cols='auto'>
+					<v-row class='align-center ma-0 pa-0 ' density='compact'>
+						<v-col v-if='timestamp' class='pa-0 ma-0 text-body-large' cols='auto'>
 							<span class='font-weight-bold' :class='text_size'>member since:</span> <span
 								:class='text_size'
 							>{{ new Date(timestamp).toISOString().substring(0, 10) }}</span>
@@ -39,14 +39,14 @@
 					</v-row>
 				</v-col>
 
-				<v-col class='pa-0 ma-0 text-body-1' cols='12'>
+				<v-col class='pa-0 ma-0 text-body-large' cols='12'>
 					<NumberOfDevices row-cols='6' />
 				</v-col>
 			</v-row>
 		</template>
 
 		<template #action_button>
-			<v-row align='center' class='ma-0 pa-0' justify='center'>
+			<v-row class='align-center ma-0 pa-0 justify-center'>
 				<v-col class='ma-0 pa-0' cols='12'>
 
 					<ActionButton

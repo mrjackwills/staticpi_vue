@@ -3,12 +3,12 @@
 	<DocumentationCard heading='Rate limits'>
 		<template #doc-body>
 			<p>
-				<span class='font-weight-bold text-pi text-h6'>Messaging rate limits</span>
+				<span class='font-weight-bold text-pi text-headline-small'>Messaging rate limits</span>
 				<br>
 				To ensure fair usage for all users, rate limits are applied to messages received by the
 				<StaticPi /> websocket servers.
 				Each device, and all it's connections, share the same unique rate limit pool. The limits are as follows:
-				<v-row align='center' class='ma-0 pa-0' justify='center'>
+				<v-row class='align-center ma-0 pa-0 justify-center'>
 					<v-col class='ma-0 pa-0 font-weight-bold' cols='auto'>
 
 						<v-table>
@@ -40,7 +40,7 @@
 				imposed, and the
 				offending connection will be terminated.
 				<v-divider class='my-2' color='secondary' thickness='2' />
-				<v-row class='ma-0 pa-0' justify='start'>
+				<v-row class='ma-0 pa-0 justify-start'>
 					<v-col class='ma-0 pa-0' cols='auto'>
 						<ProUserChip class='mb-2' />
 					</v-col>
@@ -52,7 +52,7 @@
 				will be unable to
 				send
 				any new messages, and instead will receive a similar message to:
-				<v-row class='ma-0 pa-0' justify='center'>
+				<v-row class='ma-0 pa-0 justify-center'>
 					<v-col class='ma-0 pa-0' cols='12'>
 						<CodeBlock
 							code=' { "error": { "message" : "rate limited for 51 seconds", "code": 429 } } }'
@@ -63,7 +63,7 @@
 
 				<v-divider class='my-2' color='secondary' thickness='2' />
 
-				<span class='font-weight-bold text-pi text-h6 '>Connecting limits</span>
+				<span class='font-weight-bold text-pi text-headline-small '>Connecting limits</span>
 				<br>
 				When opening a new websocket connection with
 				<StaticPi />,
@@ -79,7 +79,7 @@
 				indicating the
 				length of the block
 
-				<v-row class='ma-0 pa-0' justify='center'>
+				<v-row class='ma-0 pa-0 justify-center'>
 					<v-col class='ma-0 pa-0' cols='12'>
 						<CodeBlock code='{ "response": "rate limited for 51 seconds" }' :title-bar='false' />
 					</v-col>
@@ -94,7 +94,7 @@
 
 				<v-divider class='my-2' color='secondary' thickness='2' />
 
-				<span class='font-weight-bold text-pi text-h6 '>Back pressure</span>
+				<span class='font-weight-bold text-pi text-headline-small '>Back pressure</span>
 				<br>
 				The websocket servers will allow up to eight queued messages. If the recipient can't process messages
 				fast enough, any

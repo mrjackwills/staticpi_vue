@@ -3,7 +3,7 @@
 		heading='rate limits'
 		heading-class='ml-2'
 		heading-justify='start'
-		heading-size='text-h6'
+		heading-size='text-headline-small'
 		lg='11'
 		md='12'
 		my=''
@@ -11,9 +11,9 @@
 		xl='11'
 	>
 		<template #body>
-			<v-row align='center' class='no-gutters py-2' :class='text_class' justify='center'>
+			<v-row class='py-2 align-center justify-center' :class='text_class' density='compact'>
 				<v-col cols='12'>
-					<v-row align='center' class='font-weight-bold text-caption' justify='space-between'>
+					<v-row class='align-center font-weight-bold text-body-small justify-space-between'>
 						<v-col class='' cols='5'>
 							<span class=''>
 								key
@@ -36,14 +36,14 @@
 						</v-col>
 					</v-row>
 					<v-divider />
-					<v-row align='center' class='no-gutters ma-0 pa-0' justify='center'>
+					<v-row class='ma-0 pa-0 justify-center align-center' density='compact'>
 						<v-col
 							v-for='(item,index) in limits'
 							:key='index'
 							class=' ma-0 pa-0 my-1'
 							cols='12'
 						>
-							<v-row align='center' :class='item.blocked?"text-pi":""' justify='space-between'>
+							<v-row class='align-center justify-space-between' :class='item.blocked?"text-pi":""'>
 								<v-col class='' cols='5'>
 									<span class='small-text'>
 										{{ item.key }}

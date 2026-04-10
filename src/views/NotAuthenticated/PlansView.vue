@@ -11,15 +11,15 @@
 			>
 				<template #body>
 					<!-- DESKTOP VIEW -->
-					<section v-if='mdAndUp'>
-						<v-row align='center' class='ma-0 pa-0' justify='center'>
+					<section v-if='!mobile'>
+						<v-row class='align-center ma-0 pa-0 justify-center'>
 							<v-col class='ma-0 pa-0' cols='12'>
-								<v-row class='ma-0 pa-0 no-gutters'>
+								<v-row class='ma-0 pa-0 ' density='compact'>
 									<v-col class='ma-0 pa-0' cols='3' md='2' />
 									<v-col class='ma-0 pa-0' cols='9' md='10'>
-										<v-row class='ma-0 pa-0' justify='start'>
+										<v-row class='ma-0 pa-0 justify-start'>
 											<v-col v-for='(item, index) in [`free`, `pro`]' :key='index' cols=''>
-												<v-row align='center' class='pa-0' dense justify='space-around'>
+												<v-row class='align-center pa-0 justify-space-around' density='compact'>
 													<v-col class='pa-0 ma-0' cols='auto'>
 														<div
 															class='text-center text-pi font-weight-bold'
@@ -34,7 +34,8 @@
 								<v-row
 									v-for='(item, index) in planData'
 									:key='index'
-									class='ma-0 pa-0 pa-3 no-gutters'
+									class='ma-0 pa-0 pa-3 '
+									density='compact'
 									:style='index % 2 === 0 ? "background-color:rgba(0,0,0,.075)" : "background-color:rgba(0,0,0,0)"'
 								>
 									<v-col class=' ma-0 pa-0' cols='3' md='2'>
@@ -69,11 +70,11 @@
 										</v-row>
 									</v-col>
 								</v-row>
-								<v-row align='center' class='ma-0 pa-0'>
+								<v-row class='align-center ma-0 pa-0'>
 									<v-col class='ma-0 pa-0' cols='3' md='2' />
 
 									<v-col class='ma-0 pa-0' cols='9' md='10'>
-										<v-row align='center' class='ma-0 pa-0' justify='start'>
+										<v-row class='align-center ma-0 pa-0 justify-start'>
 											<v-col
 												v-for='(item, index) in plans'
 												:key='index'
@@ -81,7 +82,7 @@
 												cols='12'
 												md='6'
 											>
-												<v-row align='center' class='ma-0 pa-0' dense justify='space-around'>
+												<v-row class='align-center ma-0 pa- justify-space-around' density='compact'>
 													<v-col class='ma-0 pa-0' cols='auto'>
 														<div class='text-black font-weight-bold' :class='priceSize'>
 															${{ item.price }}
@@ -89,14 +90,12 @@
 													</v-col>
 												</v-row>
 												<v-row
-													align='center'
-													class='ma-0 pa-0 mt-n6'
-													dense
-													justify='space-around'
+													class='ma-0 pa-0 mt-n6 align-center justify-space-around'
+													density='compact'
 												>
 													<v-col class='ma-0 pa-0' cols='auto'>
 														<div class='text-black font-weight-bold' :class='priceSize'>
-															<span class='text-overline' :class='{ "ml-2": smAndDown }'>
+															<span class='text-label-small' :class='{ "ml-2": smAndDown }'>
 																<span v-if='item.price === `0`'>forever</span>
 																<span v-else>per month</span>
 															</span>
@@ -109,7 +108,7 @@
 
 								</v-row>
 
-								<v-row class='my-3 ma-0 pa-0 no-gutters' justify='center'>
+								<v-row class='my-3 ma-0 pa-0  justify-center' density='compact'>
 									<v-col class='ma-0 pa-0' cols='auto'>
 										<ActionButton
 											:icon='mdiAccountPlus'
@@ -125,17 +124,16 @@
 					<!-- MOBILE VIEW -->
 					<!-- TODO refactor mobile mode and desktop mode together -->
 
-					<section v-if='mobile'>
+					<section v-else>
 
 						<v-row
 							v-for='(mobileLevel, index) in mobileLevels'
 							:key='index'
-							align='center'
-							justify='center'
+							class='align-center justify-center'
 						>
 							<v-col cols='12'>
 								<v-divider class='my-1' />
-								<v-row align='center' class='no-gutters' justify='center'>
+								<v-row class='align-center justify-center' density='compact'>
 									<v-col class='my-1' cols='auto'>
 										<div class='text-center text-pi font-weight-bold' :class='headingSize'>{{
 											mobileLevel.name }}</div>
@@ -144,7 +142,8 @@
 								<v-row
 									v-for='(item, plan_index) in planData'
 									:key='plan_index'
-									class='ma-0 pa-0 pa-3 no-gutters'
+									class='ma-0 pa-0 pa-3 '
+									density='compact'
 									:style='index % 2 === 0 ? "background-color:rgba(0,0,0,.075)" : "background-color:rgba(0,0,0,0)"'
 								>
 									<v-col class=' ma-0 pa-0' cols='5' md='2'>
@@ -159,7 +158,7 @@
 										</v-tooltip>
 
 										<v-icon class='mr-3' color='secondary' :icon='mdiInformation' size='small' />
-										<span class='text-caption font-weight-bold'>{{ item.feature }}</span>
+										<span class='text-body-small font-weight-bold'>{{ item.feature }}</span>
 									</v-col>
 									<v-col class='ma-0 pa-0' cols='7' md='10'>
 										<v-row class='ma-0 pa-0'>
@@ -174,7 +173,7 @@
 										</v-row>
 									</v-col>
 								</v-row>
-								<v-row align='center' class='ma-0 pa-0' justify='center'>
+								<v-row class='align-center ma-0 pa-0 justify-center'>
 									<v-col
 										v-for='(item, free_index) in [{ name: `free`, price: `0` }]'
 										:key='free_index'
@@ -183,14 +182,14 @@
 									>
 										<div class='text-black font-weight-bold' :class='priceSize'>
 											${{ mobileLevel.price }}
-											<span class='text-overline' :class='{ "ml-2": smAndDown }'>
+											<span class='text-label-small' :class='{ "ml-2": smAndDown }'>
 												<span v-if='mobileLevel.price === `0`'>forever</span>
 												<span v-else>per month</span>
 											</span>
 										</div>
 									</v-col>
 								</v-row>
-								<v-row class='ma-0 pa-0' justify='center'>
+								<v-row class='ma-0 pa-0 justify-center'>
 									<v-col class='' cols='12' md='auto'>
 										<ActionButton
 											:block='true'
@@ -225,9 +224,9 @@ onMounted(() => {
 // / Don't show tooltips when on android or ios if also on mobile view!
 const show_tooltip = computed(() => !(browserModule().android_ios && useDisplay().mobile.value))
 
-const headingSize = computed(() => mdAndUp.value ? 'text-h5' : 'text-h6')
+const headingSize = computed(() => mdAndUp.value ? 'text-headline-medium' : 'text-headline-small')
 
-const priceSize = computed(() => mdAndUp.value ? 'text-h3' : 'text-h5')
+const priceSize = computed(() => mdAndUp.value ? 'text-display-small' : 'text-headline-medium')
 const plans = [
 	{
 		name: `free`,

@@ -2,7 +2,7 @@
 	<v-row class='ma-0 pa-0 no gutters'>
 
 		<v-col class='ma-0 pa-0' cols='12'>
-			<v-row align='center' class='ma-0 pa-0' justify='space-between'>
+			<v-row class='align-center ma-0 pa-0 justify-space-between'>
 				<v-col v-if='smAndDown' class='ma-0 pa-0' cols='auto'>
 					<span class='font-weight-bold'>online since: </span>
 				</v-col>

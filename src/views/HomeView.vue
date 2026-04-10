@@ -1,15 +1,13 @@
 <template>
-	<ThePage :fill-height='true' justify='center'>
+	<ThePage class='justify-center' :fill-height='true'>
 		<template #body>
 			<v-row
-				align='center'
-				class='pa-0 ma-0'
+				class='pa-0 ma-0 align-center justify-center'
 				:class='mdAndUp ? "md-section-height" : "sm-section-height"'
-				justify='center'
-				no-gutters
+				density='compact'
 			>
 				<v-col class='ma-0 pa-0' cols='12'>
-					<v-row align='center' class='ma-0 pa-0' justify='center'>
+					<v-row class='align-center ma-0 pa-0 justify-center'>
 						<v-img
 							contain
 							:eager='true'
@@ -18,17 +16,17 @@
 							src='@/assets/svg/network.svg'
 						/>
 					</v-row>
-					<v-row align='center' class='mt-8 ma-0 pa-0' justify='center' no-gutters>
-						<v-col class='pa-0 ma-0' :class='`text-${h1}`' cols='auto'>
+					<v-row class='align-center mt-8 ma-0 pa-0 justify-center' density='compact'>
+						<v-col class='pa-0 ma-0' :class='`text-${text_size}`' cols='auto'>
 							<StaticPi color='pi' />
 						</v-col>
-						<v-col class='text-pi text-center ma-0 pa-0' cols='12' tag='h1'>
-							<span class='font-weight-black text-pi text-h5 lh'>
+						<v-col class='text-pi text-center ma-0 pa-0' cols='12'>
+							<span class='font-weight-black text-pi text-headline-medium lh'>
 								The easiest way to communicate with your Raspberry Pi or single-board computer
 							</span>
 						</v-col>
 					</v-row>
-					<v-row align='center' class='pa-0 ma-0' justify='center'>
+					<v-row class='align-center pa-0 ma-0 justify-center'>
 						<v-col class='pa-0 ma-0' cols='auto'>
 							<router-link :to='`${FrontEndRoutes.BASE}#about`'>
 
@@ -54,10 +52,8 @@
 
 			<v-row
 				id='about'
-				align='center'
-				class='ma-0 pa-0 text-h5 mb-14'
-				justify='center'
-				no-gutters
+				class='ma-0 pa-0 text-headline-medium mb-14 align-center justify-center'
+				density='compact'
 				style='height:90vh'
 			>
 				<AppCard
@@ -69,9 +65,9 @@
 				>
 					<template #body>
 
-						<v-row align='center' class='mt-3 mx-1 ma-0 pa-0' justify='center'>
+						<v-row class='align-center mt-3 mx-1 ma-0 pa-0 justify-center'>
 
-							<v-col cols='12'>
+							<v-col class='text-body-large' cols='12'>
 								Introducing
 								<StaticPi />, our new service that allows you to connect multiple clients to a single
 								device via websockets.
@@ -94,15 +90,15 @@
 								making it a great tool for home tinkerers as well.
 							</v-col>
 						</v-row>
-						<v-row align='center' class='ma-0 my-2 pa-0' justify='space-around'>
-							<v-col class='py-0' cols='11' md='auto'>
+						<v-row class='align-center ma-0 my-2 pa-0 justify-space-around'>
+							<v-col class='py-0 text-body-large' cols='11' md='auto'>
 								<ul>
 									<li>Easy to set up</li>
 									<li>Safe and secure network</li>
 									<li>Works on all raspberry pi's, single board computers, and in browser</li>
 								</ul>
 							</v-col>
-							<v-col class='py-0 ' cols='11' md='auto'>
+							<v-col class='py-0 text-body-large' cols='11' md='auto'>
 								<ul>
 									<li>Send simple messages or binary data</li>
 									<li>Code examples in multiple languages</li>
@@ -111,7 +107,7 @@
 							</v-col>
 						</v-row>
 
-						<v-row align='center' class=' mt-3 mx-1 ma-0 pa-0' justify='center'>
+						<v-row class='align-center text-body-large mt-3 mx-1 ma-0 pa-0 justify-center'>
 
 							<v-col class='text-center' cols='12'>
 								fully open source
@@ -136,7 +132,7 @@
 							</v-col>
 						</v-row>
 
-						<v-row align='center' class=' mt-3 mx-1 ma-0 pa-0 font-weight-bold' justify='center'>
+						<v-row class='align-center  mt-3 mx-1 ma-0 pa-0 font-weight-bold justify-center'>
 
 							<v-col cols='auto'>
 								sign up for
@@ -144,7 +140,7 @@
 							</v-col>
 						</v-row>
 
-						<v-row class='pa-0 ma-0 my-4' justify='center'>
+						<v-row class='pa-0 ma-0 my-4 justify-center'>
 							<v-col class='ma-0 pa-0' cols='12'>
 								<ActionButton
 									:block='true'
@@ -168,7 +164,8 @@ import { FrontEndRoutes } from '@/types/const_routes'
 
 const { mdAndUp, smAndDown } = useDisplay()
 
-const h1 = computed(() => mdAndUp.value ? 'h1' : 'h2')
+// FIX ME
+const text_size = computed(() => mdAndUp.value ? 'display-large' : 'display-medium')
 
 const browserStore = browserModule()
 onMounted(() => {

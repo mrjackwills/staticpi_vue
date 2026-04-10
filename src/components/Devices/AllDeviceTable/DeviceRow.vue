@@ -2,7 +2,7 @@
 	<v-col class='pa-0 ma-0' cols='12'>
 		<span :id='createDeviceId' class='device_row' />
 
-		<v-row align='center' class='ma-0 pa-0' justify='space-around'>
+		<v-row class='align-center ma-0 pa-0 justify-space-around'>
 			<v-col
 				v-for='(item, index) in cells'
 				:key='index'
@@ -10,7 +10,7 @@
 				cols='12'
 				:md='item.cols'
 			>
-				<v-row align='center' class='no-gutters pa-0 ma-0' justify='space-around'>
+				<v-row class='pa-0 ma-0 align-cetner justify-space-around' density='compact'>
 					<v-col
 						v-if='smAndDown'
 						class='my-3 ma-0 pa-0 font-weight-bold unselectable text-uppercase small-text text-right'
@@ -26,7 +26,7 @@
 			</v-col>
 		</v-row>
 
-		<v-row align='center' class='ma-0 pa-0 py-1 mt-2' :class='{ "cl": !device.paused }' justify='center'>
+		<v-row class='align-center ma-0 pa-0 py-1 mt-2 justify-center' :class='{ "cl": !device.paused }'>
 			<v-col class='ma-0 pa-0' cols='auto'>
 				<v-btn
 					class='elevation-0'
@@ -37,7 +37,7 @@
 					:variant='show_extra ? "outlined" : "flat"'
 					@click='click_extra'
 				>
-					<v-row align='center' class='unselectable px-1' justify='space-around'>
+					<v-row class='align-center unselectable px-1 justify-center'>
 						<v-col class='ma-0 pa-0' cols='auto'>
 							<v-icon
 								:class='show_extra ? "" : "flipy"'
@@ -47,7 +47,7 @@
 							/>
 						</v-col>
 						<v-col class='ma-0 pa-0' cols='auto'>
-							<span class='text-overline' :class='show_extra ? "text-secondary" : "text-white"'>
+							<span class='text-label-small' :class='show_extra ? "text-secondary" : "text-white"'>
 								{{ show_text }}
 							</span>
 						</v-col>

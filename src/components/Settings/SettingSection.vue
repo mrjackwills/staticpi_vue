@@ -8,7 +8,7 @@
 		xl='11'
 	>
 		<template #body>
-			<v-row align='center' class='ma-0 pa-0 no-gutters my-3' justify='start'>
+			<v-row class='align-center ma-0 pa-0  my-3 justify-start' density='compact'>
 				<v-col class='ma-a pa-0' cols='auto'>
 					<slot name='titleIcon' />
 				</v-col>
@@ -19,20 +19,20 @@
 				<ProUserChip v-if='proOnly' />
 
 			</v-row>
-			<v-row align='center' class='ma-0 pa-0' justify='center'>
-				<v-col class='pa-0 ma-0 text-body-1' cols='12'>
+			<v-row class='align-center ma-0 pa-0 justify-center'>
+				<v-col class='pa-0 ma-0 text-body-large' cols='12'>
 					<slot name='text_description' />
 				</v-col>
 			</v-row>
-			<v-row align='center' class='ma-0 pa-0' justify='center'>
+			<v-row class='align-center ma-0 pa-0 justify-center'>
 				<v-col class='pa-0 ma-0' cols='12'>
 					<slot name='body' />
 				</v-col>
 			</v-row>
 
-			<v-row class='pa-0 ma-0' justify='center'>
+			<v-row class='pa-0 ma-0 justify-center'>
 				<v-col class='pa-0 ma-0' cols='12' lg='4' md='8'>
-					<v-row class='pa-0 ma-0' justify='space-around'>
+					<v-row class='pa-0 ma-0 justify-space-around'>
 						<v-col class='pa-0 ma-0' cols='6' md='auto'>
 							<slot name='cancel_button' />
 						</v-col>
@@ -43,7 +43,7 @@
 				</v-col>
 			</v-row>
 
-			<v-row align='center' class='ma-0 pa-0 my-3' justify='center'>
+			<v-row class='align-center ma-0 pa-0 my-3 justify-center'>
 				<v-col class='ma-0 pa-0' cols='12'>
 					<slot name='action_button' />
 				</v-col>
@@ -58,7 +58,7 @@ import { useDisplay } from 'vuetify'
 
 const { smAndDown } = useDisplay()
 
-const title = computed(() => smAndDown.value ? 'text-h7' : 'text-h6')
+const title = computed(() => smAndDown.value ? 'text-h7' : 'text-headline-small')
 
 withDefaults(defineProps<{
 	disabled?: boolean

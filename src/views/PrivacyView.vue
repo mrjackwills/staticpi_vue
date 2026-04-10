@@ -10,8 +10,8 @@
 			>
 				<template #body>
 
-					<v-row justify='space-between'>
-						<v-col class='mb-0 pb-0 text-h5 text-pi' cols='auto'>
+					<v-row class='justify-space-between'>
+						<v-col class='mb-0 pb-0 text-headline-medium text-pi' cols='auto'>
 							Terms & Conditions
 						</v-col>
 						<v-col cols='auto'>
@@ -21,12 +21,12 @@
 
 					<v-row>
 						<v-col v-for='(item, index) in privacy' :key='index' class='' cols='12'>
-							<v-row class='no-gutters py-0 my-0'>
+							<v-row class='py-0 my-0' density='compact'>
 								<v-col class='font-weight-bold text-primary' cols='12'>
 									{{ zero_pad(index + 1) }}. {{ item.title }}
 								</v-col>
 							</v-row>
-							<v-row class='no-gutters my-0 py-0'>
+							<v-row class='my-0 py-0' density='compact'>
 								<v-col v-for='(i, cols_index) in item.cols' :key='cols_index' class='py-0 my-0' cols='12'>
 									<span class=''>{{ i }}</span>
 								</v-col>
@@ -39,15 +39,15 @@
 							<hr color='secondary'>
 						</v-col>
 					</v-row>
-					<v-row justify='space-between'>
-						<v-col class='mb-0 pb-0 text-h5 text-pi' cols='auto'>
+					<v-row class='justify-space-between'>
+						<v-col class='mb-0 pb-0 text-headline-medium text-pi' cols='auto'>
 							Privacy Policy
 						</v-col>
 						<v-col cols='auto'>
 							Last updated February 07, 2023
 						</v-col>
 					</v-row>
-					<v-row class='my-6' justify='center'>
+					<v-row class='my-6 justify-center'>
 						<v-col cols=''>
 							This privacy notice for staticPi ('Company', 'we', 'us', or 'our'), describes how and why we
 							might collect, store, use, and/or share ('process')
@@ -68,7 +68,7 @@
 							>please contact us</router-link>
 							<br><br>
 
-							<v-row class='no-gutters'>
+							<v-row class='' density='compact'>
 								<v-col class='py-0 my-0' cols='12'>
 									<span class='font-weight-bold text-primary'>Summary</span>
 								</v-col>
@@ -80,12 +80,12 @@
 
 							<v-row>
 								<v-col v-for='(item, index) in sections' :key='index' class='' cols='12'>
-									<v-row class='no-gutters py-0 my-0'>
+									<v-row class='py-0 my-0' density='compact'>
 										<v-col class='font-weight-bold text-primary' cols='12'>
 											{{ zero_pad(index + 1) }}. {{ item.title }}
 										</v-col>
 									</v-row>
-									<v-row class='no-gutters my-0 py-0'>
+									<v-row class='my-0 py-0' density='compact'>
 										<v-col v-for='(i, index_a) in item.cols' :key='index_a' class='py-0 my-0' cols='12'>
 											{{ i }}
 										</v-col>

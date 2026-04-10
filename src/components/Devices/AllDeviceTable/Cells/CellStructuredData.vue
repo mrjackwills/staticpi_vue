@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<v-row align='center' class='pt-1 mb-n2' :justify no-gutters>
+		<v-row class='align-center pt-1 mb-n2' :class='justify' density='compact'>
 			<v-col class='ma-0 pa-0 mb-n3' cols='auto'>
 				<v-switch
 					v-model='new_value'
@@ -39,8 +39,8 @@
 </template>
 
 <script setup lang='ts'>
-import type { VRow } from 'vuetify/components/VGrid'
 import type { TAuthObject, TDeviceInfo, TSwitchButton } from '@/types'
+import type { VRow } from 'vuetify/components/VGrid'
 import { mdiContentSave } from '@mdi/js'
 import { useDisplay } from 'vuetify'
 import { axios_device } from '@/services/axios'
@@ -62,7 +62,7 @@ const button = computed((): TSwitchButton => ({
 	class: 'heartbeat',
 }))
 
-const justify = computed(() => mdAndUp.value ? 'center' : 'end')
+const justify = computed(() => mdAndUp.value ? 'justify-center' : 'justify-end')
 const loading = computed({
 	get (): boolean {
 		return loadingModule().loading

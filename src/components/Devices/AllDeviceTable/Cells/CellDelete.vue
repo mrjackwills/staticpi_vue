@@ -1,5 +1,5 @@
 <template>
-	<v-row align='center' class='no-gutters pa-0 ma-0' :justify>
+	<v-row class='pa-0 ma-0 align-center' :class='justify' density='compact'>
 
 		<FabTooltip
 			color='pi'
@@ -12,8 +12,8 @@
 </template>
 
 <script setup lang='ts'>
-import type { VRow } from 'vuetify/components/VGrid'
 import type { TAuthObject, TDeviceInfo } from '@/types'
+import type { VRow } from 'vuetify/components/VGrid'
 import { mdiDeleteCircle } from '@mdi/js'
 import { useDisplay } from 'vuetify'
 import { axios_device } from '@/services/axios'
@@ -22,7 +22,7 @@ import { snackSuccess } from '@/services/snack'
 
 const { mdAndUp } = useDisplay()
 
-const justify = computed(() => mdAndUp.value ? 'center' : 'end')
+const justify = computed(() => mdAndUp.value ? 'justify-center' : 'justify-end')
 const loading = computed({
 	get (): boolean {
 		return loadingModule().loading

@@ -1,39 +1,39 @@
 <template>
 	<ThePage :heading='pageTitle' :heading-justify='"start"' :page-ready>
 		<template #body>
-			<v-row align='center' justify='center'>
+			<v-row class='align-center justify-center'>
 				<v-col cols='12'>
-					<v-row align='center' justify='center'>
+					<v-row class='align-center justify-center'>
 						<AdminMemory v-if='memory' :memory />
 
 					</v-row>
 
-					<v-row align='center' justify='center'>
+					<v-row class='align-center justify-center'>
 						<AdminConnectedCount v-if='connectedCount' :connected-count />
 					</v-row>
 
-					<v-row align='center' justify='center'>
+					<v-row class='align-center justify-center'>
 						<AdminInvites :invite-codes @update='update' />
 					</v-row>
 
-					<v-row align='center' justify='center'>
+					<v-row class='align-center justify-center'>
 						<AdminEmails v-if='emails' :emails @update='update' />
 					</v-row>
 
-					<v-row align='center' justify='center'>
+					<v-row class='align-center justify-center'>
 						<AdminLimits v-if='limits.length > 0' :limits @update='update' />
 					</v-row>
 
-					<v-row align='center' justify='center'>
+					<v-row class='align-center justify-center'>
 						<AdminUsers v-if='users.length > 0' :users @update='update' />
 					</v-row>
 
-					<v-row align='center' justify='center'>
+					<v-row class='align-center justify-center'>
 						<AdminContact v-if='emails' :contact-messages @update='update' />
 					</v-row>
 
-					<v-col class='ma-0 pa-0 mt-4' cols='12'>
-						<v-row align='center' class='ma-0 pa-0' justify='center'>
+					<v-col class='ma-0 pa-0 my-4' cols='12'>
+						<v-row class='align-center ma-0 pa-0  justify-center'>
 							<v-col class='ma-0 pa-0' cols='12'>
 								<ActionButton
 									:block='true'

@@ -8,7 +8,7 @@
 	>
 		<template #body>
 			<section class='my-1'>
-				<v-row align='center' class='ma-0 pa-0' justify='center'>
+				<v-row class='align-center ma-0 pa-0 justify-enter'>
 					<v-col class='ma-0 pa-0' cols='auto' @click='toggle'>
 						<v-switch
 							v-model='always_required'
@@ -25,7 +25,7 @@
 						</v-switch>
 					</v-col>
 				</v-row>
-				<v-row align='center' class='ma-0 pa-0' justify='center'>
+				<v-row class='align-center ma-0 pa-0 justify-center'>
 					<v-col class='ma-0 pa-0 mb-2 text-center'>
 						When enabled, a Two-Factor Authentication token will be required at all password prompts.
 						Otherwise, a Two-Factor Authentication token will only be required at login, or when changing

@@ -1,11 +1,12 @@
 <template>
+	<!-- fix me -->
 	<v-row
-		align='center'
-		class='ma-0 pa-0 no-gutters'
+		class='ma-0 pa-0 align-center'
 		:class='margin'
+		density='compact'
 		:justify='justify??"center"'
-		no-gutters
 	>
+		<!-- TOD fix me = :justify -->
 		<v-col class='ma-0 pa-0' cols='auto'>
 			<div class='text-center text-pi font-weight-bold' :class='headingSize'>{{ heading }}</div>
 			<v-divider v-if='divider' />
@@ -23,8 +24,8 @@ const headingSize = computed(() => {
 	if (props.size !== undefined) {
 		return props.size
 	}
-	if (mdAndUp.value) return 'text-h4'
-	return 'text-h5'
+	if (mdAndUp.value) return 'text-headline-large'
+	return 'text-headline-medium'
 })
 
 const props = withDefaults(defineProps<{

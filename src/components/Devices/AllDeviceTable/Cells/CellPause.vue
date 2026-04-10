@@ -1,5 +1,5 @@
 <template>
-	<v-row align='center' class='' :justify no-gutters>
+	<v-row class='align-center' :class='justify' density='compact'>
 		<FabTooltip
 			:color
 			:disabled='!online'
@@ -10,8 +10,8 @@
 	</v-row>
 </template>
 <script setup lang='ts'>
-import type { VRow } from 'vuetify/components/VGrid'
 import type { TAuthObject, TDeviceInfo } from '@/types'
+import type { VRow } from 'vuetify/components/VGrid'
 import { mdiPauseCircle, mdiPlayCircle } from '@mdi/js'
 import { useDisplay } from 'vuetify'
 import { axios_device } from '@/services/axios'
@@ -22,7 +22,7 @@ const { mdAndUp } = useDisplay()
 
 const color = computed(() => paused.value ? 'primary' : 'secondary')
 const icon = computed(() => paused.value ? mdiPlayCircle : mdiPauseCircle)
-const justify = computed(() => mdAndUp.value ? 'center' : 'end')
+const justify = computed(() => mdAndUp.value ? 'justify-center' : 'justify-end')
 const loading = computed({
 	get (): boolean {
 		return loadingModule().loading

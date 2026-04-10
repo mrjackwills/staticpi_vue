@@ -20,7 +20,6 @@
 		"experimentalDecorators": false,
 		"emitDecoratorMetadata": false,
 		"useDefineForClassFields": false,
-		"baseUrl": ".",
 		"paths": {
 			"@/*": [
 				"./src/*"

@@ -1,5 +1,5 @@
-import type { AxiosError, AxiosInstance } from 'axios'
 import type * as types from '@/types'
+import type { AxiosError, AxiosInstance } from 'axios'
 import Axios from 'axios'
 
 import { HttpCode } from '@/types/const_http'

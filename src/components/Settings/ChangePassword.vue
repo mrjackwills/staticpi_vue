@@ -14,7 +14,7 @@
 
 		<template #action_button>
 			<v-expand-transition>
-				<v-row v-if='!showTextFields' align='center' class='ma-0 pa-0' justify='center'>
+				<v-row v-if='!showTextFields' class='align-center ma-0 pa-0 justify-center'>
 					<v-col class='ma-0 pa-0' cols='12' md='auto'>
 						<ActionButton
 							:block='true'
@@ -31,7 +31,7 @@
 		<template #body>
 			<v-expand-transition>
 				<section v-if='showTextFields'>
-					<v-row align='center' class='ma-0 pa-0 mt-3' justify='center'>
+					<v-row class='align-center ma-0 pa-0 mt-3 justify-center'>
 						<v-col class='ma-0 pa-0' cols='12' md='8'>
 							<v-form @submit.prevent>
 								<section v-for='(item, index) in textFields' :key='index'>
@@ -87,7 +87,7 @@
 										@keyup.enter='submit'
 									/>
 								</section>
-								<v-row align='center' class='ma-0 pa-0 mb-2' justify='center'>
+								<v-row class='align-center ma-0 pa-0 mb-2 justify-center'>
 									<v-col class='ma-0 pa-0' cols='auto'>
 										<v-checkbox
 											v-model='user.remove_sessions'
@@ -97,7 +97,7 @@
 											hide-details
 										>
 											<template #label>
-												<span class='text-body-2'>remove other sessions</span>
+												<span class='text-body-medium'>remove other sessions</span>
 											</template>
 										</v-checkbox>
 									</v-col>

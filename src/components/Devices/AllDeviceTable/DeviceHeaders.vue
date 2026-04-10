@@ -1,6 +1,6 @@
 <template>
 	<section v-if='mdAndUp'>
-		<v-row align='center' class='ma-0 pa-0 no-gutters py-2' justify='space-between'>
+		<v-row class='align-center ma-0 pa-0 py-2 justify-space-between' density='compact'>
 			<v-col
 				v-for='(item, index) in headings'
 				:key='index'

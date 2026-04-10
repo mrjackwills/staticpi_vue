@@ -12,10 +12,10 @@
 				:loading='localLoading'
 			>
 				<template #start>
-					<v-row align='center' class='pa-0 ma-0 mb-3' justify='center'>
+					<v-row class='align-center pa-0 ma-0 mb-3 justify-center'>
 						<v-col class='ma-0 pa-0' cols='12'>
 							<div
-								class='text-center text-body-1'
+								class='text-center text-body-large'
 							>
 								enter your email address and we'll send you instructions on how to reset your password
 							</div>
@@ -42,7 +42,7 @@
 					</v-form>
 				</template>
 				<template #button>
-					<v-row align='center' class='ma-0 pa-0 mb-2' justify='space-around'>
+					<v-row class='align-center ma-0 pa-0 mb-2 justify-space-around'>
 						<v-col class='ma-0 pa-0' cols='6'>
 							<BackButton />
 						</v-col>

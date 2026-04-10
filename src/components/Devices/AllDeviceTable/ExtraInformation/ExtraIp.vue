@@ -1,5 +1,5 @@
 <template>
-	<v-row align='center' class='ma-0 pa-0 no gutters'>
+	<v-row class='align-center ma-0 pa-0 no gutters'>
 
 		<v-col class='ma-0 pa-0' cols='auto'>
 			<span class='hidden-md-and-up font-weight-bold'>ip address: </span>

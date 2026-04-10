@@ -3,7 +3,7 @@
 		heading='memory'
 		heading-class='ml-2'
 		heading-justify='start'
-		heading-size='text-h6'
+		heading-size='text-headline-small'
 		lg='11'
 		md='12'
 		my=''
@@ -11,9 +11,9 @@
 		xl='11'
 	>
 		<template #body>
-			<v-row align='center' class='no-gutters py-2' justify='center'>
+			<v-row class='py-2 align-center justify-center' density='compact'>
 				<v-col class='' cols='11'>
-					<v-row align='center' class='no-gutters' justify='space-around'>
+					<v-row class='align-center justify-space-around' density='compact'>
 						<v-col
 							v-for='(item,index) in data'
 							:key='index'
@@ -21,14 +21,14 @@
 							cols='12'
 							md='auto'
 						>
-							<v-row align='center' class='ma-0 pa-0' justify='space-between'>
+							<v-row class='align-center ma-0 pa-0 justify-space-between'>
 								<v-col class='ma-0 pa-0' cols='auto'>
-									<span class='text-pi mr-2 text-caption font-weight-bold'>
+									<span class='text-pi mr-2 text-body-small font-weight-bold'>
 										{{ item.name }} :
 
 									</span>
 								</v-col>
-								<v-col class='ma-0 pa-0 text-caption' cols='auto'>
+								<v-col class='ma-0 pa-0 text-body-small' cols='auto'>
 									<span class=''>
 										{{ item.data }}
 									</span>

@@ -3,9 +3,9 @@
 		<template #body>
 			<AppCard :has-button='true' :heading='pageTitle' heading-class='my-3' :loading='localLoading'>
 				<template #start>
-					<v-row align='center' class='pa-0 ma-0 mb-3' justify='center'>
+					<v-row class='align-center pa-0 ma-0 mb-3 justify-center'>
 						<v-col class='ma-0 pa-0' cols='12'>
-							<div class='text-center text-body-1'>
+							<div class='text-center text-body-large'>
 								We'll endeavour to respond to your message as soon as possible
 							</div>
 						</v-col>
@@ -21,7 +21,7 @@
 								:autocomplete='item.autocomplete'
 								:clearable='item.clearable'
 								color='primary'
-								:dense='smAndDown'
+								:density='smAndDown?"compact":"default"'
 								:disabled='complete || localLoading || authenticated'
 								:error-messages='errorMessages[item.model]'
 								:label='item.label'
@@ -38,11 +38,11 @@
 						<template v-for='(item, index) in textAreaRows' :key='index'>
 							<v-textarea
 								v-model='message_data[item.model]'
+								::density='smAndDown?"compact":"default"'
 								:append-inner-icon='item.appendIcon'
 								:autocomplete='item.autocomplete'
 								color='primary'
 								counter='1024'
-								:dense='smAndDown'
 								:disabled='complete || localLoading'
 								:error-messages='errorMessages[item.model]'
 								:label='item.label'
@@ -61,7 +61,7 @@
 					</v-form>
 				</template>
 				<template #button>
-					<v-row align='center' class='ma-0 pa-0 mb-2' justify='space-around'>
+					<v-row class='align-center ma-0 pa-0 mb-2 justify-space-around'>
 						<v-col class='ma-0 pa-0' cols='6'>
 							<BackButton />
 

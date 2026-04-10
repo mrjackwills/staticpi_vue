@@ -8,10 +8,10 @@
 				</v-expand-transition>
 
 				<section v-if='devices.length > 0'>
-					<AllDeviceTable class='ma-0 pa-0' :table-data='devices' @refresh='getData' />
+					<AllDeviceTable class='ma-0 pa-0 px-3' :table-data='devices' @refresh='getData' />
 
 					<v-col class='ma-0 pa-0 mb-2' cols='auto'>
-						<v-row align='center' class='ma-0 pa-0' justify='center'>
+						<v-row class='align-center ma-0 pa-0 justify-center'>
 							<v-col class='ma-0 pa-0' cols='auto'>
 								<NumberOfDevices />
 							</v-col>
@@ -23,10 +23,8 @@
 				<v-expand-transition>
 					<v-row
 						v-if='!showAdd'
-						align='center'
-						class='ma-0 pa-0 mb-3'
-						justify='center'
-						no-gutters
+						class='ma-0 pa-0 mb-3 justify-center align-center'
+						density='compact'
 					>
 
 						<v-col

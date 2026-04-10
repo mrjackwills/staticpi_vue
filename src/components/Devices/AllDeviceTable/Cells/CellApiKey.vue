@@ -1,5 +1,5 @@
 <template>
-	<v-row align='center' class='no-gutters pa-0 ma-0' :justify>
+	<v-row class='pa-0 ma-0 align-center' :class='justify' density='compact'>
 		<v-col class='ma-0 pa-0' :class='mdAndUp ? "mr-2" : "mr-4"' cols='auto'>
 			<CopyButton
 				color='primary'
@@ -47,8 +47,8 @@
 </template>
 
 <script setup lang='ts'>
-import type { VRow } from 'vuetify/components/VGrid'
 import type { TAuthObject, TDeviceInfo } from '@/types'
+import type { VRow } from 'vuetify/components/VGrid'
 import { mdiAutorenew } from '@mdi/js'
 import { useDisplay } from 'vuetify'
 import { axios_device } from '@/services/axios'
@@ -69,7 +69,7 @@ const loading = computed({
 	},
 })
 
-const justify = computed(() => mdAndUp.value ? 'center' : 'end')
+const justify = computed(() => mdAndUp.value ? 'justify-center' : 'justify-end')
 const name_of_device = computed(() => props.device.name_of_device)
 const paused = computed(() => props.device.paused)
 

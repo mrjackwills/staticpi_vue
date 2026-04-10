@@ -9,19 +9,17 @@
 		<template #body>
 			<v-row
 				id='add-device'
-				align='center'
-				class=''
-				justify='center'
-				no-gutters
+				class='align-center justify-center'
+				density='compact'
 			>
-				<v-col class='text-h4 text-primary' cols='12' md='auto'>
+				<v-col class='text-headline-large text-primary' cols='12' md='auto'>
 					Add New Device
 				</v-col>
 			</v-row>
-			<v-row align='center' class='ma-0 pa-0' justify='center'>
+			<v-row class='align-center ma-0 pa-0 justify-center'>
 				<v-col class='pb-0' cols='12'>
 					<v-form autocomplete='one-time-code' @submit.prevent>
-						<v-row align='center' justify='center' no-gutters>
+						<v-row class='align-center justify-center' density='compact'>
 							<v-col cols='12'>
 								<v-text-field
 									v-model='deviceSettings.name'
@@ -50,8 +48,8 @@
 								</v-tooltip>
 							</v-col>
 							<v-col v-if='!isFreeUser' class='my-n3' cols='12'>
-								<v-row align='center' class='' justify='start'>
-									<v-col class='text-body-1 mb-3' cols='12' md='auto'>
+								<v-row class='align-center justify-start'>
+									<v-col class='text-body-large mb-3' cols='12' md='auto'>
 										Device names are optional, and can up to 64 characters in length
 										<br>
 										If a device name is not chosen, one will be randomly assigned.
@@ -96,7 +94,7 @@
 					</v-form>
 				</v-col>
 			</v-row>
-			<v-row align='center' class='ma-0 pa-0 mt-2' justify='center'>
+			<v-row class='align-center ma-0 pa-0 mt-2 justify-center'>
 				<v-col class='' cols='6'>
 					<ActionButton
 						v-model:disabled='localLoading'
@@ -120,8 +118,8 @@
 				</v-col>
 
 			</v-row>
-			<v-row v-if='!isFreeUser' align='center' class='ma-0 pa-0' justify='center'>
-				<v-col class='text-center text-body-1 unselectable' cols='12' md='auto'>
+			<v-row v-if='!isFreeUser' class='align-center ma-0 pa-0 justify-center'>
+				<v-col class='text-center text-body-large unselectable' cols='12' md='auto'>
 					All device settings can be modified after creation
 				</v-col>
 			</v-row>

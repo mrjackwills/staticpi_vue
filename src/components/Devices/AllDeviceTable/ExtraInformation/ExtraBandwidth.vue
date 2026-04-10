@@ -1,12 +1,17 @@
 <template>
-	<v-row v-intersect='onIntersect' align='center' class='ma-0 pa-0 no-gutters unselectable' justify='center'>
+	<v-row v-intersect='onIntersect' class='align-center ma-0 pa-0 unselectable justify-center' density='compact'>
 		<v-col class='ma-0 pa-0' :cols>
 
-			<v-row align='center' class='ma-0 pa-0 no-gutters' justify='center'>
+			<v-row class='align-center ma-0 pa-0  justify-center' density='compact'>
 
 				<v-col class='ma-0 pa-0 cl' cols='12' md='auto' @click='toggleHidden'>
 
-					<v-row v-if='showCalc' align='center' class='ma-0 pa-0 no-gutters' :justify>
+					<v-row
+						v-if='showCalc'
+						class='ma-0 pa-0 align-center'
+						:class='justify'
+						density='compact'
+					>
 						<v-col class='ma-0 pa-0' cols='auto'>
 							<v-icon :color :icon='mdiSwapVerticalBold' />
 						</v-col>
@@ -29,7 +34,7 @@
 					<v-switch v-model='switchDetailed' color='primary' density='compact' :hide-details='true'>
 						<template #label>
 							<span
-								class='font-weight-black text-caption'
+								class='font-weight-black text-body-small'
 								:class='{ "text-primary": switchDetailed }'
 							>detailed</span>
 						</template>
@@ -43,7 +48,7 @@
 					<v-divider class='mt-1' />
 
 					<section v-if='switchDetailed'>
-						<v-row align='center' class='ma-0 pa-0' justify='space-between'>
+						<v-row class='align-center ma-0 pa-0 justify-space-between'>
 							<v-col cols='2' />
 
 							<v-col
@@ -59,7 +64,7 @@
 							</v-col>
 						</v-row>
 
-						<v-row align='center' class='ma-0 pa-0' justify='start'>
+						<v-row class='align-center ma-0 pa-0 justify-start'>
 							<v-col class='ma-0 pa-0 text-right' cols='12'>
 								<v-divider />
 							</v-col>
@@ -72,9 +77,8 @@
 
 					<v-row
 						v-if='(switchDetailed && showCalc)'
-						align='center'
-						class='ma-0 pa-0 no-gutters'
-						justify='center'
+						class='ma-0 pa-0 align-center justify-center'
+						density='compact'
 					>
 						<v-col class='text-center small-text font-italic unselectable' cols='auto ma-0 pa-0'>
 							Only the sum of the received amount from both all clients and device is counted against your
@@ -93,8 +97,8 @@
 </template>
 
 <script setup lang="ts">
-import type { VRow } from 'vuetify/components/VGrid'
 import type { TDeviceInfo } from '@/types'
+import type { VRow } from 'vuetify/components/VGrid'
 import { mdiChevronDoubleUp, mdiSwapVerticalBold } from '@mdi/js'
 import { useDisplay } from 'vuetify'
 import ExtraBandwidthDetailed from '@/components/Devices/AllDeviceTable/ExtraInformation/ExtraBandwidthDetailed.vue'
@@ -105,7 +109,7 @@ const { mobile } = useDisplay()
 const color = 'primary'
 
 const cols = computed(() => mobile.value || switchDetailed.value ? '12' : '4')
-const justify = computed(() => mobile.value ? 'space-between' : 'center')
+const justify = computed(() => mobile.value ? 'justify-space-between' : 'justify-center')
 const showDetailSwitch = computed(() => !hidden.value)
 const isComponent = computed(() => switchDetailed.value ? ExtraBandwidthDetailed : ExtraBandwidthSimple)
 

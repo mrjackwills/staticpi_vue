@@ -10,10 +10,10 @@
 									v-for='(item, index) in textFields'
 									:key='index'
 									v-model='user[item.model]'
+									::density='smAndDown?"compact":"default"'
 									:append-inner-icon='item.appendIcon'
 									:autocomplete='item.autocomplete'
 									color='primary'
-									:dense='smAndDown'
 									:disabled='localLoading'
 									:error-messages='errorMessages[item.model]'
 									:label='item.label'
@@ -35,10 +35,10 @@
 									v-for='(item, index) in tokenFields'
 									:key='index'
 									v-model='user[item.model]'
+									::density='smAndDown?"compact":"default"'
 									autocomplete='one-time-code'
 									:autofocus='true'
 									color='primary'
-									:dense='smAndDown'
 									:disabled='localLoading'
 									:error-messages='errorMessages[item.model]'
 									:label='item.label'
@@ -52,14 +52,11 @@
 						</v-expand-transition>
 
 					</v-form>
-					<v-row align='center' class='pa-0 ma-0' justify='center' wrap>
+					<v-row class='align-center pa-0 ma-0 justify-center' wrap>
 						<v-col class='pa-0 ma-0' cols='12' md='auto' :order='mdAndUp ? 1 : 2'>
 							<v-row
-								align='center'
-								class='pa-0 ma-0'
-								dense
-								justify='center'
-								no-gutters
+								class='pa-0 ma-0 align-center justify-center'
+								density='compact'
 							>
 								<v-col v-if='!twoFATokenRequired' class='ma-0 pa-0 mb-n6' cols='auto'>
 									<v-checkbox
@@ -78,7 +75,7 @@
 					</v-row>
 				</template>
 				<template #button>
-					<v-row align='center' class='mb-3' :justify='twoFATokenRequired ? "space-around" : "center"'>
+					<v-row class='align-center mb-3' :justify='twoFATokenRequired ? "space-around" : "center"'>
 						<v-col v-if='twoFATokenRequired' cols='6'>
 							<ActionButton
 								:block='true'
@@ -106,7 +103,7 @@
 				</template>
 				<template #end>
 
-					<v-row v-if='!twoFATokenRequired' align='center' class='my-2 ma-0 pa-0' justify='space-between'>
+					<v-row v-if='!twoFATokenRequired' class='align-center my-2 ma-0 pa-0 justify-space-between'>
 						<v-col class='ma-0 pa-0' cols='auto'>
 							<router-link class='text-primary' :to='FrontEndRoutes.REGISTER'>create account</router-link>
 						</v-col>

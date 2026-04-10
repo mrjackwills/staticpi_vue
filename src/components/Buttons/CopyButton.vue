@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<v-row class='ma-0 pa-0 no-gutters'>
+		<v-row class='ma-0 pa-0 ' density='compact'>
 			<v-col class='ma-0 pa-0' cols='12'>
 				<v-tooltip v-if='show_tooltip' activator='parent' content-class='tooltip' location='top center'>
 					<span v-intersect='onIntersect'>{{ message }}</span>

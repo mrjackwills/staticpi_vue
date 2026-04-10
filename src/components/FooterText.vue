@@ -1,20 +1,18 @@
 <template>
 	<section
-		class='text-caption unselectable'
+		class='text-body-small unselectable'
 		:class='computedClasses'
 	>
 		<v-row
-			align='center'
-			class='ma-0 pa-0'
-			justify='center'
-			no-gutters
+			class='ma-0 pa-0 justify-center align-center'
+			density='compact'
 			order='1'
 		>
 			<v-col
 				class=''
 				cols='auto'
 			>
-				<v-row align='center' class='no-gutters ma-0 pa-0' justify='center'>
+				<v-row class='align-center ma-0 pa-0 justify-center' density='compact'>
 					<v-col class='ma-0 pa-0 mr-1  mb-1 cl' cols='auto'>
 						<a class='font-weight-bold' href='https://www.github.com/mrjackwills/staticpi_vue' rel='noopener noreferrer' target='_blank'>
 							<v-icon :icon='mdiGithub' size='small' style='vertical-align: middle;' />
@@ -37,18 +35,20 @@
 			</v-col>
 		</v-row>
 
-		<v-row align='center' class='no-gutters unselectable ma-0 pa-0' justify='center'>
+		<v-row class='align-center unselectable ma-0 pa-0 justify-center' density='compact'>
 			<v-col class='ma-0 pa-0' cols='12'>
 
 				<v-expand-transition>
 
-					<v-row v-if='showBuild && authed' align='center' class='no-gutters ma-0 pa-0' justify='center'>
+					<v-row
+						v-if='showBuild && authed'
+						class='ma-0 pa-0 align-center justify-center'
+						density='compact'
+					>
 						<v-col v-for='(item, index) in rows' :key='index' class='ma-0 pa-0' cols='12'>
 							<v-row
-								align='center'
-								class='ma-0 pa-0'
-								justify='center'
-								no-gutters
+								class='ma-0 pa-0 justify-center align-center'
+								density='compact'
 							>
 								<v-col
 									class='ma-0 pa-0'

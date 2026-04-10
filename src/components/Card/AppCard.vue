@@ -1,5 +1,5 @@
 <template>
-	<v-row align='center' class='ma-0 pa-0 no-gutters' :class='my' justify='center'>
+	<v-row class='align-center ma-0 pa-0 justify-center' :class='my' density='compact'>
 		<v-col
 			class=''
 			cols='12'
@@ -24,26 +24,26 @@
 					:justify='headingJustify'
 					:size='headingSize'
 				/>
-				<v-row align='center' class='ma-0 pa-0' justify='center'>
+				<v-row class='align-center ma-0 pa-0 justify-center'>
 					<v-col class='ma-0 pa-0' cols='12' :lg :sm>
 						<slot name='start' />
 					</v-col>
 				</v-row>
 
-				<v-row align='center' class='ma-0 pa-0' justify='center'>
+				<v-row class='align-center ma-0 pa-0 justify-center'>
 					<v-col class='ma-0 pa-0' cols='12' :lg :sm>
 						<slot name='body' />
 					</v-col>
 				</v-row>
 
 				<v-card-actions v-if='hasButton' class='pa-0 ma-0 '>
-					<v-row align='center' class='ma-0 pa-0' :class='padding' justify='center'>
+					<v-row class='align-center ma-0 pa-0 justify-center' :class='padding'>
 						<v-col class='ma-0 pa-0' cols='12'>
 							<slot name='button' />
 						</v-col>
 					</v-row>
 				</v-card-actions>
-				<v-row align='center' class='ma-0 pa-0' :class='padding' justify='center'>
+				<v-row class='align-center ma-0 pa-0 justify-center' :class='padding'>
 					<v-col class='ma-0 pa-0' cols='12' :lg :sm>
 						<slot name='end' />
 					</v-col>

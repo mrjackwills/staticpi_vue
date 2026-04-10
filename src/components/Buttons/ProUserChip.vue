@@ -7,7 +7,7 @@
 			:size
 			variant='flat'
 		>
-			<v-row align='center' class='ma-0 pa-0 no-gutters' justify='center'>
+			<v-row class='align-center ma-0 pa-0  justify-center' density='compact'>
 				<v-col class='ma-0 pa-0 mr-1' cols='auto'>
 					<v-icon :icon='mdiStarCircle' :size />
 				</v-col>

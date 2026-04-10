@@ -1,5 +1,5 @@
 <template>
-	<v-row align='center' class='ma-0 pa-0 text-caption' justify='space-between'>
+	<v-row class='align-center ma-0 pa-0 text-body-small justify-space-between'>
 		<v-col class='ma-0 pa-0 text-left' cols='4'>
 			<v-icon
 				v-if='(device.connections.length > 0)'
@@ -52,7 +52,7 @@
 
 	</v-row>
 	<v-expand-transition>
-		<v-row v-if='show_connections' align='center' class='ma-0 pa-0' justify='space-between'>
+		<v-row v-if='show_connections' class='align-center ma-0 pa-0 justify-space-between'>
 			<v-col class='ma-0 pa-0' cols='12'>
 				<v-divider />
 			</v-col>
@@ -60,9 +60,7 @@
 				<v-row
 					v-for='(con_item, index) in device.connections'
 					:key='index'
-					align='center'
-					class=' small-text ma-0 pa-0'
-					justify='space-between'
+					class='small-text ma-0 pa-0 align-center justify-space-between'
 				>
 					<v-col class='ma-0 pa-0' cols='3'>
 						type: {{ con_item.device_type }}

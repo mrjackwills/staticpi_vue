@@ -1,6 +1,6 @@
 <template>
 
-	<v-row align='center' class='ma-0 pa-0 no gutters'>
+	<v-row class='align-center ma-0 pa-0 no gutters'>
 		<v-col class='ma-0 pa-0 my-2' cols='12'>
 			<ActionButton
 				:block='true'
@@ -14,7 +14,7 @@
 		</v-col>
 	</v-row>
 
-	<v-row v-if='cache && !hide' align='center' class='ma-0 pa-0 no gutters'>
+	<v-row v-if='cache && !hide' class='align-center ma-0 pa-0 no gutters'>
 
 		<v-col class='ma-0 pa-0 mb-3' cols='12'>
 			<span class='text-pi'>cache:</span> {{ cache }}
@@ -34,7 +34,7 @@
 
 	</v-row>
 
-	<v-row v-if='!cache && !hide' align='center' class='ma-0 pa-0 no gutters'>
+	<v-row v-if='!cache && !hide' class='align-center ma-0 pa-0 no gutters'>
 		<v-col class='ma-0 pa-0 text-center' cols='12'>
 			no cache found
 		</v-col>

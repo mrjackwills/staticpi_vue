@@ -9,9 +9,13 @@
 		:timeout='timeoutValue'
 		:top='position.y === "top"'
 	>
-		<v-row align='center' class='no-gutters ma-0 pa-0' justify='center' style='height:100%'>
+		<v-row
+			class='ma-0 pa-0 align-center justify-center'
+			density='compact'
+			style='height:100%'
+		>
 			<v-col class='ma-0 pa-0  px-2 unselectable' cols='12'>
-				<v-row align='center' class='no-gutters px-1' justify='center'>
+				<v-row class='px-1 justify-center align-center' density='compact'>
 					<v-col v-if='loading' class='pa-0 mr-2' cols='auto'>
 						<v-progress-circular color='primary' indeterminate :size='18' :width='3' />
 					</v-col>

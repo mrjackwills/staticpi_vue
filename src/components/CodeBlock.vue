@@ -1,16 +1,14 @@
 <template>
-	<v-card class='no-gutters ma-0 pa-0' :color='vsColor'>
+	<v-card class='ma-0 pa-0' :color='vsColor' density='compact'>
 
-		<v-row align='center' class='ma-0 pa-0 no-gutters' justify='center'>
+		<v-row class='align-center ma-0 pa-0  justify-center' density='compact'>
 
 			<v-col class='ma-0 pa-0' cols='12'>
 
 				<v-row
 					v-if='titleBar'
-					align='center'
-					class='ma-0 pa-0 text-white'
-					justify='start'
-					no-gutters
+					class='ma-0 pa-0 text-white justify-start align-center'
+					density='compact'
 				>
 
 					<v-col v-for='(item, index) in codeIcons' :key='index' class='ml-2' cols='auto'>
@@ -33,7 +31,7 @@
 
 				</v-row>
 
-				<v-row align='center' class='ma-0 pa-0 text-white' justify='center'>
+				<v-row class='align-center ma-0 pa-0 text-white justify-center'>
 					<v-col class='ma-0 pa-0' cols='12'>
 
 						<pre class='language-js' v-html='highlighted_code' />

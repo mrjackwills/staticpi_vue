@@ -1,6 +1,6 @@
 <template>
 	<section class='mb-1'>
-		<v-row align='center' class='ma-0 pa-0' justify='center'>
+		<v-row class='align-center ma-0 pa-0 justify-center'>
 			<v-col class='ma-0 pa-0' cols='12' md='8'>
 				<v-row class='ma-0 pa-0'>
 					<v-col class='ma-0 pa-0' :class='mdAndUp ? "mr-2" : "mr-1"' cols='1' sm='auto'>
@@ -11,7 +11,7 @@
 					</v-col>
 					<v-spacer />
 					<v-col v-if='active' class='ma-0 pa-0 text-pi' cols='1' sm='auto'>
-						<v-row class='pa-0 ma-0' justify='end'>
+						<v-row class='pa-0 ma-0 justify-end'>
 							<v-col class='pa-0 ma-0' cols='auto'>
 								<v-icon
 									color='pi'
@@ -40,7 +40,7 @@ const icon = computed(() => props.active ? mdiCheckCircle : mdiAlertCircle)
 const iconColor = computed(() => props.active ? 'primary' : 'error')
 const online = computed(() => browserModule().online)
 const textColor = computed(() => props.active ? 'text-primary' : 'text-error')
-const textSize = computed(() => mdAndUp.value ? 'text-h6' : 'text-h7')
+const textSize = computed(() => mdAndUp.value ? 'text-headline-small' : 'text-h7')
 
 const emit = defineEmits(['click'])
 function click (): void {

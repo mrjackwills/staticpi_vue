@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<v-row align='center' class='ma-0 pa-0' justify='center' no-gutters>
+		<v-row class='align-center ma-0 pa-0 justify-center' density='compact'>
 			<v-col class='ma-0 pa-0' cols='12' md='6'>
 				<v-text-field
 					v-for='(item, index) in textFields'
@@ -21,7 +21,7 @@
 				/>
 			</v-col>
 		</v-row>
-		<v-row align='center' class='ma-0 pa-0' justify='center'>
+		<v-row class='align-center ma-0 pa-0 justify-center'>
 			<v-col class='ma-0 pa-0' cols='auto'>
 				<v-switch
 					v-model='password_synced'

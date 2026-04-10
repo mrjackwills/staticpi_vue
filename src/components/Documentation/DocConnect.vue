@@ -3,8 +3,8 @@
 	<DocumentationCard heading='Connect'>
 		<template #doc-body>
 
-			<v-row align='center' class='ma-0 pa-0' justify='space-around'>
-				<v-col align='center' class='ma-0 pa-0' cols='12' md='5'>
+			<v-row class='align-center ma-0 pa-0 justify-space-around'>
+				<v-col class='align-center ma-0 pa-0' cols='12' md='5'>
 					<DocAddressRow
 						v-for='(item, index) in authAddressRow'
 						:key='index'
@@ -15,7 +15,7 @@
 						:tooltip-message='item.tooltipMessage'
 					/>
 				</v-col>
-				<v-col align='center' class='ma-0 pa-0' cols='12' md='5'>
+				<v-col class='align-center ma-0 pa-0' cols='12' md='5'>
 					<DocAddressRow
 						v-for='(item, index) in wssAddressRow'
 						:key='index'
@@ -30,12 +30,12 @@
 
 			<v-divider class='my-1' />
 			<br>
-			<v-row align='center' justify='center'>
+			<v-row class='align-center justify-center'>
 				<v-col cols='12' md='6'>
 					<AppCard
 						class=''
 						heading='device connection'
-						heading-size='text-h6'
+						heading-size='text-headline-small'
 						lg='12'
 						md='12'
 						my=''

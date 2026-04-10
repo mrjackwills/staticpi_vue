@@ -1,18 +1,19 @@
 <template>
 	<v-alert
 		id='offline_alert'
-		class='ma-0 pa-0 no-gutters'
+		class='ma-0 pa-0'
 		color='secondary'
+		density='compact'
 		height='40px'
 		tile
 		width='100%'
 	>
-		<v-row align='center' class='no-gutters ma-0 pa-0' justify='center'>
+		<v-row class='ma-0 pa-0 align-center justify-center' density='compact'>
 			<v-col v-if='!mobile && authenticated' class='ma-0 pa-0' cols='auto'>
 				<div :class='spacerClass' />
 			</v-col>
 			<v-col class='ma-0 pa-0' cols='auto'>
-				<v-row align='center' class='ma-0 pa-0 pulse' justify='center'>
+				<v-row class='align-center ma-0 pa-0 pulse justify-center'>
 					<v-col class='ma-0 pa-0 mr-2 ' cols='auto'>
 						<v-icon
 							color='backgroundColor'
@@ -42,7 +43,7 @@ onBeforeUnmount(() => {
 })
 
 const authenticated = computed(() => userModule().authenticated)
-const messageSize = computed(() => mdAndUp.value ? 'text-h6' : 'text-subtitle-1')
+const messageSize = computed(() => mdAndUp.value ? 'text-headline-small' : 'text-body-large')
 const spacerClass = computed(() => navDrawerModule().mini ? 'nav-spacer-mini' : 'nav-spacer')
 
 const reconnectInterval = ref(0)

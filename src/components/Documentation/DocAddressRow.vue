@@ -1,7 +1,7 @@
 <template>
-	<v-row align='center' class='no-gutters ma-0 pa-0 text-caption'>
+	<v-row class='ma-0 pa-0 text-body-small align-center' density='compact'>
 		<v-col class='ma-0 pa-0 ' cols='12'>
-			<v-row align='center' class='ma-0 pa-0'>
+			<v-row class='align-center ma-0 pa-0'>
 				<v-col class='ma-0 pa-0' cols='auto'>
 					<span class='unselectable'>{{ name }}</span>
 				</v-col>

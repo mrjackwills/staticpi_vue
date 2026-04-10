@@ -35,11 +35,10 @@
 				:to='item.route'
 			>
 				<template #prepend>
-					<v-icon class='mr-2' :icon='item.icon' />
+					<v-icon class='' :icon='item.icon' />
 				</template>
 				<template #title>
-					<!-- this is new -->
-					<span v-if='!mini' class=''>{{ item.message }}</span>
+					<span class='ml-2'>{{ item.message }}</span>
 				</template>
 			</v-list-item>
 
@@ -54,10 +53,10 @@
 						:to='item.route'
 					>
 						<template #prepend>
-							<v-icon class='mr-2' :icon='item.icon' />
+							<v-icon :icon='item.icon' />
 						</template>
 						<template #title>
-							<span v-if='!mini' class=''>{{ item.message }}</span>
+							<span class='ml-2'>{{ item.message }}</span>
 						</template>
 					</v-list-item>
 				</section>
@@ -66,10 +65,10 @@
 			<section v-if='authenticated'>
 				<v-list-item v-if='lgAndUp' class='cl' title='minimize' @click='minimize'>
 					<template #prepend>
-						<v-icon class='mr-2' :icon='miniLogo' />
+						<v-icon :icon='miniLogo' />
 					</template>
 					<template #title>
-						<span v-if='!mini' class=''>minimize</span>
+						<span class='ml-2'>minimize</span>
 					</template>
 				</v-list-item>
 				<v-divider class='divider' color='white' />
@@ -78,7 +77,7 @@
 						<v-icon class='flipx mr-2' :icon='mdiLoginVariant' />
 					</template>
 					<template #title>
-						<span v-if='!mini' class=''>logout</span>
+						<span class='ml-2'>logout</span>
 					</template>
 				</v-list-item>
 			</section>

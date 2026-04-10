@@ -4,7 +4,7 @@
 
 			<AppCard
 				v-if='authenticated'
-				class='mb-n4'
+				class='mb-1'
 				lg='11'
 				md='12'
 				my=''
@@ -12,9 +12,9 @@
 				xl='11'
 			>
 				<template #body>
-					<v-row align='center' class='no-gutters ma-0 pa-0' :class='smallText' justify='center'>
+					<v-row class='ma-0 pa-0 align-center justify-center' :class='smallText' density='compact'>
 						<v-col class='pa-0 my-1' cols='12'>
-							<v-row align='center' class='no-gutters' justify='center'>
+							<v-row class='align-center  justify-center' density='compact'>
 								<v-col class='ma-0 pa-0 mr-4' cols='auto'>
 									use API key from:
 								</v-col>
@@ -36,7 +36,6 @@
 			</AppCard>
 
 			<AppCard
-				class='mb-n5'
 				lg='11'
 				md='12'
 				my=''
@@ -44,9 +43,9 @@
 				xl='11'
 			>
 				<template #body>
-					<v-row align='center' class='no-gutters py-2' :class='smallText' justify='center'>
+					<v-row class='py-2 align-center justify-center' :class='smallText' density='compact'>
 						<v-col class='' cols='12'>
-							<v-row align='center' class='no-gutters' justify='space-around'>
+							<v-row class='align-center justify-space-around' density='compact'>
 								<v-col
 									v-for='(item, index) in links'
 									:key='index'

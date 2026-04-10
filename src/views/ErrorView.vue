@@ -1,9 +1,9 @@
 <template>
-	<ThePage :fill-height='true' justify='center'>
+	<ThePage class='justify-center' :fill-height='true'>
 		<template #body>
-			<v-row align='center' class='ma-0 pa-0' justify='center' no-gutters>
+			<v-row class='align-center ma-0 pa-0 justify-center' density='compact'>
 				<v-col class='ma-0 pa-0' cols='11'>
-					<v-row align='center' justify='center'>
+					<v-row align-center class='justify-center'>
 						<v-img
 							contain
 							:eager='true'
@@ -13,19 +13,19 @@
 						/>
 					</v-row>
 					<section class='cl' @click='goHome'>
-						<v-row align='center' class='mt-6 ma-0 pa-0' justify='center' no-gutters>
+						<v-row class='align-center mt-6 ma-0 pa-0 justify-center' density='compact'>
 							<v-col class='pa-0 ma-0' cols='auto'>
-								<span class='text-pi text-h3'>
+								<span class='text-pi text-display-small'>
 									static<span class='font-weight-black'>Pi</span>
 								</span>
 							</v-col>
 						</v-row>
-						<v-row align='center' class='ma-0 pa-0' justify='center' no-gutters>
+						<v-row class='align-center ma-0 pa-0 justify-center' density='compact'>
 							<v-col class='pa-0 ma-0' cols='auto'>
-								<span class='text-black text-h5'>return to home page</span>
+								<span class='text-black text-headline-medium'>return to home page</span>
 							</v-col>
 						</v-row>
-						<v-row align='center' class='mt-2 ma-0 pa-0' justify='center'>
+						<v-row class='align-center mt-2 ma-0 pa-0 justify-center'>
 							<v-col class='pa-0 ma-0' cols='auto'>
 								<v-btn
 									class='align-self-end elevation-0 cl fab-fix'

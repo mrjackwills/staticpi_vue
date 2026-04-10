@@ -18,7 +18,7 @@
 
 		<template #action_button>
 			<v-expand-transition>
-				<v-row align='center' class='ma-0 pa-0' justify='center'>
+				<v-row class='align-center ma-0 pa-0 justify-center'>
 					<v-col class='ma-0 pa-0' cols='12' md='auto'>
 						<ActionButton
 							:block='true'
@@ -41,7 +41,6 @@ import type { TAuthObject } from '@/types'
 import { mdiAccountRemove, mdiDelete } from '@mdi/js'
 import { useDisplay } from 'vuetify'
 import { axios_authenticatedUser } from '@/services/axios'
-
 import { dialoger } from '@/services/dialog'
 const { smAndDown } = useDisplay()
 

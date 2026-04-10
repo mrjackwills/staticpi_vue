@@ -1,7 +1,7 @@
 <template>
-	<v-row align='center' class='ma-0 pa-0 pl-2' justify='start'>
+	<v-row class='align-center ma-0 pa-0 pl-2 justify-start'>
 		<v-col class='ma-0 pa-0' cols='12'>
-			<v-row align='center' class='ma-0 pa-0' justify='start'>
+			<v-row class='align-center ma-0 pa-0 justify-start'>
 				<v-col
 					v-if='smAndUp'
 					class='ma-0 pa-0'

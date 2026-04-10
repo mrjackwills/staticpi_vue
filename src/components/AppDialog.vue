@@ -18,7 +18,7 @@
 			<v-card-title class='pa-0 ma-0 px-4 py-2 text-pi' :class='titleSize'>{{ title }}</v-card-title>
 			<v-card-text class='px-4 py-2' :class='messageSize'>{{ message }}</v-card-text>
 			<section v-if='passwordRequired || twoFA_always_required'>
-				<v-row align='center' class='ma-0 pa-0 mt-2' justify='center'>
+				<v-row class='align-center ma-0 pa-0 mt-2 justify-center'>
 					<v-col class='ma-0 pa-0' cols='11' md='9'>
 						<v-form
 							autocomplete='off'
@@ -66,9 +66,9 @@
 				</v-row>
 			</section>
 			<v-card-actions v-if='message' class='ma-0 pa-0 py-3'>
-				<v-row align='center' class='ma-0 pa-0 mt-2' justify='center'>
+				<v-row class='align-center ma-0 pa-0 mt-2 justify-center'>
 					<v-col class='ma-0 pa-0' cols='11' lg='6' md='9'>
-						<v-row class='px-0 mx-0' justify='space-between'>
+						<v-row class='px-0 mx-0 justify-space-between'>
 							<v-col class='px-0 mx-0' cols='12' md='auto' :order='smAndDown? "2" : "1"'>
 								<div class='text-center'>
 									<ActionButton
@@ -140,7 +140,7 @@ const icon = computed(() => dialogStore.icon)
 const logout = computed(() => title.value.toLowerCase() === 'logout')
 const maxWidth = computed(() => lgAndUp.value ? '40vw' : '80vw')
 const message = computed(() => dialogStore.message)
-const messageSize = computed(() => mdAndUp.value ? 'text-h5' : 'text-subtitle-1')
+const messageSize = computed(() => mdAndUp.value ? 'text-headline-medium' : 'text-body-large')
 const monospace = computed(() => timeout.value > 0 ? true : false)
 const passwordRequired = computed(() => dialogStore.passwordRequired)
 const textFields = computed(() => [
@@ -189,7 +189,7 @@ const timeout_icon = computed(() => {
 })
 
 const title = computed(() => dialogStore.title ?? 'warning')
-const titleSize = computed(() => mdAndUp.value ? 'text-h4' : 'text-h6')
+const titleSize = computed(() => mdAndUp.value ? 'text-headline-large' : 'text-headline-small')
 const tokenLength = computed(() => user.value.token ? user.value.token.length : 0)
 const twoFA_always_required = computed(() => twoFAStore.always_required || (dialogStore.twoFARequired && twoFAStore.active))
 

@@ -1,5 +1,5 @@
 <template>
-	<v-row align='center' class='ma-0 pa-0' justify='center' no-gutters>
+	<v-row class='align-center ma-0 pa-0 justify-center' density='compact'>
 		<v-col
 			class='ma-0 pa-0'
 			cols='11'
@@ -19,14 +19,11 @@
 				@click='click'
 			>
 				<v-row
-					align='center'
-					class='ma-1'
-					justify='center'
+					class='ma-1 align-center justify-center'
 				>
 					<v-col
 						v-if='icon'
-						align-self='center'
-						class='ma-0 pa-0'
+						class='ma-0 pa-0 align-self-center'
 						:class='iconClass'
 						cols='auto'
 						:order='iconOrder'
@@ -37,20 +34,16 @@
 						/>
 					</v-col>
 					<v-col
-						align-self='center'
-						class='ma-0 pa-0'
+						class='ma-0 pa-0 align-self-center'
 						cols='auto'
 						:order='textOrder'
 					>
 						<v-row
-							align='center'
-							class='ma-0 pa-0'
-							dense
-							justify='center'
-							no-gutters
+							class='ma-0 pa-0 align-center justify-center'
+							density='compact'
 						>
 							<v-col class='ma-0 pa-0' cols='auto'>
-								<div class='text-body-1' :color='disabled?"text-grey":"text-cardColor"'>
+								<div class='text-body-large' :color='disabled?"text-grey":"text-cardColor"'>
 									<span :class='{"countdown" : monospace}'>{{ text }}</span>
 								</div>
 							</v-col>

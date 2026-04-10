@@ -1,11 +1,11 @@
 <template>
 	<section>
-		<v-row v-if='!mobile' align='center' class='ma-0 pa-0' justify='space-between'>
+		<v-row v-if='!mobile' class='align-center ma-0 pa-0 justify-space-between'>
 			<v-col class='ma-0 pa-0' cols='2' />
 
 			<v-col v-for='(_item, index) of dataKeys' :key='index' class='ma-0 pa-0 text-right' cols='3'>
 
-				<v-row align='center' class='ma-0 pa-0 no-gutters' justify='space-between'>
+				<v-row class='align-center ma-0 pa-0 justify-space-between' density='compact'>
 
 					<v-col
 						v-for='(item, innerIndex) of detailHeaders'
@@ -26,13 +26,12 @@
 		<v-row
 			v-for='(item, index) in tableData'
 			:key='index'
-			align='center'
-			class='ma-0 pa-0 no-gutters hover-row unselectable'
-			justify='space-between'
+			class='ma-0 pa-0 hover-row unselectable justify-space-between align-center'
+			density='compact'
 		>
 			<v-col class='ma-0 pa-0' cols='12'>
 
-				<v-row align='center' class='ma-0 pa-0' justify='space-between'>
+				<v-row class='align-center ma-0 pa-0 justify-space-between'>
 
 					<v-col class='ma-0 pa-0 text-left' cols='2'>
 						<span class='font-weight-bold' :class='{ "small-text": mobile }'>
@@ -47,7 +46,7 @@
 						cols='3'
 					>
 
-						<v-row align='center' class='ma-0 pa-0 no-gutters' justify='space-between'>
+						<v-row class='align-center ma-0 pa-0 justify-space-between' density='compact'>
 
 							<v-col class='ma-0 pa-0' cols='12' md='4'>
 

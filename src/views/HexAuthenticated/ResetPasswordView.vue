@@ -1,10 +1,10 @@
 <template>
-	<ThePage :fill-height='true' justify='center'>
+	<ThePage class='justify-center' :fill-height='true'>
 		<template #body>
 			<AppCard :has-button='true' :heading='pageTitle' heading-class='mb-3' :loading='localLoading'>
 				<template #start>
-					<v-row align='center' class='ma-0 pa-0 mb-4' justify='center'>
-						<v-col class='pa-0 ma-0 text-body-1' cols='12'>
+					<v-row class='align-center ma-0 pa-0 mb-4 justify-center'>
+						<v-col class='pa-0 ma-0 text-body-large' cols='12'>
 							<PasswordDescription />
 						</v-col>
 					</v-row>
@@ -49,8 +49,8 @@
 								v-for='item in tokenFields'
 								:key='item.model'
 								v-model='user[item.model]'
+								::density='smAndDown?"compact":"default"'
 								color='primary'
-								:dense='smAndDown'
 								:disabled='localLoading'
 								:error-messages='errorMessages[item.model]'
 								:label='item.label'

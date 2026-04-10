@@ -17,11 +17,9 @@
 					<v-row
 						v-for='(item, index) of tableComponents'
 						:key='index'
-						align='center'
-						class='ma-0 pa-0'
-						justify='center'
+						class='ma-0 pa-0 align-center justify-center'
 					>
-						<v-col class='ma-0 pa-0' :class='{"mb-12": index+1===tableComponents.length}' cols='12'>
+						<v-col class='ma-0 pa-0 mb-3' cols='12'>
 							<AppCard
 								heading=''
 								lg='11'
@@ -30,7 +28,7 @@
 								xl='11'
 							>
 								<template #body>
-									<v-row align='center' class='ma-0 pa-0 mt-3' justify='center'>
+									<v-row class='align-center ma-0 pa-0 mt-3 justify-center'>
 
 										<v-col class='ma-0 pa-0 mr-1' cols='auto'>
 											<v-icon color='pi' :icon='item.icon' />
@@ -44,7 +42,7 @@
 										</v-col>
 									</v-row>
 
-									<v-row class='mb-3 ma-0 pa-0' justify='center'>
+									<v-row class='mb-3 ma-0 pa-0 justify-center'>
 										<v-col class='ma-0 pa-0' cols='12' md='9'>
 											<component :is='item.component' />
 										</v-col>

@@ -11,7 +11,7 @@
 			recommended
 			<br>
 			<a
-				class='text-caption text-black'
+				class='text-body-small text-black'
 				href='https://haveibeenpwned.com/Passwords'
 				rel='noopener noreferrer'
 				target='_blank'
@@ -29,7 +29,7 @@ import { useDisplay } from 'vuetify'
 
 const { mdAndDown } = useDisplay()
 
-const pSize = computed(() => mdAndDown.value ? 'text-caption' : 'text-body-2')
+const pSize = computed(() => mdAndDown.value ? 'text-body-small' : 'text-body-medium')
 
 defineProps<{ mt?: string }>()
 </script>

@@ -3,7 +3,7 @@
 		heading='contact messages'
 		heading-class='ml-2'
 		heading-justify='start'
-		heading-size='text-h6'
+		heading-size='text-headline-small'
 		lg='11'
 		md='12'
 		my=''
@@ -11,16 +11,16 @@
 		xl='11'
 	>
 		<template #body>
-			<v-row align='center' class='no-gutters ' justify='center'>
+			<v-row class='align-center justify-center' density='compact'>
 				<v-col class='my-1' cols='12'>
-					<v-row align='center' class='no-gutters' justify='space-around'>
+					<v-row class='align-center justify-space-around' density='compact'>
 						<v-col
 							v-for='(item,index) in props.contactMessages'
 							:key='index'
 							class='ma-1 pa-1'
 							cols='12'
 						>
-							<v-row align='center' class='ma-0 pa-0' justify='space-around'>
+							<v-row class='align-center ma-0 pa-0 justify-space-around'>
 								<v-col class='ma-0 pa-0' cols='1'>
 									<span class='text-pi'>
 										<v-icon :color='item.registered_user_id?"primary":"pi"' :icon='mdiAccountCircle' size='small' />

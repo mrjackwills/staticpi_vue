@@ -1,10 +1,8 @@
 <template>
 	<v-row
-		align='center'
-		class='ma-0 pa-0 no-gutters'
+		class='ma-0 pa-0 align-center justify-end justify-md-end'
 		:class='showBorder'
-		justify='end'
-		justify-md='end'
+		density='compact'
 	>
 
 		<v-col class='ma-0 pa-0' :class='mobileClass' cols='auto'>

@@ -1,9 +1,9 @@
 <template>
-	<v-row align='center' class='ma-0 pa-0 no-gutters text-caption' justify='space-between'>
+	<v-row class='align-center ma-0 pa-0 text-body-small justify-space-between' density='compact'>
 
 		<v-col class='text-left ma-0 pa-0' cols='1'>
 
-			<v-row align='center' class='ma-0 pa-0 no-gutters' justify='start'>
+			<v-row class='align-center ma-0 pa-0 justify-start' density='compact'>
 
 				<v-col class='ma-0 pa-0' cols='auto'>
 					<v-switch
@@ -83,7 +83,7 @@
 	<!-- Refactor/split into component -->
 	<!-- Bandwidth table -->
 	<v-expand-transition>
-		<v-row v-if='show_bandwidth' align='center' class='ma-0 pa-0' justify='space-between'>
+		<v-row v-if='show_bandwidth' class='align-center ma-0 pa-0 justify-space-between'>
 			<v-col class='ma-0 pa-0' cols='12'>
 				<ExtraBandwidth class='' :device='fake_device' :show-calc='false' />
 			</v-col>
@@ -93,11 +93,11 @@
 	<!-- Refactor/split into component -->
 	<!-- All Devices -->
 	<v-expand-transition>
-		<v-row v-if='show_devices' align='center' class='ma-0 pa-0' justify='space-between'>
+		<v-row v-if='show_devices' class='align-center ma-0 pa-0 justify-space-between'>
 			<v-col class='ma-0 pa-0' cols='12'>
-				<v-row align='center' class='ma-0 pa-0' justify='space-between'>
+				<v-row class='align-center ma-0 pa-0 justify-space-between'>
 					<v-col class='ma-0 pa-0' cols='12'>
-						<v-row align='center' class='ma-0 pa-0 small-text font-weight-bold' justify='space-between'>
+						<v-row class='align-center ma-0 pa-0 small-text font-weight-bold justify-space-between'>
 							<v-col class='ma-0 pa-0 text-left' cols='4'>
 								name
 							</v-col>
@@ -137,8 +137,8 @@
 	<!-- Refactor/split into component -->
 	<!-- Sessions -->
 	<v-expand-transition>
-		<v-row v-if='(show_session)' align='center' class='ma-0 pa-0' justify='space-between'>
-			<v-row align='center' class='ma-0 pa-0 font-weight-bold' justify='space-between'>
+		<v-row v-if='(show_session)' class='align-center ma-0 pa-0 justify-space-between'>
+			<v-row class='align-center ma-0 pa-0 font-weight-bold justify-space-between'>
 				<v-col class='ma-0 pa-0' cols='6'>
 					key
 				</v-col>
@@ -151,7 +151,7 @@
 			</v-row>
 			<v-divider />
 			<v-col v-for='(item, index) in sessions' :key='index' class='ma-0 pa-0' cols='12'>
-				<v-row align='center' class='ma-0 pa-0' justify='space-between'>
+				<v-row class='align-center ma-0 pa-0 justify-space-between'>
 					<v-col class='ma-0 pa-0 small-text' cols='6'>
 						{{ item.key }}
 					</v-col>

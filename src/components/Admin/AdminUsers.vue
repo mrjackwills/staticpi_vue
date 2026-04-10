@@ -3,7 +3,7 @@
 		heading='users'
 		heading-class='ml-2'
 		heading-justify='start'
-		heading-size='text-h6'
+		heading-size='text-headline-small'
 		lg='11'
 		md='12'
 		my=''
@@ -11,17 +11,17 @@
 		xl='11'
 	>
 		<template #body>
-			<v-row align='center' class='no-gutters ma-0 pa-0' justify='space-around'>
+			<v-row class='ma-0 pa-0 align-center justify-space-around' density='compact'>
 				<v-col class='ma-0 pa-0' cols='12'>
 					total bandwidth: <span class='font-weight-bold'>{{ total_monthly_bandwidth }}</span>
 				</v-col>
 				<v-col class='ma-0 pa-0' cols='12'>
-					<v-row align='center' class='font-weight-bold ma-0 pa-0 no-gutters' justify='space-between'>
+					<v-row class='align-center font-weight-bold ma-0 pa-0 justify-space-between' density='compact'>
 
 						<v-col
 							v-for='(item, index) in headers'
 							:key='index'
-							class='ma-0 pa-0 font-weight-bold unselectable text-caption'
+							class='ma-0 pa-0 font-weight-bold unselectable text-body-small'
 							:class='index===0?"text-left":"text-right"'
 							:cols='item==="email"? "2":"1"'
 						>
@@ -31,7 +31,7 @@
 				</v-col>
 			</v-row>
 			<v-divider />
-			<v-row align='center' class='ma-0 pa-0 mb-2' justify='center'>
+			<v-row class='align-center ma-0 pa-0 mb-2 justify-center'>
 				<v-col
 					v-for='(item,index) in users'
 					:key='index'

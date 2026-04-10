@@ -1,6 +1,6 @@
 <template>
 
-	<v-container class='ma-0 pa-0 no-gutters' :class='{"fill-height":fillHeight}' fluid>
+	<v-container class='ma-0 pa-0 fill' :class='{"fill-height d-flex align-center flex-wrap":fillHeight}' density='compact' fluid>
 		<v-progress-linear
 			:active='true'
 			bg-opacity='0'
@@ -9,23 +9,23 @@
 			:indeterminate='loading'
 		/>
 
+		<!-- TODO fix me -->
 		<v-row
 			v-if='pageReady'
 			id='the_page'
-			align='center'
-			class='ma-0 pa-0 no-gutters'
-			:class='{"fill-height":fillHeight}'
-			:justify='justify??"center"'
+			class='ma-0 pa-0 align-center '
+			:class='[{"fill-height d-flex align-center flex-wrap":fillHeight}, computedJustify]'
+			density='compact'
 		>
 
-			<v-container class='ma-0 pa-0' :class='{"fill-height":fillHeight}' fluid>
-				<v-row align='center' class='ma-0 pa-0' dense justify='center'>
+			<v-container class='ma-0 pa-0' :class='{"fill-height d-flex align-center flex-wrap":fillHeight}' fluid>
+				<v-row class='align-center ma-0 pa-0 justify-center' density='compact'>
 					<v-col class='pa-0 ma-0 mt-1' cols='12'>
 						<CardHeading
 							v-if='heading'
 							class='ml-2'
+							:class='justify'
 							:heading
-							:justify
 							:margin
 						/>
 						<slot name='body' />
@@ -43,7 +43,9 @@ const loading = computed(() => loadingModule().loading)
 
 const appbarHeight = computed(() => appBarModule().size)
 
-withDefaults(defineProps<{
+const computedJustify = computed(() => `justify-${props.justify}`)
+
+const props = withDefaults(defineProps<{
 	fillHeight?: boolean
 	heading?: string
 	headingJustify?: VRow['$props']['justify']

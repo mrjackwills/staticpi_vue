@@ -9,14 +9,14 @@
 			binary messages will be sent and received as normal.
 			<br>
 			If it is enabled, binary data sent will result in a invalid message returned to the sender
-			<v-row class='ma-0 pa-0 my-2' justify='center'>
+			<v-row class='ma-0 pa-0 my-2 justify-center'>
 				<v-col class='ma-0 pa-0' cols='12'>
 					<CodeBlock :code='json_structured_invalid' :title-bar='false' />
 				</v-col>
 			</v-row>
 			Sending a message in this scenario requires converting the binary data to Base 64, which will result in an
 			increase of approximately 30% in the size of the data to be sent.
-			<v-row class='ma-0 pa-0 mt-2' justify='center'>
+			<v-row class='ma-0 pa-0 mt-2 justify-center'>
 				<v-col class='ma-0 pa-0' cols='12'>
 					<CodeBlock :code='code_structured_data_json' filename='pi_base64_image_encode.js' />
 				</v-col>
@@ -24,7 +24,7 @@
 
 			This could then be displayed in a browser as follows
 
-			<v-row class='ma-0 pa-0 mt-2' justify='center'>
+			<v-row class='ma-0 pa-0 mt-2 justify-center'>
 				<v-col class='ma-0 pa-0' cols='12'>
 					<CodeBlock :code='b64_received' filename='client_base64_image_decode.js' />
 				</v-col>

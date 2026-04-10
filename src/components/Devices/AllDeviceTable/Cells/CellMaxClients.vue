@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<v-row align='center' class='pt-1' :justify no-gutters>
+		<v-row class='align-center pt-1' :class='justify' density='compact'>
 			<v-col class='pa-0 ma-0' cols='6'>
 				<v-tooltip
 					v-if='show_tooltip'
@@ -32,9 +32,8 @@
 			<v-row
 				v-if='inFocus'
 				v-intersect='onIntersect'
-				align='center'
-				class='ma-0 pa-0 no-gutters'
-				justify='center'
+				class='ma-0 pa-0 align-center justify-center'
+				density='compact'
 			>
 				<v-col v-for='(item, index) in buttons' :key='index' class='ma-0 pa-0 pb-2 px-2' cols='auto'>
 					<v-btn
@@ -55,8 +54,8 @@
 </template>
 
 <script setup lang='ts'>
-import type { VRow } from 'vuetify/components/VGrid'
 import type { TAuthObject, TDeviceInfo, TDeviceTableFields } from '@/types'
+import type { VRow } from 'vuetify/components/VGrid'
 import { mdiClose, mdiContentSave, mdiLanConnect, mdiPencilOutline } from '@mdi/js'
 import { useDisplay } from 'vuetify'
 import { axios_device } from '@/services/axios'
@@ -91,7 +90,7 @@ const current_value = computed(() => props.device.max_clients)
 const disabled = computed(() => !new_value.value || error.value || loading.value || new_value.value === current_value.value || freeUser.value)
 const freeUser = computed(() => userModule().isFreeUser)
 const isDisabled = computed(() => freeUser.value || paused.value)
-const justify = computed(() => mdAndUp.value ? 'center' : 'end')
+const justify = computed(() => mdAndUp.value ? 'justify-center' : 'justify-end')
 const loading = computed({
 	get (): boolean {
 		return loadingModule().loading

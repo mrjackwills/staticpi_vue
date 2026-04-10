@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<v-row v-if='!backup && !backupProcess' align='center' class='ma-0 pa-0' justify='center'>
+		<v-row v-if='!backup && !backupProcess' class='align-center ma-0 pa-0 justify-center'>
 			<v-col class='pa-0 mb-4' cols='12'>
 				Backups enable a user to login to their account in situations where their Two-Factor Authentication app
 				is unavailable.
@@ -13,7 +13,7 @@
 			</v-col>
 		</v-row>
 		<v-expand-transition>
-			<v-row v-if='!backupArray' align='center' class='ma-0 pa-0' justify='center'>
+			<v-row v-if='!backupArray' class='align-center ma-0 pa-0 justify-center'>
 				<v-col class='ma-0 pa-0 my-2' cols='12' md='auto'>
 					<ActionButton
 						v-if='!backupProcess'
@@ -31,17 +31,14 @@
 		<v-expand-transition>
 			<section v-if='backupArray'>
 				<section>
-					<v-row align='center' class='ma-0 pa-0' justify='center'>
+					<v-row class='align-center ma-0 pa-0  justify-center'>
 						<v-col class='ma-0 pa-0 text-primary font-weight-bold' cols='auto'>
 							These backup tokens need to be stored securely, each token can only be used once
 						</v-col>
 					</v-row>
 					<v-row
-						align='center'
-						class='mt-4'
+						class='mt-4 align-center justify-center'
 						density='compact'
-						justify='center'
-						no-gutters
 					>
 						<v-col class='ma-0 pa-0' cols='auto'>
 							<v-table>
@@ -49,14 +46,14 @@
 									<tbody>
 										<tr v-for='(item, index) in backupArray.slice(0, 5)' :key='index'>
 											<td class=''>
-												<v-row class='ma-0 pa-0' dense no-gutters>
+												<v-row class='ma-0 pa-0' density='compact'>
 													<v-col class='pa-0 ma-0'>
 														{{ item }}
 													</v-col>
 												</v-row>
 											</td>
 											<td class=''>
-												<v-row class='ma-0 pa-0' dense no-gutters>
+												<v-row class='ma-0 pa-0' density='compact'>
 													<v-col class='pa-0 ma-0'>
 														{{ backupArrayIndexPlusFive(index) }}
 													</v-col>
@@ -66,7 +63,7 @@
 									</tbody>
 								</template>
 							</v-table>
-							<v-row align='center' class='mt-4' justify='space-between' no-gutters>
+							<v-row class='align-center mt-4 justify-space-between' density='compact'>
 								<v-col cols='auto'>
 									<ActionButton color='pi' :icon='mdiClose' text='close' @click='close' />
 
@@ -217,7 +214,7 @@ async function generateBackups (): Promise<void> {
 }
 
 /**
- ** Patch request to re-genenerate backup codes, password is required
+ ** Patch request to re-generate backup codes, password is required
  */
 async function re_generateBackups_confirm (authentication: TAuthObject): Promise<void> {
 	loading.value = true

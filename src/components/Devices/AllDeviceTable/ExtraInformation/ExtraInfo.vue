@@ -13,22 +13,22 @@
 	>
 		<template #body>
 
-			<v-row align='center' class='ma-0 pa-0 no-gutters' justify='center'>
+			<v-row class='align-center ma-0 pa-0  justify-center' density='compact'>
 				<v-col class='ma-0 pa-0 text-center' cols='auto'>
 					<span class='font-weight-bold' :class='onlineColor'>{{ device.name_of_device }}</span> was created
 					on {{ new Date(device.creation_date).toLocaleString() }}
 				</v-col>
 			</v-row>
 
-			<v-row align='center' class='ma-0 pa-0 no-gutters' justify='center'>
+			<v-row class='align-center ma-0 pa-0  justify-center' density='compact'>
 				<v-col class='ma-0 pa-0 text-center ma-1' cols='11'>
 					<ExtraCache :device />
 				</v-col>
 			</v-row>
 
-			<v-row align='start' class='ma-0 pa-0 no-gutters' justify='center'>
+			<v-row class='align-start ma-0 pa-0 justify-center' density='compact'>
 				<v-col class='ma-0 pa-0' cols='11'>
-					<v-row align='start' class='ma-0 pa-0 no-gutters' justify='center'>
+					<v-row class='align-start ma-0 pa-0 justify-center' density='compact'>
 						<v-col class='ma-0 pa-0' cols='11' md='4' :order='orderDevice'>
 							<ExtraConnectedTable
 								:class='{ "pr-6": !smAndDown }'
@@ -56,7 +56,7 @@
 				</v-col>
 			</v-row>
 
-			<v-row align='start' class='ma-0 pa-0' justify='center'>
+			<v-row class='align-start ma-0 pa-0 mb-2 justify-center'>
 
 				<v-expand-transition>
 					<v-col v-if='!sendMessage' class='ma-0 pa-0 mt-2' cols='11'>
@@ -89,9 +89,8 @@
 			<v-expand-transition>
 				<v-row
 					v-if='maxConnected && !sendMessage'
-					align='start'
-					class='ma-0 pa-0 no-gutters mb-2'
-					justify='center'
+					class='ma-0 pa-0 mb-2 align-start justify-center'
+					density='compact'
 				>
 					<v-col class='text-center ma-0 pa-0' cols='auto'>
 						<span class='font-weight-bold text-pi small-text'>max clients already connected</span>

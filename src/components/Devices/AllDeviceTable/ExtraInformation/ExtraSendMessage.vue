@@ -15,19 +15,17 @@
 
 			<v-row
 				v-intersect='onIntersect'
-				align='center'
-				class='ma-0 pa-0'
+				class='ma-0 pa-0 align-center justify-center'
 				:class='{ "small-text": mobile }'
-				justify='center'
 			>
 
 				<v-col class='ma-0 pa-0 my-2 black-box py-3' cols='11' lg='9'>
 
-					<v-row align='center' class='ma-0 pa-0 no gutters' justify='center'>
+					<v-row class='align-center ma-0 pa-0 no gutters justify-center'>
 
 						<v-col class='ma-0 pa-0' cols='11'>
 
-							<v-row align='center' class='ma-0 pa-0 no gutters' justify='center'>
+							<v-row class='align-center ma-0 pa-0 no gutters justify-center'>
 								<v-col class='ma-0 pa-0' cols='auto'>
 									<v-icon
 										:class='{ "spin": localLoading }'
@@ -43,7 +41,7 @@
 								<v-spacer />
 								<template v-if='isConnected'>
 									<v-col
-										class='ma-0 pa-0 text-white unselectable text-caption'
+										class='ma-0 pa-0 text-white unselectable text-body-small'
 										:class='{ "small-text": mobile }'
 										cols='auto'
 									>
@@ -57,11 +55,15 @@
 
 					<v-expand-transition>
 
-						<v-row v-if='isConnected' align='center' class='ma-0 pa-0 mb-4 no-gutters' justify='center'>
+						<v-row
+							v-if='isConnected'
+							class='ma-0 pa-0 mb-4 align-center justify-center'
+							density='compact'
+						>
 
 							<v-col class='ma-0 pa-0' cols='11'>
 
-								<v-row align='center' class='ma-0 pa-0 no-gutters unselectable' justify='space-between'>
+								<v-row class='align-center ma-0 pa-0 unselectable justify-space-between' density='compact'>
 
 									<v-col
 										v-for='(item, index) in latencyRow'
@@ -82,11 +84,12 @@
 
 								<v-col class='ma-0 pa-0 divider' cols='12' />
 
-								<v-row align='start' class='ma-0 pa-0 no-gutters messagebox' justify='start'>
+								<!-- TODO fix me, n? -->
+								<v-row class='ma-0 pa-0 align-start messageboxn justify-start' density='compact'>
 
 									<v-col class='ma-0 pa-0' cols='2'>
-										<v-row align='start' class='ma-0 pa-0 text-white unselectable' justify='start'>
-											<v-col class=' ma-0 pa-0' cols='auto'>
+										<v-row class='align-start ma-0 pa-0 text-white unselectable justify-start'>
+											<v-col class='ma-0 pa-0' cols='auto'>
 												<CopyButton
 													color='pi'
 													:dark='true'
@@ -98,7 +101,7 @@
 													:tooltip-message='"sent message copied!"'
 												/>
 											</v-col>
-											<v-col class=' pl-2 ma-0 pa-0' cols='auto'>
+											<v-col class='ma-0 pa-0' cols='auto'>
 												sent:
 											</v-col>
 
@@ -114,7 +117,7 @@
 									<v-col class='ma-0 pa-0 divider' cols='12' />
 
 									<v-col class='ma-0 pa-0' cols='2'>
-										<v-row align='start' class='ma-0 pa-0 text-white unselectable' justify='start'>
+										<v-row class='align-start ma-0 pa-0 text-white unselectable justify-start'>
 											<v-col class='ma-0 pa-0' cols='auto'>
 												<CopyButton
 													color='primary'
@@ -127,14 +130,14 @@
 													:tooltip-message='"response message copied!"'
 												/>
 											</v-col>
-											<v-col class='pl-2 ma-0 pa-0' cols='auto'>
+											<v-col class='ma-0 pa-0' cols='auto'>
 												response:
 											</v-col>
 										</v-row>
 									</v-col>
 									<v-col v-if='response' class='ma-0 pa-0' cols='10'>
 
-										<v-row align='start' class='ma-0 pa-0 no-gutters' justify='space-around'>
+										<v-row class='align-start ma-0 pa-0 justify-space-around' density='compact'>
 											<v-col class='ma-0 pa-0 text-primary font-weight-bold' cols='12'>
 												{{ response }}
 											</v-col>
@@ -147,8 +150,8 @@
 					</v-expand-transition>
 				</v-col>
 			</v-row>
-			<v-row align='center' class='ma-0 pa-0' :class='{ "small-text": mobile }' justify='center'>
-				<v-row align='center' class='ma-0 pa-0 no gutters' justify='center'>
+			<v-row class='align-center ma-0 pa-0 justify-center' :class='{ "small-text": mobile }'>
+				<v-row class='align-center ma-0 pa-0 no gutters justify-center'>
 					<v-col v-if='device.device_password_required && !ws' class='ma-0 pa-0' cols='11' lg='9'>
 
 						<v-form autocomplete='off' @submit.prevent>
@@ -175,7 +178,7 @@
 						</v-form>
 					</v-col>
 					<v-col v-if='isConnected' class='ma-0 pa-0' cols='11' lg='9'>
-						<v-row align='center' class='ma-0 pa-0 no gutters' justify='space-between'>
+						<v-row class='align-center ma-0 pa-0 no gutters justify-space-between'>
 							<v-col class='ma-0 pa-0' cols='12'>
 								<v-text-field
 									v-model='message'
@@ -199,15 +202,14 @@
 
 						<v-row
 							v-if='device.structured_data'
-							align='center'
-							class='no-gutters ma-0 pa-0 mb-n8'
-							justify='end'
+							class='ma-0 pa-0 mb-n8 align-center justify-end'
+							density='compact'
 						>
 							<v-col class='ma-0 pa-0' cols='auto'>
 								<v-switch v-model='unique' color='primary' density='compact' :hide-details='true'>
 									<template #label>
 										<span
-											class='font-weight-black text-caption'
+											class='font-weight-black text-body-small'
 											:class='{ "text-primary": unique }'
 										>unique</span>
 									</template>
@@ -220,9 +222,9 @@
 		</template>
 
 		<template #button>
-			<v-row align='center' class='ma-0 pa-0 no gutters' justify='center'>
+			<v-row class='align-center ma-0 pa-0 no gutters justify-center'>
 				<v-col class='ma-0 pa-0' cols='11' lg='5'>
-					<v-row align='center' class='ma-0 pa-0' justify='space-around'>
+					<v-row class='align-center ma-0 pa-0 justify-space-around'>
 						<v-col class='ma-0 pa-0' cols='6'>
 
 							<ActionButton

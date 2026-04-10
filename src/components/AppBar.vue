@@ -13,7 +13,7 @@
 			class='cl pa-0'
 			@click='goHome'
 		>
-			<v-row align='center' class='pa-0 ma-0' justify='start' no-gutters>
+			<v-row class='align-center pa-0 ma-0 justify-start' density='compact'>
 				<v-col
 					class=''
 					:class='logoMargin'
@@ -26,7 +26,7 @@
 						:width='logoSize'
 					/>
 				</v-col>
-				<v-col align-self='center' class='unselectable text-h4' cols='auto'>
+				<v-col align-self='center' class='unselectable text-headline-large' cols='auto'>
 					<StaticPi color='' />
 				</v-col>
 			</v-row>
@@ -34,10 +34,10 @@
 
 		<v-toolbar-items>
 			<template v-if='authenticated && email && onDesktop'>
-				<v-row align='center' class='mr-2'>
+				<v-row class='align-center mr-2'>
 					<v-col class='mr-3' cols='auto' @click='goSettings'>
-						<v-chip color='primary cl text-subtitle-1' variant='flat'>
-							<v-row align='center' class='ma-0 pa-0 no-gutters' justify='space-between'>
+						<v-chip color='primary cl text-body-large' variant='flat'>
+							<v-row class='align-center ma-0 pa-0 justify-space-between' density='compact'>
 								<v-col class='ma-0 pa-0 mr-1' cols='auto'>
 									<v-icon :icon='mdiAccountCircle' />
 								</v-col>
@@ -80,11 +80,9 @@
 		<template v-if='!online' #extension>
 			<v-row
 				app
-				class='ma-0 pa-0'
+				class='ma-0 pa-0 justify-end'
 				:class='alert_class'
 				density='compact'
-				justify='end'
-				no-gutters
 			>
 				<v-col class='ma-0 pa-0' cols='12'>
 					<OfflineAlert />

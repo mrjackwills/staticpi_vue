@@ -1,25 +1,25 @@
 <template>
 	<v-card class='mx-auto' :max-width='maxWidth'>
 
-		<v-row align='center' class='pa-0' dense justify='center'>
+		<v-row class='align-center pa-0 justify-center' density='compact'>
 			<v-col class='pa-0' cols='auto'>
 				<div class='text-center text-pi font-weight-bold' :class='headingSize'>{{ heading }}</div>
 			</v-col>
 			<v-col class='pa-0' cols='12'>
 				<div class='text-center text-black font-weight-bold' :class='priceSize'>{{ price }} <span
 					v-if='perMonth'
-					class='text-overline text-lowercase'
+					class='text-label-small text-lowercase'
 				>per month</span></div>
 			</v-col>
 		</v-row>
-		<v-row align='center' class='pa-0' justify='center'>
+		<v-row class='align-center pa-0 justify-center'>
 			<v-col class='pa-0' cols='11'>
 				<v-table>
 					<template #default>
 						<tbody>
 							<tr v-for='(item, index) in sorted_details' :key='index'>
 								<td class='px-0 text-left font-weight-bold'>
-									<v-row class='ma-0 pa-0' dense no-gutters>
+									<v-row class='ma-0 pa-0' density='compact'>
 										<v-col class='pa-0 ma-0'>
 											<span>{{ item.description }}</span>
 											<v-tooltip
@@ -34,7 +34,7 @@
 									</v-row>
 								</td>
 								<td class=''>
-									<v-row align='center' class='ma-0 pa-0' justify='end'>
+									<v-row class='align-center ma-0 pa-0 justify-end'>
 										<v-col class='ma-0 pa-0 mr-4' cols='auto'>
 											<span class='' :class='`text-${color(item.icon)}`'> {{ item.detail }}</span>
 										</v-col>
@@ -53,7 +53,7 @@
 				</v-table>
 			</v-col>
 		</v-row>
-		<v-row align='center' justify='center'>
+		<v-row class='align-center justify-center'>
 			<v-col cols='auto'>
 				<router-link class='text--black' :to='FrontEndRoutes.REGISTER'>create account</router-link>
 			</v-col>
@@ -70,9 +70,9 @@ const { lgAndUp, mdAndUp, smAndDown, mobile } = useDisplay()
 
 // Don't show tooltips when on android or ios if also on mobile view!
 const show_tooltip = computed(() => !(browserModule().android_ios && mobile.value))
-const headingSize = computed(() => mdAndUp.value ? 'text-h4' : 'text-h6')
+const headingSize = computed(() => mdAndUp.value ? 'text-headline-large' : 'text-headline-small')
 const maxWidth = computed(() => lgAndUp.value ? '30vw' : '80vw')
-const priceSize = computed(() => mdAndUp.value ? 'text-h3' : 'text-h5')
+const priceSize = computed(() => mdAndUp.value ? 'text-display-small' : 'text-headline-medium')
 
 const sorted_details: Ref<Array<{
 	icon: number

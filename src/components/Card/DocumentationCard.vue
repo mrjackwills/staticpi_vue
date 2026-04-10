@@ -6,9 +6,9 @@
 		xl='11'
 	>
 		<template #body>
-			<v-row align='center' class='ma-0 pa-0 px-2 px-md-12' :class='smallText' justify='center'>
+			<v-row class='align-center ma-0 pa-0 px-2 px-md-12 justify-center' :class='smallText'>
 				<v-col class='ma-0 pa-0' cols='12'>
-					<v-row align='center' class='ma-0 pa-0' justify='start'>
+					<v-row class='align-center ma-0 pa-0 justify-start'>
 						<v-col class='ma-0 pa-0' cols='auto' order='2'>
 							<ProUserChip v-if='pro' class='ma-1 ml-3' :class='proMargin' />
 						</v-col>
