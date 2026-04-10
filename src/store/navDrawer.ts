@@ -1,19 +1,19 @@
-import { defineStore } from 'pinia';
-import { ModuleName } from '@/types/const_module';
+import { defineStore } from 'pinia'
+import { ModuleName } from '@/types/const_module'
 
 export const navDrawerModule = defineStore(ModuleName.NAV_DRAWER, {
 
 	state: () => ({
 		mini: false,
-		open: false
+		open: false,
 	}),
 
 	actions: {
 		set_mini (value: boolean) {
-			this.mini = value;
+			this.mini = value
 		},
 		set_open (value: boolean) {
-			this.open = value;
-		}
-	}
-});
+			this.open = value
+		},
+	},
+})

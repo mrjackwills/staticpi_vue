@@ -1,26 +1,26 @@
 <template>
 	<ActionButton
-		@click='goBack'
 		:block='true'
-		:icon='mdiArrowLeft'
-		:iconFirst='true'
 		class='mr-2'
 		color='pi'
-		text='back'
 		:disabled
+		:icon='mdiArrowLeft'
+		:icon-first='true'
+		text='back'
+		@click='goBack'
 	/>
 </template>
 
 <script setup lang='ts'>
-import { FrontEndRoutes } from '@/types/const_routes';
-import { mdiArrowLeft } from '@mdi/js';
+import { mdiArrowLeft } from '@mdi/js'
+import { FrontEndRoutes } from '@/types/const_routes'
 
-const router = useRouter();
+const router = useRouter()
 
-const goBack = (): void => {
-	if (browserModule().history > 1) router.back();
-	else router.push(FrontEndRoutes.BASE);
-};
+function goBack (): void {
+	if (browserModule().history > 1) router.back()
+	else router.push(FrontEndRoutes.BASE)
+}
 
-withDefaults(defineProps<{ disabled?: boolean }>(), { disabled: false });
+withDefaults(defineProps<{ disabled?: boolean }>(), { disabled: false })
 </script>

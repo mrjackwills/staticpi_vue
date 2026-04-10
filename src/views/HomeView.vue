@@ -1,31 +1,48 @@
 <template>
-	<ThePage :fillHeight='true' justify='center'>
-		<template v-slot:body>
-			<v-row :class='mdAndUp ? "md-section-height" : "sm-section-height"' class='pa-0 ma-0' justify='center'
-				align='center' no-gutters>
-				<v-col cols='12' class='ma-0 pa-0'>
-					<v-row align='center' justify='center' class='ma-0 pa-0'>
-						<v-img :eager='true' :height='"50vh"' :max-width='mdAndUp ? "55vw" : "95vw"'
-							src='@/assets/svg/network.svg' contain />
+	<ThePage class='justify-center' :fill-height='true'>
+		<template #body>
+			<v-row
+				class='pa-0 ma-0 align-center justify-center'
+				:class='mdAndUp ? "md-section-height" : "sm-section-height"'
+				density='compact'
+			>
+				<v-col class='ma-0 pa-0' cols='12'>
+					<v-row class='align-center ma-0 pa-0 justify-center'>
+						<v-img
+							contain
+							:eager='true'
+							:height='"50vh"'
+							:max-width='mdAndUp ? "55vw" : "95vw"'
+							src='@/assets/svg/network.svg'
+						/>
 					</v-row>
-					<v-row align='center' class='mt-8 ma-0 pa-0' justify='center' no-gutters>
-						<v-col cols='auto' class='pa-0 ma-0' :class='`text-${h1}`'>
+					<v-row class='align-center mt-8 ma-0 pa-0 justify-center' density='compact'>
+						<v-col class='pa-0 ma-0' :class='`text-${text_size}`' cols='auto'>
 							<StaticPi color='pi' />
 						</v-col>
-						<v-col class='text-pi text-center ma-0 pa-0' cols='12' tag='h1'>
-							<span class='font-weight-black text-pi text-h5 lh'>
+						<v-col class='text-pi text-center ma-0 pa-0' cols='12'>
+							<span class='font-weight-black text-pi text-headline-medium lh'>
 								The easiest way to communicate with your Raspberry Pi or single-board computer
 							</span>
 						</v-col>
 					</v-row>
-					<v-row justify='center' align='center' class='pa-0 ma-0'>
-						<v-col cols='auto' class='pa-0 ma-0'>
+					<v-row class='align-center pa-0 ma-0 justify-center'>
+						<v-col class='pa-0 ma-0' cols='auto'>
 							<router-link :to='`${FrontEndRoutes.BASE}#about`'>
 
-								<v-btn :small='smAndDown' :medium='mdAndUp'
-									class='align-self-end elevation-0 cl fab-fix' color='primary' icon>
-									<v-icon color='white' :large='mdAndUp' :medium='smAndDown'
-										:icon='mdiChevronDoubleDown' />
+								<v-btn
+									class='align-self-end elevation-0 cl fab-fix'
+									color='primary'
+									icon
+									:medium='mdAndUp'
+									:small='smAndDown'
+								>
+									<v-icon
+										color='white'
+										:icon='mdiChevronDoubleDown'
+										:large='mdAndUp'
+										:medium='smAndDown'
+									/>
 								</v-btn>
 							</router-link>
 						</v-col>
@@ -33,14 +50,24 @@
 				</v-col>
 			</v-row>
 
-			<v-row no-gutters align='center' justify='center' class='ma-0 pa-0 text-h5 mb-14' style='height:90vh'
-				id='about'>
-				<AppCard :hasButton='false' heading='about' sm='12' lg='11' xl='11'>
-					<template v-slot:body>
+			<v-row
+				id='about'
+				class='ma-0 pa-0 text-headline-medium mb-14 align-center justify-center'
+				density='compact'
+				style='height:90vh'
+			>
+				<AppCard
+					:has-button='false'
+					heading='about'
+					lg='11'
+					sm='12'
+					xl='11'
+				>
+					<template #body>
 
-						<v-row class='mt-3 mx-1 ma-0 pa-0' align='center' justify='center'>
+						<v-row class='align-center mt-3 mx-1 ma-0 pa-0 justify-center'>
 
-							<v-col cols='12'>
+							<v-col class='text-body-large' cols='12'>
 								Introducing
 								<StaticPi />, our new service that allows you to connect multiple clients to a single
 								device via websockets.
@@ -63,15 +90,15 @@
 								making it a great tool for home tinkerers as well.
 							</v-col>
 						</v-row>
-						<v-row class='ma-0 my-2 pa-0' align='center' justify='space-around'>
-							<v-col cols='11' md='auto' class='py-0'>
+						<v-row class='align-center ma-0 my-2 pa-0 justify-space-around'>
+							<v-col class='py-0 text-body-large' cols='11' md='auto'>
 								<ul>
 									<li>Easy to set up</li>
 									<li>Safe and secure network</li>
 									<li>Works on all raspberry pi's, single board computers, and in browser</li>
 								</ul>
 							</v-col>
-							<v-col cols='11' md='auto' class='py-0 '>
+							<v-col class='py-0 text-body-large' cols='11' md='auto'>
 								<ul>
 									<li>Send simple messages or binary data</li>
 									<li>Code examples in multiple languages</li>
@@ -80,24 +107,32 @@
 							</v-col>
 						</v-row>
 
-						<v-row class=' mt-3 mx-1 ma-0 pa-0' align='center' justify='center'>
+						<v-row class='align-center text-body-large mt-3 mx-1 ma-0 pa-0 justify-center'>
 
-							<v-col cols='12' class='text-center'>
+							<v-col class='text-center' cols='12'>
 								fully open source
 							</v-col>
 							<v-col cols='auto'>
-								<a href='https://www.github.com/mrjackwills/staticpi_vue' target='_blank'
-									rel='noopener noreferrer' class='text-primary font-weight-bold'>website source
+								<a
+									class='text-primary font-weight-bold'
+									href='https://www.github.com/mrjackwills/staticpi_vue'
+									rel='noopener noreferrer'
+									target='_blank'
+								>website source
 									code</a>
 							</v-col>
 							<v-col cols='auto'>
-								<a href='https://www.github.com/mrjackwills/staticpi_backend' target='_blank'
-									rel='noopener noreferrer' class='text-primary font-weight-bold'>backend source
+								<a
+									class='text-primary font-weight-bold'
+									href='https://www.github.com/mrjackwills/staticpi_backend'
+									rel='noopener noreferrer'
+									target='_blank'
+								>backend source
 									code</a>
 							</v-col>
 						</v-row>
 
-						<v-row class=' mt-3 mx-1 ma-0 pa-0 font-weight-bold' align='center' justify='center'>
+						<v-row class='align-center  mt-3 mx-1 ma-0 pa-0 font-weight-bold justify-center'>
 
 							<v-col cols='auto'>
 								sign up for
@@ -105,10 +140,14 @@
 							</v-col>
 						</v-row>
 
-						<v-row justify='center' class='pa-0 ma-0 my-4'>
-							<v-col cols='12' class='ma-0 pa-0'>
-								<ActionButton text='create account' :block='true' :icon='mdiAccountPlus'
-									:routerLink='FrontEndRoutes.REGISTER' />
+						<v-row class='pa-0 ma-0 my-4 justify-center'>
+							<v-col class='ma-0 pa-0' cols='12'>
+								<ActionButton
+									:block='true'
+									:icon='mdiAccountPlus'
+									:router-link='FrontEndRoutes.REGISTER'
+									text='create account'
+								/>
 							</v-col>
 						</v-row>
 					</template>
@@ -119,19 +158,20 @@
 </template>
 
 <script setup lang='ts'>
-import { FrontEndRoutes } from '@/types/const_routes';
-import { mdiAccountPlus, mdiChevronDoubleDown } from '@mdi/js';
-import { useDisplay } from 'vuetify';
+import { mdiAccountPlus, mdiChevronDoubleDown } from '@mdi/js'
+import { useDisplay } from 'vuetify'
+import { FrontEndRoutes } from '@/types/const_routes'
 
-const { mdAndUp, smAndDown } = useDisplay();
+const { mdAndUp, smAndDown } = useDisplay()
 
-const h1 = computed(() => mdAndUp.value ? 'h1' : 'h2');
+// FIX ME
+const text_size = computed(() => mdAndUp.value ? 'display-large' : 'display-medium')
 
-const browserStore = browserModule();
+const browserStore = browserModule()
 onMounted(() => {
-	browserStore.set_description(`staticPi`);
-	browserStore.set_title(``);
-});
+	browserStore.set_description(`staticPi`)
+	browserStore.set_title(``)
+})
 </script>
 
 <style scoped>

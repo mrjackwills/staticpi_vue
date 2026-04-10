@@ -1,5 +1,3 @@
-import type { ConstT } from '@/types';
-
 export const ModuleName = {
 	APPBAR: 'appbar',
 	BROWSER: 'browser',
@@ -12,7 +10,5 @@ export const ModuleName = {
 	SETTINGS_SECTION: 'settingsection',
 	SNACKBAR: 'snackbar',
 	TWO_FA: 'twofa',
-	USER: 'user'
-} as const;
-
-export type ModuleName = ConstT<typeof ModuleName>;
+	USER: 'user',
+} as const

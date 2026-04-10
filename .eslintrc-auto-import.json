@@ -18,6 +18,7 @@
     "Slots": true,
     "VNode": true,
     "WritableComputedRef": true,
+    "actions": true,
     "appBarModule": true,
     "browserModule": true,
     "computed": true,

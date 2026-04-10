@@ -1,16 +1,24 @@
 <template>
-	<v-row align='center' class='no-gutters ma-0 pa-0 text-caption'>
-		<v-col cols='12' class='ma-0 pa-0 '>
-			<v-row align='center' class='ma-0 pa-0'>
-				<v-col cols='auto' class='ma-0 pa-0'>
+	<v-row class='ma-0 pa-0 text-body-small align-center' density='compact'>
+		<v-col class='ma-0 pa-0 ' cols='12'>
+			<v-row class='align-center ma-0 pa-0'>
+				<v-col class='ma-0 pa-0' cols='auto'>
 					<span class='unselectable'>{{ name }}</span>
 				</v-col>
 				<v-spacer />
-				<v-col cols='auto' class='ma-0 pa-0'>
+				<v-col class='ma-0 pa-0' cols='auto'>
 					<span class='font-weight-bold'>{{ address }}</span>
 				</v-col>
-				<v-col cols='auto' class='ma-0 pa-0 ml-md-1'>
-					<CopyButton color='primary' :noHeight='true' :small='true' :toCopy :tooltipMessage :hoverMessage :density='"comfortable"'/>
+				<v-col class='ma-0 pa-0 ml-md-1' cols='auto'>
+					<CopyButton
+						color='primary'
+						:density='"comfortable"'
+						:hover-message
+						:no-height='true'
+						:small='true'
+						:to-copy
+						:tooltip-message
+					/>
 				</v-col>
 			</v-row>
 		</v-col>
@@ -20,11 +28,11 @@
 <script setup lang="ts">
 
 defineProps<{
-	address: string;
-	name: string;
-	toCopy: string;
-	tooltipMessage: string;
-	hoverMessage: string;
-}>();
+	address: string
+	name: string
+	toCopy: string
+	tooltipMessage: string
+	hoverMessage: string
+}>()
 
 </script>

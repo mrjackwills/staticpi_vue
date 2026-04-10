@@ -63,7 +63,5 @@ export const HttpCode = {
 	INSUFFICIENT_STORAGE: 507,
 	LOOP_DETECTED: 508,
 	NOT_EXTENDED: 510,
-	NETWORK_AUTHENTICATION_REQUIRED: 511
-} as const;
-
-export type HttpCode = (typeof HttpCode)[keyof typeof HttpCode];
+	NETWORK_AUTHENTICATION_REQUIRED: 511,
+} as const

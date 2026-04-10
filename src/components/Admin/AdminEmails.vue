@@ -1,39 +1,39 @@
 <template>
 	<AppCard
-		sm='12'
-		md='12'
-		lg='11'
-		xl='11'
 		heading='emails sent'
-		heading_justify='start'
-		heading_class='ml-2'
-		heading_size='text-h6'
+		heading-class='ml-2'
+		heading-justify='start'
+		heading-size='text-headline-small'
+		lg='11'
+		md='12'
 		my=''
+		sm='12'
+		xl='11'
 	>
-		<template v-slot:body>
-			<v-row align='center' justify='center' class='no-gutters py-2'>
-				<v-col cols='11' class=''>
-					<v-row align='center' justify='space-around' class='no-gutters' >
+		<template #body>
+			<v-row class='py-2 justify-center align-center' density='compact'>
+				<v-col class='' cols='11'>
+					<v-row class='align-center justify-space-around' density='compact'>
 						<v-col
 							v-for='(item,index) in data'
 							:key='index'
+							class='ma-0 pa-0 my-1'
 							cols='12'
 							md='auto'
-							class='ma-0 pa-0 my-1'
 						>
-							<v-row align='center' justify='space-between' class='ma-0 pa-0 text-caption'>
-								<v-col cols='auto' class='ma-0 pa-0'>
+							<v-row class='align-center ma-0 pa-0 text-body-small justify-space-between'>
+								<v-col class='ma-0 pa-0' cols='auto'>
 									<span class='text-pi mr-2 font-weight-bold'>
 										{{ item.name }} :
 									</span>
 								</v-col>
-								<v-col cols='auto' class='ma-0 pa-0'>
+								<v-col class='ma-0 pa-0' cols='auto'>
 									<span class=''>
 										{{ item.data }}
 									</span>
 								</v-col>
 							</v-row>
-							<v-divider class='hidden-md-and-up' v-if='(index!== data.length -1)'/>
+							<v-divider v-if='(index!== data.length -1)' class='hidden-md-and-up' />
 						</v-col>
 					</v-row>
 				</v-col>
@@ -43,20 +43,20 @@
 </template>
 
 <script setup lang="ts">
-import type { TAdminEmailCount } from '@/types';
+import type { TAdminEmailCount } from '@/types'
 
 const data = computed(() => [
 	{
 		name: 'past hour',
-		data: props.emails.hour
+		data: props.emails.hour,
 	},
 
 	{
 		name: 'total',
-		data: props.emails.total
-	}
-]);
+		data: props.emails.total,
+	},
+])
 
-const props = defineProps<{ emails: TAdminEmailCount }>();
+const props = defineProps<{ emails: TAdminEmailCount }>()
 
 </script>

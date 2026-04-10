@@ -1,8 +1,8 @@
 <template>
-	<v-row align='center' :justify no-gutters class=''>
-		<v-col cols='auto' class='ma-0 pa-0'>
+	<v-row class='align-center ' :class='justify' density='compact'>
+		<v-col class='ma-0 pa-0' cols='auto'>
 
-			<v-tooltip v-if='show_tooltip' activator='parent' location='top center' content-class='tooltip'>
+			<v-tooltip v-if='show_tooltip' activator='parent' content-class='tooltip' location='top center'>
 				<span> {{ tooltipText }}</span>
 			</v-tooltip>
 
@@ -12,29 +12,29 @@
 </template>
 
 <script setup lang='ts'>
-import { mdiWifi, mdiWifiOff } from '@mdi/js';
-import { useDisplay } from 'vuetify';
-import type { TDeviceInfo } from '@/types';
+import type { TDeviceInfo } from '@/types'
+import { mdiWifi, mdiWifiOff } from '@mdi/js'
+import { useDisplay } from 'vuetify'
 
-const { mdAndUp, smAndDown } = useDisplay();
+const { mdAndUp, smAndDown } = useDisplay()
 
 // Don't show tooltips when on android or ios if also on mobile view!
-const show_tooltip = computed(() => !(browserModule().android_ios && useDisplay().mobile.value));
+const show_tooltip = computed(() => !(browserModule().android_ios && useDisplay().mobile.value))
 
 const tooltipText = computed(() => timestamp_online.value && !timestamp_offline.value
 	? `online since ${timestamp_online.value.toLocaleString()}`
-	: timestamp_online.value && timestamp_offline.value
+	: (timestamp_online.value && timestamp_offline.value
 		? `offline since ${timestamp_offline.value.toLocaleString()}`
-		: 'never connected');
-const online = computed(() => timestamp_online.value && !timestamp_offline.value ? true : false);
-const color = computed(() => online.value ? 'primary' : 'pi');
-const icon = computed(() => online.value ? mdiWifi : mdiWifiOff);
-const justify = computed(() => mdAndUp.value ? 'center' : 'end');
-const timestamp_online = computed(() => props.device.timestamp_online ? new Date(props.device.timestamp_online) : null);
-const timestamp_offline = computed(() => props.device.timestamp_offline ? new Date(props.device.timestamp_offline) : null);
-const paused = computed(() => props.device.paused);
+		: 'never connected'))
+const online = computed(() => timestamp_online.value && !timestamp_offline.value ? true : false)
+const color = computed(() => online.value ? 'primary' : 'pi')
+const icon = computed(() => online.value ? mdiWifi : mdiWifiOff)
+const justify = computed(() => mdAndUp.value ? 'justify-center' : 'justify-end')
+const timestamp_online = computed(() => props.device.timestamp_online ? new Date(props.device.timestamp_online) : null)
+const timestamp_offline = computed(() => props.device.timestamp_offline ? new Date(props.device.timestamp_offline) : null)
+const paused = computed(() => props.device.paused)
 
-const props = defineProps<{ device: TDeviceInfo }>();
+const props = defineProps<{ device: TDeviceInfo }>()
 
 </script>
 

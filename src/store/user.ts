@@ -1,8 +1,9 @@
-import { defineStore } from 'pinia';
-import { FrontEndRoutes } from '@/types/const_routes';
-import { getActivePinia } from 'pinia';
-import { ModuleName } from '@/types/const_module';
-import { UserLevel } from '@/types/const_userLevel';
+import type { TUserLevelVal } from '@/types'
+import { defineStore } from 'pinia'
+import router from '@/router'
+import { ModuleName } from '@/types/const_module'
+import { FrontEndRoutes } from '@/types/const_routes'
+import { UserLevel } from '@/types/const_userLevel'
 
 export const userModule = defineStore(ModuleName.USER, {
 
@@ -15,78 +16,77 @@ export const userModule = defineStore(ModuleName.USER, {
 		maxMessageSize: 0,
 		maxDevices: 0,
 		timestamp: undefined as undefined | string,
-		userLevel: UserLevel.FREE as UserLevel
+		userLevel: UserLevel.FREE as TUserLevelVal,
 	}),
 
 	getters: {
 		isFreeUser (): boolean {
-			return this.userLevel === UserLevel.FREE;
+			return this.userLevel === UserLevel.FREE
 		},
 		isProUser (): boolean {
-			return this.userLevel === UserLevel.PRO;
+			return this.userLevel === UserLevel.PRO
 		},
 		isAdminUser (): boolean {
-			return this.userLevel === UserLevel.ADMIN;
+			return this.userLevel === UserLevel.ADMIN
 		},
 		isProOrAdminUser (): boolean {
-			return this.isProUser || this.isAdminUser;
-		}
+			return this.isProUser || this.isAdminUser
+		},
 	},
 
 	actions: {
 		set_authenticated (x: boolean): void {
-			this.authenticated = x;
+			this.authenticated = x
 		},
 
 		set_email (x: string): void {
-			this.email = x;
+			this.email = x
 		},
 
 		set_full_name (x: string): void {
-			this.full_name = x;
+			this.full_name = x
 		},
 
 		set_maxBandwidth (x: string): void {
-			this.maxBandwidth = x;
+			this.maxBandwidth = x
 		},
 
 		set_maxClients (x: number): void {
-			this.maxClients = x;
+			this.maxClients = x
 		},
 
 		set_maxDevices (x: number): void {
-			this.maxDevices = x;
+			this.maxDevices = x
 		},
 
 		set_maxMessageSize (x: number): void {
-			this.maxMessageSize = x;
+			this.maxMessageSize = x
 		},
 
 		set_timestamp (x: string | undefined): void {
-			this.timestamp = x;
+			this.timestamp = x
 		},
 
-		set_userLevel (x: UserLevel): void {
-			this.userLevel = x;
+		set_userLevel (x: TUserLevelVal): void {
+			this.userLevel = x
 		},
 
 		async clientSideSignout (): Promise<void> {
-			this.$reset();
-			deviceModule().$reset();
-			dialogModule().$reset();
-			getActivePinia()?.router().
-				push(FrontEndRoutes.BASE);
-			navDrawerModule().$reset();
-			passwordStrengthModule().$reset();
-			snackbarModule().$reset();
-			resetPasswordModule().$reset();
-			settingSectionModule().$reset();
-		}
+			this.$reset()
+			deviceModule().$reset()
+			dialogModule().$reset()
+			router.push(FrontEndRoutes.BASE)
+			navDrawerModule().$reset()
+			passwordStrengthModule().$reset()
+			snackbarModule().$reset()
+			resetPasswordModule().$reset()
+			settingSectionModule().$reset()
+		},
 
 	},
 
 	persist: {
 		storage: localStorage,
-		pick: ['authenticated']
-	}
-});
+		pick: ['authenticated'],
+	},
+})

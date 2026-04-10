@@ -4,50 +4,58 @@
 		<tbody>
 			<tr v-for='(item, index) in computed_bandwidth' :key='index'>
 				<td class='font-weight-bold'>
-					<v-icon color='pi' class='mr-md-8 mr-sm-2' v-if='!smAndDown' :icon='item.icon' />
+					<v-icon v-if='!smAndDown' class='mr-md-8 mr-sm-2' color='pi' :icon='item.icon' />
 					<span :class='{ "small-text": smAndDown }'>{{ item.timespan }}</span>
 				</td>
 				<td class='text-right text-secondary'>
 					<template v-if='init'>
-						<v-row align='center' justify='end' class='ma-0 pa-0'>
+						<v-row class='align-center ma-0 pa-0 justify-end'>
 
-							<v-col cols='auto' class='ma-0 pa-0' :class='mobileClass'>
+							<v-col class='ma-0 pa-0' :class='mobileClass' cols='auto'>
 								<div class='text-right'>
 									<span class='font-weight-bold'> {{ item.in.human_readable.total }}</span>
 									<span class='mr-1 font-weight-bold'>{{ item.in.human_readable.unit }}</span>
 								</div>
-								<v-tooltip v-if='show_tooltip' activator='parent' location='top center'
-									content-class='tooltip'>
+								<v-tooltip
+									v-if='show_tooltip'
+									activator='parent'
+									content-class='tooltip'
+									location='top center'
+								>
 									<span>{{ item.in.bytes }} bytes received</span>
 								</v-tooltip>
 							</v-col>
-							<v-col cols='auto' class='ma-0 pa-0' v-if='!smAndDown'>
-								<v-icon small color='secondary' :icon='mdiArrowDownBold' />
+							<v-col v-if='!smAndDown' class='ma-0 pa-0' cols='auto'>
+								<v-icon color='secondary' :icon='mdiArrowDownBold' small />
 							</v-col>
 						</v-row>
 					</template>
-					<v-progress-circular v-else :indeterminate='true' :size='20' color='primary' />
+					<v-progress-circular v-else color='primary' :indeterminate='true' :size='20' />
 				</td>
 				<td class='text-right text-primary'>
 					<template v-if='init'>
-						<v-row align='center' justify='end' class='ma-0 pa-0'>
+						<v-row class='align-center ma-0 pa-0 justify-end'>
 
-							<v-col cols='auto' class='ma-0 pa-0' :class='mobileClass'>
+							<v-col class='ma-0 pa-0' :class='mobileClass' cols='auto'>
 								<div class='text-right'>
 									<span class='font-weight-bold'> {{ item.out.human_readable.total }}</span>
 									<span class='mr-1 font-weight-bold'>{{ item.out.human_readable.unit }}</span>
 								</div>
-								<v-tooltip v-if='show_tooltip' activator='parent' location='top center'
-									content-class='tooltip'>
+								<v-tooltip
+									v-if='show_tooltip'
+									activator='parent'
+									content-class='tooltip'
+									location='top center'
+								>
 									<span>{{ item.out.bytes }} bytes sent</span>
 								</v-tooltip>
 							</v-col>
-							<v-col cols='auto' class='ma-0 pa-0' v-if='!smAndDown'>
-								<v-icon small color='primary' :icon='mdiArrowUpBold' />
+							<v-col v-if='!smAndDown' class='ma-0 pa-0' cols='auto'>
+								<v-icon color='primary' :icon='mdiArrowUpBold' small />
 							</v-col>
 						</v-row>
 					</template>
-					<v-progress-circular v-else :indeterminate='true' :size='20' color='primary' />
+					<v-progress-circular v-else color='primary' :indeterminate='true' :size='20' />
 				</td>
 			</tr>
 		</tbody>
@@ -56,25 +64,25 @@
 
 <script setup lang='ts'>
 
-import { axios_incognito } from '@/services/axios';
-import { convert_bytes } from '@/vanillaTS/convert_bytes';
-import { useDisplay } from 'vuetify';
-import { mdiArrowDownBold, mdiArrowUpBold, mdiCalendarBlank, mdiClockOutline, mdiEarth } from '@mdi/js';
-import type { TComputedBandwidth } from '@/types';
+import type { TComputedBandwidth } from '@/types'
+import { mdiArrowDownBold, mdiArrowUpBold, mdiCalendarBlank, mdiClockOutline, mdiEarth } from '@mdi/js'
+import { useDisplay } from 'vuetify'
+import { axios_incognito } from '@/services/axios'
+import { convert_bytes } from '@/vanillaTS/convert_bytes'
 
-const { smAndDown, mobile } = useDisplay();
+const { smAndDown, mobile } = useDisplay()
 
 // Don't show tooltips when on android or ios if also on mobile view!
-const show_tooltip = computed(() => !(browserModule().android_ios && mobile.value));
+const show_tooltip = computed(() => !(browserModule().android_ios && mobile.value))
 
 onBeforeUnmount(() => {
-	clearInterval(bandwidthInterval.value);
-});
+	clearInterval(bandwidthInterval.value)
+})
 
 onMounted(async () => {
-	await checkAll();
-	bandwidthInterval.value = window.setInterval(checkBandwidth, 10000);
-});
+	await checkAll()
+	bandwidthInterval.value = window.setInterval(checkBandwidth, 10_000)
+})
 const computed_bandwidth = computed((): Array<TComputedBandwidth> => [
 
 	{
@@ -82,43 +90,43 @@ const computed_bandwidth = computed((): Array<TComputedBandwidth> => [
 		timespan: 'last hour',
 		in: {
 			human_readable: convert_bytes(bandwidth.value.hour_in),
-			bytes: bandwidth.value.hour_in
+			bytes: bandwidth.value.hour_in,
 		},
 		out: {
 			human_readable: convert_bytes(bandwidth.value.hour_out),
-			bytes: bandwidth.value.hour_out
-		}
+			bytes: bandwidth.value.hour_out,
+		},
 	},
 	{
 		icon: mdiCalendarBlank,
 		timespan: 'last 24 hours',
 		in: {
 			human_readable: convert_bytes(bandwidth.value.day_in),
-			bytes: bandwidth.value.day_in
+			bytes: bandwidth.value.day_in,
 		},
 		out: {
 			human_readable: convert_bytes(bandwidth.value.day_out),
-			bytes: bandwidth.value.day_out
-		}
+			bytes: bandwidth.value.day_out,
+		},
 	},
 	{
 		icon: mdiEarth,
 		timespan: 'all time',
 		in: {
 			human_readable: convert_bytes(bandwidth.value.total_in),
-			bytes: bandwidth.value.total_in
+			bytes: bandwidth.value.total_in,
 		},
 		out: {
 			human_readable: convert_bytes(bandwidth.value.total_out),
-			bytes: bandwidth.value.total_out
-		}
-	}
-]);
+			bytes: bandwidth.value.total_out,
+		},
+	},
+])
 
-const mobileClass = computed(() => smAndDown.value ? 'small-text' : 'total-unit-width');
-const init = ref(false);
+const mobileClass = computed(() => smAndDown.value ? 'small-text' : 'total-unit-width')
+const init = ref(false)
 
-const bandwidthInterval = ref(0);
+const bandwidthInterval = ref(0)
 const bandwidth = ref({
 	day_in: 0,
 	day_out: 0,
@@ -127,18 +135,18 @@ const bandwidth = ref({
 	month_in: 0,
 	month_out: 0,
 	total_in: 0,
-	total_out: 0
-});
+	total_out: 0,
+})
 
-const checkAll = async (): Promise<void> => {
-	await checkBandwidth();
-};
+async function checkAll (): Promise<void> {
+	await checkBandwidth()
+}
 
-const checkBandwidth = async (): Promise<void> => {
-	const bandwidthRequest = await axios_incognito.bandwidth_get();
-	if (bandwidthRequest) bandwidth.value = bandwidthRequest;
-	init.value = true;
-};
+async function checkBandwidth (): Promise<void> {
+	const bandwidthRequest = await axios_incognito.bandwidth_get()
+	if (bandwidthRequest) bandwidth.value = bandwidthRequest
+	init.value = true
+}
 
 </script>
 

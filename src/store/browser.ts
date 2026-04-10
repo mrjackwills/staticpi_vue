@@ -1,5 +1,5 @@
-import { defineStore } from 'pinia';
-import { ModuleName } from '@/types/const_module';
+import { defineStore } from 'pinia'
+import { ModuleName } from '@/types/const_module'
 
 export const browserModule = defineStore(ModuleName.BROWSER, {
 
@@ -14,53 +14,53 @@ export const browserModule = defineStore(ModuleName.BROWSER, {
 		pwa: false,
 		redirect: '',
 		stopScroll: false,
-		title: ''
+		title: '',
 	}),
 
 	actions: {
 		set_api_version (x: string): void {
-			this.api_version = x;
+			this.api_version = x
 		},
 
 		set_android_ios (x: boolean): void {
-			this.android_ios = x;
+			this.android_ios = x
 		},
 
 		set_description (x: string): void {
-			this.description = x;
+			this.description = x
 		},
 
 		set_force_refresh (x: boolean): void {
-			this.force_refresh = x;
+			this.force_refresh = x
 		},
 
 		set_history (): void {
-			this.history++;
+			this.history++
 		},
 
 		set_init (x: boolean): void {
-			this.init = x;
+			this.init = x
 		},
 
 		set_online (x: boolean): void {
-			this.online = x;
+			this.online = x
 		},
 
 		set_pwa (x: boolean): void {
-			this.pwa = x;
+			this.pwa = x
 		},
 
 		set_redirect (x: string): void {
-			this.redirect = x;
+			this.redirect = x
 		},
 
 		set_stopScroll (x: boolean): void {
-			this.stopScroll = x;
+			this.stopScroll = x
 		},
 
 		set_title (x: string): void {
-			this.title = x;
-		}
+			this.title = x
+		},
 
-	}
-});
+	},
+})

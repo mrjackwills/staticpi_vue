@@ -1,40 +1,40 @@
 <template>
 	<AppCard
-		sm='12'
-		md='12'
-		lg='11'
-		xl='11'
 		heading='memory'
-		heading_justify='start'
-		heading_class='ml-2'
-		heading_size='text-h6'
+		heading-class='ml-2'
+		heading-justify='start'
+		heading-size='text-headline-small'
+		lg='11'
+		md='12'
 		my=''
+		sm='12'
+		xl='11'
 	>
-		<template v-slot:body>
-			<v-row align='center' justify='center' class='no-gutters py-2'>
-				<v-col cols='11' class=''>
-					<v-row align='center' justify='space-around' class='no-gutters' >
+		<template #body>
+			<v-row class='py-2 align-center justify-center' density='compact'>
+				<v-col class='' cols='11'>
+					<v-row class='align-center justify-space-around' density='compact'>
 						<v-col
 							v-for='(item,index) in data'
 							:key='index'
+							class='ma-0 pa-0 my-1'
 							cols='12'
 							md='auto'
-							class='ma-0 pa-0 my-1'
 						>
-							<v-row align='center' justify='space-between' class='ma-0 pa-0'>
-								<v-col cols='auto' class='ma-0 pa-0'>
-									<span class='text-pi mr-2 text-caption font-weight-bold'>
+							<v-row class='align-center ma-0 pa-0 justify-space-between'>
+								<v-col class='ma-0 pa-0' cols='auto'>
+									<span class='text-pi mr-2 text-body-small font-weight-bold'>
 										{{ item.name }} :
 
 									</span>
 								</v-col>
-								<v-col cols='auto' class='ma-0 pa-0 text-caption'>
+								<v-col class='ma-0 pa-0 text-body-small' cols='auto'>
 									<span class=''>
 										{{ item.data }}
 									</span>
 								</v-col>
 							</v-row>
-							<v-divider class='hidden-md-and-up' v-if='(index!== data.length -1)'/>
+							<v-divider v-if='(index!== data.length -1)' class='hidden-md-and-up' />
 						</v-col>
 					</v-row>
 				</v-col>
@@ -44,32 +44,32 @@
 </template>
 
 <script setup lang="ts">
-import { convert_bytes } from '@/vanillaTS/convert_bytes';
-import { secondsToDays } from '@/vanillaTS/convert_seconds';
-import type { TAdminMemory } from '@/types';
+import type { TAdminMemory } from '@/types'
+import { convert_bytes } from '@/vanillaTS/convert_bytes'
+import { secondsToDays } from '@/vanillaTS/convert_seconds'
 
 const data = computed(() => {
-	const rss = convert_bytes(props.memory.rss);
-	const virt = convert_bytes(props.memory.virt);
+	const rss = convert_bytes(props.memory.rss)
+	const virt = convert_bytes(props.memory.virt)
 	return [
 		{
 			name: 'rss',
-			data: `${rss.total}${rss.unit}`
+			data: `${rss.total}${rss.unit}`,
 		},
 		{
 			name: 'virtual',
-			data: `${virt.total}${virt.unit}`
+			data: `${virt.total}${virt.unit}`,
 		},
 		{
 			name: 'server uptime',
-			data: secondsToDays(props.memory.uptime * 1000)
+			data: secondsToDays(props.memory.uptime * 1000),
 		},
 		{
 			name: 'app uptime',
-			data: secondsToDays(props.memory.uptime_app * 1000)
-		}
-	];
-});
+			data: secondsToDays(props.memory.uptime_app * 1000),
+		},
+	]
+})
 
-const props = defineProps<{ memory: TAdminMemory }>();
+const props = defineProps<{ memory: TAdminMemory }>()
 </script>

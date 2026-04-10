@@ -1,5 +1,9 @@
 <template>
-	<v-row class='ma-0 pa-0 no-gutters' :class='showBorder' align='center' justify='end' justify-md='end'>
+	<v-row
+		class='ma-0 pa-0 align-center justify-end justify-md-end'
+		:class='showBorder'
+		density='compact'
+	>
 
 		<v-col class='ma-0 pa-0' :class='mobileClass' cols='auto'>
 			<span class='bandwidth-text'>
@@ -7,30 +11,30 @@
 		</v-col>
 
 		<v-col class='ma-0 pa-0 text-right' cols='auto'>
-			<v-icon :color :icon :size='mobile ? "x-small" : "small"' />
+			<v-icon :color :icon size='x-small' />
 		</v-col>
 
 	</v-row>
 </template>
 
 <script setup lang='ts'>
-import { mdiArrowDownBold, mdiArrowUpBold, mdiSwapVerticalBold } from '@mdi/js';
-import { useDisplay } from 'vuetify';
+import { mdiArrowDownBold, mdiArrowUpBold, mdiSwapVerticalBold } from '@mdi/js'
+import { useDisplay } from 'vuetify'
 
-const { mobile } = useDisplay();
+const { mobile } = useDisplay()
 
-const combined = computed(() => !['in', 'out'].includes(props.variety));
-const color = computed(() => props.variety === 'in' ? 'primary' : props.variety === 'out' ? 'secondary' : 'error');
-const icon = computed(() => props.variety === 'in' ? mdiArrowUpBold : props.variety === 'out' ? mdiArrowDownBold : mdiSwapVerticalBold);
-const mobileClass = computed(() => mobile.value ? 'small-text' : 'total-unit-width');
-const showBorder = computed(() => !mobile.value && combined.value && props.borderRight ? 'thick-border-right' : !mobile.value && props.borderRight ? 'border-right' : '');
+const combined = computed(() => !['in', 'out'].includes(props.variety))
+const color = computed(() => props.variety === 'in' ? 'primary' : (props.variety === 'out' ? 'secondary' : 'error'))
+const icon = computed(() => props.variety === 'in' ? mdiArrowUpBold : (props.variety === 'out' ? mdiArrowDownBold : mdiSwapVerticalBold))
+const mobileClass = computed(() => mobile.value ? 'small-text' : 'total-unit-width')
+const showBorder = computed(() => !mobile.value && combined.value && props.borderRight ? 'thick-border-right' : (!mobile.value && props.borderRight ? 'border-right' : ''))
 
 const props = withDefaults(defineProps<{
-	borderRight?: boolean;
-	total: string;
-	unit: string;
-	variety: string;
-}>(), { borderRight: true });
+	borderRight?: boolean
+	total: string
+	unit: string
+	variety: string
+}>(), { borderRight: true })
 
 </script>
 

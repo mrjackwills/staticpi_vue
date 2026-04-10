@@ -1,5 +1,5 @@
-import { defineStore } from 'pinia';
-import { ModuleName } from '@/types/const_module';
+import { defineStore } from 'pinia'
+import { ModuleName } from '@/types/const_module'
 
 export const appBarModule = defineStore(ModuleName.APPBAR, {
 
@@ -7,7 +7,7 @@ export const appBarModule = defineStore(ModuleName.APPBAR, {
 
 	actions: {
 		set_size (value: number) {
-			this.size = value;
-		}
-	}
-});
+			this.size = value
+		},
+	},
+})

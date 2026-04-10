@@ -1,5 +1,3 @@
-import type { ConstT } from '@/types';
-
 export const FrontEndRoutes = {
 	ADMIN: '/admin',
 	BASE: '/',
@@ -18,9 +16,8 @@ export const FrontEndRoutes = {
 	USER_DEVICES: '/user/devices',
 	USER_RESET: '/user/reset',
 	USER_SETTINGS: '/user/settings',
-	VERIFY_param_ID: '/user/verify/:id'
-} as const;
-export type FrontendRoutes = ConstT<typeof FrontEndRoutes>;
+	VERIFY_param_ID: '/user/verify/:id',
+} as const
 
 export const FrontEndNames = {
 	ADMIN: 'admin',
@@ -39,7 +36,5 @@ export const FrontEndNames = {
 	USER_RESET: 'user_reset',
 	USER_RESET_ID: 'user_reset_id',
 	USER_SETTINGS: 'user_settings',
-	USER_VERIFY_param_ID: 'user_verify_id'
-} as const;
-
-export type FrontEndNames = ConstT<typeof FrontEndNames>;
+	USER_VERIFY_param_ID: 'user_verify_id',
+} as const

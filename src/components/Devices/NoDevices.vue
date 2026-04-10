@@ -1,11 +1,11 @@
 <template>
 	<section>
-		<v-row align='center'  justify='center' class='no-gutters my-6'>
-			<v-col cols='12' class='text-body-1 text-center'>
-				<span class='text-h5'>	You currently have no devices</span>
+		<v-row class='my-6 justify-center align-center' density='compact'>
+			<v-col class='text-body-large text-center' cols='12'>
+				<span class='text-headline-medium'>You currently have no devices</span>
 				<br>
 			</v-col>
-			<v-col cols='12' class='text-body-1 text-center'>
+			<v-col class='text-body-large text-center' cols='12'>
 				Why not try creating a new device
 			</v-col>
 		</v-row>

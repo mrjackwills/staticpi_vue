@@ -1,11 +1,17 @@
 <template>
-	<v-col cols='auto' class='unselectable ma-0 pa-0' :order>
-		<v-chip :size :ripple='false' label color='secondary' variant='flat'>
-			<v-row align='center' justify='center' class='ma-0 pa-0 no-gutters'>
-				<v-col cols='auto' class='ma-0 pa-0 mr-1'>
-					<v-icon :size :icon='mdiStarCircle' />
+	<v-col class='unselectable ma-0 pa-0' cols='auto' :order>
+		<v-chip
+			color='secondary'
+			label
+			:ripple='false'
+			:size
+			variant='flat'
+		>
+			<v-row class='align-center ma-0 pa-0  justify-center' density='compact'>
+				<v-col class='ma-0 pa-0 mr-1' cols='auto'>
+					<v-icon :icon='mdiStarCircle' :size />
 				</v-col>
-				<v-col cols='auto' class='ma-0 pa-0'>pro user only</v-col>
+				<v-col class='ma-0 pa-0' cols='auto'>pro user only</v-col>
 			</v-row>
 
 		</v-chip>
@@ -13,12 +19,12 @@
 </template>
 
 <script setup lang="ts">
-import { mdiStarCircle } from '@mdi/js';
-import { useDisplay } from 'vuetify';
+import { mdiStarCircle } from '@mdi/js'
+import { useDisplay } from 'vuetify'
 
-const { mobile } = useDisplay();
+const { mobile } = useDisplay()
 
-const size = computed(() => mobile.value ? 'x-small' : 'default');
+const size = computed(() => mobile.value ? 'x-small' : 'default')
 
-withDefaults(defineProps<{ order?: string }>(), { order: '1' });
+withDefaults(defineProps<{ order?: string }>(), { order: '1' })
 </script>

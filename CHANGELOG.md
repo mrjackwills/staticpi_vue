@@ -1,3 +1,11 @@
+# <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.2.6'>v0.2.6</a>
+### 2026-04-10
+
+### Chores
++ index.html schema update, [da91f90b](https://github.com/mrjackwills/staticpi_vue/commit/da91f90b962999111d01d1a5038ee4a8754ce596)
++ chmod .sh file, [c58bce70](https://github.com/mrjackwills/staticpi_vue/commit/c58bce709fa7df291a2e841e0a619c828a3db557)
++ dependencies updated, [0591d725](https://github.com/mrjackwills/staticpi_vue/commit/0591d725b53a17d88e43755435faa962f71f2ea6), [a9e3df11](https://github.com/mrjackwills/staticpi_vue/commit/a9e3df11cf4094b35d6cb7e48ebb419901108539)
+
 # <a href='https://github.com/mrjackwills/staticpi_vue/releases/tag/v0.2.5'>v0.2.5</a>
 ### 2025-09-24
 

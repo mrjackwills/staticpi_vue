@@ -1,15 +1,16 @@
+import type { VitePWAOptions } from 'vite-plugin-pwa'
+import { fileURLToPath, URL } from 'node:url'
+import babel from '@rolldown/plugin-babel'
 // Plugins
-import vue from '@vitejs/plugin-vue';
-import viteCompression from 'vite-plugin-compression';
-import { VitePWA } from 'vite-plugin-pwa';
-import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify';
-import type { VitePWAOptions } from 'vite-plugin-pwa';
-import AutoImport from 'unplugin-auto-import/vite';
-import Components from 'unplugin-vue-components/vite';
-
+import vue from '@vitejs/plugin-vue'
+import AutoImport from 'unplugin-auto-import/vite'
+import Unfonts from 'unplugin-fonts/vite'
+import Components from 'unplugin-vue-components/vite'
 // Utilities
-import { defineConfig } from 'vite';
-import { fileURLToPath, URL } from 'node:url';
+import { defineConfig } from 'vite'
+import compression from 'vite-plugin-compression2'
+import { VitePWA } from 'vite-plugin-pwa'
+import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 const pwaOptions: Partial<VitePWAOptions> = {
 	base: '/',
@@ -27,31 +28,31 @@ const pwaOptions: Partial<VitePWAOptions> = {
 			{
 				src: 'img/icons/android-chrome-192x192.png',
 				sizes: '192x192',
-				type: 'image/png'
+				type: 'image/png',
 			},
 			{
 				src: 'img/icons/android-chrome-512x512.png',
 				sizes: '512x512',
-				type: 'image/png'
-			}
+				type: 'image/png',
+			},
 
-			/*
-			 * {
-			 * 	src: 'img/icons/android-chrome-512x512.png',
-			 * 	sizes: '512x512',
-			 * 	type: 'image/png',
-			 * 	purpose: 'any maskable'
-			 * },
-			 */
-		]
+		],
+	},
+}
+
+function decoratorPreset (options: Record<string, unknown>) {
+	return {
+		preset: () => ({
+			plugins: [['@babel/plugin-proposal-decorators', options]],
+		}),
+		rolldown: {
+			// Only run this transform if the file contains a decorator.
+			filter: {
+				code: '@',
+			},
+		},
 	}
-	// devOptions: {
-	// 	enabled: true,
-	// 	/* when using generateSW the PWA plugin will switch to classic */
-	// 	type: 'module',
-	// 	navigateFallback: 'index.html',
-	// },
-};
+}
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -65,32 +66,49 @@ export default defineConfig({
 				/\.[tj]sx?$/,
 				/\.vue$/,
 				/\.vue\?vue/,
-				/\.md$/
+				/\.md$/,
 			],
 			imports: [
 				'vue',
-				'vue-router'
+				'vue-router',
 			],
 			dts: 'src/auto-imports.d.ts',
 			eslintrc: { enabled: true },
 			dirs: ['src/store'],
-			vueTemplate: false
+			vueTemplate: false,
+		}),
+		Unfonts({
+			custom: {
+				families: [
+					{
+						name: 'Titillium Web',
+						local: 'Titillium Web',
+						src: './src/assets/fonts/*.woff2',
+					},
+				],
+				display: 'auto',
+				preload: true,
+				injectTo: 'head-prepend',
+			},
 		}),
 		VitePWA(pwaOptions),
-		viteCompression({ algorithm: 'brotliCompress' }),
-		viteCompression({ algorithm: 'gzip' })
+		babel({ presets: [decoratorPreset({ version: '2023-11' })] }),
+		compression({
+			algorithms: ['brotliCompress', 'gzip'],
+			exclude: [/\.(br)$/, /\.(gz)$/],
+		}),
 	],
 	define: {
 		'process.env': {},
 		'import.meta.env.BUILD_DATE': Date.now(),
-		'import.meta.env.VERSION': JSON.stringify(process.env.npm_package_version)
+		'import.meta.env.VERSION': JSON.stringify(process.env.npm_package_version),
 	},
 	resolve: {
-		alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
-		extensions: ['.js', '.json', '.jsx', '.mjs', '.ts', '.tsx', '.vue']
+		alias: { '@': fileURLToPath(new URL('src', import.meta.url)) },
+		extensions: ['.js', '.json', '.jsx', '.mjs', '.ts', '.tsx', '.vue'],
 	},
 	server: {
 		port: 8002,
-		host: '127.0.0.1'
-	}
-});
+		host: '127.0.0.1',
+	},
+})
