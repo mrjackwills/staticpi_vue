@@ -1,8 +1,14 @@
-### 2026-04-10
+### 2026-04-30
 
 ### Chores
-+ index.html schema update, [da91f90b962999111d01d1a5038ee4a8754ce596]
-+ chmod .sh file, [c58bce709fa7df291a2e841e0a619c828a3db557]
-+ dependencies updated, [0591d725b53a17d88e43755435faa962f71f2ea6], [a9e3df11cf4094b35d6cb7e48ebb419901108539]
++ linting, [e39b38e4f5e6ff66321cdc36f5b3bb0c4fb2b728]
++ dependencies updated, [d5dacfc634aadd61b6f8fa1463752846f4540188]
+
+### Features
++ switch from Axios to Fetch, [8bbc98901b24a80862d72556d0c3aeddeaa9a401]
+
+### Fixes
++ footer animation on minimize, [67cc48cd273acfa13f60d54116a66e76dc43cddd]
++ code examples, [1fae496f7d2a0c3b1d6bf7f4d794164e72f457c6]
 
 see <a href='https://github.com/mrjackwills/staticpi_vue/blob/main/CHANGELOG.md'>CHANGELOG.md</a> for more details
