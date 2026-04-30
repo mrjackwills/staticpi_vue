@@ -71,8 +71,8 @@
 import type { TAuthObject } from '@/types'
 import { mdiClose, mdiDeleteCircle, mdiShieldHalfFull } from '@mdi/js'
 import { useDisplay } from 'vuetify'
-import { axios_authenticatedUser } from '@/services/axios'
 import { dialoger } from '@/services/dialog'
+import { fetch_authenticatedUser } from '@/services/fetch'
 import { snackSuccess } from '@/services/snack'
 
 const { smAndDown } = useDisplay()
@@ -84,7 +84,7 @@ onBeforeMount(async () => {
 	twoFAStore.set_setupProcessStarted(false)
 	twoFAStore.set_backupProcess(false)
 	if (setupProcessStarted.value) {
-		await axios_authenticatedUser.setupTwoFA_delete()
+		await fetch_authenticatedUser.setupTwoFA_delete()
 	}
 })
 
@@ -119,7 +119,7 @@ function cancel (): void {
 }
 async function removeTwoFA_confirm (authentication: TAuthObject): Promise<void> {
 	loading.value = true
-	const response = await axios_authenticatedUser.twoFA_delete(authentication)
+	const response = await fetch_authenticatedUser.twoFA_delete(authentication)
 	loading.value = false
 	settingSectionStore.set_current_section(undefined)
 	if (response) snackSuccess({
@@ -129,7 +129,7 @@ async function removeTwoFA_confirm (authentication: TAuthObject): Promise<void> 
 }
 async function removeBackups_confirm (authentication: TAuthObject): Promise<void> {
 	loading.value = true
-	const response = await axios_authenticatedUser.twoFA_backup_delete(authentication)
+	const response = await fetch_authenticatedUser.twoFA_backup_delete(authentication)
 	loading.value = false
 	settingSectionStore.set_current_section(undefined)
 	if (response) snackSuccess({

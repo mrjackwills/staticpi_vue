@@ -157,7 +157,7 @@ import {
 import useVuelidate from '@vuelidate/core'
 import { minLength, required } from '@vuelidate/validators'
 import { useDisplay } from 'vuetify'
-import { axios_authenticatedUser } from '@/services/axios'
+import { fetch_authenticatedUser } from '@/services/fetch'
 import { snackSuccess } from '@/services/snack'
 import { minPassLength } from '@/vanillaTS/globalConst'
 import { passwordCheck } from '@/vanillaTS/hibp'
@@ -301,7 +301,7 @@ async function submit (): Promise<void> {
 		loading.value = false
 		return
 	}
-	const response = await axios_authenticatedUser.password_patch({
+	const response = await fetch_authenticatedUser.password_patch({
 		current_password: user.value.current_password,
 		token: user.value.token ?? null,
 		new_password: user.value.new_password,

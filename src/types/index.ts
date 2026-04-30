@@ -187,10 +187,10 @@ export type TTFASetupPatch = { always_required: true } | { always_required: fals
 
 export type TToken = { token: string }
 
-type TAxiosStatus = { status: THttpCodeVal }
+type THttpStatus = { status: THttpCodeVal }
 
 export type TSigninBody = { response: { two_fa_backup: boolean } }
-export type TSigninResponse = TSigninBody & TAxiosStatus
+export type TSigninResponse = TSigninBody & THttpStatus
 
 export type TResetPasswordGet = Record<'two_fa_enabled' | 'two_fa_backup', boolean>
 

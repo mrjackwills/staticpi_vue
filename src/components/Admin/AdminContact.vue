@@ -64,7 +64,7 @@
 <script setup lang="ts">
 import type { TAdminContactMessage } from '@/types'
 import { mdiAccountCircle, mdiCloseCircle } from '@mdi/js'
-import { axios_admin } from '@/services/axios'
+import { fetch_admin } from '@/services/fetch'
 
 const emit = defineEmits(['update'])
 
@@ -72,7 +72,7 @@ const text_color = (x: number | null): string => x ? 'text-primary' : 'text-pi'
 
 async function delete_message (contact_id: number): Promise<void> {
 	loadingModule().set_loading(true)
-	await axios_admin.contact_delete(contact_id)
+	await fetch_admin.contact_delete(contact_id)
 	loadingModule().set_loading(false)
 	emit('update')
 }

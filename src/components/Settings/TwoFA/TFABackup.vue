@@ -117,8 +117,8 @@ import type { TAuthObject } from '@/types'
 import { mdiClose, mdiContentCopy, mdiDownload, mdiShieldKey, mdiShieldRefresh } from '@mdi/js'
 import { useClipboard } from '@vueuse/core'
 import { useDisplay } from 'vuetify'
-import { axios_authenticatedUser } from '@/services/axios'
 import { dialoger } from '@/services/dialog'
+import { fetch_authenticatedUser } from '@/services/fetch'
 import { snackSuccess } from '@/services/snack'
 
 const settingsSectionStore = settingSectionModule()
@@ -229,7 +229,7 @@ async function re_generateBackups_confirm (authentication: TAuthObject): Promise
 	localLoading.value = true
 	backupProcess.value = true
 	settingsSectionStore.set_current_section('2fa')
-	const response = await axios_authenticatedUser.twoFA_backup_patch(authentication)
+	const response = await fetch_authenticatedUser.twoFA_backup_patch(authentication)
 	if (response) {
 		backupArray.value = response
 		snackSuccess({ message: 'Backup codes re-generated' })
@@ -246,7 +246,7 @@ async function generateBackups_confirm (): Promise<void> {
 	localLoading.value = true
 	backupProcess.value = true
 	settingsSectionStore.set_current_section('2fa')
-	const response = await axios_authenticatedUser.twoFA_backup_post()
+	const response = await fetch_authenticatedUser.twoFA_backup_post()
 	loading.value = false
 	localLoading.value = false
 	if (response) backupArray.value = response

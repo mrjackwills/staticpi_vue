@@ -59,8 +59,8 @@ import type { TAuthObject, TDeviceInfo, TDeviceTableFields } from '@/types'
 import type { VRow } from 'vuetify/components/VGrid'
 import { mdiClose, mdiContentSave, mdiLanConnect, mdiPencilOutline } from '@mdi/js'
 import { useDisplay } from 'vuetify'
-import { axios_device } from '@/services/axios'
 import { dialoger } from '@/services/dialog'
+import { fetch_device } from '@/services/fetch'
 import { snackSuccess } from '@/services/snack'
 
 const { mdAndUp } = useDisplay()
@@ -126,7 +126,7 @@ function onIntersect (is_i: boolean, _entries: Array<IntersectionObserverEntry>,
 const emit = defineEmits(['refresh'])
 async function update_maxClients_confirm (authentication?: TAuthObject): Promise<void> {
 	loading.value = true
-	const response = await axios_device.maxClients_patch({
+	const response = await fetch_device.maxClients_patch({
 		maxClients: new_value.value,
 		name: name_of_device.value,
 		...authentication ? { authentication } : {},

@@ -198,8 +198,8 @@
 import type { AdminDeviceAndConnections, TAdminSession, TAdminUser, TAuthObject, TDeviceInfo } from '@/types'
 import { mdiAccountRemove, mdiCheck, mdiChevronDown, mdiChevronUp, mdiClose, mdiCloseCircle, mdiDelete } from '@mdi/js'
 import { useDisplay } from 'vuetify'
-import { axios_admin } from '@/services/axios'
 import { dialoger } from '@/services/dialog'
+import { fetch_admin } from '@/services/fetch'
 import { UserLevel } from '@/types/const_userLevel'
 import { convert_bytes } from '@/vanillaTS/convert_bytes'
 import { secondsToDays } from '@/vanillaTS/convert_seconds'
@@ -226,7 +226,7 @@ onUnmounted(() => {
 })
 
 async function click_active (): Promise<void> {
-	const valid = await axios_admin.active_patch(props.user.email)
+	const valid = await fetch_admin.active_patch(props.user.email)
 	if (valid) {
 		emit('update')
 	} else {
@@ -240,7 +240,7 @@ const user_level_class = computed(() => props.user.user_level === UserLevel.ADMI
 
 async function update_device (): Promise<void> {
 	loadingModule().set_loading(true)
-	all_devices.value = await axios_admin.user_connections_get(props.user.email)
+	all_devices.value = await fetch_admin.user_connections_get(props.user.email)
 	loadingModule().set_loading(false)
 }
 
@@ -284,7 +284,7 @@ function click_session (): void {
 }
 
 async function click_attempt (): Promise<void> {
-	await axios_admin.attempt_delete(props.user.email)
+	await fetch_admin.attempt_delete(props.user.email)
 	emit('update')
 }
 
@@ -293,7 +293,7 @@ const session_icon = computed(() => show_session.value ? mdiChevronUp : mdiChevr
 const session_color = computed(() => show_session.value ? 'pi' : 'primary')
 
 async function session_delete (key: string): Promise<void> {
-	await axios_admin.session_delete(key)
+	await fetch_admin.session_delete(key)
 	emit('update')
 }
 
@@ -369,7 +369,7 @@ async function deleteUser (): Promise<void> {
 
 async function deleteUser_confirm (authentication: TAuthObject): Promise<void> {
 	loading.value = true
-	await axios_admin.user_delete({
+	await fetch_admin.user_delete({
 		email: props.user.email,
 		...authentication,
 	})

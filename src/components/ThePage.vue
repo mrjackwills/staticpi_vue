@@ -10,6 +10,7 @@
 		/>
 
 		<!-- TODO fix me -->
+		<!-- Fix what exactly? -->
 		<v-row
 			v-if='pageReady'
 			id='the_page'
@@ -20,7 +21,7 @@
 
 			<v-container class='ma-0 pa-0' :class='{"fill-height d-flex align-center flex-wrap":fillHeight}' fluid>
 				<v-row class='align-center ma-0 pa-0 justify-center' density='compact'>
-					<v-col class='pa-0 ma-0 mt-1' cols='12'>
+					<v-col class='pa-0 ma-0 px-2 mt-1' cols='12'>
 						<CardHeading
 							v-if='heading'
 							class='ml-2'

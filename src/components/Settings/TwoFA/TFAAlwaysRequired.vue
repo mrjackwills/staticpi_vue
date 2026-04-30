@@ -12,7 +12,7 @@
 					<v-col class='ma-0 pa-0' cols='auto' @click='toggle'>
 						<v-switch
 							v-model='always_required'
-							class='ma-0 pa-0'
+							class='ma-0 pa-0 ml-4'
 							color='primary'
 							density='compact'
 							:disabled='backupProcess'
@@ -41,8 +41,8 @@
 
 <script setup lang='ts'>
 import type { TAuthObject } from '@/types'
-import { axios_authenticatedUser } from '@/services/axios'
 import { dialoger } from '@/services/dialog'
+import { fetch_authenticatedUser } from '@/services/fetch'
 const twoFAStore = twoFAModule()
 
 const always_required = computed({
@@ -65,12 +65,12 @@ const loading = computed({
 
 async function confirm_function_add (): Promise<void> {
 	loading.value = true
-	await axios_authenticatedUser.twoFA_patch({ always_required: true })
+	await fetch_authenticatedUser.twoFA_patch({ always_required: true })
 	loading.value = false
 }
 async function confirm_function_remove (authentication: TAuthObject): Promise<void> {
 	loading.value = true
-	await axios_authenticatedUser.twoFA_patch({
+	await fetch_authenticatedUser.twoFA_patch({
 		always_required: false,
 		...authentication,
 	})

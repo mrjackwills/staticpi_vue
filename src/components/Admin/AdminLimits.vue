@@ -91,7 +91,7 @@
 import type { TAdminLimit } from '@/types'
 import { mdiCloseCircle } from '@mdi/js'
 import { useDisplay } from 'vuetify'
-import { axios_admin } from '@/services/axios'
+import { fetch_admin } from '@/services/fetch'
 import { secondsToDays } from '@/vanillaTS/convert_seconds'
 
 const { mdAndDown } = useDisplay()
@@ -101,7 +101,7 @@ const text_class = computed(() => mdAndDown.value ? 'small-text' : '')
 const emit = defineEmits(['update'])
 
 async function remove_key (key: string): Promise<void> {
-	await axios_admin.limit_delete(key)
+	await fetch_admin.limit_delete(key)
 	emit('update')
 }
 

@@ -66,7 +66,7 @@
 import { mdiCheckCircle, mdiCloseCircle } from '@mdi/js'
 import { parse } from 'secure-json-parse'
 import { useDisplay } from 'vuetify'
-import { axios_incognito, axios_site_status, axios_ws } from '@/services/axios'
+import { fetch_incognito, fetch_site_status, fetch_WS } from '@/services/fetch'
 import { secondsToDays } from '@/vanillaTS/convert_seconds'
 import { env } from '@/vanillaTS/env'
 const { smAndDown } = useDisplay()
@@ -146,7 +146,7 @@ async function updateServerStatus (server: 'api' | 'token' | 'website'): Promise
 	switch (server) {
 		case 'api':
 		case 'token': {
-			const response = server === 'api' ? await axios_incognito.online_get() : await axios_ws.online()
+			const response = server === 'api' ? await fetch_incognito.online_get() : await fetch_WS.online()
 			if (response) {
 				serverEntry.api_version = response.api_version
 				serverEntry.status = true
@@ -155,7 +155,7 @@ async function updateServerStatus (server: 'api' | 'token' | 'website'): Promise
 			break
 		}
 		case 'website': {
-			const response = await axios_site_status.manifest_online()
+			const response = await fetch_site_status.manifest_online()
 			if (response) {
 				serverEntry.api_version = response
 				serverEntry.status = true

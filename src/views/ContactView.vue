@@ -93,7 +93,7 @@ import { mdiEmail, mdiEmailFastOutline, mdiMessageTextOutline } from '@mdi/js'
 import useVuelidate from '@vuelidate/core'
 import { email, maxLength, minLength, required } from '@vuelidate/validators'
 import { useDisplay } from 'vuetify'
-import { axios_incognito } from '@/services/axios'
+import { fetch_incognito } from '@/services/fetch'
 import { snackSuccess } from '@/services/snack'
 
 const { smAndDown } = useDisplay()
@@ -155,7 +155,7 @@ async function submit (): Promise<void> {
 	await v$.value.$validate()
 	if (v$.value.$error) return
 	localLoading.value = true
-	const response = await axios_incognito.contact_post(message_data.value)
+	const response = await fetch_incognito.contact_post(message_data.value)
 	localLoading.value = false
 	complete.value = true
 	if (response) {

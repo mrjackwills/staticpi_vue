@@ -288,7 +288,7 @@ import {
 } from '@mdi/js'
 import { parse } from 'secure-json-parse'
 import { useDisplay } from 'vuetify'
-import { axios_ws } from '@/services/axios'
+import { fetch_WS } from '@/services/fetch'
 import { snackError } from '@/services/snack'
 import { convert_bytes } from '@/vanillaTS/convert_bytes'
 import { env } from '@/vanillaTS/env'
@@ -402,7 +402,7 @@ function formatMessage (data: string): string {
 
 async function getAuthToken (): Promise<void> {
 	errorMessage.value = ''
-	const token = await axios_ws.auth({
+	const token = await fetch_WS.auth({
 		key: props.device.api_key,
 		password: password.value,
 	})

@@ -103,8 +103,8 @@
 <script setup lang='ts'>
 import { mdiChevronDoubleLeft, mdiChevronDoubleRight, mdiClose, mdiLoginVariant } from '@mdi/js'
 import { useDisplay } from 'vuetify'
-import { axios_authenticatedUser } from '@/services/axios'
 import { dialoger } from '@/services/dialog'
+import { fetch_authenticatedUser } from '@/services/fetch'
 import { adminLinks, authenticatedLinks, notAuthenticatedLinks } from '@/vanillaTS/NavigationLinks'
 
 const { mdAndUp, mdAndDown, lgAndUp } = useDisplay()
@@ -137,7 +137,7 @@ const open = computed({
 })
 
 async function logout_confirm (): Promise<void> {
-	await axios_authenticatedUser.signout_post()
+	await fetch_authenticatedUser.signout_post()
 }
 function logout (): void {
 	dialoger({

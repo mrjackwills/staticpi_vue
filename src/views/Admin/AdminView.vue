@@ -56,7 +56,7 @@
 <script setup lang='ts'>
 import type { TAdminConnectedCount, TAdminContactMessage, TAdminEmailCount, TAdminInvite, TAdminLimit, TAdminMemory, TAdminUserAndSessions, u } from '@/types'
 import { mdiRefresh } from '@mdi/js'
-import { axios_admin } from '@/services/axios'
+import { fetch_admin } from '@/services/fetch'
 
 const pageTitle = 'admin'
 const pageReady = ref(false)
@@ -80,14 +80,14 @@ async function update (): Promise<void> {
 		emails.value,
 		contactMessages.value,
 	] = await Promise.all([
-		axios_admin.memory_get(),
-		axios_admin.all_users_get(),
-		axios_admin.connections_get(),
-		axios_admin.invite_get(),
-		axios_admin.email_log_get(),
-		axios_admin.contact_get(),
+		fetch_admin.memory_get(),
+		fetch_admin.all_users_get(),
+		fetch_admin.connections_get(),
+		fetch_admin.invite_get(),
+		fetch_admin.email_log_get(),
+		fetch_admin.contact_get(),
 	])
-	limits.value = await axios_admin.limit_get()
+	limits.value = await fetch_admin.limit_get()
 	loadingModule().set_loading(false)
 }
 

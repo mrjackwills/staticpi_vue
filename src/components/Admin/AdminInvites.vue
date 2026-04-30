@@ -120,8 +120,8 @@ import { mdiCloseCircle, mdiPlus } from '@mdi/js'
 import useVuelidate from '@vuelidate/core'
 import { integer, minLength, minValue, required } from '@vuelidate/validators'
 import { useDisplay } from 'vuetify'
-import { axios_admin } from '@/services/axios'
 import { dialoger } from '@/services/dialog'
+import { fetch_admin } from '@/services/fetch'
 
 const { mdAndDown } = useDisplay()
 
@@ -177,7 +177,7 @@ function addInvite (): void {
 
 async function remove_invite (invite: string): Promise<void> {
 	loadingModule().loading = true
-	await axios_admin.invite_delete(invite)
+	await fetch_admin.invite_delete(invite)
 	loadingModule().loading = false
 	emit('update')
 }
@@ -187,7 +187,7 @@ const emit = defineEmits(['update'])
 async function addInvite_confirm (auth: TAuthObject): Promise<void> {
 	if (v$.value.$invalid) return
 	loadingModule().loading = true
-	await axios_admin.invite_post({
+	await fetch_admin.invite_post({
 		...auth,
 		count: Number(model.value.count),
 		invite: model.value.invite,

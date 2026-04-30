@@ -130,7 +130,7 @@ import { mdiAccountCheck, mdiAccountOutline, mdiAlertCircleOutline, mdiEmail, md
 import useVuelidate from '@vuelidate/core'
 import { email, minLength, required } from '@vuelidate/validators'
 import { useDisplay } from 'vuetify'
-import { axios_incognito } from '@/services/axios'
+import { fetch_incognito } from '@/services/fetch'
 import { snackSuccess } from '@/services/snack'
 import { FrontEndRoutes } from '@/types/const_routes'
 import { minPassLength } from '@/vanillaTS/globalConst'
@@ -231,7 +231,7 @@ async function register (): Promise<void> {
 	localLoading.value = true
 	passwordVisible.value = false
 	user.value.full_name.trim()
-	const registerResponse = await axios_incognito.register_post(user.value)
+	const registerResponse = await fetch_incognito.register_post(user.value)
 	localLoading.value = false
 	if (registerResponse) {
 		complete.value = true

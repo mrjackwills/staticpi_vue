@@ -140,7 +140,7 @@
 import type { TAddDevice } from '@/types'
 import { mdiCheck, mdiClose, mdiDevices } from '@mdi/js'
 import { useDisplay } from 'vuetify'
-import { axios_device } from '@/services/axios'
+import { fetch_device } from '@/services/fetch'
 import { snackSuccess } from '@/services/snack'
 
 const { smAndDown, mobile } = useDisplay()
@@ -206,7 +206,7 @@ async function addNewDevice (): Promise<void> {
 		deviceSettings.value.device_password = undefined
 		deviceSettings.value.client_password = undefined
 	}
-	const response = await axios_device.deviceAdd_post(deviceSettings.value)
+	const response = await fetch_device.deviceAdd_post(deviceSettings.value)
 	if (response) snackSuccess({ message: `New device added: ${response}` })
 	emit('refresh')
 	cancel()

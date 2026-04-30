@@ -104,7 +104,7 @@
 import { mdiApple, mdiCellphoneInformation, mdiCheck, mdiClose, mdiGooglePlay } from '@mdi/js'
 import QrCode from 'qrcode.vue'
 import { useDisplay } from 'vuetify'
-import { axios_authenticatedUser } from '@/services/axios'
+import { fetch_authenticatedUser } from '@/services/fetch'
 import { snackError, snackSuccess } from '@/services/snack'
 
 const { mdAndUp, smAndDown } = useDisplay()
@@ -155,7 +155,7 @@ const appLinks = [
 async function cancel (): Promise<void> {
 	if (settingSectionStore.current_section) settingSectionStore.set_current_section(undefined)
 	await Promise.all([
-		axios_authenticatedUser.setupTwoFA_delete(),
+		fetch_authenticatedUser.setupTwoFA_delete(),
 		twoFAStore.set_secret(''),
 		twoFAStore.set_setupProcessStarted(false),
 	])
@@ -172,12 +172,12 @@ async function verify (): Promise<void> {
 		return
 	}
 	loading.value = true
-	const response = await axios_authenticatedUser.setupTwoFA_post({ token: userToken.value })
+	const response = await fetch_authenticatedUser.setupTwoFA_post({ token: userToken.value })
 	loading.value = false
 	if (response) {
 		snackSuccess({ message: 'Two-Factor Authentication activated' })
 		settingSectionStore.set_current_section(undefined)
-		await axios_authenticatedUser.user_get()
+		await fetch_authenticatedUser.user_get()
 	} else {
 		errorMessage.value = 'generated code invalid'
 		snackError({ message: 'generated code incorrect' })

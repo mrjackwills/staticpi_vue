@@ -88,7 +88,7 @@ import { mdiCellphoneInformation, mdiEye, mdiEyeOff, mdiLock, mdiSend } from '@m
 import { useVuelidate } from '@vuelidate/core'
 import { minLength, required } from '@vuelidate/validators'
 import { useDisplay } from 'vuetify'
-import { axios_incognito } from '@/services/axios'
+import { fetch_incognito } from '@/services/fetch'
 import { snackSuccess } from '@/services/snack'
 import { FrontEndRoutes } from '@/types/const_routes'
 import { minPassLength } from '@/vanillaTS/globalConst'
@@ -179,7 +179,7 @@ async function submit (): Promise<void> {
 		localLoading.value = false
 		return
 	}
-	const response = await axios_incognito.reset_patch({
+	const response = await fetch_incognito.reset_patch({
 		resetId: resetId.value,
 		password: user.value.password,
 		token: user.value.token ?? undefined,

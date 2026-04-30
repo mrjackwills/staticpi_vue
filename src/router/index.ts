@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 
 import EmptyComponent from '@/components/EmptyComponent.vue'
-import { axios_admin, axios_authenticatedUser, axios_incognito } from '@/services/axios'
+import { fetch_admin, fetch_authenticatedUser, fetch_incognito } from '@/services/fetch'
 import { snackError, snackSuccess } from '@/services/snack'
 import { FrontEndNames, FrontEndRoutes } from '@/types/const_routes'
 import Home from '@/views/HomeView.vue'
@@ -14,9 +14,9 @@ async function init_check (): Promise<void> {
 	if (!browserStore.init) {
 		loadingModule().set_loading(true)
 		if (userModule().authenticated) {
-			await axios_authenticatedUser.user_get()
+			await fetch_authenticatedUser.user_get()
 			if (userModule().isAdminUser) {
-				await axios_admin.admin_get()
+				await fetch_admin.admin_get()
 			}
 		}
 	}
@@ -90,7 +90,7 @@ const hexRoutes: Array<RouteRecordRaw> = [
 			} else {
 				if (id?.match(ulid_regex)) {
 					loading_store.set_loading(true)
-					const response = await axios_incognito.reset_get(id)
+					const response = await fetch_incognito.reset_get(id)
 					loading_store.set_loading(false)
 					if (response) {
 						resetPassword_store.set_id(id)
@@ -138,7 +138,7 @@ const hexRoutes: Array<RouteRecordRaw> = [
 			} else {
 				if (ulid_regex.test(String(to.params.id))) {
 					loadingModule().set_loading(true)
-					const success = await axios_incognito.verify_get(String(to.params.id))
+					const success = await fetch_incognito.verify_get(String(to.params.id))
 					if (success) {
 						next(FrontEndRoutes.LOGIN)
 						snackSuccess({

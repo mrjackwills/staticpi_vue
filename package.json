@@ -16,7 +16,6 @@
     "@vuelidate/validators": "^2.0.4",
     "@vueuse/core": "^14.2.1",
     "@vueuse/head": "^2.0.0",
-    "axios": "^1.15.2",
     "hibp": "^15.2.1",
     "ky": "^2.0.2",
     "pinia": "^3.0.4",
@@ -31,7 +30,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.29.0",
     "@mdi/js": "^7.4.47",
-    "@rolldown/plugin-babel": "^0.2.2",
+    "@rolldown/plugin-babel": "^0.2.3",
     "@stylistic/eslint-plugin": "^5.10.0",
     "@tsconfig/node22": "^22.0.5",
     "@types/node": "^25.6.0",

@@ -38,8 +38,8 @@
 import type { TAuthObject } from '@/types'
 import { mdiAccountArrowDown, mdiDownload } from '@mdi/js'
 import { useDisplay } from 'vuetify'
-import { axios_authenticatedUser } from '@/services/axios'
 import { dialoger } from '@/services/dialog'
+import { fetch_authenticatedUser } from '@/services/fetch'
 
 const { smAndDown } = useDisplay()
 
@@ -77,7 +77,7 @@ async function downloadData (): Promise<void> {
 
 async function downloadData_confirm (authentication: TAuthObject): Promise<void> {
 	loading.value = true
-	const data = await axios_authenticatedUser.data_get(authentication)
+	const data = await fetch_authenticatedUser.data_get(authentication)
 	if (data) {
 		const file = document.createElement('a')
 		file.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(JSON.stringify(JSON.parse(data), null, '  ')))

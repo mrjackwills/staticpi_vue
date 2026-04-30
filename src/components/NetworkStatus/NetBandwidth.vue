@@ -75,7 +75,7 @@
 import type { TComputedBandwidth } from '@/types'
 import { mdiArrowDownBold, mdiArrowUpBold, mdiCalendarBlank, mdiClockOutline, mdiEarth } from '@mdi/js'
 import { useDisplay } from 'vuetify'
-import { axios_incognito } from '@/services/axios'
+import { fetch_incognito } from '@/services/fetch'
 import { convert_bytes } from '@/vanillaTS/convert_bytes'
 
 const { smAndDown, mobile } = useDisplay()
@@ -151,7 +151,7 @@ async function checkAll (): Promise<void> {
 }
 
 async function checkBandwidth (): Promise<void> {
-	const bandwidthRequest = await axios_incognito.bandwidth_get()
+	const bandwidthRequest = await fetch_incognito.bandwidth_get()
 	if (bandwidthRequest) bandwidth.value = bandwidthRequest
 	init.value = true
 }

@@ -45,8 +45,8 @@ import type { TAuthObject, TDeviceInfo, TSwitchButton } from '@/types'
 import type { VRow } from 'vuetify/components/VGrid'
 import { mdiContentSave } from '@mdi/js'
 import { useDisplay } from 'vuetify'
-import { axios_device } from '@/services/axios'
 import { dialoger } from '@/services/dialog'
+import { fetch_device } from '@/services/fetch'
 
 const { mdAndUp, mobile } = useDisplay()
 
@@ -86,7 +86,7 @@ const emit = defineEmits(['refresh'])
 
 async function save_confirm (_auth?: TAuthObject): Promise<void> {
 	loading.value = true
-	await axios_device.structuredData_patch({
+	await fetch_device.structuredData_patch({
 		name: name_of_device.value,
 		structured_data: new_value.value,
 	})

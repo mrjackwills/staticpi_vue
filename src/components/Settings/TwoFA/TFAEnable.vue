@@ -10,12 +10,12 @@
 
 <script setup lang='ts'>
 import { mdiShieldPlus } from '@mdi/js'
-import { axios_authenticatedUser } from '@/services/axios'
+import { fetch_authenticatedUser } from '@/services/fetch'
 
 async function start2FASetup (): Promise<void> {
 	const [loadingStore, settingsectionStore, twofaStore] = [loadingModule(), settingSectionModule(), twoFAModule()]
 	loadingStore.set_loading(true)
-	const setupValid = await axios_authenticatedUser.setupTwoFA_get()
+	const setupValid = await fetch_authenticatedUser.setupTwoFA_get()
 	if (setupValid) {
 		settingsectionStore.set_current_section('2fa')
 		twofaStore.set_setupProcessStarted(true)

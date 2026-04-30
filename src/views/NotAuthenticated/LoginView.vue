@@ -131,7 +131,7 @@ import useVuelidate from '@vuelidate/core'
 import { email, required } from '@vuelidate/validators'
 import { RouterLink } from 'vue-router'
 import { useDisplay } from 'vuetify'
-import { axios_authenticatedUser, axios_incognito } from '@/services/axios'
+import { fetch_authenticatedUser, fetch_incognito } from '@/services/fetch'
 import { FrontEndRoutes } from '@/types/const_routes'
 import { token_regex } from '@/vanillaTS/globalConst'
 
@@ -254,7 +254,7 @@ async function login (): Promise<void> {
 		// TODO test me
 		...user.value.token ? { token: user.value.token.replace(/\s/g, '') } : {},
 	}
-	const loginRequest = await axios_incognito.signin_post(authObject)
+	const loginRequest = await fetch_incognito.signin_post(authObject)
 	localLoading.value = false
 
 	if (loginRequest?.status === 200) {
@@ -265,7 +265,7 @@ async function login (): Promise<void> {
 		user.value.email = ''
 		user.value.password = ''
 		user.value.token = ''
-		await axios_authenticatedUser.user_get()
+		await fetch_authenticatedUser.user_get()
 		snackbarModule().$reset()
 		if (redirect.value) {
 			router.push(redirect.value)

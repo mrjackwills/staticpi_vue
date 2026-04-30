@@ -54,8 +54,8 @@ import type { TAuthObject, TDeviceInfo } from '@/types'
 import type { VRow } from 'vuetify/components/VGrid'
 import { mdiAutorenew } from '@mdi/js'
 import { useDisplay } from 'vuetify'
-import { axios_device } from '@/services/axios'
 import { dialoger } from '@/services/dialog'
+import { fetch_device } from '@/services/fetch'
 import { snackSuccess } from '@/services/snack'
 
 const { mdAndUp, mobile } = useDisplay()
@@ -97,7 +97,7 @@ function regenerateApiKey (): void {
 const emit = defineEmits(['refresh'])
 async function regenerateApiKey_confirm (authentication: TAuthObject): Promise<void> {
 	loading.value = true
-	const response = await axios_device.apiKey_patch({
+	const response = await fetch_device.apiKey_patch({
 		authentication,
 		name: name_of_device.value,
 	})

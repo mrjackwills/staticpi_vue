@@ -35,7 +35,7 @@
 <script setup lang='ts'>
 import { mdiWifiOff } from '@mdi/js'
 import { useDisplay } from 'vuetify'
-import { axios_authenticatedUser, axios_incognito } from '@/services/axios'
+import { fetch_authenticatedUser, fetch_incognito } from '@/services/fetch'
 
 const { mdAndUp, mobile } = useDisplay()
 
@@ -51,8 +51,8 @@ const spacerClass = computed(() => navDrawerModule().mini ? 'nav-spacer-mini' : 
 const reconnectInterval = ref(0)
 
 async function reconnect (): Promise<void> {
-	await axios_incognito.online_get()
-	await axios_authenticatedUser.user_get()
+	await fetch_incognito.online_get()
+	await fetch_authenticatedUser.user_get()
 }
 
 onMounted(() => {

@@ -107,8 +107,8 @@
 import type { AdminDeviceAndConnections, TAuthObject } from '@/types'
 import { mdiCheck, mdiChevronDown, mdiChevronUp, mdiClose, mdiDeleteCircle, mdiPause, mdiPauseCircle, mdiPlay } from '@mdi/js'
 import { useDisplay } from 'vuetify'
-import { axios_admin } from '@/services/axios'
 import { dialoger } from '@/services/dialog'
+import { fetch_admin } from '@/services/fetch'
 import { snackSuccess } from '@/services/snack'
 
 const show_connections = ref(false)
@@ -152,7 +152,7 @@ async function deleteDevice (): Promise<void> {
 
 async function deleteDevice_confirm (authentication: TAuthObject): Promise<void> {
 	loading.value = true
-	const response = await axios_admin.device_delete({
+	const response = await fetch_admin.device_delete({
 		device_name: props.device.device.name_of_device,
 		email: props.email,
 		...authentication,
@@ -184,7 +184,7 @@ async function pauseDevice (): Promise<void> {
 
 async function pauseDevice_confirm (authentication: TAuthObject): Promise<void> {
 	loading.value = true
-	const response = await axios_admin.device_pause_patch({
+	const response = await fetch_admin.device_pause_patch({
 		device_name: props.device.device.name_of_device,
 		email: props.email,
 		...authentication,
@@ -200,7 +200,7 @@ async function pauseDevice_confirm (authentication: TAuthObject): Promise<void> 
 }
 
 async function close_connection (connection_ulid: string, device_id: number, device_type: string): Promise<void> {
-	await axios_admin.connection_delete({
+	await fetch_admin.connection_delete({
 		connection_ulid,
 		device_id,
 		device_type,
