@@ -87,11 +87,12 @@
 						<span class='ml-2'>logout</span>
 					</template>
 				</v-list-item>
+
+				<v-divider class='divider' color='white' />
 			</section>
 
-			<section v-if='!mini'>
+			<section v-if='show_footer'>
 				<v-list-item>
-					<v-divider class='divider' color='white' />
 					<FooterText class='mt-2' />
 				</v-list-item>
 			</section>
@@ -139,6 +140,15 @@ const open = computed({
 async function logout_confirm (): Promise<void> {
 	await fetch_authenticatedUser.signout_post()
 }
+
+const show_footer = ref(true)
+watch(mini, i => {
+	if (i) {
+		show_footer.value = false
+	} else {
+		setTimeout(() => show_footer.value = true, 150)
+	}
+})
 function logout (): void {
 	dialoger({
 		message: 'Are you sure you want to logout?',
