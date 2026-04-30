@@ -1,7 +1,7 @@
 <template>
 	<v-card class='ma-0 pa-0' :color='vsColor' density='compact'>
 
-		<v-row class='align-center ma-0 pa-0  justify-center' density='compact'>
+		<v-row class='align-center ma-0 pa-0 ga-0 justify-center' density='compact'>
 
 			<v-col class='ma-0 pa-0' cols='12'>
 
@@ -31,10 +31,10 @@
 
 				</v-row>
 
-				<v-row class='align-center ma-0 pa-0 text-white justify-center'>
+				<v-row class='align-center ma-0 pa-0 text-white justify-center ga-0'>
 					<v-col class='ma-0 pa-0' cols='12'>
 
-						<pre class='language-js' v-html='highlighted_code' />
+						<pre class='language-js ma-0 pa-0' v-html='highlighted_code' />
 					</v-col>
 				</v-row>
 

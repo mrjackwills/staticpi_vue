@@ -114,14 +114,12 @@ const code_basic_connect_client = computed(() => `const token_body = {
 
 const token_request = await fetch('${props.addressToken}/client', {
 	method: 'POST',
-	headers: {
-		'Content-Type': 'application/json',
-	},
+	headers: { 'Content-Type': 'application/json' },
 	body: JSON.stringify(token_body)
 });
-const { response } = await token_request.json();
+const data = await token_request.json();
 
-const websocket_connection = new WebSocket(\`${props.addressWssClient}/\${response}\` );
+const websocket_connection = new WebSocket(\`${props.addressWssClient}/\${data.response}\` );
 	
 websocket_connection.addEventListener('open', (event) => {
 	console.log('client connected');
@@ -132,13 +130,18 @@ websocket_connection.addEventListener('message', (event) => {
 });`)
 
 const code_basic_connect_pi = computed(() => `const WebSocket = require('ws');
-const axios = require('axios')
 
 const token_body = {
 	 key: "${props.apiKey}"
 };
 
-const { data } = await axios.post('${props.addressToken}/pi', token_body)
+const res = await fetch('${props.addressToken}/pi', {
+	method: 'POST',
+	headers: { 'Content-Type': 'application/json' },
+	body: JSON.stringify(token_body)
+});
+
+const data = await res.json();
 const websocket_connection = new WebSocket(\`${props.addressWssPi}/\${data.response}\`);
 
 websocket_connection.on('open', function open() {
