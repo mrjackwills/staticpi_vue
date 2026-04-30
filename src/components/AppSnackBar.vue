@@ -19,12 +19,15 @@
 					<v-col v-if='loading' class='pa-0 mr-2' cols='auto'>
 						<v-progress-circular color='primary' indeterminate :size='18' :width='3' />
 					</v-col>
+
 					<v-col v-if='icon && isDesktop && !loading' class='pa-0 ma-0' cols='auto'>
 						<v-icon class='mr-2' :color :icon />
 					</v-col>
+
 					<v-col class='pa-0' cols='auto'>
 						<div class='text-center text-white'> {{ message }}</div>
 					</v-col>
+
 					<v-col v-if='closable && isDesktop' class='pa-0 ma-0' cols='auto'>
 						<v-icon
 							class='ml-2'

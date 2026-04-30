@@ -8,6 +8,7 @@
 			@click='emit("click")'
 		>
 			<v-icon :color :icon :size='iconSize' />
+
 			<v-tooltip
 				v-if='show_tooltip && tooltipText'
 				activator='parent'

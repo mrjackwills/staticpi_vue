@@ -12,12 +12,15 @@
 						<v-col class='ma-0 pa-0' cols='auto' order='2'>
 							<ProUserChip v-if='pro' class='ma-1 ml-3' :class='proMargin' />
 						</v-col>
+
 						<v-col class='ma-0 pa-0' cols='auto' order='1'>
 							<SubHeading :id='createId' :heading justify='start' />
 						</v-col>
 					</v-row>
+
 					<v-divider class='mb-1' />
 				</v-col>
+
 				<v-col class='ma-0 pa-0 mb-4' cols='12'>
 					<slot name='doc-body' />
 				</v-col>

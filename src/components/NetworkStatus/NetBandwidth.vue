@@ -7,6 +7,7 @@
 					<v-icon v-if='!smAndDown' class='mr-md-8 mr-sm-2' color='pi' :icon='item.icon' />
 					<span :class='{ "small-text": smAndDown }'>{{ item.timespan }}</span>
 				</td>
+
 				<td class='text-right text-secondary'>
 					<template v-if='init'>
 						<v-row class='align-center ma-0 pa-0 justify-end'>
@@ -16,6 +17,7 @@
 									<span class='font-weight-bold'> {{ item.in.human_readable.total }}</span>
 									<span class='mr-1 font-weight-bold'>{{ item.in.human_readable.unit }}</span>
 								</div>
+
 								<v-tooltip
 									v-if='show_tooltip'
 									activator='parent'
@@ -25,13 +27,16 @@
 									<span>{{ item.in.bytes }} bytes received</span>
 								</v-tooltip>
 							</v-col>
+
 							<v-col v-if='!smAndDown' class='ma-0 pa-0' cols='auto'>
 								<v-icon color='secondary' :icon='mdiArrowDownBold' small />
 							</v-col>
 						</v-row>
 					</template>
+
 					<v-progress-circular v-else color='primary' :indeterminate='true' :size='20' />
 				</td>
+
 				<td class='text-right text-primary'>
 					<template v-if='init'>
 						<v-row class='align-center ma-0 pa-0 justify-end'>
@@ -41,6 +46,7 @@
 									<span class='font-weight-bold'> {{ item.out.human_readable.total }}</span>
 									<span class='mr-1 font-weight-bold'>{{ item.out.human_readable.unit }}</span>
 								</div>
+
 								<v-tooltip
 									v-if='show_tooltip'
 									activator='parent'
@@ -50,11 +56,13 @@
 									<span>{{ item.out.bytes }} bytes sent</span>
 								</v-tooltip>
 							</v-col>
+
 							<v-col v-if='!smAndDown' class='ma-0 pa-0' cols='auto'>
 								<v-icon color='primary' :icon='mdiArrowUpBold' small />
 							</v-col>
 						</v-row>
 					</template>
+
 					<v-progress-circular v-else color='primary' :indeterminate='true' :size='20' />
 				</td>
 			</tr>
@@ -67,7 +75,7 @@
 import type { TComputedBandwidth } from '@/types'
 import { mdiArrowDownBold, mdiArrowUpBold, mdiCalendarBlank, mdiClockOutline, mdiEarth } from '@mdi/js'
 import { useDisplay } from 'vuetify'
-import { axios_incognito } from '@/services/axios'
+import { fetch_incognito } from '@/services/fetch'
 import { convert_bytes } from '@/vanillaTS/convert_bytes'
 
 const { smAndDown, mobile } = useDisplay()
@@ -143,7 +151,7 @@ async function checkAll (): Promise<void> {
 }
 
 async function checkBandwidth (): Promise<void> {
-	const bandwidthRequest = await axios_incognito.bandwidth_get()
+	const bandwidthRequest = await fetch_incognito.bandwidth_get()
 	if (bandwidthRequest) bandwidth.value = bandwidthRequest
 	init.value = true
 }

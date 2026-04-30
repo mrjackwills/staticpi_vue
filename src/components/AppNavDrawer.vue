@@ -18,6 +18,7 @@
 					<template #prepend>
 						<v-icon class='flipx mr-2' :icon='mdiClose' />
 					</template>
+
 					<template #title>
 						<span class=''>close</span>
 					</template>
@@ -37,6 +38,7 @@
 				<template #prepend>
 					<v-icon class='' :icon='item.icon' />
 				</template>
+
 				<template #title>
 					<span class='ml-2'>{{ item.message }}</span>
 				</template>
@@ -55,6 +57,7 @@
 						<template #prepend>
 							<v-icon :icon='item.icon' />
 						</template>
+
 						<template #title>
 							<span class='ml-2'>{{ item.message }}</span>
 						</template>
@@ -67,23 +70,29 @@
 					<template #prepend>
 						<v-icon :icon='miniLogo' />
 					</template>
+
 					<template #title>
 						<span class='ml-2'>minimize</span>
 					</template>
 				</v-list-item>
+
 				<v-divider class='divider' color='white' />
+
 				<v-list-item class='cl' title='minimize' @click='logout'>
 					<template #prepend>
 						<v-icon class='flipx mr-2' :icon='mdiLoginVariant' />
 					</template>
+
 					<template #title>
 						<span class='ml-2'>logout</span>
 					</template>
 				</v-list-item>
+
+				<v-divider class='divider' color='white' />
 			</section>
-			<section v-if='!mini'>
+
+			<section v-if='show_footer'>
 				<v-list-item>
-					<v-divider class='divider' color='white' />
 					<FooterText class='mt-2' />
 				</v-list-item>
 			</section>
@@ -95,8 +104,8 @@
 <script setup lang='ts'>
 import { mdiChevronDoubleLeft, mdiChevronDoubleRight, mdiClose, mdiLoginVariant } from '@mdi/js'
 import { useDisplay } from 'vuetify'
-import { axios_authenticatedUser } from '@/services/axios'
 import { dialoger } from '@/services/dialog'
+import { fetch_authenticatedUser } from '@/services/fetch'
 import { adminLinks, authenticatedLinks, notAuthenticatedLinks } from '@/vanillaTS/NavigationLinks'
 
 const { mdAndUp, mdAndDown, lgAndUp } = useDisplay()
@@ -129,8 +138,17 @@ const open = computed({
 })
 
 async function logout_confirm (): Promise<void> {
-	await axios_authenticatedUser.signout_post()
+	await fetch_authenticatedUser.signout_post()
 }
+
+const show_footer = ref(true)
+watch(mini, i => {
+	if (i) {
+		show_footer.value = false
+	} else {
+		setTimeout(() => show_footer.value = true, 150)
+	}
+})
 function logout (): void {
 	dialoger({
 		message: 'Are you sure you want to logout?',

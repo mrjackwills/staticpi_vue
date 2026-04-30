@@ -20,7 +20,7 @@
 
 <script setup lang='ts'>
 import type { TSettingSection, u } from '@/types'
-import { axios_authenticatedUser, axios_device } from '@/services/axios'
+import { fetch_authenticatedUser, fetch_device } from '@/services/fetch'
 
 onMounted(() => {
 	browserModule().set_description(`staticPi settings page - control the settings for your staticPi user account`)
@@ -62,9 +62,9 @@ const pageReady = ref(false)
  */
 async function getData (): Promise<void> {
 	loadingModule().set_loading(true)
-	const isAuthenticated = await axios_authenticatedUser.user_get()
+	const isAuthenticated = await fetch_authenticatedUser.user_get()
 	if (isAuthenticated) {
-		await axios_device.deviceAll_get()
+		await fetch_device.deviceAll_get()
 	}
 	loadingModule().set_loading(false)
 	pageReady.value = true

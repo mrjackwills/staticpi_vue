@@ -18,6 +18,7 @@
 								<v-col class='ma-0 pa-0 mr-4' cols='auto'>
 									use API key from:
 								</v-col>
+
 								<v-col class=' ' cols='6' md='3'>
 									<v-select
 										v-model='deviceSelected'
@@ -108,7 +109,7 @@
 <script setup lang='ts'>
 import { mdiRouterWirelessSettings } from '@mdi/js'
 import { useDisplay } from 'vuetify'
-import { axios_device } from '@/services/axios'
+import { fetch_device } from '@/services/fetch'
 import { FrontEndRoutes } from '@/types/const_routes'
 
 const { mobile } = useDisplay()
@@ -120,7 +121,7 @@ onMounted(() => {
 })
 
 onBeforeMount(async () => {
-	if (authenticated.value) await axios_device.deviceAll_get()
+	if (authenticated.value) await fetch_device.deviceAll_get()
 })
 
 const authenticated = computed((): boolean => userModule().authenticated)

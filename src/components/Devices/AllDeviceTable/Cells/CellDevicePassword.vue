@@ -59,6 +59,7 @@
 					</v-form>
 				</section>
 			</v-expand-transition>
+
 			<v-expand-transition>
 
 				<section v-if='!showTextField'>
@@ -71,6 +72,7 @@
 						>
 							<span>Password authentication is not available for free user</span>
 						</v-tooltip>
+
 						<v-col cols='auto'>
 							<FabTooltip
 								v-if='device_password'
@@ -102,8 +104,8 @@
 import type { TAuthObject, TChangeDevicePassword, TDeviceInfo, TDeviceTableFields } from '@/types'
 import { mdiClose, mdiContentSave, mdiDelete, mdiEye, mdiEyeOff, mdiLock, mdiLockPlus, mdiLockRemove } from '@mdi/js'
 import { useDisplay } from 'vuetify'
-import { axios_device } from '@/services/axios'
 import { dialoger } from '@/services/dialog'
+import { fetch_device } from '@/services/fetch'
 import { snackSuccess } from '@/services/snack'
 
 const { mdAndUp, mobile } = useDisplay()
@@ -190,7 +192,7 @@ const emit = defineEmits(['refresh'])
 async function removePassword_confirm (authentication: TAuthObject): Promise<void> {
 	loading.value = true
 	localLoading.value = true
-	const response = await axios_device.password_delete({
+	const response = await fetch_device.password_delete({
 		name: name_of_device.value,
 		authentication,
 	})
@@ -230,7 +232,7 @@ async function addPassword_confirm (): Promise<void> {
 	if (password_synced.value) {
 		deviceSetting.value.client_password = deviceSetting.value.device_password
 	}
-	const response = await axios_device.password_patch({
+	const response = await fetch_device.password_patch({
 		device_password: deviceSetting.value.device_password,
 		client_password: deviceSetting.value.client_password,
 		name: name_of_device.value,

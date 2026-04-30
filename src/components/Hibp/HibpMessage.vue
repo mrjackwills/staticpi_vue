@@ -4,12 +4,14 @@
 				class='text-uppercase font-weight-bold'
 			>
 				This password is unsafe and invalid</span>
+
 			<br>
 			This password has previously appeared in a data breach and should never be used. If you use this password
 			elsewhere, it should be changed immediately.
 			Passwords should be a complex combination of letters, numbers, and symbols. A password manager is strongly
 			recommended
 			<br>
+
 			<a
 				class='text-body-small text-black'
 				href='https://haveibeenpwned.com/Passwords'

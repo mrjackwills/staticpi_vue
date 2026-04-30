@@ -12,6 +12,7 @@
 			<v-col v-if='!mobile && authenticated' class='ma-0 pa-0' cols='auto'>
 				<div :class='spacerClass' />
 			</v-col>
+
 			<v-col class='ma-0 pa-0' cols='auto'>
 				<v-row class='align-center ma-0 pa-0 pulse justify-center'>
 					<v-col class='ma-0 pa-0 mr-2 ' cols='auto'>
@@ -21,6 +22,7 @@
 							size='small'
 						/>
 					</v-col>
+
 					<v-col class='ma-0 pa-0 cl' cols='auto'>
 						<div class='text-backgroundColor text-center' :class='messageSize'>offline</div>
 					</v-col>
@@ -33,7 +35,7 @@
 <script setup lang='ts'>
 import { mdiWifiOff } from '@mdi/js'
 import { useDisplay } from 'vuetify'
-import { axios_authenticatedUser, axios_incognito } from '@/services/axios'
+import { fetch_authenticatedUser, fetch_incognito } from '@/services/fetch'
 
 const { mdAndUp, mobile } = useDisplay()
 
@@ -49,8 +51,8 @@ const spacerClass = computed(() => navDrawerModule().mini ? 'nav-spacer-mini' : 
 const reconnectInterval = ref(0)
 
 async function reconnect (): Promise<void> {
-	await axios_incognito.online_get()
-	await axios_authenticatedUser.user_get()
+	await fetch_incognito.online_get()
+	await fetch_authenticatedUser.user_get()
 }
 
 onMounted(() => {

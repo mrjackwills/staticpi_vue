@@ -6,10 +6,13 @@
 					<v-col class='ma-0 pa-0' :class='mdAndUp ? "mr-2" : "mr-1"' cols='1' sm='auto'>
 						<v-icon :color='iconColor' :icon :size='smAndDown ? "small" : "default"' />
 					</v-col>
+
 					<v-col class='ma-0 pa-0' cols='9' sm='auto'>
 						<span :class='[textColor, textSize]'>{{ text }}</span>
 					</v-col>
+
 					<v-spacer />
+
 					<v-col v-if='active' class='ma-0 pa-0 text-pi' cols='1' sm='auto'>
 						<v-row class='pa-0 ma-0 justify-end'>
 							<v-col class='pa-0 ma-0' cols='auto'>

@@ -16,6 +16,7 @@
 							<v-col class='ma-0 pa-0' cols='12'>
 								<v-row class='ma-0 pa-0 ' density='compact'>
 									<v-col class='ma-0 pa-0' cols='3' md='2' />
+
 									<v-col class='ma-0 pa-0' cols='9' md='10'>
 										<v-row class='ma-0 pa-0 justify-start'>
 											<v-col v-for='(item, index) in [`free`, `pro`]' :key='index' cols=''>
@@ -31,6 +32,7 @@
 										</v-row>
 									</v-col>
 								</v-row>
+
 								<v-row
 									v-for='(item, index) in planData'
 									:key='index'
@@ -46,7 +48,9 @@
 											:icon='mdiInformation'
 											small
 										/>
+
 										<span class='font-weight-bold unselectable'>{{ item.feature }}</span>
+
 										<v-tooltip
 											v-if='show_tooltip'
 											activator='parent'
@@ -56,6 +60,7 @@
 											<span>{{ item.tooltip }}</span>
 										</v-tooltip>
 									</v-col>
+
 									<v-col class='ma-0 pa-0' cols='9' md='10'>
 										<v-row class='ma-0 pa-0'>
 											<v-col
@@ -70,6 +75,7 @@
 										</v-row>
 									</v-col>
 								</v-row>
+
 								<v-row class='align-center ma-0 pa-0'>
 									<v-col class='ma-0 pa-0' cols='3' md='2' />
 
@@ -89,6 +95,7 @@
 														</div>
 													</v-col>
 												</v-row>
+
 												<v-row
 													class='ma-0 pa-0 mt-n6 align-center justify-space-around'
 													density='compact'
@@ -133,12 +140,14 @@
 						>
 							<v-col cols='12'>
 								<v-divider class='my-1' />
+
 								<v-row class='align-center justify-center' density='compact'>
 									<v-col class='my-1' cols='auto'>
 										<div class='text-center text-pi font-weight-bold' :class='headingSize'>{{
 											mobileLevel.name }}</div>
 									</v-col>
 								</v-row>
+
 								<v-row
 									v-for='(item, plan_index) in planData'
 									:key='plan_index'
@@ -160,6 +169,7 @@
 										<v-icon class='mr-3' color='secondary' :icon='mdiInformation' size='small' />
 										<span class='text-body-small font-weight-bold'>{{ item.feature }}</span>
 									</v-col>
+
 									<v-col class='ma-0 pa-0' cols='7' md='10'>
 										<v-row class='ma-0 pa-0'>
 											<v-col class='ma-0 pa-0' cols='12'>
@@ -173,6 +183,7 @@
 										</v-row>
 									</v-col>
 								</v-row>
+
 								<v-row class='align-center ma-0 pa-0 justify-center'>
 									<v-col
 										v-for='(item, free_index) in [{ name: `free`, price: `0` }]'
@@ -189,6 +200,7 @@
 										</div>
 									</v-col>
 								</v-row>
+
 								<v-row class='ma-0 pa-0 justify-center'>
 									<v-col class='' cols='12' md='auto'>
 										<ActionButton

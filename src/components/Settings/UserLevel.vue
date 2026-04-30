@@ -3,6 +3,7 @@
 		<template #title>
 			<span>User Level</span>
 		</template>
+
 		<template #titleIcon>
 			<v-icon class='mr-2' color='pi' :icon='mdiCardAccountDetails' :size='smAndDown ? "small" : "default"' />
 		</template>
@@ -19,13 +20,16 @@
 				<v-col class='ma-0 pa-0' cols='12' md='6'>
 					<v-row class='align-center ma-0 pa-0 ' density='compact'>
 						<v-col v-if='timestamp' class='pa-0 ma-0 text-body-large' cols='auto'>
-							<span class='font-weight-bold' :class='text_size'>member since:</span> <span
+							<span class='font-weight-bold' :class='text_size'>member since:</span>
+
+							<span
 								:class='text_size'
 							>{{ new Date(timestamp).toISOString().substring(0, 10) }}</span>
 						</v-col>
 
 						<v-col v-if='birthday' class='ma-0 pa-0 ml-2' cols='auto'>
 							<v-icon class='mb-1' color='primary' :icon='mdiCakeVariant' size='small' />
+
 							<v-tooltip
 								v-if='show_tooltip'
 								activator='parent'
@@ -58,6 +62,7 @@
 						text='upgrade account'
 						@click='upgradeAccount'
 					/>
+
 					<v-tooltip
 						v-if='show_tooltip'
 						v-model='show_tooltip'

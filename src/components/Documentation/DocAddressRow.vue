@@ -5,10 +5,13 @@
 				<v-col class='ma-0 pa-0' cols='auto'>
 					<span class='unselectable'>{{ name }}</span>
 				</v-col>
+
 				<v-spacer />
+
 				<v-col class='ma-0 pa-0' cols='auto'>
 					<span class='font-weight-bold'>{{ address }}</span>
 				</v-col>
+
 				<v-col class='ma-0 pa-0 ml-md-1' cols='auto'>
 					<CopyButton
 						color='primary'

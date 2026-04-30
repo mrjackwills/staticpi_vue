@@ -1,28 +1,107 @@
 import type * as types from '@/types'
-import type { AxiosError, AxiosInstance } from 'axios'
-import Axios from 'axios'
-
 import { HttpCode } from '@/types/const_http'
+// import { isHttpCode } from '@/types/typeGuards'
 import { env } from '@/vanillaTS/env'
 import { snackError } from './snack'
 
 type ErrorData = { data: { response: string } }
 
-// Allow for longer timeouts when in debug mode
-function get_timeout (): number {
-	return env.mode_production ? 7000 : 70_000
+class HttpError extends Error {
+	response?: { status: number, data: any }
+
+	constructor (message: string, response?: { status: number, data: any }) {
+		super(message)
+		this.name = 'HttpError'
+		this.response = response
+	}
 }
 
-const invalid_auth = 'Invalid Authentication'
+const REQUEST_TIMEOUT = 60_000
+
+async function fetchRequest (
+	baseURL: string,
+	method: string,
+	path: string,
+	body?: any,
+): Promise<{ data: any, status: number }> {
+	const controller = new AbortController()
+	const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT)
+
+	try {
+		const isFormData = body instanceof FormData
+
+		const headers: Record<string, string> = {
+			'Cache-Control': 'no-cache',
+			...(!isFormData && {
+				'Content-Type': 'application/json; charset=utf-8',
+				Accept: 'application/json',
+			}),
+		}
+
+		const init: RequestInit = {
+			method,
+			// TODO this isn't great
+			credentials: baseURL === env.domain_api ? 'include' : 'omit',
+			headers,
+			signal: controller.signal,
+			...(body !== undefined && { body: isFormData ? body : JSON.stringify(body) }),
+		}
+
+		const url = new URL(path.startsWith('/') ? path.slice(1) : path, baseURL.endsWith('/') ? baseURL : `${baseURL}/`).href
+		const response = await fetch(url, init)
+
+		if (!response.ok) {
+			const errorData = await response.json().catch(() => ({ response: 'unable to access server' }))
+			throw new HttpError(`HTTP ${response.status}`, { status: response.status, data: errorData })
+		}
+
+		let parsed = {}
+		try {
+			const text = await response.text()
+			parsed = text ? JSON.parse(text) : {}
+		} catch {
+			parsed = { response: 'invalid json response' }
+		}
+		return { data: parsed, status: response.status }
+	} catch (error) {
+		if (error instanceof HttpError) {
+			throw error
+		}
+		throw new Error('offline', { cause: error })
+	} finally {
+		clearTimeout(timeoutId)
+	}
+}
+
+function createClient (baseURL: string) {
+	return {
+		get: (path: string) =>
+			fetchRequest(baseURL, 'GET', path, undefined),
+
+		post: (path: string, body?: any) =>
+			fetchRequest(baseURL, 'POST', path, body),
+
+		patch: (path: string, body?: any) =>
+			fetchRequest(baseURL, 'PATCH', path, body),
+
+		put: (path: string, body?: any) =>
+			fetchRequest(baseURL, 'PUT', path, body),
+
+		delete: (path: string, body?: any) =>
+			fetchRequest(baseURL, 'DELETE', path, body),
+	}
+}
+
+const baseFetchApi = createClient(env.domain_api)
+const baseFetchWww = createClient(env.domain_www)
+const baseFetchAuth = createClient(env.domain_auth)
 
 function isAuthenticated (fn: any, _context: ClassMethodDecoratorContext) {
 	async function wrapped (this: any, ...args: any[]) {
 		if (userModule().authenticated) {
 			return await fn.call(this, ...args)
-		} else {
-			snackError({ message: invalid_auth })
 		}
-		return
+		snackError({ message: 'invalid authentication' })
 	}
 	return wrapped
 }
@@ -30,11 +109,10 @@ function isAuthenticated (fn: any, _context: ClassMethodDecoratorContext) {
 function isNotAuthenticated (fn: any, _context: ClassMethodDecoratorContext) {
 	async function wrapped (this: any, ...args: any[]) {
 		if (userModule().authenticated) {
-			snackError({ message: invalid_auth })
+			snackError({ message: 'invalid authentication' })
 		} else {
 			return await fn.call(this, ...args)
 		}
-		return
 	}
 	return wrapped
 }
@@ -43,10 +121,8 @@ function isAdmin (fn: any, _context: ClassMethodDecoratorContext) {
 	async function wrapped (this: any, ...args: any[]) {
 		if (userModule().authenticated && userModule().isAdminUser) {
 			return await fn.call(this, ...args)
-		} else {
-			snackError({ message: invalid_auth })
 		}
-		return
+		snackError({ message: 'invalid authentication' })
 	}
 	return wrapped
 }
@@ -57,12 +133,19 @@ function wrap (fn: any, _context: ClassMethodDecoratorContext) {
 			return await fn.apply(this, args)
 		} catch (error) {
 			const [browser_store, user_store] = [browserModule(), userModule()]
-			browser_store.set_init(true)
-			const e = error as AxiosError
-			if (e.message === 'offline' && browser_store.online) {
-				snackError({ message: 'Server offline' })
+
+			loadingModule().set_loading(false)
+			const e = error as HttpError
+
+			if (e.message === 'offline') {
+				if (browser_store.online) {
+					snackError({ message: 'server offline' })
+				}
 				browser_store.set_online(false)
-			} else if (e.response?.status === HttpCode.FORBIDDEN) {
+				return
+			}
+
+			if (e.response?.status === HttpCode.FORBIDDEN) {
 				const p = e.response as ErrorData
 				const authenticated = user_store.authenticated
 				const message = authenticated ? 'You have been signed out' : p?.data?.response
@@ -70,51 +153,36 @@ function wrap (fn: any, _context: ClassMethodDecoratorContext) {
 					await user_store.clientSideSignout()
 				}
 				snackError({ message })
-			} else if (e.response?.status === HttpCode.TOO_MANY_REQUESTS) {
-				const p = e.response as ErrorData
-				snackError({ message: p.data.response })
-			} else {
-				const p = e?.response as ErrorData
-				const eeee = p.data?.response ?? 'Unable to access server'
-				snackError({ message: eeee })
 			}
-			return
+
+			if (e.response?.status === HttpCode.TOO_MANY_REQUESTS) {
+				const p = e.response as unknown as ErrorData
+				snackError({ message: p.data.response })
+				return
+			}
+
+			const p = e?.response as unknown as ErrorData
+			snackError({ message: p?.data?.response ?? 'unable to access server' })
 		}
 	}
 	return wrapped
 }
 
-class BaseAxios {
-	protected baseAxios!: AxiosInstance
+class Incognito {
+	readonly #url = 'incognito'
 
-	constructor (url: string) {
-		this.baseAxios = Axios.create({
-			baseURL: `${env.domain_api}/${url}`,
-			withCredentials: true,
-			timeout: get_timeout(),
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json; charset=utf-8',
-				'Cache-control': 'no-cache',
-			},
-		})
-
-		this.baseAxios.interceptors.response.use(config => Promise.resolve(config), error => error.response ? Promise.reject(error) : Promise.reject(new Error('offline')))
-	}
-}
-
-class Incognito extends BaseAxios {
 	@wrap
 	@isNotAuthenticated
 	async forgot_post (email: string): Promise<string | undefined> {
-		const response = await this.baseAxios.post(`/reset`, { email })
+		const response = await baseFetchApi.post(`${this.#url}/reset`, { email })
 		return response?.data?.response
 	}
 
 	@wrap
 	// / 1000ms timeout for this call - good idea?
 	async online_get (): Promise<types.TOnlineResponse> {
-		const response = await this.baseAxios.get(`/online`, { timeout: 1000 })
+		// TODO custom timeout here?
+		const response = await baseFetchApi.get(`${this.#url}/online`)
 		const browser_store = browserModule()
 		browser_store.set_online(true)
 		browser_store.set_api_version(response.data.response.api_version)
@@ -123,28 +191,28 @@ class Incognito extends BaseAxios {
 
 	@wrap
 	async bandwidth_get (): Promise<types.TGlobalBandwidth> {
-		const response = await this.baseAxios.get(`/bandwidth`)
+		const response = await baseFetchApi.get(`${this.#url}/bandwidth`)
 		return response?.data?.response
 	}
 
 	@wrap
 	@isNotAuthenticated
 	async register_post (registerObject: types.TRegisterUser): Promise<string> {
-		const response = await this.baseAxios.post(`/register`, registerObject)
+		const response = await baseFetchApi.post(`${this.#url}/register`, registerObject)
 		return response?.data?.response
 	}
 
 	@wrap
 	@isNotAuthenticated
 	async reset_get (hexId: string): Promise<types.TResetPasswordGet> {
-		const { data } = await this.baseAxios.get(`/reset/${hexId}`)
+		const { data } = await baseFetchApi.get(`${this.#url}/reset/${hexId}`)
 		return data?.response
 	}
 
 	@wrap
 	@isNotAuthenticated
 	async reset_patch ({ resetId, password, token }: types.TPasswordPatch): Promise<boolean> {
-		await this.baseAxios.patch(`/reset/${resetId}`, {
+		await baseFetchApi.patch(`${this.#url}/reset/${resetId}`, {
 			password,
 			token,
 		})
@@ -153,7 +221,7 @@ class Incognito extends BaseAxios {
 
 	@wrap
 	async signin_post (authObject: types.TSignin): Promise<types.TSigninResponse> {
-		const response = await this.baseAxios.post(`/signin`, authObject)
+		const response = await baseFetchApi.post(`${this.#url}/signin`, authObject)
 		return {
 			response: response.data.response,
 			status: response.status as types.THttpCodeVal,
@@ -163,141 +231,140 @@ class Incognito extends BaseAxios {
 	@wrap
 	@isNotAuthenticated
 	async verify_get (verifyId: string): Promise<boolean> {
-		await this.baseAxios.get(`/verify/${verifyId}`)
+		await baseFetchApi.get(`${this.#url}/verify/${verifyId}`)
 		return true
 	}
 
 	@wrap
 	async contact_post (data: types.TContact): Promise<boolean> {
-		await this.baseAxios.post(`/contact`, data)
+		await baseFetchApi.post(`${this.#url}/contact`, data)
 		return true
 	}
 }
 
-class AdminUser extends BaseAxios {
+class AdminUser {
+	readonly #url = 'authenticated/admin'
 	@wrap
 	@isAuthenticated
 	async admin_get (): Promise<boolean> {
-		await this.baseAxios.get('')
+		await baseFetchApi.get(this.#url)
 		return true
 	}
 
 	@wrap
 	@isAdmin
 	async memory_get (): Promise<types.TAdminMemory> {
-		const response = await this.baseAxios.get('/memory')
+		const response = await baseFetchApi.get(`${this.#url}/memory`)
 		return response.data.response
 	}
 
 	@wrap
 	@isAdmin
 	async limit_get (): Promise<Array<types.TAdminLimit>> {
-		const response = await this.baseAxios.get('/limit')
+		const response = await baseFetchApi.get(`${this.#url}/limit`)
 		return response.data.response
 	}
 
 	@wrap
 	@isAdmin
 	async limit_delete (key: string): Promise<void> {
-		await this.baseAxios.delete(`/limit`, { data: { key } })
+		await baseFetchApi.delete(`${this.#url}/limit`, { key })
 	}
 
 	@wrap
 	@isAdmin
 	async contact_get (): Promise<Array<types.TAdminContactMessage>> {
-		const response = await this.baseAxios.get('/contact')
+		const response = await baseFetchApi.get(`${this.#url}/contact`)
 		return response.data.response
 	}
 
 	@wrap
 	@isAdmin
 	async contact_delete (contact_message_id: number): Promise<void> {
-		await this.baseAxios.delete(`/contact`, { data: { contact_message_id } })
+		await baseFetchApi.delete(`${this.#url}/contact`, { contact_message_id })
 	}
 
 	@wrap
 	@isAdmin
 	async connections_get (): Promise<types.TAdminConnectedCount> {
-		const response = await this.baseAxios.get('/connection')
+		const response = await baseFetchApi.get(`${this.#url}/connection`)
 		return response.data.response
 	}
 
 	@wrap
 	@isAdmin
 	async email_log_get (): Promise<types.TAdminEmailCount> {
-		const response = await this.baseAxios.get('/emails')
+		const response = await baseFetchApi.get(`${this.#url}/emails`)
 		return response.data.response
 	}
 
 	@wrap
 	@isAdmin
 	async invite_get (): Promise<Array<types.TAdminInvite>> {
-		const response = await this.baseAxios.get('/invite')
+		const response = await baseFetchApi.get(`${this.#url}/invite`)
 		return response.data.response
 	}
 
 	@wrap
 	@isAdmin
 	async invite_post (data: types.TAdminInvitePost): Promise<boolean> {
-		await this.baseAxios.post('/invite', data)
+		await baseFetchApi.post(`${this.#url}/invite`, data)
 		return true
 	}
 
 	@wrap
 	@isAdmin
 	async invite_delete (invite: string): Promise<boolean> {
-		await this.baseAxios.delete(`/invite`, { data: { invite } })
+		await baseFetchApi.delete(`${this.#url}/invite`, { invite })
 		return true
 	}
 
 	@wrap
 	@isAdmin
 	async connection_delete (data: types.TAdminConnectionRemove): Promise<boolean> {
-		await this.baseAxios.delete(`/connection`, { data: { ...data } })
+		await baseFetchApi.delete(`${this.#url}/connection`, { ...data })
 		return true
 	}
 
 	@wrap
 	@isAdmin
 	async session_delete (key: string): Promise<void> {
-		await this.baseAxios.delete(`/session/${key}`)
+		await baseFetchApi.delete(`${this.#url}/session/${key}`)
 	}
 
 	@wrap
 	@isAdmin
 	async all_users_get (): Promise<Array<types.TAdminUserAndSessions>> {
-		const response = await this.baseAxios.get('/users')
+		const response = await baseFetchApi.get(`${this.#url}/users`)
 		return response.data.response
 	}
 
 	@wrap
 	@isAdmin
 	async user_connections_get (email: string): Promise<Array<types.AdminDeviceAndConnections>> {
-		const response = await this.baseAxios.get(`/user/${email}/devices`)
+		const response = await baseFetchApi.get(`${this.#url}/user/${email}/devices`)
 		return response.data.response
 	}
 
 	@wrap
 	@isAdmin
 	async attempt_delete (email: string): Promise<void> {
-		await this.baseAxios.delete(`/user/${email}/attempt`)
+		await baseFetchApi.delete(`${this.#url}/user/${email}/attempt`)
 	}
 
 	@wrap
 	@isAdmin
 	async active_patch (email: string): Promise<boolean> {
-		await this.baseAxios.patch(`/user/${email}/active`)
+		await baseFetchApi.patch(`${this.#url}/user/${email}/active`)
 		return true
 	}
 
 	@wrap
 	@isAdmin
 	async user_delete (data: types.TAdminUserDelete): Promise<boolean> {
-		await this.baseAxios.delete(`/user/${data.email}`, {
-			data: {
-				password: data.password,
-				token: data.token,
-			},
+		await baseFetchApi.delete(`${this.#url}/user/${data.email}`, {
+			password: data.password,
+			token: data.token,
 		})
 		return true
 	}
@@ -305,11 +372,9 @@ class AdminUser extends BaseAxios {
 	@wrap
 	@isAdmin
 	async device_delete (data: types.TAdminEmailDevice): Promise<boolean> {
-		await this.baseAxios.delete(`/user/${data.email}/device/${data.device_name}`, {
-			data: {
-				password: data.password,
-				token: data.token,
-			},
+		await baseFetchApi.delete(`${this.#url}/user/${data.email}/device/${data.device_name}`, {
+			password: data.password,
+			token: data.token,
 		})
 		return true
 	}
@@ -317,7 +382,7 @@ class AdminUser extends BaseAxios {
 	@wrap
 	@isAdmin
 	async device_pause_patch (data: types.TAdminEmailDevice): Promise<boolean> {
-		await this.baseAxios.patch(`/user/${data.email}/device/${data.device_name}`, {
+		await baseFetchApi.patch(`${this.#url}/user/${data.email}/device/${data.device_name}`, {
 			password: data.password,
 			token: data.token,
 		})
@@ -325,31 +390,33 @@ class AdminUser extends BaseAxios {
 	}
 }
 
-class AuthenticatedUser extends BaseAxios {
+class AuthenticatedUser {
+	readonly #url = 'authenticated/user'
+
 	@wrap
 	async signout_post (): Promise<void> {
 		const user_store = userModule()
 		await user_store.clientSideSignout()
-		await this.baseAxios.post(`/signout`)
+		await baseFetchApi.post(`${this.#url}/signout`)
 	}
 
 	@wrap
 	@isAuthenticated
 	async account_delete (data: types.TAuthObject): Promise<boolean> {
-		await this.baseAxios.delete(``, { data: { ...data } })
+		await baseFetchApi.delete(this.#url, { ...data })
 		return true
 	}
 
 	@wrap
 	@isAuthenticated
 	async data_get (data: types.TAuthObject): Promise<string> {
-		const response = await this.baseAxios.post(`/data`, data)
+		const response = await baseFetchApi.post(`${this.#url}/data`, data)
 		return response?.data?.response
 	}
 
 	@wrap
 	async user_get (): Promise<boolean> {
-		const response = await this.baseAxios.get('')
+		const response = await baseFetchApi.get(this.#url)
 		const [twoFA_store, user_store] = [twoFAModule(), userModule()]
 		user_store.set_email(response.data.response.email)
 		user_store.set_full_name(response.data.response.full_name)
@@ -369,14 +436,14 @@ class AuthenticatedUser extends BaseAxios {
 	@wrap
 	@isAuthenticated
 	async password_patch (input: types.TPasswordChange): Promise<boolean> {
-		await this.baseAxios.patch(`/password`, input)
+		await baseFetchApi.patch(`${this.#url}/password`, input)
 		return true
 	}
 
 	@wrap
 	@isAuthenticated
 	async name_patch (input: string): Promise<boolean> {
-		await this.baseAxios.patch(`/name`, { full_name: input })
+		await baseFetchApi.patch(`${this.#url}/name`, { full_name: input })
 		await this.user_get()
 		return true
 	}
@@ -384,7 +451,7 @@ class AuthenticatedUser extends BaseAxios {
 	@wrap
 	@isAuthenticated
 	async twoFA_delete (authentication: types.TAuthObject): Promise<boolean> {
-		await this.baseAxios.delete(`/twofa`, { data: { ...authentication } })
+		await baseFetchApi.delete(`${this.#url}/twofa`, { ...authentication })
 		await this.user_get()
 		return true
 	}
@@ -392,7 +459,7 @@ class AuthenticatedUser extends BaseAxios {
 	@wrap
 	@isAuthenticated
 	async twoFA_put (authentication: types.TAuthObject): Promise<boolean> {
-		await this.baseAxios.put(`/twofa`, { ...authentication })
+		await baseFetchApi.put(`${this.#url}/twofa`, { ...authentication })
 		await this.user_get()
 		return true
 	}
@@ -401,7 +468,7 @@ class AuthenticatedUser extends BaseAxios {
 	@wrap
 	@isAuthenticated
 	async twoFA_backup_delete (authentication: types.TAuthObject): Promise<boolean> {
-		await this.baseAxios.delete(`/twofa/backup`, { data: { ...authentication } })
+		await baseFetchApi.delete(`${this.#url}/twofa/backup`, { ...authentication })
 		await this.user_get()
 		return true
 	}
@@ -410,7 +477,7 @@ class AuthenticatedUser extends BaseAxios {
 	@wrap
 	@isAuthenticated
 	async twoFA_backup_post (): Promise<Array<string>> {
-		const response = await this.baseAxios.post(`/twofa/backup`)
+		const response = await baseFetchApi.post(`${this.#url}/twofa/backup`)
 		await this.user_get()
 		return response?.data?.response?.backups
 	}
@@ -419,7 +486,7 @@ class AuthenticatedUser extends BaseAxios {
 	@wrap
 	@isAuthenticated
 	async twoFA_backup_patch (authentication: types.TAuthObject): Promise<Array<string>> {
-		const response = await this.baseAxios.patch(`/twofa/backup`, authentication)
+		const response = await baseFetchApi.patch(`${this.#url}/twofa/backup`, authentication)
 		await this.user_get()
 		return response?.data?.response?.backups
 	}
@@ -427,7 +494,7 @@ class AuthenticatedUser extends BaseAxios {
 	@wrap
 	@isAuthenticated
 	async setupTwoFA_get (): Promise<boolean> {
-		const response = await this.baseAxios.get(`/setup/twofa`)
+		const response = await baseFetchApi.get(`${this.#url}/setup/twofa`)
 		const twoFA_store = twoFAModule()
 		twoFA_store.set_secret(response?.data?.response?.secret)
 		return true
@@ -436,13 +503,13 @@ class AuthenticatedUser extends BaseAxios {
 	@wrap
 	@isAuthenticated
 	async setupTwoFA_delete (): Promise<void> {
-		await this.baseAxios.delete(`/setup/twofa`)
+		await baseFetchApi.delete(`${this.#url}/setup/twofa`)
 	}
 
 	@wrap
 	@isAuthenticated
 	async twoFA_patch (body: types.TTFASetupPatch): Promise<boolean> {
-		await this.baseAxios.patch(`/twofa`, body)
+		await baseFetchApi.patch(`${this.#url}/twofa`, body)
 		await this.user_get()
 		return true
 	}
@@ -450,16 +517,17 @@ class AuthenticatedUser extends BaseAxios {
 	@wrap
 	@isAuthenticated
 	async setupTwoFA_post (token: types.TToken): Promise<boolean> {
-		await this.baseAxios.post(`/setup/twofa`, token)
+		await baseFetchApi.post(`${this.#url}/setup/twofa`, token)
 		return true
 	}
 }
 
-class Device extends BaseAxios {
+class Device {
+	readonly #url = 'authenticated/device'
 	@wrap
 	@isAuthenticated
 	async all_delete (authentication: types.TAuthObject): Promise<boolean> {
-		await this.baseAxios.delete('', { data: { ...authentication } })
+		await baseFetchApi.delete(this.#url, { ...authentication })
 		const device_store = deviceModule()
 		device_store.set_all_devices([])
 		return true
@@ -468,7 +536,7 @@ class Device extends BaseAxios {
 	@wrap
 	@isAuthenticated
 	async deviceAll_get (): Promise<boolean> {
-		const response = await this.baseAxios.get('')
+		const response = await baseFetchApi.get(this.#url)
 		const device_store = deviceModule()
 		device_store.set_all_devices(response.data?.response?.devices)
 		device_store.set_all_limits(response.data?.response?.limits)
@@ -486,7 +554,7 @@ class Device extends BaseAxios {
 		if (newDevice.device_password && !newDevice.client_password) {
 			newDevice.client_password = newDevice.device_password
 		}
-		const response = await this.baseAxios.post('', newDevice)
+		const response = await baseFetchApi.post(this.#url, newDevice)
 		return response.data?.response
 	}
 
@@ -496,11 +564,9 @@ class Device extends BaseAxios {
 		if (!data.name) {
 			throw new Error('No device name given')
 		}
-		await this.baseAxios.delete(`/${data.name}`, {
-			data: {
-				password: data.authentication.password,
-				token: data.authentication.token,
-			},
+		await baseFetchApi.delete(`${this.#url}/${data.name}`, {
+			password: data.authentication.password,
+			token: data.authentication.token,
 		})
 		return true
 	}
@@ -511,7 +577,7 @@ class Device extends BaseAxios {
 		if (!data.name) {
 			throw new Error('No device name given')
 		}
-		const response = await this.baseAxios.get(`/${data.name}`)
+		const response = await baseFetchApi.get(`${this.#url}/${data.name}`)
 		return response?.data?.response
 	}
 
@@ -522,7 +588,7 @@ class Device extends BaseAxios {
 		if (!input.maxClients || Number.isNaN(Number(input.maxClients))) {
 			throw new Error('Max clients invalid')
 		}
-		await this.baseAxios.patch(`/${input.name}/max_clients`, { max_clients: Number(input.maxClients) })
+		await baseFetchApi.patch(`${this.#url}/${input.name}/max_clients`, { max_clients: Number(input.maxClients) })
 		return true
 	}
 
@@ -530,7 +596,7 @@ class Device extends BaseAxios {
 	@isAuthenticated
 	// @AllowedUsers<types.TDeviceStructuredData>([UserLevel.PRO, UserLevel.ADMIN])
 	async structuredData_patch (input: types.TDeviceStructuredData): Promise<boolean> {
-		await this.baseAxios.patch(`/${input.name}/structured_data`, { structured_data: input.structured_data })
+		await baseFetchApi.patch(`${this.#url}/${input.name}/structured_data`, { structured_data: input.structured_data })
 		return true
 	}
 
@@ -541,7 +607,7 @@ class Device extends BaseAxios {
 		if (!input.name || !input.new_name) {
 			throw new Error('device name invalid')
 		}
-		await this.baseAxios.patch(`/${input.name}/rename`, { new_name: input.new_name })
+		await baseFetchApi.patch(`${this.#url}/${input.name}/rename`, { new_name: input.new_name })
 		return true
 	}
 
@@ -552,7 +618,7 @@ class Device extends BaseAxios {
 		if (!input.name) {
 			throw new Error('device name invalid')
 		}
-		await this.baseAxios.delete(`/${input.name}/password`, { data: { ...input.authentication } })
+		await baseFetchApi.delete(`${this.#url}/${input.name}/password`, { ...input.authentication })
 		return true
 	}
 
@@ -563,7 +629,7 @@ class Device extends BaseAxios {
 		if (!input.name) {
 			throw new Error('device name invalid')
 		}
-		await this.baseAxios.patch(`/${input.name}/password`, {
+		await baseFetchApi.patch(`${this.#url}/${input.name}/password`, {
 			device_password: input.device_password,
 			client_password: input.client_password,
 		})
@@ -573,21 +639,21 @@ class Device extends BaseAxios {
 	@wrap
 	@isAuthenticated
 	async paused_patch (input: types.TDevicePatchPause): Promise<boolean> {
-		await this.baseAxios.patch(`/${input.name}/pause`, { pause: input.pause })
+		await baseFetchApi.patch(`${this.#url}/${input.name}/pause`, { pause: input.pause })
 		return true
 	}
 
 	@wrap
 	@isAuthenticated
 	async apiKey_patch (input: Required<types.TBaseDevicePatch>): Promise<boolean> {
-		await this.baseAxios.patch(`/${input.name}/api_key`, { ...input.authentication })
+		await baseFetchApi.patch(`${this.#url}/${input.name}/api_key`, { ...input.authentication })
 		return true
 	}
 
 	@wrap
 	@isAuthenticated
 	async cache_delete (input: Required<types.TBaseDevicePatch>): Promise<boolean> {
-		await this.baseAxios.delete(`/${input.name}/cache`, { data: { ...input.authentication } })
+		await baseFetchApi.delete(`${this.#url}/${input.name}/cache`, { ...input.authentication })
 		return true
 	}
 
@@ -597,38 +663,22 @@ class Device extends BaseAxios {
 		if (!name) {
 			throw new Error('No device name given')
 		}
-		const response = await this.baseAxios.get(`/${name}/cache`)
+		const response = await baseFetchApi.get(`${this.#url}/${name}/cache`)
 		return response?.data?.response.cache
 	}
 }
 
-class AxiosWs {
-	private axios_ws_token!: AxiosInstance
-
-	constructor (wsAuthUrl: string) {
-		this.axios_ws_token = Axios.create({
-			baseURL: wsAuthUrl,
-			withCredentials: false,
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json; charset=utf-8',
-				'Cache-control': 'no-cache',
-			},
-		})
-
-		this.axios_ws_token.interceptors.response.use(config => Promise.resolve(config), error => error.response ? Promise.reject(error) : Promise.reject(new Error('offline')))
-	}
-
+class FetchWS {
 	@wrap
 	async online (): Promise<types.TOnlineResponse> {
-		const response = await this.axios_ws_token.get(`/online`)
+		const response = await baseFetchAuth.get(`/online`)
 		return response.data?.response
 	}
 
 	@isAuthenticated
 	async auth ({ key, password }: types.TWsAuth): Promise<string | null> {
 		try {
-			const response = await this.axios_ws_token.post(`/client`, {
+			const response = await baseFetchAuth.post(`/client`, {
 				key,
 				password,
 			})
@@ -639,25 +689,9 @@ class AxiosWs {
 	}
 }
 class SiteStatus {
-	private axios_website!: AxiosInstance
-
-	constructor (websiteUrl: string) {
-		this.axios_website = Axios.create({
-			baseURL: websiteUrl,
-			withCredentials: false,
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json; charset=utf-8',
-				'Cache-control': 'no-cache',
-			},
-		})
-
-		this.axios_website.interceptors.response.use(config => Promise.resolve(config), error => error.response ? Promise.reject(error) : Promise.reject(new Error('offline')))
-	}
-
 	async manifest_online (): Promise<string> {
 		try {
-			const response = await this.axios_website.get(`/manifest.webmanifest`)
+			const response = await baseFetchWww.get(`/manifest.webmanifest`)
 			return response.data.id
 		} catch {
 			return ''
@@ -665,10 +699,10 @@ class SiteStatus {
 	}
 }
 
-export const axios_admin = new AdminUser('authenticated/admin')
-export const axios_authenticatedUser = new AuthenticatedUser('authenticated/user')
-export const axios_device = new Device('authenticated/device')
-export const axios_incognito = new Incognito('incognito')
+export const fetch_admin = new AdminUser()
+export const fetch_authenticatedUser = new AuthenticatedUser()
+export const fetch_device = new Device()
+export const fetch_incognito = new Incognito()
 
-export const axios_site_status = new SiteStatus(env.domain_www)
-export const axios_ws = new AxiosWs(env.domain_auth)
+export const fetch_site_status = new SiteStatus()
+export const fetch_WS = new FetchWS()

@@ -33,6 +33,7 @@
 							:icon
 						/>
 					</v-col>
+
 					<v-col
 						class='ma-0 pa-0 align-self-center'
 						cols='auto'

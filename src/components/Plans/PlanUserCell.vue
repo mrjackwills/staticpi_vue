@@ -11,6 +11,7 @@
 				>
 					<v-icon :color :icon />
 				</v-col>
+
 				<v-col class='ma-0 pa-0' cols='12' :order='order_detail' sm='10'>
 					<span class='' :class='`text-${color}`'>{{ detail }}</span>
 				</v-col>

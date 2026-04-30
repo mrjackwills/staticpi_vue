@@ -18,11 +18,13 @@
 										<th class='text-left font-weight-bold'>
 											plan type
 										</th>
+
 										<th class='text-right font-weight-bold'>
 											ws messages per minute per pool
 										</th>
 									</tr>
 								</thead>
+
 								<tbody>
 									<tr v-for='item in limit_ws' :key='item.name' :class='item.class'>
 										<td>{{ item.name }}</td>
@@ -34,17 +36,20 @@
 					</v-col>
 
 				</v-row>
+
 				<br>
 				If the rate limit is exceeded, a one-minute ban on sending and receiving messages is imposed.
 				If the limit is exceeded by a factor of 4, a five-minute block on sending, receiving, and connecting is
 				imposed, and the
 				offending connection will be terminated.
 				<v-divider class='my-2' color='secondary' thickness='2' />
+
 				<v-row class='ma-0 pa-0 justify-start'>
 					<v-col class='ma-0 pa-0' cols='auto'>
 						<ProUserChip class='mb-2' />
 					</v-col>
 				</v-row>
+
 				If <router-link class='font-weight-bold text-primary' :to='structured_link()'>structured
 					data</router-link> is enabled,
 				when rate limited,

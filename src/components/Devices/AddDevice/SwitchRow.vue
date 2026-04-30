@@ -16,13 +16,17 @@
 
 					</v-switch>
 				</v-col>
+
 				<v-spacer />
+
 				<v-col v-if='to' class='ma-0 pa-0' cols='auto'>
 					<DocumentationLink :section='to' />
 				</v-col>
 			</v-row>
+
 			<div class='mt-n3 mb-2 unselectable'>{{ description }}</div>
 		</section>
+
 		<v-expand-transition>
 			<section v-if='switched && component' class=''>
 				<component

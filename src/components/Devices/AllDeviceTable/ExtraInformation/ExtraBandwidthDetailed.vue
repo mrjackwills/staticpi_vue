@@ -23,6 +23,7 @@
 		</v-row>
 
 		<v-divider />
+
 		<v-row
 			v-for='(item, index) in tableData'
 			:key='index'
@@ -55,6 +56,7 @@
 									:unit='item[inner].out.unit'
 									variety='out'
 								/>
+
 								<v-tooltip
 									v-if='show_tooltip'
 									activator='parent'
@@ -72,6 +74,7 @@
 									:unit='item[inner].in.unit'
 									variety='in'
 								/>
+
 								<v-tooltip
 									v-if='show_tooltip'
 									activator='parent'
@@ -89,6 +92,7 @@
 									:unit='item[inner].total.unit'
 									variety='total'
 								/>
+
 								<v-tooltip
 									v-if='show_tooltip'
 									activator='parent'
@@ -102,6 +106,7 @@
 					</v-col>
 
 				</v-row>
+
 				<v-divider v-if='index !== 2' />
 			</v-col>
 

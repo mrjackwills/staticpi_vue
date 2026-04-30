@@ -7,6 +7,7 @@
 				</v-col>
 			</v-row>
 		</v-expand-transition>
+
 		<v-row class='align-center pt-1' :class='justify' density='compact'>
 			<v-col class='ma-0 pa-0' cols='12'>
 				<v-text-field
@@ -25,6 +26,7 @@
 					@focus='changeInFocus'
 					@keydown.enter='renameDevice'
 				/>
+
 				<v-tooltip
 					v-if='show_tooltip && isFreeUser'
 					activator='parent'
@@ -35,6 +37,7 @@
 				</v-tooltip>
 			</v-col>
 		</v-row>
+
 		<v-expand-transition>
 			<v-row
 				v-if='inFocus && !paused'
@@ -62,8 +65,8 @@
 import type { TAuthObject, TDeviceInfo, TDeviceTableFields } from '@/types'
 import { mdiClose, mdiContentSave, mdiDevices, mdiPencilOutline } from '@mdi/js'
 import { useDisplay } from 'vuetify'
-import { axios_device } from '@/services/axios'
 import { dialoger } from '@/services/dialog'
+import { fetch_device } from '@/services/fetch'
 import { snackSuccess } from '@/services/snack'
 import { secondsToDays } from '@/vanillaTS/convert_seconds'
 
@@ -131,7 +134,7 @@ function onIntersect (is_i: boolean, _entries: Array<IntersectionObserverEntry>,
 const emit = defineEmits(['refresh'])
 async function renameDevice_confirm (authentication?: TAuthObject): Promise<void> {
 	loading.value = true
-	const response = await axios_device.rename_patch({
+	const response = await fetch_device.rename_patch({
 		new_name: newName.value,
 		name: name_of_device.value,
 		...authentication ? { authentication } : {},
@@ -165,7 +168,7 @@ function renameDevice (): void {
 async function clear_ttl (): Promise<void> {
 	clearInterval(ttl_timeout.value)
 	local_ttl.value = 0
-	await axios_device.deviceAll_get()
+	await fetch_device.deviceAll_get()
 }
 
 async function ttl_interval (): Promise<void> {

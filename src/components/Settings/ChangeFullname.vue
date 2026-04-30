@@ -74,6 +74,7 @@
 				@click='cancel'
 			/>
 		</template>
+
 		<template v-if='showTextFields' #save_button>
 			<ActionButton
 				:block='true'
@@ -92,7 +93,7 @@ import { mdiAccount, mdiAccountOutline, mdiCardAccountDetailsOutline, mdiClose, 
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import { useDisplay } from 'vuetify'
-import { axios_authenticatedUser } from '@/services/axios'
+import { fetch_authenticatedUser } from '@/services/fetch'
 import { snackSuccess } from '@/services/snack'
 
 const { smAndDown } = useDisplay()
@@ -159,7 +160,7 @@ async function submit (): Promise<void> {
 	if (v$.value.$invalid || errorMessages.value.full_name || loading.value) return
 	if (disabled.value) return
 	loading.value = true
-	const response = await axios_authenticatedUser.name_patch(user.value.full_name.trim())
+	const response = await fetch_authenticatedUser.name_patch(user.value.full_name.trim())
 	loading.value = false
 	if (response) {
 		snackSuccess({ message: 'name changed' })

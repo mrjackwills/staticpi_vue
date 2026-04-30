@@ -21,6 +21,7 @@
 				/>
 			</v-col>
 		</v-row>
+
 		<v-row class='align-center ma-0 pa-0 justify-center'>
 			<v-col class='ma-0 pa-0' cols='auto'>
 				<v-switch

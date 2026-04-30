@@ -12,18 +12,22 @@
 				<v-col class='ma-a pa-0' cols='auto'>
 					<slot name='titleIcon' />
 				</v-col>
+
 				<v-col class='ma-0 pa-0 font-weight-bold text-pi' :class='title' cols='auto'>
 					<slot name='title' />
 				</v-col>
+
 				<v-spacer />
 				<ProUserChip v-if='proOnly' />
 
 			</v-row>
+
 			<v-row class='align-center ma-0 pa-0 justify-center'>
 				<v-col class='pa-0 ma-0 text-body-large' cols='12'>
 					<slot name='text_description' />
 				</v-col>
 			</v-row>
+
 			<v-row class='align-center ma-0 pa-0 justify-center'>
 				<v-col class='pa-0 ma-0' cols='12'>
 					<slot name='body' />
@@ -36,6 +40,7 @@
 						<v-col class='pa-0 ma-0' cols='6' md='auto'>
 							<slot name='cancel_button' />
 						</v-col>
+
 						<v-col class='pa-0 ma-0' cols='6' md='auto'>
 							<slot name='save_button' />
 						</v-col>

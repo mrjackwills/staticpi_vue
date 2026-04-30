@@ -46,8 +46,8 @@
 <script setup lang='ts'>
 import type { TAuthObject, TDeviceInfo } from '@/types'
 import { mdiDelete, mdiRefresh } from '@mdi/js'
-import { axios_device } from '@/services/axios'
 import { dialoger } from '@/services/dialog'
+import { fetch_device } from '@/services/fetch'
 import { snackSuccess } from '@/services/snack'
 
 const loading = computed({
@@ -70,7 +70,7 @@ async function check_cache (): Promise<void> {
 	}
 	local_loading.value = true
 	loading.value = true
-	cache.value = await axios_device.cache_get(props.device.name_of_device)
+	cache.value = await fetch_device.cache_get(props.device.name_of_device)
 	local_loading.value = false
 	loading.value = false
 }
@@ -91,7 +91,7 @@ function delete_cache (): void {
 async function delete_cache_confirm (authentication: TAuthObject): Promise<void> {
 	loading.value = true
 	local_loading.value = true
-	const response = await axios_device.cache_delete({
+	const response = await fetch_device.cache_delete({
 		authentication,
 		name: props.device.name_of_device,
 	})

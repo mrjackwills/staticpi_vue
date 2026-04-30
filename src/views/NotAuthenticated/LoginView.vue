@@ -27,6 +27,7 @@
 								/>
 							</section>
 						</v-expand-transition>
+
 						<v-expand-transition>
 							<template v-if='twoFATokenRequired'>
 
@@ -52,6 +53,7 @@
 						</v-expand-transition>
 
 					</v-form>
+
 					<v-row class='align-center pa-0 ma-0 justify-center' wrap>
 						<v-col class='pa-0 ma-0' cols='12' md='auto' :order='mdAndUp ? 1 : 2'>
 							<v-row
@@ -74,6 +76,7 @@
 						</v-col>
 					</v-row>
 				</template>
+
 				<template #button>
 					<v-row class='align-center mb-3' :justify='twoFATokenRequired ? "space-around" : "center"'>
 						<v-col v-if='twoFATokenRequired' cols='6'>
@@ -88,6 +91,7 @@
 							/>
 
 						</v-col>
+
 						<v-col cols='6'>
 							<ActionButton
 								:block='true'
@@ -101,12 +105,14 @@
 					</v-row>
 
 				</template>
+
 				<template #end>
 
 					<v-row v-if='!twoFATokenRequired' class='align-center my-2 ma-0 pa-0 justify-space-between'>
 						<v-col class='ma-0 pa-0' cols='auto'>
 							<router-link class='text-primary' :to='FrontEndRoutes.REGISTER'>create account</router-link>
 						</v-col>
+
 						<v-col class='ma-0 pa-0' cols='auto'>
 							<router-link class='text-primary' :to='FrontEndRoutes.FORGOTPASSWORD'>forgotten
 								password?</router-link>
@@ -125,7 +131,7 @@ import useVuelidate from '@vuelidate/core'
 import { email, required } from '@vuelidate/validators'
 import { RouterLink } from 'vue-router'
 import { useDisplay } from 'vuetify'
-import { axios_authenticatedUser, axios_incognito } from '@/services/axios'
+import { fetch_authenticatedUser, fetch_incognito } from '@/services/fetch'
 import { FrontEndRoutes } from '@/types/const_routes'
 import { token_regex } from '@/vanillaTS/globalConst'
 
@@ -248,7 +254,7 @@ async function login (): Promise<void> {
 		// TODO test me
 		...user.value.token ? { token: user.value.token.replace(/\s/g, '') } : {},
 	}
-	const loginRequest = await axios_incognito.signin_post(authObject)
+	const loginRequest = await fetch_incognito.signin_post(authObject)
 	localLoading.value = false
 
 	if (loginRequest?.status === 200) {
@@ -259,7 +265,7 @@ async function login (): Promise<void> {
 		user.value.email = ''
 		user.value.password = ''
 		user.value.token = ''
-		await axios_authenticatedUser.user_get()
+		await fetch_authenticatedUser.user_get()
 		snackbarModule().$reset()
 		if (redirect.value) {
 			router.push(redirect.value)

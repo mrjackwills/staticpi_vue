@@ -14,6 +14,7 @@
 						<v-col class='mb-0 pb-0 text-headline-medium text-pi' cols='auto'>
 							Terms & Conditions
 						</v-col>
+
 						<v-col cols='auto'>
 							Last updated February 07, 2023
 						</v-col>
@@ -26,6 +27,7 @@
 									{{ zero_pad(index + 1) }}. {{ item.title }}
 								</v-col>
 							</v-row>
+
 							<v-row class='my-0 py-0' density='compact'>
 								<v-col v-for='(i, cols_index) in item.cols' :key='cols_index' class='py-0 my-0' cols='12'>
 									<span class=''>{{ i }}</span>
@@ -34,19 +36,23 @@
 						</v-col>
 
 					</v-row>
+
 					<v-row>
 						<v-col class='' cols='12'>
 							<hr color='secondary'>
 						</v-col>
 					</v-row>
+
 					<v-row class='justify-space-between'>
 						<v-col class='mb-0 pb-0 text-headline-medium text-pi' cols='auto'>
 							Privacy Policy
 						</v-col>
+
 						<v-col cols='auto'>
 							Last updated February 07, 2023
 						</v-col>
 					</v-row>
+
 					<v-row class='my-6 justify-center'>
 						<v-col cols=''>
 							This privacy notice for staticPi ('Company', 'we', 'us', or 'our'), describes how and why we
@@ -66,6 +72,7 @@
 								target='_blank'
 								:to='FrontEndRoutes.CONTACT'
 							>please contact us</router-link>
+
 							<br><br>
 
 							<v-row class='' density='compact'>
@@ -85,6 +92,7 @@
 											{{ zero_pad(index + 1) }}. {{ item.title }}
 										</v-col>
 									</v-row>
+
 									<v-row class='my-0 py-0' density='compact'>
 										<v-col v-for='(i, index_a) in item.cols' :key='index_a' class='py-0 my-0' cols='12'>
 											{{ i }}

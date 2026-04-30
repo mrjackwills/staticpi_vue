@@ -2,6 +2,7 @@
 	<v-app id='staticpi' class='ma-0 pa-0'>
 		<AppBar :order='mdAndDown?"2":"1"' />
 		<AppNavDrawer :order='mdAndDown?"1":"2"' />
+
 		<v-main>
 
 			<router-view v-if='pageReady' />

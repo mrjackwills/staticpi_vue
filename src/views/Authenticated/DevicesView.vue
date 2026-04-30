@@ -78,7 +78,7 @@
 import type { TDeviceInfo } from '@/types'
 import { mdiPlus } from '@mdi/js'
 import { useDisplay } from 'vuetify'
-import { axios_device } from '@/services/axios'
+import { fetch_device } from '@/services/fetch'
 
 const { smAndDown } = useDisplay()
 
@@ -133,7 +133,7 @@ const tooltip_add = ref(false)
 async function getData (): Promise<void> {
 	if (!online.value) return
 	loading.value = true
-	await axios_device.deviceAll_get()
+	await fetch_device.deviceAll_get()
 	loading.value = false
 	// data_ready.value = true;
 }

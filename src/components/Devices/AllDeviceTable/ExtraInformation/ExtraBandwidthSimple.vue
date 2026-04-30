@@ -25,6 +25,7 @@
 									:unit='item.unit'
 									variety='out'
 								/>
+
 								<v-tooltip
 									v-if='show_tooltip'
 									activator='parent'
@@ -38,6 +39,7 @@
 					</v-col>
 
 				</v-row>
+
 				<v-divider v-if='index !== 2' />
 			</v-col>
 		</v-row>

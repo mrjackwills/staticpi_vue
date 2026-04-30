@@ -5,6 +5,7 @@
 			<v-col class='pa-0' cols='auto'>
 				<div class='text-center text-pi font-weight-bold' :class='headingSize'>{{ heading }}</div>
 			</v-col>
+
 			<v-col class='pa-0' cols='12'>
 				<div class='text-center text-black font-weight-bold' :class='priceSize'>{{ price }} <span
 					v-if='perMonth'
@@ -12,6 +13,7 @@
 				>per month</span></div>
 			</v-col>
 		</v-row>
+
 		<v-row class='align-center pa-0 justify-center'>
 			<v-col class='pa-0' cols='11'>
 				<v-table>
@@ -22,6 +24,7 @@
 									<v-row class='ma-0 pa-0' density='compact'>
 										<v-col class='pa-0 ma-0'>
 											<span>{{ item.description }}</span>
+
 											<v-tooltip
 												v-if='show_tooltip'
 												activator='parent'
@@ -33,11 +36,13 @@
 										</v-col>
 									</v-row>
 								</td>
+
 								<td class=''>
 									<v-row class='align-center ma-0 pa-0 justify-end'>
 										<v-col class='ma-0 pa-0 mr-4' cols='auto'>
 											<span class='' :class='`text-${color(item.icon)}`'> {{ item.detail }}</span>
 										</v-col>
+
 										<v-col class='ma-0 pa-0' cols='auto'>
 											<v-icon
 												:color='color(item.icon)'
@@ -53,6 +58,7 @@
 				</v-table>
 			</v-col>
 		</v-row>
+
 		<v-row class='align-center justify-center'>
 			<v-col cols='auto'>
 				<router-link class='text--black' :to='FrontEndRoutes.REGISTER'>create account</router-link>

@@ -26,6 +26,7 @@
 							</v-col>
 						</v-row>
 					</v-alert>
+
 					<v-form @submit.prevent>
 						<template v-for='(item, index) in textFieldRows' :key='index'>
 							<v-text-field
@@ -49,6 +50,7 @@
 								@keydown.enter='register'
 								@update:model-value='v$[item.model]?.$touch()'
 							/>
+
 							<section v-if='item.label === "password"' :key='`hibp_${index}`'>
 								<v-expand-transition>
 
@@ -59,6 +61,7 @@
 										:password='user.password'
 									/>
 								</v-expand-transition>
+
 								<v-expand-transition>
 									<v-expand-transition>
 										<HibpMessage
@@ -69,11 +72,14 @@
 								</v-expand-transition>
 							</section>
 						</template>
+
 						<v-row class='align-center ma-0 pa-0 mt-n4 justify-center'>
 							<v-col class='ma-0 pa-0 my-n4' cols='12'>
 								<v-checkbox v-model='user.age' class='ma-0 pa-0' color='primary' label='I am aged 18 years or older' />
 							</v-col>
+
 							<v-spacer />
+
 							<v-col class='ma-0 pa-0 mt-n10' cols='12'>
 								<v-checkbox v-model='user.agree' class='ma-0 pa-0' color='primary'>
 									<template #label>
@@ -81,6 +87,7 @@
 											<v-col class='ma-0 pa-0' cols='auto'>
 												I agree to the
 											</v-col>
+
 											<v-col class='ma-0 pa-0' cols='auto'>
 												<router-link class='ml-1 text-primary' target='_blank' :to='FrontEndRoutes.PRIVACY'>terms & conditions, and privacy policy</router-link>
 											</v-col>
@@ -91,12 +98,14 @@
 						</v-row>
 					</v-form>
 				</template>
+
 				<template #button>
 					<v-row class='align-center ma-0 pa-0 mb-2 justify-space-around'>
 						<v-col class='ma-0 pa-0' cols='6'>
 							<BackButton />
 
 						</v-col>
+
 						<v-col class='ma-0 pa-0' cols='6'>
 
 							<ActionButton
@@ -121,7 +130,7 @@ import { mdiAccountCheck, mdiAccountOutline, mdiAlertCircleOutline, mdiEmail, md
 import useVuelidate from '@vuelidate/core'
 import { email, minLength, required } from '@vuelidate/validators'
 import { useDisplay } from 'vuetify'
-import { axios_incognito } from '@/services/axios'
+import { fetch_incognito } from '@/services/fetch'
 import { snackSuccess } from '@/services/snack'
 import { FrontEndRoutes } from '@/types/const_routes'
 import { minPassLength } from '@/vanillaTS/globalConst'
@@ -222,7 +231,7 @@ async function register (): Promise<void> {
 	localLoading.value = true
 	passwordVisible.value = false
 	user.value.full_name.trim()
-	const registerResponse = await axios_incognito.register_post(user.value)
+	const registerResponse = await fetch_incognito.register_post(user.value)
 	localLoading.value = false
 	if (registerResponse) {
 		complete.value = true

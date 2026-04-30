@@ -16,6 +16,7 @@
 					Add New Device
 				</v-col>
 			</v-row>
+
 			<v-row class='align-center ma-0 pa-0 justify-center'>
 				<v-col class='pb-0' cols='12'>
 					<v-form autocomplete='one-time-code' @submit.prevent>
@@ -38,6 +39,7 @@
 									variant='outlined'
 									@keydown.enter='addNewDevice'
 								/>
+
 								<v-tooltip
 									v-if='show_tooltip && isFreeUser'
 									activator='parent'
@@ -47,6 +49,7 @@
 									<span> Customisable name are not available to free users</span>
 								</v-tooltip>
 							</v-col>
+
 							<v-col v-if='!isFreeUser' class='my-n3' cols='12'>
 								<v-row class='align-center justify-start'>
 									<v-col class='text-body-large mb-3' cols='12' md='auto'>
@@ -56,6 +59,7 @@
 									</v-col>
 								</v-row>
 							</v-col>
+
 							<v-col class='mb-n4' cols='12'>
 								<SwitchRow
 									component='MaxClients'
@@ -67,6 +71,7 @@
 									@switched='max_clientsSwitch'
 								/>
 							</v-col>
+
 							<v-col class='mb-n4' cols='12'>
 								<SwitchRow
 									component='DevicePassword'
@@ -79,6 +84,7 @@
 									@switched='passwordSwitch'
 								/>
 							</v-col>
+
 							<v-col class='' cols='12'>
 								<SwitchRow
 									component='StructuredData'
@@ -94,6 +100,7 @@
 					</v-form>
 				</v-col>
 			</v-row>
+
 			<v-row class='align-center ma-0 pa-0 mt-2 justify-center'>
 				<v-col class='' cols='6'>
 					<ActionButton
@@ -106,6 +113,7 @@
 						@click='cancel'
 					/>
 				</v-col>
+
 				<v-col class='' cols='6'>
 					<ActionButton
 						:block='true'
@@ -118,6 +126,7 @@
 				</v-col>
 
 			</v-row>
+
 			<v-row v-if='!isFreeUser' class='align-center ma-0 pa-0 justify-center'>
 				<v-col class='text-center text-body-large unselectable' cols='12' md='auto'>
 					All device settings can be modified after creation
@@ -131,7 +140,7 @@
 import type { TAddDevice } from '@/types'
 import { mdiCheck, mdiClose, mdiDevices } from '@mdi/js'
 import { useDisplay } from 'vuetify'
-import { axios_device } from '@/services/axios'
+import { fetch_device } from '@/services/fetch'
 import { snackSuccess } from '@/services/snack'
 
 const { smAndDown, mobile } = useDisplay()
@@ -197,7 +206,7 @@ async function addNewDevice (): Promise<void> {
 		deviceSettings.value.device_password = undefined
 		deviceSettings.value.client_password = undefined
 	}
-	const response = await axios_device.deviceAdd_post(deviceSettings.value)
+	const response = await fetch_device.deviceAdd_post(deviceSettings.value)
 	if (response) snackSuccess({ message: `New device added: ${response}` })
 	emit('refresh')
 	cancel()

@@ -9,6 +9,7 @@
 				:cols='item.cols'
 			>
 				<DocumentationLink v-if='item.link' class='mr-1' :section='item.link' />
+
 				<span @click='item.sortable ? sort(item.text) : undefined'>
 					{{ item.text }}
 					<v-icon
@@ -21,6 +22,7 @@
 			</v-col>
 
 		</v-row>
+
 		<v-divider class='mb-4' />
 	</section>
 
@@ -35,7 +37,7 @@ const { mdAndUp, smAndDown } = useDisplay()
 
 const deviceStore = deviceModule()
 const tableData = computed(() => deviceStore.all)
-const devicesUpdatedAxios = computed(() => deviceStore.timestamp)
+const devicesUpdated = computed(() => deviceStore.timestamp)
 
 const headings = [
 	{
@@ -220,7 +222,7 @@ function sortByDeviceStatus (): void {
 	deviceStore.set_all_devices(tmp)
 }
 
-watch(devicesUpdatedAxios, _ => {
+watch(devicesUpdated, _ => {
 	if (sortedBy.value.name) {
 		sortedBy.value.largestFirst = !sortedBy.value.largestFirst
 		sort(sortedBy.value.name)

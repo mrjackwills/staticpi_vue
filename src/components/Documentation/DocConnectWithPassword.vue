@@ -8,12 +8,14 @@
 				<br>
 				When setting a device password, you can choose to set identical or separate password for Pi and Client.
 			</p>
+
 			<CodeBlock
 				:key='`c_${componentKey}`'
 				class='my-3'
 				:code='code_password_connect_client'
 				filename='connect_client_with_password.js'
 			/>
+
 			<CodeBlock
 				:key='`d_${componentKey}`'
 				class='my-3'
@@ -33,14 +35,12 @@ const code_password_connect_client = computed(() => `const token_body = {
 };
 const token_request = await fetch('${props.addressToken}/client', {
 		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		},
+		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(token_body)
 	});
-const { response } = await token_request.json();
+const data = await token_request.json();
 
-const websocket_connection = new WebSocket(\`${props.addressWssClient}/\${response}\` );
+const websocket_connection = new WebSocket(\`${props.addressWssClient}/\${data.response}\` );
 	
 websocket_connection.addEventListener('open', (event) => {
 	console.log('client connected');
@@ -55,7 +55,13 @@ const code_password_connect_pi = computed(() => `const token_body = {
 	 password: "your_secret_pi_password"
 };
 
-const { data } = await axios.get('${props.addressToken}/pi', token_body)
+const token_request = await fetch('${props.addressToken}/pi', {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(token_body)
+	});
+const data = await token_request.json();
+
 const websocket_connection = new WebSocket(\`${props.addressWssPi}/\${data.response}\` );
 	
 websocket_connection.addEventListener('open', (event) => {

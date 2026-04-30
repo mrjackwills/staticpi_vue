@@ -9,6 +9,7 @@
 			<DeviceHeaders />
 
 		</template>
+
 		<template #body>
 
 			<v-row
@@ -17,6 +18,7 @@
 				class='ma-0 pa-0 align-center justify-center'
 			>
 				<DeviceRow :device @refresh='refresh' />
+
 				<v-col v-if='index!==tableData.length-1' class='ma-0 pa-0 py-1' cols='12'>
 					<v-divider />
 				</v-col>

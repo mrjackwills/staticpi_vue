@@ -19,6 +19,7 @@
 						<DocumentationLink v-if='item.link' :section='item.link' :xsmall='true' />
 						{{ item.text }}:
 					</v-col>
+
 					<v-col class='ma-0 pa-0' :cols='smAndDown ? "7" : "12"'>
 						<component :is='item.component' :device @refresh='refresh' />
 					</v-col>
@@ -46,6 +47,7 @@
 								size='small'
 							/>
 						</v-col>
+
 						<v-col class='ma-0 pa-0' cols='auto'>
 							<span class='text-label-small' :class='show_extra ? "text-secondary" : "text-white"'>
 								{{ show_text }}

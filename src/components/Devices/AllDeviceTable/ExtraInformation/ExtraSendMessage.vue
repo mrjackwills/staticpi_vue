@@ -33,12 +33,15 @@
 										:icon='connectedIcon'
 										:size='mobile ? "x-small" : "small"'
 									/>
+
 									<span
 										class='ml-2 unselectable font-weight-bold'
 										:class='`text-${connectedColor}`'
 									>{{ connectedText }}</span>
 								</v-col>
+
 								<v-spacer />
+
 								<template v-if='isConnected'>
 									<v-col
 										class='ma-0 pa-0 text-white unselectable text-body-small'
@@ -73,6 +76,7 @@
 									>
 										<v-icon class='mr-2' :color='item.color' :icon='item.icon' size='small' />
 										<span class='text-white m-3'>{{ item.text }}: </span>
+
 										<span
 											v-if='item.value'
 											class='font-weight-bold'
@@ -101,16 +105,19 @@
 													:tooltip-message='"sent message copied!"'
 												/>
 											</v-col>
+
 											<v-col class='ma-0 pa-0' cols='auto'>
 												sent:
 											</v-col>
 
 										</v-row>
 									</v-col>
+
 									<v-col class=' text-pi ma-0 pa-0 font-weight-bold' cols='10'>
 										<span v-if='device.structured_data'>{ "data" : {{ formatMessage(message) }}
 											<span v-if='unique'>, "unique": true </span> }
 										</span>
+
 										<span v-else> {{ message }}</span>
 									</v-col>
 
@@ -130,11 +137,13 @@
 													:tooltip-message='"response message copied!"'
 												/>
 											</v-col>
+
 											<v-col class='ma-0 pa-0' cols='auto'>
 												response:
 											</v-col>
 										</v-row>
 									</v-col>
+
 									<v-col v-if='response' class='ma-0 pa-0' cols='10'>
 
 										<v-row class='align-start ma-0 pa-0 justify-space-around' density='compact'>
@@ -150,6 +159,7 @@
 					</v-expand-transition>
 				</v-col>
 			</v-row>
+
 			<v-row class='align-center ma-0 pa-0 justify-center' :class='{ "small-text": mobile }'>
 				<v-row class='align-center ma-0 pa-0 no gutters justify-center'>
 					<v-col v-if='device.device_password_required && !ws' class='ma-0 pa-0' cols='11' lg='9'>
@@ -177,6 +187,7 @@
 							/>
 						</v-form>
 					</v-col>
+
 					<v-col v-if='isConnected' class='ma-0 pa-0' cols='11' lg='9'>
 						<v-row class='align-center ma-0 pa-0 no gutters justify-space-between'>
 							<v-col class='ma-0 pa-0' cols='12'>
@@ -238,6 +249,7 @@
 								@click='closeWs'
 							/>
 						</v-col>
+
 						<v-col v-if='!isConnected' class='ma-0 pa-0' cols='6'>
 							<ActionButton
 								:block='true'
@@ -249,6 +261,7 @@
 								@click='openWs'
 							/>
 						</v-col>
+
 						<v-col v-else class='ma-0 pa-0' cols='6'>
 							<ActionButton
 								:block='true'
@@ -275,7 +288,7 @@ import {
 } from '@mdi/js'
 import { parse } from 'secure-json-parse'
 import { useDisplay } from 'vuetify'
-import { axios_ws } from '@/services/axios'
+import { fetch_WS } from '@/services/fetch'
 import { snackError } from '@/services/snack'
 import { convert_bytes } from '@/vanillaTS/convert_bytes'
 import { env } from '@/vanillaTS/env'
@@ -389,7 +402,7 @@ function formatMessage (data: string): string {
 
 async function getAuthToken (): Promise<void> {
 	errorMessage.value = ''
-	const token = await axios_ws.auth({
+	const token = await fetch_WS.auth({
 		key: props.device.api_key,
 		password: password.value,
 	})

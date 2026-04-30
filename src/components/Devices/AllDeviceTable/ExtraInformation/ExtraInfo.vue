@@ -108,7 +108,7 @@
 import type { TDeviceInfo, TExtraTableRow, TSelectConnectedClient } from '@/types'
 import { mdiForum } from '@mdi/js'
 import { useDisplay } from 'vuetify'
-import { axios_device } from '@/services/axios'
+import { fetch_device } from '@/services/fetch'
 const { smAndDown } = useDisplay()
 
 onBeforeUnmount(() => {
@@ -164,7 +164,7 @@ function refresh (): void {
 }
 async function updateExtraInfo (): Promise<void> {
 	loading.value = true
-	const data = await axios_device.named_get({ name: props.device.name_of_device })
+	const data = await fetch_device.named_get({ name: props.device.name_of_device })
 	if (data) connectedClients.value = data
 	loading.value = false
 	init.value = true

@@ -16,6 +16,7 @@
 						label=''
 						@click='click_active'
 					/>
+
 					<v-tooltip
 						v-if='show_tooltip && disabled'
 						activator='parent'
@@ -26,6 +27,7 @@
 					</v-tooltip>
 
 				</v-col>
+
 				<v-col v-if='!active' class='ml-2 ma-0 pa-0 cl' cols='auto'>
 					<v-icon color='pi' :icon='mdiDelete' @click='deleteUser' />
 				</v-col>
@@ -49,21 +51,26 @@
 				{{ user.user_level }}
 			</span>
 		</v-col>
+
 		<v-col class='text-right ma-0 pa-0' cols='1'>
 			{{ monthly_bandwidth(user) }}
 			<v-icon :color='bandwidth_color' :icon='bandwidth_icon' @click='click_bandwidth' />
 		</v-col>
+
 		<v-col class='text-right ma-0 pa-0' cols='1'>
 			{{ user.device_count }}
 			<v-icon v-if='user.device_count > 0' :color='device_color' :icon='device_icon' @click='click_device' />
 		</v-col>
+
 		<v-col class='text-right ma-0 pa-0' cols='1'>
 			<span v-if='user.two_fa_enabled' class='mr-1'>{{ user.two_fa_backup_count }}</span>
 			<v-icon :color='bool_color(user.two_fa_enabled)' :icon='bool_icon(user.two_fa_enabled)' size='small' />
 		</v-col>
+
 		<v-col class='text-right ma-0 pa-0' cols='1'>
 			{{ user.password_reset }}
 		</v-col>
+
 		<v-col class='text-right ma-0 pa-0' cols='1'>
 			{{ user.login_attempt_number }}
 			<v-icon
@@ -74,6 +81,7 @@
 				@click='click_attempt'
 			/>
 		</v-col>
+
 		<v-col class='text-right ma-0 pa-0' cols='1'>
 			{{ sessions.length }}
 			<v-icon v-if='(sessions.length > 0)' :color='session_color' :icon='session_icon' @click='click_session' />
@@ -101,31 +109,40 @@
 							<v-col class='ma-0 pa-0 text-left' cols='4'>
 								name
 							</v-col>
+
 							<v-col class='ma-0 pa-0 text-right' cols='1'>
 								api_key
 							</v-col>
+
 							<v-col class='ma-0 pa-0 text-right' cols='1'>
 								creation_date
 							</v-col>
+
 							<v-col class='ma-0 pa-0 text-right' cols='1'>
 								max_clients
 							</v-col>
+
 							<v-col class='ma-0 pa-0 cl text-right' cols='1'>
 								status
 							</v-col>
+
 							<v-col class='ma-0 pa-0 text-right' cols='1'>
 								structured_data
 							</v-col>
+
 							<v-col class='ma-0 pa-0 text-right' cols='1'>
 								password_required
 							</v-col>
+
 							<v-col class='ma-0 pa-0 text-right' cols='1'>
 								delete
 							</v-col>
 
 						</v-row>
+
 						<v-divider />
 					</v-col>
+
 					<v-col v-for='(item, index) in all_devices' :key='index' class='ma-0 pa-0' cols='12'>
 						<AdminDeviceRow :device='item' :email='user.email' @refresh='update_device' />
 					</v-col>
@@ -142,27 +159,34 @@
 				<v-col class='ma-0 pa-0' cols='6'>
 					key
 				</v-col>
+
 				<v-col class='ma-0 pa-0' cols='3'>
 					ttl
 				</v-col>
+
 				<v-col class='ma-0 pa-0' cols='3'>
 					created
 				</v-col>
 			</v-row>
+
 			<v-divider />
+
 			<v-col v-for='(item, index) in sessions' :key='index' class='ma-0 pa-0' cols='12'>
 				<v-row class='align-center ma-0 pa-0 justify-space-between'>
 					<v-col class='ma-0 pa-0 small-text' cols='6'>
 						{{ item.key }}
 					</v-col>
+
 					<v-col class='ma-0 pa-0' cols='3'>
 						{{ secondsToDays(item.ttl * 1000) }}
 					</v-col>
+
 					<v-col class='ma-0 pa-0' cols='3'>
 						{{ new Date(item.timestamp * 1000).toLocaleString() }}
 						<v-icon color='pi' :icon='mdiCloseCircle' size='small' @click='session_delete(item.key)' />
 					</v-col>
 				</v-row>
+
 				<v-divider v-if='(index !== sessions.length - 1)' class='' />
 			</v-col>
 		</v-row>
@@ -174,8 +198,8 @@
 import type { AdminDeviceAndConnections, TAdminSession, TAdminUser, TAuthObject, TDeviceInfo } from '@/types'
 import { mdiAccountRemove, mdiCheck, mdiChevronDown, mdiChevronUp, mdiClose, mdiCloseCircle, mdiDelete } from '@mdi/js'
 import { useDisplay } from 'vuetify'
-import { axios_admin } from '@/services/axios'
 import { dialoger } from '@/services/dialog'
+import { fetch_admin } from '@/services/fetch'
 import { UserLevel } from '@/types/const_userLevel'
 import { convert_bytes } from '@/vanillaTS/convert_bytes'
 import { secondsToDays } from '@/vanillaTS/convert_seconds'
@@ -202,7 +226,7 @@ onUnmounted(() => {
 })
 
 async function click_active (): Promise<void> {
-	const valid = await axios_admin.active_patch(props.user.email)
+	const valid = await fetch_admin.active_patch(props.user.email)
 	if (valid) {
 		emit('update')
 	} else {
@@ -216,7 +240,7 @@ const user_level_class = computed(() => props.user.user_level === UserLevel.ADMI
 
 async function update_device (): Promise<void> {
 	loadingModule().set_loading(true)
-	all_devices.value = await axios_admin.user_connections_get(props.user.email)
+	all_devices.value = await fetch_admin.user_connections_get(props.user.email)
 	loadingModule().set_loading(false)
 }
 
@@ -260,7 +284,7 @@ function click_session (): void {
 }
 
 async function click_attempt (): Promise<void> {
-	await axios_admin.attempt_delete(props.user.email)
+	await fetch_admin.attempt_delete(props.user.email)
 	emit('update')
 }
 
@@ -269,7 +293,7 @@ const session_icon = computed(() => show_session.value ? mdiChevronUp : mdiChevr
 const session_color = computed(() => show_session.value ? 'pi' : 'primary')
 
 async function session_delete (key: string): Promise<void> {
-	await axios_admin.session_delete(key)
+	await fetch_admin.session_delete(key)
 	emit('update')
 }
 
@@ -345,7 +369,7 @@ async function deleteUser (): Promise<void> {
 
 async function deleteUser_confirm (authentication: TAuthObject): Promise<void> {
 	loading.value = true
-	await axios_admin.user_delete({
+	await fetch_admin.user_delete({
 		email: props.user.email,
 		...authentication,
 	})

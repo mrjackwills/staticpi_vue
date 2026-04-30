@@ -40,8 +40,8 @@
 import type { TAuthObject } from '@/types'
 import { mdiAccountRemove, mdiDelete } from '@mdi/js'
 import { useDisplay } from 'vuetify'
-import { axios_authenticatedUser } from '@/services/axios'
 import { dialoger } from '@/services/dialog'
+import { fetch_authenticatedUser } from '@/services/fetch'
 const { smAndDown } = useDisplay()
 
 const settingSectionStore = settingSectionModule()
@@ -80,7 +80,7 @@ async function deleteAccount (): Promise<void> {
 
 async function deleteAccount_confirm (authentication: TAuthObject): Promise<void> {
 	loading.value = true
-	const response = await axios_authenticatedUser.account_delete({ ...authentication })
+	const response = await fetch_authenticatedUser.account_delete({ ...authentication })
 	loading.value = false
 	if (response) {
 		await userModule().clientSideSignout()

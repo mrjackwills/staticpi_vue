@@ -16,17 +16,21 @@
 					<v-col class='ma-0 pa-0 mr-1  mb-1 cl' cols='auto'>
 						<a class='font-weight-bold' href='https://www.github.com/mrjackwills/staticpi_vue' rel='noopener noreferrer' target='_blank'>
 							<v-icon :icon='mdiGithub' size='small' style='vertical-align: middle;' />
+
 							<v-tooltip v-if='show_tooltip' activator='parent' content-class='tooltip' location='top center'>
 								<span class=''>see source code</span>
 							</v-tooltip>
 						</a>
 					</v-col>
+
 					<v-col class='ma-0 pa-0' cols='auto' @click='buildInfo'>
 						<StaticPi color='' />
 					</v-col>
+
 					<v-col class='ma-0 pa-0 mx-1' cols='auto' @click='buildInfo'>
 						<v-icon :icon='mdiCopyright' size='x-small' style='vertical-align: middle;' />
 					</v-col>
+
 					<v-col class='ma-0 pa-0' cols='auto' @click='buildInfo'>
 						2020 -
 					</v-col>

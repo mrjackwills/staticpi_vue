@@ -22,6 +22,7 @@
 						</v-col>
 					</v-row>
 				</template>
+
 				<template #body>
 					<v-form @submit.prevent>
 						<v-text-field
@@ -41,11 +42,13 @@
 
 					</v-form>
 				</template>
+
 				<template #button>
 					<v-row class='align-center ma-0 pa-0 mb-2 justify-space-around'>
 						<v-col class='ma-0 pa-0' cols='6'>
 							<BackButton />
 						</v-col>
+
 						<v-col class='ma-0 pa-0' cols='6'>
 							<ActionButton
 								:block='true'
@@ -67,7 +70,7 @@ import { mdiEmail, mdiSend } from '@mdi/js'
 import { useVuelidate } from '@vuelidate/core'
 import { email, required } from '@vuelidate/validators'
 import { useDisplay } from 'vuetify'
-import { axios_incognito } from '@/services/axios'
+import { fetch_incognito } from '@/services/fetch'
 import { snackSuccess } from '@/services/snack'
 
 const { smAndDown } = useDisplay()
@@ -95,12 +98,12 @@ onMounted(() => {
 })
 
 /**
- ** ALWAYS sends a forgotten password axios request, and snack success
+ ** ALWAYS sends a forgotten password fetch request, and snack success
  */
 async function forgot (): Promise<void> {
 	if (disabled.value) return
 	localLoading.value = true
-	await axios_incognito.forgot_post(user.value.email)
+	await fetch_incognito.forgot_post(user.value.email)
 	snackSuccess({ message: 'Instructions have been sent to the email address provided' })
 	localLoading.value = false
 	complete.value = true
