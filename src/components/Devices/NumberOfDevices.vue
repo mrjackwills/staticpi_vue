@@ -1,15 +1,21 @@
 <template>
 	<v-row class='align-center ma-0 pa-0  justify-center' density='compact'>
 		<v-col class='ma-0 pa-0' :cols='computedCols'>
-			<span class='font-weight-bold' :class='text_size'>number of devices: </span> <span
+			<span class='font-weight-bold' :class='text_size'>number of devices: </span>
+
+			<span
 				:class='[deviceLimit_class, text_size]'
 			>{{ deviceNumber }} / {{ maxDevices }}</span>
 		</v-col>
+
 		<v-col class='ma-0 pa-0' :cols='computedCols'>
 			<span class='font-weight-bold' :class='text_size'>monthly bandwidth: </span>
+
 			<span :class='[bandwidthLimit_class, text_size]'>{{ converted_total.total }} {{ converted_total.unit }} / {{
 				converted_limit.total }} {{ converted_limit.unit }}</span>
+
 			<span class='ml-2 font-weight-medium' :class='[percentageClass, text_size]'>({{ used_percentage }}%)</span>
+
 			<v-tooltip v-if='show_tooltip' activator='parent' content-class='tooltip' location='top center'>
 				<span>{{ totalBandwidth }} bytes in {{ thisMonth }}</span>
 			</v-tooltip>

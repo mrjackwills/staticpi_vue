@@ -24,6 +24,7 @@
 					:justify='headingJustify'
 					:size='headingSize'
 				/>
+
 				<v-row class='align-center ma-0 pa-0 justify-center'>
 					<v-col class='ma-0 pa-0' cols='12' :lg :sm>
 						<slot name='start' />
@@ -43,6 +44,7 @@
 						</v-col>
 					</v-row>
 				</v-card-actions>
+
 				<v-row class='align-center ma-0 pa-0 justify-center' :class='padding'>
 					<v-col class='ma-0 pa-0' cols='12' :lg :sm>
 						<slot name='end' />

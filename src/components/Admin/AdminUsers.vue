@@ -15,6 +15,7 @@
 				<v-col class='ma-0 pa-0' cols='12'>
 					total bandwidth: <span class='font-weight-bold'>{{ total_monthly_bandwidth }}</span>
 				</v-col>
+
 				<v-col class='ma-0 pa-0' cols='12'>
 					<v-row class='align-center font-weight-bold ma-0 pa-0 justify-space-between' density='compact'>
 
@@ -30,7 +31,9 @@
 					</v-row>
 				</v-col>
 			</v-row>
+
 			<v-divider />
+
 			<v-row class='align-center ma-0 pa-0 mb-2 justify-center'>
 				<v-col
 					v-for='(item,index) in users'

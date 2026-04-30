@@ -9,6 +9,7 @@
 						</v-col>
 					</v-row>
 				</template>
+
 				<template #body>
 					<v-form @submit.prevent>
 						<v-text-field
@@ -31,6 +32,7 @@
 							@keydown.enter='submit'
 							@update:model-value='v$[item.model]?.$touch()'
 						/>
+
 						<v-expand-transition>
 							<PasswordStrength
 								v-if='!passwordCompromised && user.password'
@@ -39,11 +41,13 @@
 								:password='user.password'
 							/>
 						</v-expand-transition>
+
 						<v-expand-transition>
 							<v-expand-transition>
 								<HibpMessage v-if='passwordCompromised' mt=' ' />
 							</v-expand-transition>
 						</v-expand-transition>
+
 						<section v-if='two_fa_enabled'>
 							<v-text-field
 								v-for='item in tokenFields'
@@ -62,6 +66,7 @@
 						</section>
 					</v-form>
 				</template>
+
 				<template #button>
 					<ActionButton
 						:block='true'

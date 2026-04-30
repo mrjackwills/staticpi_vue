@@ -18,6 +18,7 @@
 								<v-col class='ma-0 pa-0 mr-4' cols='auto'>
 									use API key from:
 								</v-col>
+
 								<v-col class=' ' cols='6' md='3'>
 									<v-select
 										v-model='deviceSelected'

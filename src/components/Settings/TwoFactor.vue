@@ -3,6 +3,7 @@
 		<template #title>
 			<span>Two-Factor Authentication</span>
 		</template>
+
 		<template #titleIcon>
 			<v-icon class='mr-2' color='pi' :icon='mdiShieldHalfFull' :size='smAndDown ? "small" : "default"' />
 		</template>
@@ -11,9 +12,11 @@
 			<v-expand-transition>
 				<TFAInactiveText v-if='!active && !setupProcessStarted' />
 			</v-expand-transition>
+
 			<v-expand-transition>
 				<section v-if='active && !backupProcess'>
 					<TFAStatusRow :active text='Two-Factor enabled' @click='removeTwoFA' />
+
 					<v-row class='ma-0 pa-0 justify-center'>
 						<v-col class='ma-0 pa-0' cols='12' md='8'>
 							<v-divider />
@@ -21,6 +24,7 @@
 					</v-row>
 				</section>
 			</v-expand-transition>
+
 			<v-expand-transition>
 				<TFAStatusRow
 					v-if='active && !backupProcess'
@@ -29,22 +33,27 @@
 					@click='removeBackups'
 				/>
 			</v-expand-transition>
+
 			<v-expand-transition>
 				<TFABackup v-if='active' />
 			</v-expand-transition>
+
 			<v-expand-transition>
 				<TFAAlwaysRequired v-if='active && !backupProcess' />
 			</v-expand-transition>
 		</template>
+
 		<template #body>
 			<v-expand-transition>
 				<TFAInstructions v-if='!active && setupProcessStarted' />
 			</v-expand-transition>
 		</template>
+
 		<template #action_button>
 			<v-expand-transition>
 				<TFAEnable v-if='!active && !setupProcessStarted' />
 			</v-expand-transition>
+
 			<ActionButton
 				v-if='showCancel && !backupProcess && singleSectionOpen'
 				color='pi'

@@ -12,6 +12,7 @@
 			<v-col v-if='!mobile && authenticated' class='ma-0 pa-0' cols='auto'>
 				<div :class='spacerClass' />
 			</v-col>
+
 			<v-col class='ma-0 pa-0' cols='auto'>
 				<v-row class='align-center ma-0 pa-0 pulse justify-center'>
 					<v-col class='ma-0 pa-0 mr-2 ' cols='auto'>
@@ -21,6 +22,7 @@
 							size='small'
 						/>
 					</v-col>
+
 					<v-col class='ma-0 pa-0 cl' cols='auto'>
 						<div class='text-backgroundColor text-center' :class='messageSize'>offline</div>
 					</v-col>

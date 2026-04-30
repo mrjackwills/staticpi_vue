@@ -6,9 +6,11 @@
 				<v-col v-if='smAndDown' class='ma-0 pa-0' cols='auto'>
 					<span class='font-weight-bold'>online since: </span>
 				</v-col>
+
 				<v-col class='ma-0 pa-0' cols='auto'>
 					{{ text }}
 				</v-col>
+
 				<v-tooltip v-if='show_tooltip' activator='parent' content-class='tooltip' location='top center'>
 					<span v-intersect='onIntersect'>connected for: {{ tooltipText }}</span>
 				</v-tooltip>

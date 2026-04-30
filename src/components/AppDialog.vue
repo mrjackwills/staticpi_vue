@@ -15,8 +15,10 @@
 				:indeterminate='loading'
 				width='100%'
 			/>
+
 			<v-card-title class='pa-0 ma-0 px-4 py-2 text-pi' :class='titleSize'>{{ title }}</v-card-title>
 			<v-card-text class='px-4 py-2' :class='messageSize'>{{ message }}</v-card-text>
+
 			<section v-if='passwordRequired || twoFA_always_required'>
 				<v-row class='align-center ma-0 pa-0 mt-2 justify-center'>
 					<v-col class='ma-0 pa-0' cols='11' md='9'>
@@ -45,6 +47,7 @@
 									@keydown.enter='click'
 								/>
 							</template>
+
 							<template v-if='passwordRequired && twoFA_always_required'>
 								<v-text-field
 									v-for='item in tokenFields'
@@ -65,6 +68,7 @@
 					</v-col>
 				</v-row>
 			</section>
+
 			<v-card-actions v-if='message' class='ma-0 pa-0 py-3'>
 				<v-row class='align-center ma-0 pa-0 mt-2 justify-center'>
 					<v-col class='ma-0 pa-0' cols='11' lg='6' md='9'>
@@ -83,6 +87,7 @@
 									/>
 								</div>
 							</v-col>
+
 							<v-col class='px-0 mx-0' cols='12' md='auto' :order='smAndDown? "1" : "2"'>
 								<div class='text-center'>
 									<ActionButton

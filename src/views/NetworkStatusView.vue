@@ -33,6 +33,7 @@
 										<v-col class='ma-0 pa-0 mr-1' cols='auto'>
 											<v-icon color='pi' :icon='item.icon' />
 										</v-col>
+
 										<v-col class='ma-0 pa-0'>
 											<SubHeading
 												class='unselectable'

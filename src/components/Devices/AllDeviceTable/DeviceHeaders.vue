@@ -9,6 +9,7 @@
 				:cols='item.cols'
 			>
 				<DocumentationLink v-if='item.link' class='mr-1' :section='item.link' />
+
 				<span @click='item.sortable ? sort(item.text) : undefined'>
 					{{ item.text }}
 					<v-icon
@@ -21,6 +22,7 @@
 			</v-col>
 
 		</v-row>
+
 		<v-divider class='mb-4' />
 	</section>
 

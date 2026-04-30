@@ -19,13 +19,16 @@
 								invite code
 							</span>
 						</v-col>
+
 						<v-col class='text-right' cols='6'>
 							<span class=''>
 								count
 							</span>
 						</v-col>
 					</v-row>
+
 					<v-divider />
+
 					<v-row class='ma-0 pa-0 align-center justify-center' density='compact'>
 						<v-col
 							v-for='(item,index) in inviteCodes'
@@ -45,12 +48,14 @@
 												:tooltip-message='"invite copied!"'
 											/>
 										</v-col>
+
 										<v-col class='unselectable' cols='auto'>
 											{{ item.invite }}
 										</v-col>
 									</v-row>
 
 								</v-col>
+
 								<v-col class='text-right' cols='6'>
 									{{ item.count }}
 									<span class='ml-3'>
@@ -58,15 +63,19 @@
 									</span>
 								</v-col>
 							</v-row>
+
 							<v-divider v-if='(index!== inviteCodes.length -1)' class='' />
 						</v-col>
+
 						<v-col v-if='inviteCodes.length === 0' class='text-pi text-body-small font-weight-bold' cols='auto'>
 							No invite codes
 						</v-col>
 					</v-row>
 				</v-col>
 			</v-row>
+
 			<v-divider />
+
 			<v-row class='align-center my-3 justify-space-around'>
 				<v-col cols='12'>
 
@@ -85,6 +94,7 @@
 									variant='outlined'
 								/>
 							</v-col>
+
 							<v-col class='ma-0 pa-0 mt-n5' cols='auto'>
 								<ActionButton
 									:block='true'

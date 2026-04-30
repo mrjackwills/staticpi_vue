@@ -27,12 +27,14 @@
 										{{ item.name }} :
 									</span>
 								</v-col>
+
 								<v-col class='ma-0 pa-0' cols='auto'>
 									<span class=''>
 										{{ item.data }}
 									</span>
 								</v-col>
 							</v-row>
+
 							<v-divider v-if='(index!== data.length -1)' class='hidden-md-and-up' />
 						</v-col>
 					</v-row>

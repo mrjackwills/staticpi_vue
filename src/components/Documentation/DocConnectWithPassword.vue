@@ -8,12 +8,14 @@
 				<br>
 				When setting a device password, you can choose to set identical or separate password for Pi and Client.
 			</p>
+
 			<CodeBlock
 				:key='`c_${componentKey}`'
 				class='my-3'
 				:code='code_password_connect_client'
 				filename='connect_client_with_password.js'
 			/>
+
 			<CodeBlock
 				:key='`d_${componentKey}`'
 				class='my-3'

@@ -19,23 +19,28 @@
 								key
 							</span>
 						</v-col>
+
 						<v-col class='text-right' cols='2'>
 							<span class=''>
 								points
 							</span>
 						</v-col>
+
 						<v-col class='text-right' cols='2'>
 							<span class=''>
 								max
 							</span>
 						</v-col>
+
 						<v-col class='text-right' cols='3'>
 							<span class=''>
 								ttl
 							</span>
 						</v-col>
 					</v-row>
+
 					<v-divider />
+
 					<v-row class='ma-0 pa-0 justify-center align-center' density='compact'>
 						<v-col
 							v-for='(item,index) in limits'
@@ -49,25 +54,30 @@
 										{{ item.key }}
 									</span>
 								</v-col>
+
 								<v-col class='text-right' cols='2'>
 									<span class=''>
 										{{ item.points }}
 									</span>
 								</v-col>
+
 								<v-col class='text-right' cols='2'>
 									<span class=''>
 										{{ item.max }}
 									</span>
 								</v-col>
+
 								<v-col class='text-right' cols='3'>
 									<span class=''>
 										{{ secondsToDays(item.ttl *1000) }}
 									</span>
+
 									<span class='ml-3'>
 										<v-icon color='pi' :icon='mdiCloseCircle' size='small' @click='remove_key(item.key)' />
 									</span>
 								</v-col>
 							</v-row>
+
 							<v-divider v-if='(index!== limits.length -1)' class='' />
 						</v-col>
 					</v-row>

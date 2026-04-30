@@ -25,6 +25,7 @@
 						</v-switch>
 					</v-col>
 				</v-row>
+
 				<v-row class='align-center ma-0 pa-0 justify-center'>
 					<v-col class='ma-0 pa-0 mb-2 text-center'>
 						When enabled, a Two-Factor Authentication token will be required at all password prompts.

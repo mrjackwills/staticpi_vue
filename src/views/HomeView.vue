@@ -16,16 +16,19 @@
 							src='@/assets/svg/network.svg'
 						/>
 					</v-row>
+
 					<v-row class='align-center mt-8 ma-0 pa-0 justify-center' density='compact'>
 						<v-col class='pa-0 ma-0' :class='`text-${text_size}`' cols='auto'>
 							<StaticPi color='pi' />
 						</v-col>
+
 						<v-col class='text-pi text-center ma-0 pa-0' cols='12'>
 							<span class='font-weight-black text-pi text-headline-medium lh'>
 								The easiest way to communicate with your Raspberry Pi or single-board computer
 							</span>
 						</v-col>
 					</v-row>
+
 					<v-row class='align-center pa-0 ma-0 justify-center'>
 						<v-col class='pa-0 ma-0' cols='auto'>
 							<router-link :to='`${FrontEndRoutes.BASE}#about`'>
@@ -90,6 +93,7 @@
 								making it a great tool for home tinkerers as well.
 							</v-col>
 						</v-row>
+
 						<v-row class='align-center ma-0 my-2 pa-0 justify-space-around'>
 							<v-col class='py-0 text-body-large' cols='11' md='auto'>
 								<ul>
@@ -98,6 +102,7 @@
 									<li>Works on all raspberry pi's, single board computers, and in browser</li>
 								</ul>
 							</v-col>
+
 							<v-col class='py-0 text-body-large' cols='11' md='auto'>
 								<ul>
 									<li>Send simple messages or binary data</li>
@@ -112,6 +117,7 @@
 							<v-col class='text-center' cols='12'>
 								fully open source
 							</v-col>
+
 							<v-col cols='auto'>
 								<a
 									class='text-primary font-weight-bold'
@@ -121,6 +127,7 @@
 								>website source
 									code</a>
 							</v-col>
+
 							<v-col cols='auto'>
 								<a
 									class='text-primary font-weight-bold'

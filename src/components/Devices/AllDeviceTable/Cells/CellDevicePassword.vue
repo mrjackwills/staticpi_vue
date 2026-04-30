@@ -59,6 +59,7 @@
 					</v-form>
 				</section>
 			</v-expand-transition>
+
 			<v-expand-transition>
 
 				<section v-if='!showTextField'>
@@ -71,6 +72,7 @@
 						>
 							<span>Password authentication is not available for free user</span>
 						</v-tooltip>
+
 						<v-col cols='auto'>
 							<FabTooltip
 								v-if='device_password'

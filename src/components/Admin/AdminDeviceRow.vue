@@ -19,19 +19,24 @@
 				:tooltip-message='"api_key copied!"'
 			/>
 		</v-col>
+
 		<v-col class='ma-0 pa-0 text-right' cols='1'>
 			{{ new Date(device.device.creation_date).toLocaleDateString() }}
 		</v-col>
+
 		<v-col class='ma-0 pa-0 text-right' cols='1'>
 			{{ device.device.max_clients }}
 
 		</v-col>
+
 		<v-col class='cl ma-0 pa-0 text-right' cols='1' @click='pauseDevice'>
 			<v-tooltip v-if='show_tooltip' activator='parent' content-class='tooltip' location='top center'>
 				<span>click to {{ tooltip }}pause</span>
 			</v-tooltip>
+
 			<v-icon :color='bool_color(!device.device.paused)' :icon='pause_icon' />
 		</v-col>
+
 		<v-col class='ma-0 pa-0 text-right' cols='1'>
 			<v-icon
 				:color='bool_color(device.device.structured_data)'
@@ -39,6 +44,7 @@
 				size='small'
 			/>
 		</v-col>
+
 		<v-col class='ma-0 pa-0 text-right' cols='1'>
 			<v-icon
 				:color='bool_color(device.device.device_password_required)'
@@ -46,16 +52,19 @@
 				size='small'
 			/>
 		</v-col>
+
 		<v-col class='ma-0 pa-0 text-right' cols='1'>
 			<v-icon color='pi' :icon='mdiDeleteCircle' size='small' @click='deleteDevice' />
 		</v-col>
 
 	</v-row>
+
 	<v-expand-transition>
 		<v-row v-if='show_connections' class='align-center ma-0 pa-0 justify-space-between'>
 			<v-col class='ma-0 pa-0' cols='12'>
 				<v-divider />
 			</v-col>
+
 			<v-col class='ma-0 pa-0 text-left' cols='12'>
 				<v-row
 					v-for='(con_item, index) in device.connections'
@@ -65,9 +74,11 @@
 					<v-col class='ma-0 pa-0' cols='3'>
 						type: {{ con_item.device_type }}
 					</v-col>
+
 					<v-col class='ma-0 pa-0' cols='3'>
 						online_since: {{ new Date(con_item.timestamp).toLocaleString() }}
 					</v-col>
+
 					<v-col
 						class='ma-0 pa-0 cl'
 						cols='3'
@@ -78,9 +89,11 @@
 							<span>click to kill connection</span>
 						</v-tooltip>
 					</v-col>
+
 					<v-col class='ma-0 pa-0' cols='3'>
 						ip: {{ con_item.ip }}
 					</v-col>
+
 					<v-col v-if='(index !== device.connections.length - 1)' class='ma-0 pa-0' cols='12'>
 						<v-divider />
 					</v-col>

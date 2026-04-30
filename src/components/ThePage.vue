@@ -28,11 +28,13 @@
 							:heading
 							:margin
 						/>
+
 						<slot name='body' />
 					</v-col>
 				</v-row>
 			</v-container>
 		</v-row>
+
 		<div id='goto_page_bottom' class='' />
 	</v-container>
 </template>

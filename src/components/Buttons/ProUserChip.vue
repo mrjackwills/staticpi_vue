@@ -11,6 +11,7 @@
 				<v-col class='ma-0 pa-0 mr-1' cols='auto'>
 					<v-icon :icon='mdiStarCircle' :size />
 				</v-col>
+
 				<v-col class='ma-0 pa-0' cols='auto'>pro user only</v-col>
 			</v-row>
 

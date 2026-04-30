@@ -9,6 +9,7 @@
 					:disabled='paused || freeUser'
 					:error-messages='notSaved'
 				/>
+
 				<v-tooltip
 					v-if='show_tooltip'
 					activator='parent'
@@ -20,6 +21,7 @@
 				</v-tooltip>
 
 			</v-col>
+
 			<v-expand-x-transition>
 				<v-col v-if='notSaved && !paused' class='ma-0 pa-0 mt-n3' cols='auto'>
 					<v-btn

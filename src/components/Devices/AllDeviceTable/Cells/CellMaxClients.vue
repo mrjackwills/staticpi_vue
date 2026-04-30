@@ -28,6 +28,7 @@
 				/>
 			</v-col>
 		</v-row>
+
 		<v-expand-transition>
 			<v-row
 				v-if='inFocus'

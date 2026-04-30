@@ -11,6 +11,7 @@
 						</v-col>
 					</v-row>
 				</template>
+
 				<template #body>
 
 					<v-form @submit.prevent>
@@ -35,6 +36,7 @@
 							/>
 
 						</template>
+
 						<template v-for='(item, index) in textAreaRows' :key='index'>
 							<v-textarea
 								v-model='message_data[item.model]'
@@ -60,12 +62,14 @@
 						</template>
 					</v-form>
 				</template>
+
 				<template #button>
 					<v-row class='align-center ma-0 pa-0 mb-2 justify-space-around'>
 						<v-col class='ma-0 pa-0' cols='6'>
 							<BackButton />
 
 						</v-col>
+
 						<v-col class='ma-0 pa-0' cols='6'>
 
 							<ActionButton

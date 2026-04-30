@@ -12,6 +12,7 @@
 				tooltip-message='API key copied!'
 			/>
 		</v-col>
+
 		<v-col class='ma-0 pa-0' cols='auto'>
 
 			<template v-if='tooltipAvailable'>
@@ -25,11 +26,13 @@
 					@click='regenerateApiKey'
 				>
 					<v-icon color='pi' :icon='mdiAutorenew' />
+
 					<v-tooltip v-if='show_tooltip' activator='parent' content-class='tooltip' location='top center'>
 						<span>regenerate API key</span>
 					</v-tooltip>
 				</v-btn>
 			</template>
+
 			<v-btn
 				v-else
 				class='fab-fix'

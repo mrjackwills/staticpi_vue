@@ -15,6 +15,7 @@
 				<v-col class='ma-0 pa-0' cols='auto'>
 					<v-icon :color='iconColor' :icon />
 				</v-col>
+
 				<v-col class='mx-2 ma-0 pa-0 ' cols='auto' density='compact'>
 					<SubHeading
 						:color='iconColor'
@@ -23,6 +24,7 @@
 						justify='start'
 					/>
 				</v-col>
+
 				<v-col class='ma-0 pa-0' cols='auto'>
 					<v-icon :class='{ "flipy": hidden }' :color='iconColor' :icon='mdiChevronDoubleUp' />
 				</v-col>
@@ -31,6 +33,7 @@
 			<v-expand-transition>
 				<section v-show='!hidden'>
 					<v-divider class='' />
+
 					<v-expand-transition>
 						<v-fade-transition v-if='online && tableRows.length > 0' group tag='v-row'>
 
@@ -51,12 +54,15 @@
 											<ExtraOnlineSince :timestamp='item.timestamp_online' />
 										</span>
 									</v-col>
+
 									<v-spacer />
+
 									<v-col class='ma-0 pa-0 cl' cols='12' md='auto'>
 										<span class='ma-0 pa-0' :class='{ "small-text": mobile }'>
 											<ExtraIp v-if='item.ip' :ip='item.ip' />
 										</span>
 									</v-col>
+
 									<v-col v-if='index + 1 !== tableRows.length' class='ma-0 pa-0' cols='12'>
 										<v-divider class='ma-0 pa-0' />
 									</v-col>
@@ -64,6 +70,7 @@
 							</v-list-item>
 
 						</v-fade-transition>
+
 						<template v-else>
 							<v-col class='font-weight-bold text-uppercase small-text text-center ma-0 pa-0' cols='auto'>
 								{{ offlineMessage }} offline

@@ -10,6 +10,7 @@
 					<th class='px-1 px-md-4 text-right'>last checked</th>
 				</tr>
 			</thead>
+
 			<tbody>
 				<tr v-for='(item, index) in servers' :key='index'>
 					<td
@@ -18,8 +19,10 @@
 					>
 						{{ item.address }}
 					</td>
+
 					<td class='px-1 px-md-4 text-right'>
 						<v-progress-circular v-if='item.loading' color='primary' :indeterminate='true' :size='20' />
+
 						<v-icon
 							v-else
 							:color='item.status ? "primary" : "error"'
@@ -27,6 +30,7 @@
 							:size='smAndDown ? "x-small" : "default"'
 						/>
 					</td>
+
 					<td class='px-1 px-md-4 text-right'>
 						<span
 							class='text-right font-weight-bold'
@@ -35,6 +39,7 @@
 							<span v-if='item.uptime'>{{ item.uptime }}</span>
 						</span>
 					</td>
+
 					<td class='px-1 px-md-4 text-right'>
 						<span
 							class=' font-weight-bold'
@@ -42,6 +47,7 @@
 						>{{ item.api_version
 						}}</span>
 					</td>
+
 					<td class='px-1 px-md-4 text-right'>
 						<span
 							v-if='!item.loading'

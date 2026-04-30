@@ -74,6 +74,7 @@
 				@click='cancel'
 			/>
 		</template>
+
 		<template v-if='showTextFields' #save_button>
 			<ActionButton
 				:block='true'

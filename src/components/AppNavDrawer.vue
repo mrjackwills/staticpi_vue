@@ -18,6 +18,7 @@
 					<template #prepend>
 						<v-icon class='flipx mr-2' :icon='mdiClose' />
 					</template>
+
 					<template #title>
 						<span class=''>close</span>
 					</template>
@@ -37,6 +38,7 @@
 				<template #prepend>
 					<v-icon class='' :icon='item.icon' />
 				</template>
+
 				<template #title>
 					<span class='ml-2'>{{ item.message }}</span>
 				</template>
@@ -55,6 +57,7 @@
 						<template #prepend>
 							<v-icon :icon='item.icon' />
 						</template>
+
 						<template #title>
 							<span class='ml-2'>{{ item.message }}</span>
 						</template>
@@ -67,20 +70,25 @@
 					<template #prepend>
 						<v-icon :icon='miniLogo' />
 					</template>
+
 					<template #title>
 						<span class='ml-2'>minimize</span>
 					</template>
 				</v-list-item>
+
 				<v-divider class='divider' color='white' />
+
 				<v-list-item class='cl' title='minimize' @click='logout'>
 					<template #prepend>
 						<v-icon class='flipx mr-2' :icon='mdiLoginVariant' />
 					</template>
+
 					<template #title>
 						<span class='ml-2'>logout</span>
 					</template>
 				</v-list-item>
 			</section>
+
 			<section v-if='!mini'>
 				<v-list-item>
 					<v-divider class='divider' color='white' />

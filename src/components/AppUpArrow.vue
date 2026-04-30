@@ -16,6 +16,7 @@
 			<v-icon
 				:icon='mdiArrowCollapseUp'
 			/>
+
 			<v-tooltip v-if='show_tooltip' activator='parent' content-class='tooltip' location='top center'>
 				<span>scroll to top</span>
 			</v-tooltip>

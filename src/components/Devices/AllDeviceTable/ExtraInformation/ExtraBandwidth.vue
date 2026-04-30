@@ -15,6 +15,7 @@
 						<v-col class='ma-0 pa-0' cols='auto'>
 							<v-icon :color :icon='mdiSwapVerticalBold' />
 						</v-col>
+
 						<v-col class='mx-2 ma-0 pa-0' cols='auto'>
 							<SubHeading
 								:color
@@ -23,6 +24,7 @@
 								justify='start'
 							/>
 						</v-col>
+
 						<v-col class='ma-0 pa-0' cols='auto'>
 							<v-icon :class='{ "flipy": hidden }' :color :icon='mdiChevronDoubleUp' />
 						</v-col>

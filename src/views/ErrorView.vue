@@ -12,6 +12,7 @@
 							src='@/assets/svg/404.svg'
 						/>
 					</v-row>
+
 					<section class='cl' @click='goHome'>
 						<v-row class='align-center mt-6 ma-0 pa-0 justify-center' density='compact'>
 							<v-col class='pa-0 ma-0' cols='auto'>
@@ -20,11 +21,13 @@
 								</span>
 							</v-col>
 						</v-row>
+
 						<v-row class='align-center ma-0 pa-0 justify-center' density='compact'>
 							<v-col class='pa-0 ma-0' cols='auto'>
 								<span class='text-black text-headline-medium'>return to home page</span>
 							</v-col>
 						</v-row>
+
 						<v-row class='align-center mt-2 ma-0 pa-0 justify-center'>
 							<v-col class='pa-0 ma-0' cols='auto'>
 								<v-btn

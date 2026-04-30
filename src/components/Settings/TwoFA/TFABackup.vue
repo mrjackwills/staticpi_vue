@@ -12,6 +12,7 @@
 				<StaticPi />.
 			</v-col>
 		</v-row>
+
 		<v-expand-transition>
 			<v-row v-if='!backupArray' class='align-center ma-0 pa-0 justify-center'>
 				<v-col class='ma-0 pa-0 my-2' cols='12' md='auto'>
@@ -28,6 +29,7 @@
 				</v-col>
 			</v-row>
 		</v-expand-transition>
+
 		<v-expand-transition>
 			<section v-if='backupArray'>
 				<section>
@@ -36,6 +38,7 @@
 							These backup tokens need to be stored securely, each token can only be used once
 						</v-col>
 					</v-row>
+
 					<v-row
 						class='mt-4 align-center justify-center'
 						density='compact'
@@ -52,6 +55,7 @@
 													</v-col>
 												</v-row>
 											</td>
+
 											<td class=''>
 												<v-row class='ma-0 pa-0' density='compact'>
 													<v-col class='pa-0 ma-0'>
@@ -63,11 +67,13 @@
 									</tbody>
 								</template>
 							</v-table>
+
 							<v-row class='align-center mt-4 justify-space-between' density='compact'>
 								<v-col cols='auto'>
 									<ActionButton color='pi' :icon='mdiClose' text='close' @click='close' />
 
 								</v-col>
+
 								<v-col class='mx-2' cols='auto'>
 									<ActionButton
 										color='secondary'
@@ -76,6 +82,7 @@
 										@click='downloadCodes'
 									/>
 								</v-col>
+
 								<v-col cols='auto'>
 									<ActionButton
 										id='tooltip'
@@ -83,6 +90,7 @@
 										text='copy all'
 										@click='copyCodes'
 									/>
+
 									<v-tooltip
 										v-if='show_tooltip'
 										activator='parent'

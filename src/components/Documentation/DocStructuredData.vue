@@ -12,19 +12,23 @@
 				<br>
 				• <router-link class='font-weight-bold text-primary' :to='structured_id("cache")'>"cache"</router-link>
 				<br>
+
 				• <router-link
 					class='font-weight-bold text-primary'
 					:to='structured_id("unique")'
 				>"unique"</router-link>
+
 				<br>
 				<br>
 				• <router-link class='font-weight-bold text-primary' :to='structured_id("error")'>"error"</router-link>
 				is reserved exclusively for use by the servers of staticPi.
 
 				<v-divider class='my-2' color='secondary' thickness='2' />
+
 				<span :id='structured_key_id("data")' class='text-headline-small font-weight-bold text-pi'>
 					data
 				</span>
+
 				<br>
 				The data property contains the message to be sent.
 				<v-row class='ma-0 pa-0 my-2 justify-center'>
@@ -52,17 +56,21 @@
 				<router-link class='text-primary' :to='structured_id("error")'>as seen here</router-link>
 
 				<v-divider class='my-2' color='secondary' thickness='2' />
+
 				<span :id='structured_key_id("cache")' class='text-headline-small font-weight-bold text-pi'>
 					cache
 				</span>
+
 				<br>
 				Pi connections are able to store a single message in
 				<StaticPi /> cache. This cached message will be received by any client if, and when, there is no pi
 				connection
 				<br>
+
 				To set a message in cache, the pi simply needs to send a structured message with <span
 					class='font-weight-bold'
 				>"cache: true" </span>
+
 				<v-row class='ma-0 pa-0 my-2 justify-center'>
 					<v-col class='ma-0 pa-0' cols='12'>
 						<CodeBlock
@@ -71,9 +79,11 @@
 						/>
 					</v-col>
 				</v-row>
+
 				To remove the cache, the pi simply needs to send a structured message with <span
 					class='font-weight-bold'
 				>"cache: false" </span>
+
 				<v-row class='ma-0 pa-0 my-2 justify-center'>
 					<v-col class='ma-0 pa-0' cols='12'>
 						<CodeBlock
@@ -107,22 +117,31 @@
 				<span :id='structured_key_id("unique")' class='text-headline-small font-weight-bold text-pi'>
 					unique
 				</span>
+
 				<br>
 				By default, all message sent out from a connected <span class='font-weight-bold'>pi</span> are delivered
 				to all connected <span class='font-weight-bold'>clients</span>, but
 				if you want to be able to send a message to a single connected
-				<span class='font-weight-bold'>client</span>, the <span
+				<span class='font-weight-bold'>client</span>
+
+				, the <span
 					class='font-weight-bold text-primary'
-				>unique</span> key name can be used.
+				>unique</span>
+				key name can be used.
 				<br>
 				<span class='font-weight-bold'>Clients</span>
-				can only send a message where <span class='font-weight-bold text-primary'>unique</span> is set to <span
+				can only send a message where <span class='font-weight-bold text-primary'>unique</span>
+
+				is set to <span
 					class='font-weight-bold'
 				>true</span>.
 				This is transformed, by
-				<StaticPi /> into a unique string. The unique strings are created at each <span
+				<StaticPi />
+
+				into a unique string. The unique strings are created at each <span
 					class='font-weight-bold'
-				>client</span> connection,
+				>client</span>
+				connection,
 				are available for the lifetime of the <span class='font-weight-bold '>clients</span> websocket
 				connection, and are valid
 				<a
@@ -131,6 +150,7 @@
 					rel='noopener noreferrer'
 					target='_blank'
 				>ULID</a>
+
 				<br>
 				<br>
 				When the <span class='font-weight-bold'>pi</span> sends a structured message with a valid unique string,
@@ -166,11 +186,14 @@
 				<span :id='structured_key_id("error")' class='text-headline-small font-weight-bold text-pi'>
 					error
 				</span>
+
 				<br>
 				The error key can only be set by
-				<StaticPi /> servers, and code uses
+				<StaticPi />
+				servers, and code uses
 				<a class='text-primary' :href='error_codes_href' rel='noopener noreferrer' target='_blank'>standard http
-					error codes</a>.
+					error codes</a>
+				.
 				<br>
 				If a device has structured data enabled, and an invalid formatted message is sent, the sender of the
 				invalid message will receive the following error message

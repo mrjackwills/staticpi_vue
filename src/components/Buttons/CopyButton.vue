@@ -5,6 +5,7 @@
 				<v-tooltip v-if='show_tooltip' activator='parent' content-class='tooltip' location='top center'>
 					<span v-intersect='onIntersect'>{{ message }}</span>
 				</v-tooltip>
+
 				<v-btn
 					class='fab-fix pa-0 ma-0'
 					:dark='disabled && dark'

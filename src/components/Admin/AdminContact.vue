@@ -51,6 +51,7 @@
 									</span>
 								</v-col>
 							</v-row>
+
 							<v-divider v-if='(index!== props.contactMessages.length -1)' />
 						</v-col>
 					</v-row>

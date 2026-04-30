@@ -8,6 +8,7 @@
 			<span class='text-body-small' :class='[bandwidthLimit_class, { "disabled": paused }]'>
 				{{ converted_bandwidth.total }} {{ converted_bandwidth.unit }}
 			</span>
+
 			<v-tooltip
 				v-if='show_tooltip'
 				activator='parent'

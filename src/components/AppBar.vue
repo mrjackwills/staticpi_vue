@@ -26,6 +26,7 @@
 						:width='logoSize'
 					/>
 				</v-col>
+
 				<v-col align-self='center' class='unselectable text-headline-large' cols='auto'>
 					<StaticPi color='' />
 				</v-col>
@@ -41,6 +42,7 @@
 								<v-col class='ma-0 pa-0 mr-1' cols='auto'>
 									<v-icon :icon='mdiAccountCircle' />
 								</v-col>
+
 								<v-col class='ma-0 pa-0' cols='auto'>
 									<span class='unselectable'>{{ email }}</span>
 								</v-col>
@@ -49,6 +51,7 @@
 					</v-col>
 				</v-row>
 			</template>
+
 			<template v-if='!authenticated && onDesktop'>
 				<v-btn
 					v-for='item in notAuthenticatedLinks'
@@ -61,6 +64,7 @@
 				</v-btn>
 			</template>
 		</v-toolbar-items>
+
 		<v-btn
 			v-if='!onDesktop'
 			class='cl mr-2'

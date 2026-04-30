@@ -16,6 +16,7 @@
 						label=''
 						@click='click_active'
 					/>
+
 					<v-tooltip
 						v-if='show_tooltip && disabled'
 						activator='parent'
@@ -26,6 +27,7 @@
 					</v-tooltip>
 
 				</v-col>
+
 				<v-col v-if='!active' class='ml-2 ma-0 pa-0 cl' cols='auto'>
 					<v-icon color='pi' :icon='mdiDelete' @click='deleteUser' />
 				</v-col>
@@ -49,21 +51,26 @@
 				{{ user.user_level }}
 			</span>
 		</v-col>
+
 		<v-col class='text-right ma-0 pa-0' cols='1'>
 			{{ monthly_bandwidth(user) }}
 			<v-icon :color='bandwidth_color' :icon='bandwidth_icon' @click='click_bandwidth' />
 		</v-col>
+
 		<v-col class='text-right ma-0 pa-0' cols='1'>
 			{{ user.device_count }}
 			<v-icon v-if='user.device_count > 0' :color='device_color' :icon='device_icon' @click='click_device' />
 		</v-col>
+
 		<v-col class='text-right ma-0 pa-0' cols='1'>
 			<span v-if='user.two_fa_enabled' class='mr-1'>{{ user.two_fa_backup_count }}</span>
 			<v-icon :color='bool_color(user.two_fa_enabled)' :icon='bool_icon(user.two_fa_enabled)' size='small' />
 		</v-col>
+
 		<v-col class='text-right ma-0 pa-0' cols='1'>
 			{{ user.password_reset }}
 		</v-col>
+
 		<v-col class='text-right ma-0 pa-0' cols='1'>
 			{{ user.login_attempt_number }}
 			<v-icon
@@ -74,6 +81,7 @@
 				@click='click_attempt'
 			/>
 		</v-col>
+
 		<v-col class='text-right ma-0 pa-0' cols='1'>
 			{{ sessions.length }}
 			<v-icon v-if='(sessions.length > 0)' :color='session_color' :icon='session_icon' @click='click_session' />
@@ -101,31 +109,40 @@
 							<v-col class='ma-0 pa-0 text-left' cols='4'>
 								name
 							</v-col>
+
 							<v-col class='ma-0 pa-0 text-right' cols='1'>
 								api_key
 							</v-col>
+
 							<v-col class='ma-0 pa-0 text-right' cols='1'>
 								creation_date
 							</v-col>
+
 							<v-col class='ma-0 pa-0 text-right' cols='1'>
 								max_clients
 							</v-col>
+
 							<v-col class='ma-0 pa-0 cl text-right' cols='1'>
 								status
 							</v-col>
+
 							<v-col class='ma-0 pa-0 text-right' cols='1'>
 								structured_data
 							</v-col>
+
 							<v-col class='ma-0 pa-0 text-right' cols='1'>
 								password_required
 							</v-col>
+
 							<v-col class='ma-0 pa-0 text-right' cols='1'>
 								delete
 							</v-col>
 
 						</v-row>
+
 						<v-divider />
 					</v-col>
+
 					<v-col v-for='(item, index) in all_devices' :key='index' class='ma-0 pa-0' cols='12'>
 						<AdminDeviceRow :device='item' :email='user.email' @refresh='update_device' />
 					</v-col>
@@ -142,27 +159,34 @@
 				<v-col class='ma-0 pa-0' cols='6'>
 					key
 				</v-col>
+
 				<v-col class='ma-0 pa-0' cols='3'>
 					ttl
 				</v-col>
+
 				<v-col class='ma-0 pa-0' cols='3'>
 					created
 				</v-col>
 			</v-row>
+
 			<v-divider />
+
 			<v-col v-for='(item, index) in sessions' :key='index' class='ma-0 pa-0' cols='12'>
 				<v-row class='align-center ma-0 pa-0 justify-space-between'>
 					<v-col class='ma-0 pa-0 small-text' cols='6'>
 						{{ item.key }}
 					</v-col>
+
 					<v-col class='ma-0 pa-0' cols='3'>
 						{{ secondsToDays(item.ttl * 1000) }}
 					</v-col>
+
 					<v-col class='ma-0 pa-0' cols='3'>
 						{{ new Date(item.timestamp * 1000).toLocaleString() }}
 						<v-icon color='pi' :icon='mdiCloseCircle' size='small' @click='session_delete(item.key)' />
 					</v-col>
 				</v-row>
+
 				<v-divider v-if='(index !== sessions.length - 1)' class='' />
 			</v-col>
 		</v-row>

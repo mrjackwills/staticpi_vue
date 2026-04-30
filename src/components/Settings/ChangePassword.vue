@@ -55,6 +55,7 @@
 										@keydown.enter='submit'
 										@update:model-value='v$[item.model]?.$touch()'
 									/>
+
 									<section v-if='index === 1'>
 										<v-expand-transition>
 											<PasswordStrength
@@ -64,6 +65,7 @@
 												:password='user.new_password'
 											/>
 										</v-expand-transition>
+
 										<v-expand-transition>
 											<v-expand-transition>
 												<HibpMessage v-if='passwordCompromised' />
@@ -71,6 +73,7 @@
 										</v-expand-transition>
 									</section>
 								</section>
+
 								<section v-if='twoFA_always_required'>
 									<v-text-field
 										v-for='item in tokenFields'
@@ -87,6 +90,7 @@
 										@keyup.enter='submit'
 									/>
 								</section>
+
 								<v-row class='align-center ma-0 pa-0 mb-2 justify-center'>
 									<v-col class='ma-0 pa-0' cols='auto'>
 										<v-checkbox
@@ -108,6 +112,7 @@
 				</section>
 			</v-expand-transition>
 		</template>
+
 		<template v-if='showTextFields' #cancel_button>
 
 			<ActionButton
@@ -121,6 +126,7 @@
 				@click='cancel'
 			/>
 		</template>
+
 		<template v-if='showTextFields' #save_button>
 			<ActionButton
 				:block='true'

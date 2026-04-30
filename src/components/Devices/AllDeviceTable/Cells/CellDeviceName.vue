@@ -7,6 +7,7 @@
 				</v-col>
 			</v-row>
 		</v-expand-transition>
+
 		<v-row class='align-center pt-1' :class='justify' density='compact'>
 			<v-col class='ma-0 pa-0' cols='12'>
 				<v-text-field
@@ -25,6 +26,7 @@
 					@focus='changeInFocus'
 					@keydown.enter='renameDevice'
 				/>
+
 				<v-tooltip
 					v-if='show_tooltip && isFreeUser'
 					activator='parent'
@@ -35,6 +37,7 @@
 				</v-tooltip>
 			</v-col>
 		</v-row>
+
 		<v-expand-transition>
 			<v-row
 				v-if='inFocus && !paused'

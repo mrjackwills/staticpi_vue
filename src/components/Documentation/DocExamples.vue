@@ -2,7 +2,8 @@
 
 	<DocumentationCard heading='Examples'>
 		<template #doc-body>
-			For examples and inspiration for projects utilizing the <StaticPi /> service, feel free to explore some of these projects
+			For examples and inspiration for projects utilizing the <StaticPi />
+			service, feel free to explore some of these projects
 			<v-row v-for='(item, index) in examples' :key='index' class='ma-0 pa-0 mt-2'>
 				<v-col class='ma-0 pa-0 mt-2' cols='12'>
 					<a class='text-primary font-weight-bold' :href='item.href' rel='noopener noreferrer' target='_blank'>{{ item.title }}</a>: {{ item.description }}
